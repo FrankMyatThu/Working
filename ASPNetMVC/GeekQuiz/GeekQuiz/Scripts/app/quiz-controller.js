@@ -17,11 +17,12 @@
             $scope.options = [];
 
             $http.get("/api/trivia").success(function (data, status, headers, config) {                
-                $scope.options = data.options;
-                $scope.title = data.title;
+                $scope.options = data.Options;
+                $scope.title = data.Title;
 
-                alert("data.options " + data.options);
-                alert("data.title " + data.title);
+                //angular.forEach(data.Options, function (value, key) {
+                //    alert("value = " + value + " : key = " + key);
+                //});
 
                 $scope.answered = false;
                 $scope.working = false;
