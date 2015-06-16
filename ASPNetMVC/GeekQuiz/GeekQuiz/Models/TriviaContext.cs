@@ -27,6 +27,7 @@ namespace GeekQuiz.Models
         public TriviaContext()
             : base("name=DefaultConnection")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<TriviaQuestion> TriviaQuestions { get; set; }
