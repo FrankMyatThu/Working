@@ -7,6 +7,7 @@
         $scope.working = false;
 
         $scope.answer = function () {
+            //alert($scope.correctAnswer);
             return $scope.correctAnswer ? 'correct' : 'incorrect';
         };
 
@@ -36,8 +37,13 @@
             $scope.working = true;
             $scope.answered = true;
 
-            $http.post('/api/trivia', { 'questionId': option.questionId, 'optionId': option.id }).success(function (data, status, headers, config) {
-                $scope.correctAnswer = (data === "true");
+            //angular.forEach(option, function (value, key) {
+            //    alert("key = " + key + " : value = " + value);
+            //});
+
+            $http.post('/api/trivia', { 'questionId': option.QuestionId, 'optionId': option.Id }).success(function (data, status, headers, config) {
+                //alert("data "+data);                
+                $scope.correctAnswer = data;
                 $scope.working = false;
             }).error(function (data, status, headers, config) {
                 $scope.title = "Oops... something went wrong";

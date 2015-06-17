@@ -98,6 +98,11 @@ namespace GeekQuiz.Controllers
         }
         private async Task<bool> StoreAsync(TriviaAnswer answer)
         {
+            /// Get corrected answer together with question.
+            /// select TriviaQuestions.*,TriviaOptions.Title, TriviaOptions.IsCorrect  from TriviaQuestions
+            /// Inner join TriviaOptions On TriviaOptions.QuestionId = TriviaQuestions.Id
+            /// where TriviaOptions.IsCorrect = 'True'
+
             this.db.TriviaAnswers.Add(answer);
 
             await this.db.SaveChangesAsync();
