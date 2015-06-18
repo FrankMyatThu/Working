@@ -1,0 +1,4 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\Model.GeekQuizMultiLayer.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\Model.GeekQuizMultiLayer.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\obj\Debug\Model.GeekQuizMultiLayer.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\obj\Debug\Model.GeekQuizMultiLayer.pdb
