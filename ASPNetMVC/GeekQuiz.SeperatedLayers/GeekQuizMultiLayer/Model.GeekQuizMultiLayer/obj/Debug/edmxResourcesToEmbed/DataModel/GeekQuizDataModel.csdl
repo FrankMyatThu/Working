@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TriviaAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="QuestionId" Type="Int32" Nullable="false" />
+    <Property Name="OptionId" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TriviaOption" Relationship="Self.FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId" FromRole="TriviaAnswers" ToRole="TriviaOptions" />
+  </EntityType>
+  <EntityType Name="TriviaOption">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="QuestionId" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TriviaAnswers" Relationship="Self.FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId" FromRole="TriviaOptions" ToRole="TriviaAnswers" />
+    <NavigationProperty Name="TriviaQuestion" Relationship="Self.FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId" FromRole="TriviaOptions" ToRole="TriviaQuestions" />
+  </EntityType>
+  <EntityType Name="TriviaQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TriviaOptions" Relationship="Self.FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId" FromRole="TriviaQuestions" ToRole="TriviaOptions" />
+  </EntityType>
+  <Association Name="FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId">
+    <End Role="TriviaOptions" Type="Self.TriviaOption" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TriviaAnswers" Type="Self.TriviaAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TriviaOptions">
+        <PropertyRef Name="QuestionId" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TriviaAnswers">
+        <PropertyRef Name="QuestionId" />
+        <PropertyRef Name="OptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId">
+    <End Role="TriviaQuestions" Type="Self.TriviaQuestion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TriviaOptions" Type="Self.TriviaOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TriviaQuestions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TriviaOptions">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TriviaAnswers" EntityType="Self.TriviaAnswer" />
+    <EntitySet Name="TriviaOptions" EntityType="Self.TriviaOption" />
+    <EntitySet Name="TriviaQuestions" EntityType="Self.TriviaQuestion" />
+    <AssociationSet Name="FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId" Association="Self.FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId">
+      <End Role="TriviaOptions" EntitySet="TriviaOptions" />
+      <End Role="TriviaAnswers" EntitySet="TriviaAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId" Association="Self.FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId">
+      <End Role="TriviaQuestions" EntitySet="TriviaQuestions" />
+      <End Role="TriviaOptions" EntitySet="TriviaOptions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

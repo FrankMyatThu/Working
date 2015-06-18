@@ -30,8 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,11 +48,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\GeekQuizDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeekQuizDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\GeekQuizDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeekQuizDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\GeekQuizDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeekQuizDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TriviaAnswer.cs">
+      <DependentUpon>GeekQuizDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TriviaOption.cs">
+      <DependentUpon>GeekQuizDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TriviaQuestion.cs">
+      <DependentUpon>GeekQuizDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
-    <Folder Include="DataModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataModel\GeekQuizDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GeekQuizDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="DataModel\GeekQuizDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GeekQuizDataModel.edmx</DependentUpon>
+      <LastGenOutput>GeekQuizDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DataModel\GeekQuizDataModel.edmx.diagram">
+      <DependentUpon>GeekQuizDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="DataModel\GeekQuizDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GeekQuizDataModel.edmx</DependentUpon>
+      <LastGenOutput>GeekQuizDataModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

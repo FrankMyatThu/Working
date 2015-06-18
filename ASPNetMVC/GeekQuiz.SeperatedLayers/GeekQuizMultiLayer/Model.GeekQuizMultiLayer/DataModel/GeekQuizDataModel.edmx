@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TriviaAnswers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="OptionId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TriviaOptions">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsCorrect" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TriviaQuestions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId">
+          <End Role="TriviaOptions" Type="Self.TriviaOptions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TriviaAnswers" Type="Self.TriviaAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriviaOptions">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TriviaAnswers">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="OptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId">
+          <End Role="TriviaQuestions" Type="Self.TriviaQuestions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TriviaOptions" Type="Self.TriviaOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriviaQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TriviaOptions">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="TriviaAnswers" EntityType="Self.TriviaAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TriviaOptions" EntityType="Self.TriviaOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TriviaQuestions" EntityType="Self.TriviaQuestions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId" Association="Self.FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId">
+            <End Role="TriviaOptions" EntitySet="TriviaOptions" />
+            <End Role="TriviaAnswers" EntitySet="TriviaAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId" Association="Self.FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId">
+            <End Role="TriviaQuestions" EntitySet="TriviaQuestions" />
+            <End Role="TriviaOptions" EntitySet="TriviaOptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TriviaAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="OptionId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TriviaOption" Relationship="Self.FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId" FromRole="TriviaAnswers" ToRole="TriviaOptions" />
+        </EntityType>
+        <EntityType Name="TriviaOption">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TriviaAnswers" Relationship="Self.FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId" FromRole="TriviaOptions" ToRole="TriviaAnswers" />
+          <NavigationProperty Name="TriviaQuestion" Relationship="Self.FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId" FromRole="TriviaOptions" ToRole="TriviaQuestions" />
+        </EntityType>
+        <EntityType Name="TriviaQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TriviaOptions" Relationship="Self.FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId" FromRole="TriviaQuestions" ToRole="TriviaOptions" />
+        </EntityType>
+        <Association Name="FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId">
+          <End Role="TriviaOptions" Type="Self.TriviaOption" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TriviaAnswers" Type="Self.TriviaAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriviaOptions">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TriviaAnswers">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="OptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId">
+          <End Role="TriviaQuestions" Type="Self.TriviaQuestion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TriviaOptions" Type="Self.TriviaOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriviaQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TriviaOptions">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TriviaAnswers" EntityType="Self.TriviaAnswer" />
+          <EntitySet Name="TriviaOptions" EntityType="Self.TriviaOption" />
+          <EntitySet Name="TriviaQuestions" EntityType="Self.TriviaQuestion" />
+          <AssociationSet Name="FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId" Association="Self.FK_dbo_TriviaAnswers_dbo_TriviaOptions_QuestionId_OptionId">
+            <End Role="TriviaOptions" EntitySet="TriviaOptions" />
+            <End Role="TriviaAnswers" EntitySet="TriviaAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId" Association="Self.FK_dbo_TriviaOptions_dbo_TriviaQuestions_QuestionId">
+            <End Role="TriviaQuestions" EntitySet="TriviaQuestions" />
+            <End Role="TriviaOptions" EntitySet="TriviaOptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="TriviaAnswers">
+            <EntityTypeMapping TypeName="Model.TriviaAnswer">
+              <MappingFragment StoreEntitySet="TriviaAnswers">
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TriviaOptions">
+            <EntityTypeMapping TypeName="Model.TriviaOption">
+              <MappingFragment StoreEntitySet="TriviaOptions">
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TriviaQuestions">
+            <EntityTypeMapping TypeName="Model.TriviaQuestion">
+              <MappingFragment StoreEntitySet="TriviaQuestions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
