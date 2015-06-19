@@ -13,3 +13,7 @@ D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLay
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Controller.GeekQuizMultiLayer.Tests\obj\Debug\Controller.GeekQuizMultiLayer.Tests.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Controller.GeekQuizMultiLayer.Tests\obj\Debug\Controller.GeekQuizMultiLayer.Tests.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Controller.GeekQuizMultiLayer.Tests\obj\Debug\Controller.GeekQuizMultiLayer.Tests.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Controller.GeekQuizMultiLayer.Tests\bin\Debug\Model.GeekQuizMultiLayer.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Controller.GeekQuizMultiLayer.Tests\bin\Debug\EntityFramework.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Controller.GeekQuizMultiLayer.Tests\bin\Debug\Model.GeekQuizMultiLayer.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Controller.GeekQuizMultiLayer.Tests\bin\Debug\EntityFramework.xml
