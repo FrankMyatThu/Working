@@ -19,7 +19,7 @@ namespace Controller.GeekQuizMultiLayer.Controllers
             TriviaQuestion _TriviaQuestion = _QuestionAnswer.GetQuestion("myatthu1986@yahoo.com");
             string Title = _TriviaQuestion.Title;
 
-            return Request.CreateResponse(HttpStatusCode.OK, Title);          
+            return Request.CreateResponse(HttpStatusCode.OK, _TriviaQuestion);          
         }
     }
 }

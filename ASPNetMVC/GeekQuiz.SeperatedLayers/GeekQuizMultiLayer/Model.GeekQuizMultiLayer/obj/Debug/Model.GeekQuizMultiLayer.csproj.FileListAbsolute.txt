@@ -1,10 +1,9 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\Model.GeekQuizMultiLayer.dll.config
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\Model.GeekQuizMultiLayer.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\Model.GeekQuizMultiLayer.pdb
-D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\obj\Debug\Model.GeekQuizMultiLayer.dll
-D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\obj\Debug\Model.GeekQuizMultiLayer.pdb
-D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\Model.GeekQuizMultiLayer.dll.config
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\EntityFramework.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\EntityFramework.SqlServer.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\EntityFramework.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\bin\Debug\EntityFramework.SqlServer.xml
-D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\obj\Debug\Model.GeekQuizMultiLayer.csprojResolveAssemblyReference.cache
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\obj\Debug\Model.GeekQuizMultiLayer.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\Model.GeekQuizMultiLayer\obj\Debug\Model.GeekQuizMultiLayer.pdb

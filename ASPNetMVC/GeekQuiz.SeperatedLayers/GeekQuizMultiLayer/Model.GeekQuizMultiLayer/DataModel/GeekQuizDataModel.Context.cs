@@ -18,6 +18,7 @@ namespace Model.GeekQuizMultiLayer.DataModel
         public Entities()
             : base("name=Entities")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
