@@ -3,3 +3,9 @@ D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLay
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\View.GeekQuizMultiLayer.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\View.GeekQuizMultiLayer.dll.config
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\View.GeekQuizMultiLayer.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\View.GeekQuizMultiLayer.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.pdb
