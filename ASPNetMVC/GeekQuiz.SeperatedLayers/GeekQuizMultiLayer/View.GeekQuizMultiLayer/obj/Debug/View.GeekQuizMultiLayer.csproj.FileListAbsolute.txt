@@ -9,3 +9,11 @@ D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLay
 D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.csprojResolveAssemblyReference.cache
 D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\obj\Debug\View.GeekQuizMultiLayer.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\Antlr3.Runtime.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\Microsoft.Web.Infrastructure.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\Newtonsoft.Json.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\System.Web.Optimization.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\WebGrease.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\Antlr3.Runtime.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\Newtonsoft.Json.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMultiLayer\View.GeekQuizMultiLayer\bin\System.Web.Optimization.xml
