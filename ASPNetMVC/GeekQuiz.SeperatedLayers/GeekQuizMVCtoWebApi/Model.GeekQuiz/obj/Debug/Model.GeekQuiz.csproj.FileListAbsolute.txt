@@ -1,0 +1,9 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\bin\Debug\Model.GeekQuiz.dll.config
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\bin\Debug\Model.GeekQuiz.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\bin\Debug\Model.GeekQuiz.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\bin\Debug\EntityFramework.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\bin\Debug\EntityFramework.SqlServer.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\bin\Debug\EntityFramework.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\bin\Debug\EntityFramework.SqlServer.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\obj\Debug\Model.GeekQuiz.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizMVCtoWebApi\Model.GeekQuiz\obj\Debug\Model.GeekQuiz.pdb
