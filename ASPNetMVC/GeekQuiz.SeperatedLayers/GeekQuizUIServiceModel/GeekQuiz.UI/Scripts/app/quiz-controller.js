@@ -21,9 +21,9 @@
                 $scope.options = data.TriviaOptions;
                 $scope.title = data.Title;
 
-                angular.forEach(data.TriviaOptions, function (value, key) {
-                    alert("value = " + value + " : key = " + key);
-                });
+                //angular.forEach(data.TriviaOptions, function (value, key) {
+                //    alert("value = " + value + " : key = " + key);
+                //});
 
                 $scope.answered = false;
                 $scope.working = false;

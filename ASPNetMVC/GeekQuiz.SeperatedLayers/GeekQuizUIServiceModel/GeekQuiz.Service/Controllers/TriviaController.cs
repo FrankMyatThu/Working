@@ -22,6 +22,7 @@ namespace GeekQuiz.Service.Controllers
         public HttpResponseMessage Post(TriviaAnswer _TriviaAnswer)
         {
             QuestionAnswer _QuestionAnswer = new QuestionAnswer();
+            _TriviaAnswer.UserId = "myatthu1986@yahoo.com";
             bool IsCorrect = _QuestionAnswer.SetAnswer(_TriviaAnswer);
             return Request.CreateResponse(HttpStatusCode.OK, IsCorrect);            
         }
