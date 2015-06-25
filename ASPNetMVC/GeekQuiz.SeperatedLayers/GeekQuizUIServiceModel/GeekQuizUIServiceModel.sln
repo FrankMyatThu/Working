@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekQuiz.Model", "GeekQuiz.Model\GeekQuiz.Model.csproj", "{3AE01CFA-3D98-40BE-A704-9C8A8B49D6FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekQuiz.Service", "GeekQuiz.Service\GeekQuiz.Service.csproj", "{878A0FDE-A020-46CA-BBAA-D4C878378A2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekQuiz.UI", "GeekQuiz.UI\GeekQuiz.UI.csproj", "{97C3A216-5A0E-4215-BFF4-92B4B041DD82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AE01CFA-3D98-40BE-A704-9C8A8B49D6FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE01CFA-3D98-40BE-A704-9C8A8B49D6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE01CFA-3D98-40BE-A704-9C8A8B49D6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE01CFA-3D98-40BE-A704-9C8A8B49D6FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878A0FDE-A020-46CA-BBAA-D4C878378A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878A0FDE-A020-46CA-BBAA-D4C878378A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878A0FDE-A020-46CA-BBAA-D4C878378A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878A0FDE-A020-46CA-BBAA-D4C878378A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C3A216-5A0E-4215-BFF4-92B4B041DD82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C3A216-5A0E-4215-BFF4-92B4B041DD82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C3A216-5A0E-4215-BFF4-92B4B041DD82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C3A216-5A0E-4215-BFF4-92B4B041DD82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

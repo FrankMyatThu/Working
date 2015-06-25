@@ -1,0 +1,10 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\bin\Debug\GeekQuiz.Model.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\bin\Debug\GeekQuiz.Model.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\obj\Debug\GeekQuiz.Model.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\obj\Debug\GeekQuiz.Model.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\bin\Debug\GeekQuiz.Model.dll.config
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\bin\Debug\EntityFramework.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\bin\Debug\EntityFramework.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.Model\obj\Debug\GeekQuiz.Model.csprojResolveAssemblyReference.cache
