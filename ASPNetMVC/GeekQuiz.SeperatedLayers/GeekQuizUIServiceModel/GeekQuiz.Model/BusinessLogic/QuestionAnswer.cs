@@ -41,7 +41,7 @@ namespace GeekQuiz.Model.BusinessLogic
             {
                 _DB.TriviaAnswers.Add(_TriviaAnswer);
 
-                _DB.SaveChangesAsync();
+                _DB.SaveChanges();
                 var selectedOption = _DB.TriviaOptions.FirstOrDefault(o => o.Id == _TriviaAnswer.OptionId
                     && o.QuestionId == _TriviaAnswer.QuestionId);
 
