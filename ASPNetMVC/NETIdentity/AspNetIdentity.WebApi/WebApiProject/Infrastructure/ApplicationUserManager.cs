@@ -20,7 +20,6 @@ namespace WebApiProject.Infrastructure
         {
             var appDbContext = context.Get<ApplicationDbContext>();
             var appUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(appDbContext));
-
             return appUserManager;
         }
     }
