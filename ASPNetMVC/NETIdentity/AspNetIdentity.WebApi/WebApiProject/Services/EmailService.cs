@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -20,48 +21,28 @@ namespace WebApiProject.Services
         // Use NuGet to install SendGrid (Basic C# client lib) 
         private async Task configSendGridasync(IdentityMessage message)
         {
-            var myMessage = new SendGridMessage();
+            MailMessage _MailMessage = new MailMessage();
+            _MailMessage.From = new MailAddress("taiseer@bitoftech.net");
+            _MailMessage.To.Add(new MailAddress(message.Destination));
+            _MailMessage.Subject = message.Subject;
+            _MailMessage.Body = message.Body;
+            _MailMessage.IsBodyHtml = true;
 
-            myMessage.From = new System.Net.Mail.MailAddress("taiseer@bitoftech.net", "Taiseer Joudeh");
-            myMessage.AddTo(message.Destination);            
-            myMessage.Subject = message.Subject;
-            myMessage.Text = message.Body;
-            myMessage.Html = message.Body;
-
-            var credentials = new NetworkCredential(ConfigurationManager.AppSettings["emailService:Account"],
-                                                    ConfigurationManager.AppSettings["emailService:Password"]);
-
-            // Create a Web transport for sending email.
-            var transportWeb = new Web(credentials);
-
-            // Send the email.
-            if (transportWeb != null)
+            var _SmtpClient = new SmtpClient()
             {
-                try
+                Host = ConfigurationManager.AppSettings["developer.smtp.host"].ToString(),
+                Port = Convert.ToInt32(ConfigurationManager.AppSettings["developer.smtp.port"].ToString()),
+                EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["developer.smtp.enableSsl"].ToString()),
+                Timeout = 100000, // 100 seconds || The default value is 100,000 (100 seconds). || http://msdn.microsoft.com/en-us/library/system.net.mail.smtpclient.timeout(v=vs.110).aspx
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential()
                 {
-                    await transportWeb.DeliverAsync(myMessage);
+                    UserName = ConfigurationManager.AppSettings["developer.smtp.user"].ToString(),
+                    Password = ConfigurationManager.AppSettings["developer.smtp.password"].ToString(),
                 }
-                catch (Exception ex) {
-                    /*
-                     * later will change to gmail service
-                     * 
-                        SELECT * FROM dbo.AspNetUsers 
-                        SELECT * FROM dbo.AspNetUserRoles 
-                        SELECT * FROM dbo.AspNetUserLogins 
-                        SELECT * FROM dbo.AspNetUserClaims 
-                        SELECT * FROM dbo.AspNetRoles 
-
-                        --DELETE FROM dbo.AspNetUsers WHERE dbo.AspNetUsers.Email = 'myatthu1986.developer@gmail.com'
-                     */
-                    throw ex;
-                }
-                
-            }
-            else
-            {
-                //Trace.TraceError("Failed to create Web transport.");
-                await Task.FromResult(0);
-            }
+            };
+            await _SmtpClient.SendMailAsync(_MailMessage);
         }
     }
 }

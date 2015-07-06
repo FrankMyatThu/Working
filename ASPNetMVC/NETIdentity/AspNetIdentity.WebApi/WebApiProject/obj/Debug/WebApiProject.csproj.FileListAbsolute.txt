@@ -80,3 +80,4 @@ D:\01.Project\GitHub\Working\ASPNetMVC\NETIdentity\AspNetIdentity.WebApi\WebApiP
 D:\01.Project\GitHub\Working\ASPNetMVC\NETIdentity\AspNetIdentity.WebApi\WebApiProject\obj\Debug\WebApiProject.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AspNetIdentity.WebApi\WebApiProject\bin\SendGrid.SmtpApi.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AspNetIdentity.WebApi\WebApiProject\bin\SendGridMail.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\NETIdentity\AspNetIdentity.WebApi\WebApiProject\bin\SendGrid.SmtpApi.dll
