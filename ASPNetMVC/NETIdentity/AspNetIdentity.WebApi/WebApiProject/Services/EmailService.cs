@@ -43,8 +43,8 @@ namespace WebApiProject.Services
                     Password = ConfigurationManager.AppSettings["developer.smtp.password"].ToString(),
                 }
             };
-            //await _SmtpClient.SendMailAsync(_MailMessage);
-            await _SmtpClient.SendMailExAsync(_MailMessage);
+            await _SmtpClient.SendMailAsync(_MailMessage);
+            //await _SmtpClient.SendMailExAsync(_MailMessage);
         }
     }
 
