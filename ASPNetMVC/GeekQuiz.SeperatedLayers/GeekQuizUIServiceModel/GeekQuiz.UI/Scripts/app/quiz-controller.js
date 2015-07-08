@@ -16,7 +16,7 @@
             $scope.title = "loading question...";
             $scope.options = [];
 
-            $http.get("http://localhost:1485/api/trivia").success(function (data, status, headers, config) {
+            $http.get("https://localhost:44300/api/trivia").success(function (data, status, headers, config) {
 
                 $scope.options = data.TriviaOptions;
                 $scope.title = data.Title;
@@ -28,6 +28,7 @@
                 $scope.answered = false;
                 $scope.working = false;
             }).error(function (data, status, headers, config) {
+                alert("data :" + data + " ; status :" + status + " : headers :" + headers + " ; config :" + config);
                 $scope.title = "Oops... something went wrong";
                 $scope.working = false;
             });
@@ -36,7 +37,7 @@
         $scope.sendAnswer = function (option) {
             $scope.working = true;
             $scope.answered = true;
-            $http.post('http://localhost:1485/api/trivia', { 'questionId': option.QuestionId, 'optionId': option.Id }).success(function (data, status, headers, config) {                             
+            $http.post('https://localhost:44300/api/trivia', { 'questionId': option.QuestionId, 'optionId': option.Id }).success(function (data, status, headers, config) {
                 $scope.correctAnswer = data;
                 $scope.working = false;
             }).error(function (data, status, headers, config) {                

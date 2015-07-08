@@ -25,7 +25,6 @@ namespace GeekQuiz.Service.Controllers
             _TriviaAnswer.UserId = "myatthu1986@yahoo.com";
             bool IsCorrect = _QuestionAnswer.SetAnswer(_TriviaAnswer);
             return Request.CreateResponse(HttpStatusCode.OK, IsCorrect);            
-        }
-        
+        }        
     }
 }

@@ -47,3 +47,4 @@ D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServic
 D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.UI\obj\Debug\GeekQuiz.UI.csprojResolveAssemblyReference.cache
 D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.UI\obj\Debug\GeekQuiz.UI.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.UI\obj\Debug\GeekQuiz.UI.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\GeekQuiz.SeperatedLayers\GeekQuizUIServiceModel\GeekQuiz.UI\obj\Debug\GeekQuiz.UI.csprojResolveAssemblyReference.cache
