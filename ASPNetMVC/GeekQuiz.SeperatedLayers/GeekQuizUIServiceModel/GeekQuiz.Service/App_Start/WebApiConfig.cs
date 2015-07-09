@@ -26,9 +26,10 @@ namespace GeekQuiz.Service
         private static void EnableCrossSiteRequests(HttpConfiguration config)
         {
             var cors = new EnableCorsAttribute(
-                origins: "https://www.rmportal.sg,https://localhost:44303",                
+                origins: "https://fiddle.jshell.net,https://localhost:44303",                
                 headers: "*",
                 methods: "*");
+
             config.EnableCors(cors);
         }
     }
