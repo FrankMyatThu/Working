@@ -1,0 +1,6 @@
+D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\bin\AngularJSAuthentication.Web.dll.config
+D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\bin\AngularJSAuthentication.Web.dll
+D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\bin\AngularJSAuthentication.Web.pdb
+D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\obj\Debug\AngularJSAuthentication.Web.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\obj\Debug\AngularJSAuthentication.Web.dll
+D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\obj\Debug\AngularJSAuthentication.Web.pdb
