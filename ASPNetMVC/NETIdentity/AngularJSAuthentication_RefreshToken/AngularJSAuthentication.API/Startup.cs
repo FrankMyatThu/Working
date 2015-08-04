@@ -24,9 +24,7 @@ namespace AngularJSAuthentication.API
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
-
             ConfigureOAuth(app);
-
             WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
@@ -47,6 +45,7 @@ namespace AngularJSAuthentication.API
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
                 RefreshTokenProvider = new SimpleRefreshTokenProvider()
+
             };
 
             // Token Generation

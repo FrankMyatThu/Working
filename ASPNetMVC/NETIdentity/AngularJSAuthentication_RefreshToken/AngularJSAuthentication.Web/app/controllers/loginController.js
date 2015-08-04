@@ -9,14 +9,11 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
     $scope.message = "";
 
-    $scope.login = function () {
-
-        authService.login($scope.loginData).then(function (response) {
-
+    $scope.login = function () {        
+        authService.login($scope.loginData).then(function (response) {            
             $location.path('/orders');
-
         },
-         function (err) {
+         function (err) {             
              $scope.message = err.error_description;
          });
     };
