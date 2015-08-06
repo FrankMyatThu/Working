@@ -19,16 +19,17 @@ namespace AngularJSAuthentication.API.Controllers
             _repo = new AuthRepository();
         }
 
-        [Authorize(Users="Admin")]
-        [Route("")]
+        [Authorize(Roles = "SuperUser")]
+        [Route("GetTokenList")]
+        [HttpGet]
         public IHttpActionResult Get()
         {
             return Ok(_repo.GetAllRefreshTokens());
         }
 
         //[Authorize(Users = "Admin")]
-        [AllowAnonymous]
-        [Route("")]
+        [AllowAnonymous]        
+        //[HttpPost]
         public async Task<IHttpActionResult> Delete(string tokenId)
         {
             var result = await _repo.RemoveRefreshToken(tokenId);

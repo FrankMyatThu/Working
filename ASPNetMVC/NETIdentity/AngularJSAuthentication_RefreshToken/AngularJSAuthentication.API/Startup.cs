@@ -44,6 +44,7 @@ namespace AngularJSAuthentication.API
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
+                AccessTokenProvider = new SimpleAccessTokenProvider(),
                 RefreshTokenProvider = new SimpleRefreshTokenProvider()
 
             };
@@ -51,7 +52,7 @@ namespace AngularJSAuthentication.API
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(OAuthBearerOptions);
-
+            
             //Configure Google External Login
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
             {

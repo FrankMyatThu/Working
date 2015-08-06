@@ -9,4 +9,3 @@ D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_Refre
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\bin\AngularJSAuthentication.Web.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\obj\Debug\AngularJSAuthentication.Web.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\obj\Debug\AngularJSAuthentication.Web.pdb
-D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.Web\obj\Debug\AngularJSAuthentication.Web.csprojResolveAssemblyReference.cache

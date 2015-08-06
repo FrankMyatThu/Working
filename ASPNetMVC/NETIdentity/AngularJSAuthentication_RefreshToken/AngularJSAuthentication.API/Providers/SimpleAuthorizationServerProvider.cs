@@ -97,7 +97,7 @@ namespace AngularJSAuthentication.API.Providers
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+            identity.AddClaim(new Claim(ClaimTypes.Role, "SuperUser"));
             identity.AddClaim(new Claim("sub", context.UserName));
 
             var props = new AuthenticationProperties(new Dictionary<string, string>
@@ -110,9 +110,9 @@ namespace AngularJSAuthentication.API.Providers
                     }
                 });
 
-            var ticket = new AuthenticationTicket(identity, props);
-            context.Validated(ticket);
 
+            var ticket = new AuthenticationTicket(identity, props);
+            context.Validated(ticket);                        
         }
 
         public override Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)

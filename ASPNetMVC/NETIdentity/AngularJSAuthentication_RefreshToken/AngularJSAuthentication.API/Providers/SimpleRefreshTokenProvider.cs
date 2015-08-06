@@ -48,6 +48,8 @@ namespace AngularJSAuthentication.API.Providers
                 {
                     context.SetToken(refreshTokenId);
                 }
+
+                string testToken = context.SerializeTicket();
              
             }
         }
