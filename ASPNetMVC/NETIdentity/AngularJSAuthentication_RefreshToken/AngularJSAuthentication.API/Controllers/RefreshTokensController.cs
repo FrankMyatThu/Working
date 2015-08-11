@@ -19,7 +19,7 @@ namespace AngularJSAuthentication.API.Controllers
             _repo = new AuthRepository();
         }
 
-        [Authorize(Roles = "SuperUser")]
+        [Authorize(Roles = "SuperUserMT")]
         [Route("GetTokenList")]
         [HttpGet]
         public IHttpActionResult Get()

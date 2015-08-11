@@ -59,9 +59,11 @@ D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_Refre
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.Facebook.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.Google.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.Jwt.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.OAuth.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Newtonsoft.Json.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Owin.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.IdentityModel.Tokens.Jwt.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.Net.Http.Formatting.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.Web.Cors.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.Web.Http.dll
@@ -81,6 +83,8 @@ D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_Refre
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.Google.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.OAuth.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Newtonsoft.Json.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.IdentityModel.Tokens.Jwt.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.IdentityModel.Tokens.Jwt.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.Net.Http.Formatting.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.Web.Http.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\System.Web.Http.Owin.xml
@@ -90,3 +94,4 @@ D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_Refre
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\obj\Debug\AngularJSAuthentication.API.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\obj\Debug\AngularJSAuthentication.API.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\obj\Debug\AngularJSAuthentication.API.csprojResolveAssemblyReference.cache
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.API\bin\Microsoft.Owin.Security.Jwt.xml

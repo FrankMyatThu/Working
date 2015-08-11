@@ -3,6 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin.Security.Jwt;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using System.Threading.Tasks;
+using AngularJSAuthentication.API.Entities;
 
 [assembly: OwinStartup(typeof(AngularJSAuthentication.API.Startup))]
 
@@ -34,17 +39,22 @@ namespace AngularJSAuthentication.API
 
         public void ConfigureOAuth(IAppBuilder app)
         {
+            var audienceId = "ngAuthApp";
+            string TokenIssuer = "http://localhost:26264";
+
+            #region Token Generator
             //use a cookie to temporarily store information about a user logging in with a third party login provider
             app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
 
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions() {
-            
+            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            {
+
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(),
-                AccessTokenProvider = new SimpleAccessTokenProvider(),
+                AccessTokenFormat = new CustomJwtFormat(TokenIssuer),
                 RefreshTokenProvider = new SimpleRefreshTokenProvider()
 
             };
@@ -52,7 +62,39 @@ namespace AngularJSAuthentication.API
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(OAuthBearerOptions);
+            #endregion
+
+            #region Token Reader            
+            string symmetricKeyAsBase64 = string.Empty;
+            using (AuthRepository _repo = new AuthRepository())
+            {
+                Client _Client = _repo.FindClient(audienceId);
+                symmetricKeyAsBase64 = _Client.Secret;
+            }
+            var secret = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
+            // Api controllers with an [Authorize] attribute will be validated with JWT
+            app.UseJwtBearerAuthentication(
+                new JwtBearerAuthenticationOptions
+                {
+                    AuthenticationMode = AuthenticationMode.Active,
+                    AllowedAudiences = new[] { audienceId },
+                    IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
+                    {
+                        new SymmetricKeyIssuerSecurityTokenProvider(TokenIssuer, secret)
+                    },
+                    Provider = new OAuthBearerAuthenticationProvider
+                    {
+                        OnValidateIdentity = context =>
+                        {
+                            context.Ticket.Identity.AddClaim(new System.Security.Claims.Claim("newCustomClaim", "newValue"));
+                            return Task.FromResult<object>(null);
+                        }
+                    }
+                }
+            );
+            #endregion
             
+            #region Third party login
             //Configure Google External Login
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
             {
@@ -70,7 +112,7 @@ namespace AngularJSAuthentication.API
                 Provider = new FacebookAuthProvider()
             };
             app.UseFacebookAuthentication(facebookAuthOptions);
-
+            #endregion
         }
     }
 

@@ -26,6 +26,7 @@ D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthe
 D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.Web.Http.WebHost.xml
 D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\obj\Debug\AngularJSAuthentication.ResourceServer.dll
 D:\01.Project\GitHub\Taiseer\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\obj\Debug\AngularJSAuthentication.ResourceServer.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\obj\Debug\AngularJSAuthentication.ResourceServer.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\AngularJSAuthentication.ResourceServer.dll.config
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\AngularJSAuthentication.ResourceServer.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\AngularJSAuthentication.ResourceServer.pdb
@@ -33,6 +34,7 @@ D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_Refre
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Host.SystemWeb.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Security.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Security.Jwt.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Security.OAuth.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Newtonsoft.Json.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Owin.dll
@@ -45,12 +47,15 @@ D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_Refre
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Cors.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Security.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Security.Jwt.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Microsoft.Owin.Security.OAuth.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\Newtonsoft.Json.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.Net.Http.Formatting.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.Web.Http.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.Web.Http.Owin.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.Web.Http.WebHost.xml
-D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\obj\Debug\AngularJSAuthentication.ResourceServer.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\obj\Debug\AngularJSAuthentication.ResourceServer.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\obj\Debug\AngularJSAuthentication.ResourceServer.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.IdentityModel.Tokens.Jwt.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\NETIdentity\AngularJSAuthentication_RefreshToken\AngularJSAuthentication.ResourceServer\bin\System.IdentityModel.Tokens.Jwt.xml
