@@ -95,6 +95,12 @@ namespace AngularJSAuthentication.API.Providers
                 }
             }
 
+            /// IP of the machine which send request to server.
+            string ip_client = context.Request.RemoteIpAddress;
+
+            /// IP of the machine which receive every request(s).
+            string ip_server = context.Request.LocalIpAddress;
+
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
             identity.AddClaim(new Claim(ClaimTypes.Role, "SuperUserMT"));
