@@ -111,10 +111,14 @@
       <DependentUpon>201508140935598_DropColumnToUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BusinessLogic\AppUserManager.cs" />
+    <Compile Include="Models\BusinessLogic\AppUserStore.cs" />
+    <Compile Include="Models\BusinessLogic\CustomizePasswordValidation.cs" />
     <Compile Include="Models\Entity\AuthContext.cs" />
     <Compile Include="Models\POCO\ApplicationUser.cs" />
     <Compile Include="Models\POCO\Client.cs" />
     <Compile Include="Models\POCO\Enum.cs" />
+    <Compile Include="Models\POCO\UsedPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\BusinessLogic\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201508140901347_CreateAppUserInfo.resx">

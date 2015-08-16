@@ -10,6 +10,12 @@ namespace GeekQuiz.TokenServer.Models.POCO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string ZipCode { get; set; }        
+        public string ZipCode { get; set; }
+        public virtual IList<UsedPassword> UserUsedPassword { get; set; }
+
+        public ApplicationUser() : base()
+        {
+            UserUsedPassword = new List<UsedPassword>();
+        }
     }
 }
