@@ -51,3 +51,4 @@ D:\01.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuizAuthorized\GeekQuiz.Tok
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuizAuthorized\GeekQuiz.TokenServer\GeekQuiz.TokenServer\obj\Debug\GeekQuiz.TokenServer.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuizAuthorized\GeekQuiz.TokenServer\GeekQuiz.TokenServer\obj\Debug\GeekQuiz.TokenServer.pdb
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuizAuthorized\GeekQuiz.TokenServer\GeekQuiz.TokenServer\obj\Debug\GeekQuiz.TokenServer.csprojResolveAssemblyReference.cache
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuizAuthorized\GeekQuiz.TokenServer\GeekQuiz.TokenServer\obj\Debug\GeekQuiz.TokenServer.csprojResolveAssemblyReference.cache

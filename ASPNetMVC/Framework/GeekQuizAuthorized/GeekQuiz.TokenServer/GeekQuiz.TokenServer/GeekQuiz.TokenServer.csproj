@@ -120,6 +120,7 @@
     <Compile Include="Models\POCO\Enum.cs" />
     <Compile Include="Models\POCO\UsedPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\RegisterBindingModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
