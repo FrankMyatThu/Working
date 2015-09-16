@@ -1,0 +1,5 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuiz\GeekQuiz.Base\bin\Debug\GeekQuiz.Base.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuiz\GeekQuiz.Base\bin\Debug\GeekQuiz.Base.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuiz\GeekQuiz.Base\obj\Debug\GeekQuiz.Base.csprojResolveAssemblyReference.cache
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuiz\GeekQuiz.Base\obj\Debug\GeekQuiz.Base.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\GeekQuiz\GeekQuiz.Base\obj\Debug\GeekQuiz.Base.pdb
