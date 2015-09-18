@@ -1,0 +1,10 @@
+TokenService.Prerequisite
+==========================
+
+get-project <<ProjectName>> | install-package Microsoft.Owin
+get-project <<ProjectName>> | install-package Microsoft.Owin.Cors
+get-project <<ProjectName>> | install-package Microsoft.Owin.Security.jwt
+get-project <<ProjectName>> | install-package Microsoft.AspNet.WebApi.Cors
+get-project <<ProjectName>> | install-package Microsoft.AspNet.WebApi.Owin
+get-project <<ProjectName>> | install-package Microsoft.Aspnet.Identity.Owin
+get-project <<ProjectName>> | install-package Microsoft.Aspnet.Identity.EntityFramework
