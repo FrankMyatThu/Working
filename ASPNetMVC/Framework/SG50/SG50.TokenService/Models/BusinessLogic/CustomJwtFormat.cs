@@ -70,7 +70,8 @@ namespace SG50.TokenService.Models.BusinessLogic
 
         private ActiveUser CreateActiveUser(ApplicationUser _ApplicationUser)
         {
-            ActiveUser _ActiveUser = _ApplicationUser.ActiveUser;            
+            ActiveUser _ActiveUser = _ApplicationUser.ActiveUser;
+            _ActiveUser.AppUserId = _ApplicationUser.ID;
             _ActiveUser.IP = HttpContext.Current.Request.UserHostAddress;
             _ActiveUser.UserAgent = HttpContext.Current.Request.UserAgent;
             _ActiveUser.JwtHMACKey = Convert.ToBase64String((new AesManaged()).Key);
