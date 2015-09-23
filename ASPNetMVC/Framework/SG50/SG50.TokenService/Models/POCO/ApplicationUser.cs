@@ -26,6 +26,11 @@ namespace SG50.TokenService.Models.POCO
         public string LastName { get; set; }
 
         [Required]
+        public DateTime JoinDate { get; set; }
+
+        public string PasswordResetToken { get; set; }
+
+        [Required]
         [MaxLength(100)]
         public string LoginName { get; set; }
 
@@ -45,5 +50,13 @@ namespace SG50.TokenService.Models.POCO
 
         public virtual IList<UsedPassword> UserUsedPassword { get; set; }
         public virtual ActiveUser ActiveUser { get; set; }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
+        {
+            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+            // Add custom user claims here
+
+            return userIdentity;
+        }
     }
 }

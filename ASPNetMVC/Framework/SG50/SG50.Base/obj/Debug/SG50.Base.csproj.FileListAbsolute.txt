@@ -3,3 +3,5 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Base\bin\Debug\SG50.B
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Base\obj\Debug\SG50.Base.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Base\obj\Debug\SG50.Base.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Base\obj\Debug\SG50.Base.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Base\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Base\bin\Debug\Microsoft.AspNet.Identity.Core.xml

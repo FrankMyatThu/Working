@@ -19,18 +19,23 @@ namespace SG50.TokenService.Models.Entities
             Configuration.LazyLoadingEnabled = false;
         }
 
-        //public DbSet<ActiveUser> ActiveUser { get; set; }
+        public DbSet<ActiveUser> ActiveUser { get; set; }
+        public DbSet<UsedPassword> UsedPassword { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
 
+            /// Main table(s)
             modelBuilder.Entity<ApplicationUser>().ToTable("tbl_AppUser");
             modelBuilder.Entity<IdentityRole>().ToTable("tbl_AppRole");
             modelBuilder.Entity<IdentityUserRole>().ToTable("tbl_AppUserRole");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("tbl_AppUserClaim");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("tbl_AppUserLogin");
+
+            /// Helper table(s)
             modelBuilder.Entity<ActiveUser>().ToTable("tbl_AppActiveUser");
+            modelBuilder.Entity<UsedPassword>().ToTable("tbl_AppUsedPassword");
         }
 
         public static ApplicationDbContext Create()

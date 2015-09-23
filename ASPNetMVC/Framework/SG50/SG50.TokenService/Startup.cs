@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using Owin;
+using SG50.TokenService.Models.BusinessLogic;
 using SG50.TokenService.Models.Entities;
 using System;
 using System.Collections.Generic;
