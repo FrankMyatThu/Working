@@ -56,14 +56,6 @@ namespace SG50.TokenService.Models.BusinessLogic
                 return;
             }
 
-            //ActiveUser _ActiveUser = GetActiveUser(user);
-            //using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
-            //{
-            //    _ApplicationDbContext.ActiveUser.Remove(user.ActiveUser);
-            //    _ApplicationDbContext.ActiveUser.Add(_ActiveUser);
-            //    _ApplicationDbContext.SaveChanges();
-            //}
-
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, TokenType);
 
             /// Application User ID
@@ -74,16 +66,6 @@ namespace SG50.TokenService.Models.BusinessLogic
             var ticket = new AuthenticationTicket(oAuthIdentity, null);
             context.Validated(ticket);
 
-        }
-
-        private ActiveUser CreateActiveUser(int AppUserID)
-        {
-            ActiveUser _ActiveUser = _ApplicationUser.ActiveUser;
-            _ActiveUser.AppUserId = AppUserID;
-            _ActiveUser.IP = HttpContext.Current.Request.UserHostAddress;
-            _ActiveUser.UserAgent = HttpContext.Current.Request.UserAgent;
-            _ActiveUser.JwtHMACKey = Convert.ToBase64String((new AesManaged()).Key);
-            return _ActiveUser;
         }
     }
 }

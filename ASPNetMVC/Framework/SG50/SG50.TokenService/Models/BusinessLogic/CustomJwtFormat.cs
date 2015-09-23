@@ -36,31 +36,33 @@ namespace SG50.TokenService.Models.BusinessLogic
             }
 
             string AppUserID = data.Identity.Claims.FirstOrDefault(x => x.Type == Claim_Column_AppUserID).Value;
+            data.Identity.RemoveClaim(data.Identity.Claims.FirstOrDefault(x => x.Type == Claim_Column_AppUserID));
             using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
             {
-                ApplicationUser _ApplicationUser = _ApplicationDbContext.Users.FirstOrDefault(x => x.ID.Equals(Convert.ToInt32(AppUserID)));
-                ActiveUser _ActiveUser = CreateActiveUser(_ApplicationUser);
+                ApplicationUser _ApplicationUser = _ApplicationDbContext.Users.FirstOrDefault(x => x.ID.Equals(Convert.ToInt32(AppUserID)));                
+                ActiveUser _ActiveUser = CreateActiveUser(_ApplicationUser);                
+                //_ApplicationDbContext.ActiveUser.Remove(_ActiveUser);
+                _ApplicationDbContext.ActiveUser.Add(_ActiveUser);
+
+                string audienceId = _ActiveUser.ID.ToString();
+                string symmetricKeyAsBase64 = _ActiveUser.JwtHMACKey;
+
+                var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
+
+                SigningCredentials _SigningCredentials = new SigningCredentials(
+                                                                new InMemorySymmetricSecurityKey(keyByteArray),
+                                                                SignatureAlgorithm,
+                                                                DigestAlgorithm);
+
+                var issued = data.Properties.IssuedUtc;
+                var expires = data.Properties.ExpiresUtc;
+                var token = new JwtSecurityToken(_issuer, audienceId, data.Identity.Claims, issued.Value.UtcDateTime, expires.Value.UtcDateTime, _SigningCredentials);
+                var handler = new JwtSecurityTokenHandler();
+
+                var jwt = handler.WriteToken(token);
+                _ApplicationDbContext.SaveChanges();
+                return jwt;
             }
-
-            //string audienceId = data.Identity.Claims.FirstOrDefault(x=> x.Type == Claim_Column_UserID).Value;
-            //string symmetricKeyAsBase64 = data.Identity.Claims.FirstOrDefault(x => x.Type == Claim_Column_JwtHMACKey).Value;
-            //data.Identity.RemoveClaim(data.Identity.Claims.FirstOrDefault(x => x.Type == Claim_Column_UserID));
-            //data.Identity.RemoveClaim(data.Identity.Claims.FirstOrDefault(x => x.Type == Claim_Column_JwtHMACKey));
-
-            var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
-
-            SigningCredentials _SigningCredentials = new SigningCredentials(
-                                                            new InMemorySymmetricSecurityKey(keyByteArray),
-                                                            SignatureAlgorithm,
-                                                            DigestAlgorithm);
-
-            var issued = data.Properties.IssuedUtc;
-            var expires = data.Properties.ExpiresUtc;
-            var token = new JwtSecurityToken(_issuer, audienceId, data.Identity.Claims, issued.Value.UtcDateTime, expires.Value.UtcDateTime, _SigningCredentials);
-            var handler = new JwtSecurityTokenHandler();
-
-            var jwt = handler.WriteToken(token);
-            return jwt;
         }
 
         public AuthenticationTicket Unprotect(string protectedText)
