@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,10 +14,6 @@ namespace SG50.TokenService.Models.POCO
 {
     public class ApplicationUser : IdentityUser
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-
         [Required]
         [MaxLength(100)]
         public string FirstName { get; set; }
@@ -48,8 +45,11 @@ namespace SG50.TokenService.Models.POCO
         public DateTime UpdateDate { get; set; }
         public string UpdateBy { get; set; }
 
+        [Required]
         public virtual IList<UsedPassword> UserUsedPassword { get; set; }
-        public virtual ActiveUser ActiveUser { get; set; }
+        
+        [Required]
+        public virtual IList<ActiveUser> ActiveUser { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -57,6 +57,17 @@ namespace SG50.TokenService.Models.POCO
             // Add custom user claims here
 
             return userIdentity;
+        }
+    }
+
+    class ApplicationUserMap : EntityTypeConfiguration<ApplicationUser>
+    {
+        public ApplicationUserMap()
+        {
+            //this.HasKey(c => c.Id);
+            //this.Property(c => c.Id)
+            //    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            //this.HasRequired(x => x.ActiveUser).WithRequiredPrincipal(y => y.ApplicationUser);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace SG50.TokenService.Models.BusinessLogic
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, TokenType);
 
             /// Application User ID
-            oAuthIdentity.AddClaim(ClaimManager.GetClaim(Claim_Column_AppUserID, user.ID.ToString()));
+            oAuthIdentity.AddClaim(ClaimManager.GetClaim(Claim_Column_AppUserID, user.Id.ToString()));
             oAuthIdentity.AddClaims(ExtendedClaimsProvider.GetClaims(user));
             oAuthIdentity.AddClaims(RolesFromClaims.CreateRolesBasedOnClaims(oAuthIdentity));   
          

@@ -51,8 +51,9 @@ namespace SG50.TokenService.Models.BusinessLogic
                 //    //Code for email confirmation and reset password life time
                 //    TokenLifespan = TimeSpan.FromHours(6)
                 //};
-
-                var AppUser = appUserManager.Users.First();
+                
+                /// create db, but not essential.
+                var AppUser = appUserManager.Users.FirstOrDefault();
                 appUserManager.UserTokenProvider = new CustomizedEmailPasswordResetTokenProvider<ApplicationUser>();
             }
 

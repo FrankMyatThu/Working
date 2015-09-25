@@ -8,13 +8,13 @@ using System.Web;
 namespace SG50.TokenService.Models.POCO
 {
     public class ActiveUser
-    {
+    {   
         [Key]
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [ForeignKey("ApplicationUser")]
-        public int AppUserId { get; set; }
+        [ForeignKey("ApplicationUser")]        
+        public string AppUserId { get; set; }
 
         public string IP { get; set; }
         public string UserAgent { get; set; }

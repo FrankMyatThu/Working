@@ -21,6 +21,8 @@ using System.Web.Cors;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
+// Tell OWIN to start with this
+[assembly: OwinStartup(typeof(SG50.TokenService.Startup))]
 namespace SG50.TokenService
 {
     public class Startup
@@ -36,6 +38,7 @@ namespace SG50.TokenService
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration httpConfig = new HttpConfiguration();
+            
             ConfigureOAuthTokenGeneration(app);            
             ConfigureWebApi(httpConfig);
 
@@ -50,7 +53,7 @@ namespace SG50.TokenService
                 PolicyProvider = new CorsPolicyProvider
                 {
                     PolicyResolver = request =>
-                        request.Path.Value == UriTokenPath ?
+                        request.Path.Value == AppSettings[UriTokenPath] ?
                         corsPolicy.GetCorsPolicyAsync(null, CancellationToken.None) :
                         Task.FromResult<CorsPolicy>(null)
                 }
@@ -73,10 +76,10 @@ namespace SG50.TokenService
             {
                 //For Dev enviroment only (on production should be AllowInsecureHttp = false)
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString(UriLoginPath),
+                TokenEndpointPath = new PathString(AppSettings[UriLoginPath]),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat(UrlTokenIssuer)
+                AccessTokenFormat = new CustomJwtFormat(AppSettings[UrlTokenIssuer])
             };
 
             // OAuth 2.0 Bearer Access Token Generation
@@ -87,6 +90,7 @@ namespace SG50.TokenService
 
         private void ConfigureWebApi(HttpConfiguration config)
         {
+            //WebApiConfig.Register(config);
             config.MapHttpAttributeRoutes();
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

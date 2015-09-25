@@ -44,3 +44,6 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\Syst
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.Http.Owin.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Base.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Base.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.IdentityModel.Tokens.Jwt.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\Microsoft.Owin.Host.SystemWeb.xml

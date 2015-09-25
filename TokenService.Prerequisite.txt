@@ -8,3 +8,9 @@ get-project <<ProjectName>> | install-package Microsoft.AspNet.WebApi.Cors
 get-project <<ProjectName>> | install-package Microsoft.AspNet.WebApi.Owin
 get-project <<ProjectName>> | install-package Microsoft.Aspnet.Identity.Owin
 get-project <<ProjectName>> | install-package Microsoft.Aspnet.Identity.EntityFramework
+
+/// for startup.cs
+get-project <<ProjectName>> | install-Package Microsoft.Owin.Host.SystemWeb
+
+/// to update all api(s)
+Update-Package -ProjectName <<ProjectName>>

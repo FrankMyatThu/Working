@@ -9,13 +9,12 @@ namespace SG50.TokenService.Models.POCO
 {
     public class UsedPassword
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        [Key]        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [ForeignKey("ApplicationUser")]
-        public int AppUserId { get; set; }
+        public string AppUserId { get; set; }
 
         public string Password { get; set; }
         public string SaltKey { get; set; }
