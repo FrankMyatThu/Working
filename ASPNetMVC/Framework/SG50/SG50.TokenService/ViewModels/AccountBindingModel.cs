@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG50.Base.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,38 +9,50 @@ namespace SG50.TokenService.ViewModels
 {
     public class CreateUserBindingModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
-
-        [Required]
         [Display(Name = "First Name")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [RegularExpression(FormatStandardizer.Name_SingleWord, ErrorMessage = "Invalid {0}")]
         public string FirstName { get; set; }
 
-        [Required]
         [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [RegularExpression(FormatStandardizer.Name_SingleWord, ErrorMessage = "Invalid {0}")]
         public string LastName { get; set; }
 
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Display(Name = "User Name")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]        
+        [RegularExpression(FormatStandardizer.UserName, ErrorMessage = "Invalid {0}")]
+        public string UserName { get; set; }
+
         [Display(Name = "Role Name")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [RegularExpression(FormatStandardizer.AlphaNumeric, ErrorMessage = "Invalid {0}")]
         public string RoleName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
         [Display(Name = "Password")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(100, MinimumLength = 8, ErrorMessage = "{0}'s length should be between {2} and {1}.")]        
+        [RegularExpression(FormatStandardizer.Password, ErrorMessage = "Invalid {0}")]
         public string Password { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
+        [Required(ErrorMessage = "{0} is required.")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        /// Ref http://stackoverflow.com/a/1406097/900284
+        [Display(Name = "Join Date")]
+        [Required(ErrorMessage = "{0} is required.")]        
+        [Range(typeof(DateTime), "01/01/1900", "01/01/2100", ErrorMessage = "{0} must be between {1} and {2}")]
+        public DateTime JoinDate { get; set; }
     }
-
-
 }

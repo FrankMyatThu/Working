@@ -13,29 +13,31 @@ using System.Web;
 namespace SG50.TokenService.Models.POCO
 {
     public class ApplicationUser : IdentityUser
-    {
-        [Required]
+    {   
         [MaxLength(100)]
         public string FirstName { get; set; }
 
-        [Required]
         [MaxLength(100)]
         public string LastName { get; set; }
 
-        [Required]
-        public DateTime JoinDate { get; set; }
-
-        public string PasswordResetToken { get; set; }
+        [MaxLength(100)]
+        public string Email { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string LoginName { get; set; }
+        public string UserName { get; set; }
 
-        [Required]        
+        [Required]
         public string Password { get; set; }
 
         [Required]
         public string SaltKey { get; set; }
+
+        [Required]
+        public DateTime JoinDate { get; set; }
+
+        /// Send via email.
+        public string PasswordResetToken { get; set; }
 
         [Timestamp]
         public Byte[] ExecutedTime { get; set; }
@@ -47,7 +49,7 @@ namespace SG50.TokenService.Models.POCO
 
         [Required]
         public virtual IList<UsedPassword> UserUsedPassword { get; set; }
-        
+
         [Required]
         public virtual IList<ActiveUser> ActiveUser { get; set; }
 
@@ -57,17 +59,6 @@ namespace SG50.TokenService.Models.POCO
             // Add custom user claims here
 
             return userIdentity;
-        }
-    }
-
-    class ApplicationUserMap : EntityTypeConfiguration<ApplicationUser>
-    {
-        public ApplicationUserMap()
-        {
-            //this.HasKey(c => c.Id);
-            //this.Property(c => c.Id)
-            //    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            //this.HasRequired(x => x.ActiveUser).WithRequiredPrincipal(y => y.ApplicationUser);
         }
     }
 }

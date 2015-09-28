@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using SG50.Base.ForgeryProtector;
 
 namespace SG50.TokenService.Controllers
 {
@@ -21,10 +22,11 @@ namespace SG50.TokenService.Controllers
         string Email_Body = "Please confirm your account by clicking <a href=\"{0}\">here</a>";
 
         [AllowAnonymous]
+        //[MyValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Route("create")]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -32,11 +34,11 @@ namespace SG50.TokenService.Controllers
 
             var user = new ApplicationUser()
             {
-                UserName = createUserModel.Username,
-                Email = createUserModel.Email,
                 FirstName = createUserModel.FirstName,
                 LastName = createUserModel.LastName,                
-                JoinDate = DateTime.Now.Date,
+                Email = createUserModel.Email,
+                UserName = createUserModel.UserName,
+                JoinDate = createUserModel.JoinDate,
             };
 
 
@@ -64,7 +66,7 @@ namespace SG50.TokenService.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("ConfirmEmail", Name = Name_ConfirmEmailRoute)]
-        public async Task<IHttpActionResult> ConfirmEmail(string userId = "", string code = "")
+        public async Task<IHttpActionResult> ConfirmEmail(string userId, string code)
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
             {

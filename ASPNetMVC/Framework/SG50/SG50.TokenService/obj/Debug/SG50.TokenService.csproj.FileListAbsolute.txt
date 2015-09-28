@@ -47,3 +47,13 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.IdentityModel.Tokens.Jwt.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\Microsoft.Owin.Host.SystemWeb.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.Mvc.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.WebPages.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.Razor.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.WebPages.Razor.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.WebPages.Deployment.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.Mvc.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.WebPages.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.Razor.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.WebPages.Razor.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.WebPages.Deployment.xml
