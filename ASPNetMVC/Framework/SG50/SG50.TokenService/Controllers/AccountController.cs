@@ -15,16 +15,15 @@ namespace SG50.TokenService.Controllers
     [RoutePrefix("api/accounts")]
     public class AccountController : BaseApiController
     {
-        const string Name_ConfirmEmailRoute = "ConfirmEmailRoute";
-        const string Name_GetUserById = "GetUserById";
+        const string RouteName_ConfirmEmailRoute = "ConfirmEmailRoute";
+        const string RouteName_GetUserById = "GetUserById";
         string Required_ID_Code = "User Id and Code are required";
         string Email_Subject = "Confirm your account";
         string Email_Body = "Please confirm your account by clicking <a href=\"{0}\">here</a>";
 
-        [AllowAnonymous]
-        //[MyValidateAntiForgeryToken]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]        
         [Route("create")]
+        [CustomizedValidateAntiForgeryToken]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
             if (!ModelState.IsValid)
@@ -51,13 +50,13 @@ namespace SG50.TokenService.Controllers
 
             string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
-            var callbackUrl = new Uri(Url.Link(Name_ConfirmEmailRoute, new { userId = user.Id, code = code }));
+            var callbackUrl = new Uri(Url.Link(RouteName_ConfirmEmailRoute, new { userId = user.Id, code = code }));
 
             await this.AppUserManager.SendEmailAsync(user.Id,
                                                     Email_Subject,
                                                     string.Format(Email_Body, callbackUrl));
 
-            Uri locationHeader = new Uri(Url.Link(Name_GetUserById, new { id = user.Id }));
+            Uri locationHeader = new Uri(Url.Link(RouteName_GetUserById, new { id = user.Id }));
 
             return Created(locationHeader, TheModelFactory.Create(user));
 
@@ -65,7 +64,7 @@ namespace SG50.TokenService.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("ConfirmEmail", Name = Name_ConfirmEmailRoute)]
+        [Route("ConfirmEmail", Name = RouteName_ConfirmEmailRoute)]
         public async Task<IHttpActionResult> ConfirmEmail(string userId, string code)
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
@@ -87,7 +86,7 @@ namespace SG50.TokenService.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [Route("user/{id:guid}", Name = Name_GetUserById)]
+        [Route("user/{id:guid}", Name = RouteName_GetUserById)]
         public async Task<IHttpActionResult> GetUser(string Id)
         {
             //Only SuperAdmin or Admin can delete users (Later when implement roles)

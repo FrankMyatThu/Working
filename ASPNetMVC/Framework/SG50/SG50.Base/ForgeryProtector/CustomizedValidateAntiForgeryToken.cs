@@ -14,7 +14,7 @@ using System.Net;
 namespace SG50.Base.ForgeryProtector
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class MyValidateAntiForgeryTokenAttribute : FilterAttribute, IAuthorizationFilter
+    public class CustomizedValidateAntiForgeryTokenAttribute : FilterAttribute, IAuthorizationFilter
     {
         private void ValidateRequestHeader(HttpRequestBase request)
         {
