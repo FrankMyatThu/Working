@@ -20,15 +20,8 @@ namespace SG50.TokenService.Models.POCO
         [MaxLength(100)]
         public string LastName { get; set; }
 
-        [MaxLength(100)]
-        public string Email { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string UserName { get; set; }
-
-        [Required]
-        public string Password { get; set; }
+        //[Required]
+        //public string Password { get; set; }
 
         [Required]
         public string SaltKey { get; set; }
@@ -44,13 +37,10 @@ namespace SG50.TokenService.Models.POCO
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
         public string UpdateBy { get; set; }
 
-        [Required]
         public virtual IList<UsedPassword> UserUsedPassword { get; set; }
-
-        [Required]
         public virtual IList<ActiveUser> ActiveUser { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)

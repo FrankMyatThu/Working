@@ -41,7 +41,8 @@ namespace SG50.TokenService.Models.BusinessLogic
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             ApplicationUser user = await userManager.FindByNameAsync(context.UserName);
-            string Hashed_Password = Security.HashCode(Converter.GetBytes(user.Password), Convert.FromBase64String(user.SaltKey));
+            string Hashed_Password = Security.HashCode(Converter.GetBytes(user.PasswordHash), Convert.FromBase64String(user.SaltKey));
+            //string Hashed_Password = Security.HashCode(Converter.GetBytes(user.Password), Convert.FromBase64String(user.SaltKey));
             user = await userManager.FindAsync(user.UserName, Hashed_Password);
             
             if (user == null)

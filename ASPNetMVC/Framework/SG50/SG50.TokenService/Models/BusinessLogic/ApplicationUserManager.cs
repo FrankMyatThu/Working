@@ -23,24 +23,7 @@ namespace SG50.TokenService.Models.BusinessLogic
         {
             var appDbContext = context.Get<ApplicationDbContext>();
             var appUserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(appDbContext));
-
-            // Configure validation logic for usernames
-            appUserManager.UserValidator = new UserValidator<ApplicationUser>(appUserManager)
-            {
-                AllowOnlyAlphanumericUserNames = true,
-                RequireUniqueEmail = true
-            };
-
-            // Configure validation logic for passwords
-            appUserManager.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = false,
-                RequireLowercase = true,
-                RequireUppercase = true,
-            };
-
+            
             appUserManager.EmailService = new EmailService();
 
             var dataProtectionProvider = options.DataProtectionProvider;
@@ -53,7 +36,8 @@ namespace SG50.TokenService.Models.BusinessLogic
                 //};
                 
                 /// create db, but not essential.
-                var AppUser = appUserManager.Users.FirstOrDefault();
+                // var AppUser = appUserManager.Users.FirstOrDefault();
+
                 appUserManager.UserTokenProvider = new CustomizedEmailPasswordResetTokenProvider<ApplicationUser>();
             }
 

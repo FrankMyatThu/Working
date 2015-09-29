@@ -37,16 +37,17 @@ namespace SG50.TokenService
 
         public void Configuration(IAppBuilder app)
         {
-            HttpConfiguration httpConfig = new HttpConfiguration();
-            
-            ConfigureOAuthTokenGeneration(app);            
+            HttpConfiguration httpConfig = new HttpConfiguration();            
+            ConfigureOAuthTokenGeneration(app);
             ConfigureWebApi(httpConfig);
 
             var corsPolicy = new EnableCorsAttribute(
-                            origins: AppSettings[CorsOrigins],
-                            headers: AppSettings[CorsHeaders],
-                            methods: AppSettings[CorsMethods]);
+                                    //origins: "https://fiddle.jshell.net,https://localhost:44303",                
+                                    origins: AppSettings[CorsOrigins],
+                                    headers: AppSettings[CorsHeaders],
+                                    methods: AppSettings[CorsMethods]);
 
+            
             // Enable CORS for ASP.NET Identity
             app.UseCors(new CorsOptions
             {
@@ -58,8 +59,8 @@ namespace SG50.TokenService
                         Task.FromResult<CorsPolicy>(null)
                 }
             });
-
-            // Enable CORS for Web API
+            
+            //// Enable CORS for Web API
             httpConfig.EnableCors(corsPolicy);
 
             app.UseWebApi(httpConfig);
@@ -86,12 +87,9 @@ namespace SG50.TokenService
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
         }
 
-        
-
         private void ConfigureWebApi(HttpConfiguration config)
         {
-            //WebApiConfig.Register(config);
-            config.MapHttpAttributeRoutes();
+            WebApiConfig.Register(config);
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
