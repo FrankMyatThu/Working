@@ -12,3 +12,17 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\S
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\obj\Debug\SG50.BusinessService.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\obj\Debug\SG50.BusinessService.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\obj\Debug\SG50.BusinessService.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\SG50.BusinessService.dll.config
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\SG50.BusinessService.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\SG50.BusinessService.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\Newtonsoft.Json.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\System.Net.Http.Formatting.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\System.Web.Http.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\System.Web.Http.WebHost.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\Newtonsoft.Json.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\System.Net.Http.Formatting.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\System.Web.Http.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\bin\System.Web.Http.WebHost.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\obj\Debug\SG50.BusinessService.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\obj\Debug\SG50.BusinessService.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.BusinessService\obj\Debug\SG50.BusinessService.pdb

@@ -26,7 +26,7 @@ namespace SG50.TokenService.Controllers
 
         [AllowAnonymous]        
         [Route("create")]
-        [CustomizedValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
             if (!ModelState.IsValid)
@@ -50,12 +50,12 @@ namespace SG50.TokenService.Controllers
                 UpdateBy = null
             };
 
-            //string Hashed_Password = Security.HashCode(Converter.GetBytes(createUserModel.Password), SaltKey_ByteArray);
-            //IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, Hashed_Password);
-            //if (!addUserResult.Succeeded)
-            //{
-            //    return GetErrorResult(addUserResult);
-            //}
+            string Hashed_Password = Security.HashCode(Converter.GetBytes(createUserModel.Password), SaltKey_ByteArray);
+            IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, Hashed_Password);
+            if (!addUserResult.Succeeded)
+            {
+                return GetErrorResult(addUserResult);
+            }
             
             /*
             //string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -81,7 +81,9 @@ namespace SG50.TokenService.Controllers
             //Uri locationHeader = new Uri(Url.Link(RouteName_GetUserById, new { id = user.Id }));
             Uri locationHeader = new Uri(Url.Link(RouteName_GetUserById, new { id = "090f8e1b-26b8-4432-a89f-2121f7584173" }));
             */
-            return Created(locationHeader, TheModelFactory.Create(user));
+
+            //return Created(locationHeader, TheModelFactory.Create(user));
+            return Ok();
 
         }
 

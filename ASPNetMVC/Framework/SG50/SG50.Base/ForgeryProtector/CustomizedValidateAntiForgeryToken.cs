@@ -3,54 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using System.Web;
 using System.Web.Helpers;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Threading;
 using System.Net;
+using System.Web.Http.Filters;
 
 namespace SG50.Base.ForgeryProtector
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class CustomizedValidateAntiForgeryTokenAttribute : FilterAttribute, IAuthorizationFilter
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+    public sealed class ValidateAntiForgeryTokenAttribute : FilterAttribute, IAuthorizationFilter
     {
-        private void ValidateRequestHeader(HttpRequestBase request)
+        public Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
-            string cookieToken = String.Empty;
-            string formToken = String.Empty;
-            string tokenValue = request.Headers["RequestVerificationToken"];
-            if (!String.IsNullOrEmpty(tokenValue))
-            {
-                string[] tokens = tokenValue.Split(':');
-                if (tokens.Length == 2)
-                {
-                    cookieToken = tokens[0].Trim();
-                    formToken = tokens[1].Trim();
-                }
-            }
-            AntiForgery.Validate(cookieToken, formToken);
-        }
-
-        public void OnAuthorization(AuthorizationContext filterContext)
-        {
-
             try
             {
-                if (filterContext.HttpContext.Request.IsAjaxRequest())
+                string cookieToken = "";
+                string formToken = "";
+
+                IEnumerable<string> tokenHeaders;
+                if (actionContext.Request.Headers.TryGetValues("RequestVerificationToken", out tokenHeaders))
                 {
-                    ValidateRequestHeader(filterContext.HttpContext.Request);
+                    string[] tokens = tokenHeaders.First().Split(':');
+                    if (tokens.Length == 2)
+                    {
+                        cookieToken = tokens[0].Trim();
+                        formToken = tokens[1].Trim();
+                    }
                 }
-                else
-                {
-                    AntiForgery.Validate();
-                }
+                AntiForgery.Validate(cookieToken, formToken);
             }
-            catch (HttpAntiForgeryException e)
+            catch (System.Web.Mvc.HttpAntiForgeryException e)
             {
-                throw new HttpAntiForgeryException("Anti forgery token cookie not found");
+                actionContext.Response = new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.Forbidden,
+                    RequestMessage = actionContext.ControllerContext.Request
+                };
+                return FromResult(actionContext.Response);
             }
+            return continuation();
+        }
+
+        private Task<HttpResponseMessage> FromResult(HttpResponseMessage result)
+        {
+            var source = new TaskCompletionSource<HttpResponseMessage>();
+            source.SetResult(result);
+            return source.Task;
         }
     }
 }
