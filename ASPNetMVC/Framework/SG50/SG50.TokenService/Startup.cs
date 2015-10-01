@@ -33,12 +33,14 @@ namespace SG50.TokenService
         string CorsMethods = "cors:Methods";
         string UriTokenPath = "uri:tokenpath";
         string UriLoginPath = "uri:loginpath";
-        string UrlTokenIssuer = "url:tokenIssuer";         
+        string UrlTokenIssuer = "url:tokenIssuer"; 
+        
+
 
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration httpConfig = new HttpConfiguration();            
-            ConfigureOAuthTokenGeneration(app);
+            //ConfigureOAuthTokenGeneration(app);
             ConfigureWebApi(httpConfig);
 
             var corsPolicy = new EnableCorsAttribute(
@@ -48,21 +50,21 @@ namespace SG50.TokenService
                                     methods: AppSettings[CorsMethods]);
 
             
-            // Enable CORS for ASP.NET Identity
-            app.UseCors(new CorsOptions
-            {
-                PolicyProvider = new CorsPolicyProvider
-                {
-                    PolicyResolver = request =>
-                        request.Path.Value == AppSettings[UriTokenPath] ?
-                        corsPolicy.GetCorsPolicyAsync(null, CancellationToken.None) :
-                        Task.FromResult<CorsPolicy>(null)
-                }
-            });
+            //// Enable CORS for ASP.NET Identity
+            //app.UseCors(new CorsOptions
+            //{
+            //    PolicyProvider = new CorsPolicyProvider
+            //    {
+            //        PolicyResolver = request =>
+            //            request.Path.Value == AppSettings[UriTokenPath] ?
+            //            corsPolicy.GetCorsPolicyAsync(null, CancellationToken.None) :
+            //            Task.FromResult<CorsPolicy>(null)
+            //    }
+            //});
             
             //// Enable CORS for Web API
             httpConfig.EnableCors(corsPolicy);
-
+            
             app.UseWebApi(httpConfig);
         }
 

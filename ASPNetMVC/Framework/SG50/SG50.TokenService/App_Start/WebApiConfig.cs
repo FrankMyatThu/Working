@@ -10,35 +10,15 @@ namespace SG50.TokenService
     {
         public static void Register(HttpConfiguration config)
         {
+            // Attribute routing.
+            config.MapHttpAttributeRoutes();
+
+            // Convention-based routing.
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            config.Routes.MapHttpRoute(
-                name: "CreateUserRoute",
-                routeTemplate: "api/accounts/CreateUser",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserLoginRoute",
-                routeTemplate: "api/accounts/UserLogin",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ConfirmEmailRoute",
-                routeTemplate: "api/accounts/ConfirmEmail",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "GetUserById",
-                routeTemplate: "api/accounts/user/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );            
         }
     }
 }

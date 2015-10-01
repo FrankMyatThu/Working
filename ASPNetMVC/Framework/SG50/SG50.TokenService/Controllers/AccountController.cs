@@ -24,36 +24,33 @@ namespace SG50.TokenService.Controllers
         string Email_Body = "Please confirm your account by clicking <a href=\"{0}\">here</a>";
         int SaltKeyLength = 16;
 
-        //[HttpPost]
-        //[Route("UserLogin", Name = "UserLoginRoute")]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IHttpActionResult> UserLogin(LoginUserBindingModel loginUserModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    IHttpActionResult _IHttpActionResult;
-        //    //HttpResponseMessage _HttpResponseMessage = new HttpResponseMessage();
-        //    //Cookie _Cookie = new Cookie();
-        //    //_Cookie.Name = "CookieName";
-        //    //_Cookie.Value = "CookieValue";
-        //    //_Cookie.HttpOnly = true;
-        //    //_Cookie.Secure = true;
-        //    //_HttpResponseMessage.Headers.SetCookie(_Cookie);
-        //    //_IHttpActionResult = ResponseMessage(_HttpResponseMessage);
-
-        //    //return Ok(_IHttpActionResult);
-        //    return Ok();
-        //}
-
-        
-        
         [HttpPost]
-        [Route("CreateUser", Name = "CreateUserRoute")]
-        [AllowAnonymous]
+        [AllowAnonymous]  
+        [Route("UserLogin", Name = "UserLoginRoute")]        
+        [ValidateAntiForgeryToken]
+        public async Task<IHttpActionResult> UserLogin(LoginUserBindingModel loginUserModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IHttpActionResult _IHttpActionResult;
+            HttpResponseMessage _HttpResponseMessage = new HttpResponseMessage();
+            Cookie _Cookie = new Cookie();
+            _Cookie.Name = "CookieName";
+            _Cookie.Value = "CookieValue";
+            _Cookie.HttpOnly = true;
+            _Cookie.Secure = true;
+            _HttpResponseMessage.Headers.SetCookie(_Cookie);
+            _IHttpActionResult = ResponseMessage(_HttpResponseMessage);
+
+            return Ok(_IHttpActionResult);            
+        }
+
+        [HttpPost]        
+        [AllowAnonymous]        
+        [Route("CreateUser", Name = "CreateUserRoute")]        
         [ValidateAntiForgeryToken]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
@@ -115,8 +112,8 @@ namespace SG50.TokenService.Controllers
 
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]        
         [Route("ConfirmEmail", Name = "ConfirmEmailRoute")]
         public async Task<IHttpActionResult> ConfirmEmail(string userId, string code)
         {
@@ -138,6 +135,7 @@ namespace SG50.TokenService.Controllers
             }
         }
 
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
