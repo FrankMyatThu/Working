@@ -24,8 +24,36 @@ namespace SG50.TokenService.Controllers
         string Email_Body = "Please confirm your account by clicking <a href=\"{0}\">here</a>";
         int SaltKeyLength = 16;
 
-        [AllowAnonymous]        
-        [Route("create")]
+        //[HttpPost]
+        //[Route("UserLogin", Name = "UserLoginRoute")]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IHttpActionResult> UserLogin(LoginUserBindingModel loginUserModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    IHttpActionResult _IHttpActionResult;
+        //    //HttpResponseMessage _HttpResponseMessage = new HttpResponseMessage();
+        //    //Cookie _Cookie = new Cookie();
+        //    //_Cookie.Name = "CookieName";
+        //    //_Cookie.Value = "CookieValue";
+        //    //_Cookie.HttpOnly = true;
+        //    //_Cookie.Secure = true;
+        //    //_HttpResponseMessage.Headers.SetCookie(_Cookie);
+        //    //_IHttpActionResult = ResponseMessage(_HttpResponseMessage);
+
+        //    //return Ok(_IHttpActionResult);
+        //    return Ok();
+        //}
+
+        
+        
+        [HttpPost]
+        [Route("CreateUser", Name = "CreateUserRoute")]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
@@ -50,12 +78,12 @@ namespace SG50.TokenService.Controllers
                 UpdateBy = null
             };
 
-            string Hashed_Password = Security.HashCode(Converter.GetBytes(createUserModel.Password), SaltKey_ByteArray);
-            IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, Hashed_Password);
-            if (!addUserResult.Succeeded)
-            {
-                return GetErrorResult(addUserResult);
-            }
+            //string Hashed_Password = Security.HashCode(Converter.GetBytes(createUserModel.Password), SaltKey_ByteArray);
+            //IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, Hashed_Password);
+            //if (!addUserResult.Succeeded)
+            //{
+            //    return GetErrorResult(addUserResult);
+            //}
             
             /*
             //string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);

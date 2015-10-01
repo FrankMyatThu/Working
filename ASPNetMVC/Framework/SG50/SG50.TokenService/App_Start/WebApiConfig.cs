@@ -17,6 +17,18 @@ namespace SG50.TokenService
             );
 
             config.Routes.MapHttpRoute(
+                name: "CreateUserRoute",
+                routeTemplate: "api/accounts/CreateUser",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "UserLoginRoute",
+                routeTemplate: "api/accounts/UserLogin",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "ConfirmEmailRoute",
                 routeTemplate: "api/accounts/ConfirmEmail",
                 defaults: new { id = RouteParameter.Optional }

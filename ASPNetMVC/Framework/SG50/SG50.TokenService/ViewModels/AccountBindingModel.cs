@@ -55,4 +55,19 @@ namespace SG50.TokenService.ViewModels
         [Range(typeof(DateTime), "01/01/1900", "01/01/2100", ErrorMessage = "{0} must be between {1} and {2}")]
         public DateTime JoinDate { get; set; }
     }
+    
+    public class LoginUserBindingModel
+    {
+        [Display(Name = "User Name")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [RegularExpression(FormatStandardizer.UserName, ErrorMessage = "Invalid {0}")]
+        public string UserName { get; set; }
+
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(100, MinimumLength = 8, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [RegularExpression(FormatStandardizer.Password, ErrorMessage = "Invalid {0}")]
+        public string Password { get; set; }
+    }
 }
