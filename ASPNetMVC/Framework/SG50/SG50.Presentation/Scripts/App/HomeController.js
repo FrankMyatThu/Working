@@ -1,16 +1,16 @@
-﻿var app = angular.module('AppLogin', []);
-app.controller('LoginController', function ($scope, $http, $window) {
+﻿var app = angular.module('AppHome', []);
+app.controller('HomeController', function ($scope, $http, $window) {
     $scope.greeting = { text: 'Hello' };
     $scope.person = {
-        "UserName": "myat",        
+        "UserName": "myat",
         "Password": "Ent3rP@ss"
     };
     $scope.sendForm = function () {
         console.log("$scope.person\n " + JSON.stringify($scope.person));
         $http({
             method: 'POST',
-            url: 'https://localhost:44305/api/accounts/UserLogin',            
-            data: $scope.person,
+            url: 'https://localhost:44306/api/home/GetUserList',
+            //data: $scope.person,
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken
             }
@@ -26,8 +26,8 @@ app.controller('LoginController', function ($scope, $http, $window) {
             else {
                 $scope.message = 'Login Successfully';
                 $window.sessionStorage.setItem("JWTToken", data);
-                $scope.person = {};                
-                $window.location.href = '../Home/Home';                
+                $scope.person = {};
+                $window.location.href = '../Home/Home';
             }
         }).error(function (data, status, headers, config) {
             $scope.message = 'Unexpected Error';

@@ -163,15 +163,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Models\BusinessLogic\ApplicationRoleManager.cs" />
-    <Compile Include="Models\BusinessLogic\ApplicationUserManager.cs" />
     <Compile Include="Models\BusinessLogic\ClaimManager.cs" />
-    <Compile Include="Models\BusinessLogic\CustomizedEmailPasswordResetTokenProvider.cs" />
-    <Compile Include="Models\BusinessLogic\CustomJwtFormat.cs" />
-    <Compile Include="Models\BusinessLogic\CustomOAuthProvider.cs" />
-    <Compile Include="Models\BusinessLogic\ExtendedClaimsProvider.cs" />
-    <Compile Include="Models\BusinessLogic\RolesFromClaims.cs" />
+    <Compile Include="Models\BusinessLogic\UserAccountBusinessLogic.cs" />
     <Compile Include="Models\Entities\ApplicationDbContext.cs" />
     <Compile Include="Models\POCO\ActiveUser.cs" />
     <Compile Include="Models\POCO\ApplicationUser.cs" />
@@ -180,7 +173,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Util\EmailService.cs" />
     <Compile Include="ViewModels\AccountBindingModel.cs" />
-    <Compile Include="ViewModels\ModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

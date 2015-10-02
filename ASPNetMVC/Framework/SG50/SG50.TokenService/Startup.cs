@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using Owin;
+using SG50.Base.Util;
 using SG50.TokenService.Models.BusinessLogic;
 using SG50.TokenService.Models.Entities;
 using System;
@@ -27,66 +28,19 @@ namespace SG50.TokenService
 {
     public class Startup
     {
-        NameValueCollection AppSettings = ConfigurationManager.AppSettings;
-        string CorsOrigins = "cors:Origins";
-        string CorsHeaders = "cors:Headers";
-        string CorsMethods = "cors:Methods";
-        string UriTokenPath = "uri:tokenpath";
-        string UriLoginPath = "uri:loginpath";
-        string UrlTokenIssuer = "url:tokenIssuer"; 
-        
-
-
         public void Configuration(IAppBuilder app)
         {
-            HttpConfiguration httpConfig = new HttpConfiguration();            
-            //ConfigureOAuthTokenGeneration(app);
+            HttpConfiguration httpConfig = new HttpConfiguration();                        
             ConfigureWebApi(httpConfig);
 
-            var corsPolicy = new EnableCorsAttribute(
-                                    //origins: "https://fiddle.jshell.net,https://localhost:44303",                
-                                    origins: AppSettings[CorsOrigins],
-                                    headers: AppSettings[CorsHeaders],
-                                    methods: AppSettings[CorsMethods]);
+            var corsPolicy = new EnableCorsAttribute(                                    
+                                    origins: AppConfiger.CorsOrigins,
+                                    headers: AppConfiger.CorsHeaders,
+                                    methods: AppConfiger.CorsMethods);
 
-            
-            //// Enable CORS for ASP.NET Identity
-            //app.UseCors(new CorsOptions
-            //{
-            //    PolicyProvider = new CorsPolicyProvider
-            //    {
-            //        PolicyResolver = request =>
-            //            request.Path.Value == AppSettings[UriTokenPath] ?
-            //            corsPolicy.GetCorsPolicyAsync(null, CancellationToken.None) :
-            //            Task.FromResult<CorsPolicy>(null)
-            //    }
-            //});
-            
             //// Enable CORS for Web API
-            httpConfig.EnableCors(corsPolicy);
-            
+            httpConfig.EnableCors(corsPolicy);            
             app.UseWebApi(httpConfig);
-        }
-
-        private void ConfigureOAuthTokenGeneration(IAppBuilder app)
-        {
-            // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
-            {
-                //For Dev enviroment only (on production should be AllowInsecureHttp = false)
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString(AppSettings[UriLoginPath]),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat(AppSettings[UrlTokenIssuer])
-            };
-
-            // OAuth 2.0 Bearer Access Token Generation
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);
         }
 
         private void ConfigureWebApi(HttpConfiguration config)

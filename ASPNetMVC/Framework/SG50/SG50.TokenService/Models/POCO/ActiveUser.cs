@@ -9,8 +9,7 @@ namespace SG50.TokenService.Models.POCO
 {
     public class ActiveUser
     {   
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]        
         public Guid Id { get; set; }
 
         [ForeignKey("ApplicationUser")]        
@@ -25,7 +24,7 @@ namespace SG50.TokenService.Models.POCO
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
         public string UpdateBy { get; set; }
 
         [Required]

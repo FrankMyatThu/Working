@@ -13,5 +13,11 @@ namespace SG50.Presentation.Controllers
         {
             return View();
         }
+
+        // GET: Home
+        public ActionResult Home()
+        {
+            return View();
+        }
     }
 }
