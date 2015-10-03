@@ -12,9 +12,7 @@ namespace SG50.Base.Util
     {   
         public static string CorsOrigins = ConfigurationManager.AppSettings["cors:Origins"].ToString();
         public static string CorsHeaders = ConfigurationManager.AppSettings["cors:Headers"].ToString();
-        public static string CorsMethods = ConfigurationManager.AppSettings["cors:Methods"].ToString();
-        public static string UriTokenPath = ConfigurationManager.AppSettings["uri:tokenpath"].ToString();
-        public static string UriLoginPath = ConfigurationManager.AppSettings["uri:loginpath"].ToString();
+        public static string CorsMethods = ConfigurationManager.AppSettings["cors:Methods"].ToString();        
         public static string UrlTokenIssuer = ConfigurationManager.AppSettings["url:tokenIssuer"].ToString();
     }
 }

@@ -8,10 +8,12 @@ app.controller('HomeController', function ($scope, $http, $window) {
     $scope.sendForm = function () {
         console.log("$scope.person\n " + JSON.stringify($scope.person));
         $http({
-            method: 'POST',
-            url: 'https://localhost:44306/api/home/GetUserList',
+            method: 'POST',            
+            url: 'https://localhost:44300/api/home/GetUserList',
             //data: $scope.person,
-            headers: {
+            headers: {                
+                'accept': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
                 'RequestVerificationToken': $scope.antiForgeryToken
             }
         }).success(function (data, status, headers, config) {
@@ -25,7 +27,7 @@ app.controller('HomeController', function ($scope, $http, $window) {
             }
             else {
                 $scope.message = 'Login Successfully';
-                $window.sessionStorage.setItem("JWTToken", data);
+                //$window.sessionStorage.setItem("JWTToken", data);
                 $scope.person = {};
                 $window.location.href = '../Home/Home';
             }
