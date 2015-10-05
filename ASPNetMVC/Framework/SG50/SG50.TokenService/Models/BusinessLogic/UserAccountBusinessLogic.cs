@@ -15,6 +15,8 @@ namespace SG50.TokenService.Models.BusinessLogic
 {
     public class UserAccountBusinessLogic
     {
+        string ClaimType_Dummy = "Dummy Type";
+        string ClaimValue_Dummy = "Dummy Value";
         string UserPasswordNotCorrect = "The user name or password is incorrect.";
         string SignatureAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#hmac-sha256";
         string DigestAlgorithm = "http://www.w3.org/2001/04/xmlenc#sha256";
@@ -81,7 +83,7 @@ namespace SG50.TokenService.Models.BusinessLogic
                     _ActiveUser = CreateActiveUser(_ApplicationUser);
                     _ApplicationDbContext.ActiveUser.Add(_ActiveUser);
 
-                    string audienceId = _ActiveUser.Id.ToString();
+                    string audienceId = _ActiveUser.Id.ToString();                    
                     string symmetricKeyAsBase64 = _ActiveUser.JwtHMACKey;
 
                     var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
@@ -91,7 +93,15 @@ namespace SG50.TokenService.Models.BusinessLogic
                                                                     SignatureAlgorithm,
                                                                     DigestAlgorithm);
 
-                    var token = new JwtSecurityToken(AppConfiger.UrlTokenIssuer, audienceId, null, null, null, _SigningCredentials);
+
+
+                    var token = new JwtSecurityToken(AppConfiger.UrlTokenIssuer, 
+                                                        audienceId,
+                                                        ClaimManager.GetClaim_IEnumerable(ClaimType_Dummy, ClaimValue_Dummy), 
+                                                        DateTime.Now, 
+                                                        DateTime.Now.AddSeconds(1), 
+                                                        _SigningCredentials);
+
                     var handler = new JwtSecurityTokenHandler();
 
                     JWTToken = handler.WriteToken(token);

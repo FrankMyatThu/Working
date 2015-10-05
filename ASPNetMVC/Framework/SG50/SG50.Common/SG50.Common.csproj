@@ -115,6 +115,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SG50.Base\SG50.Base.csproj">
+      <Project>{97670968-2461-4e67-93c2-80b5e6b53762}</Project>
+      <Name>SG50.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SG50.Model\SG50.Model.csproj">
       <Project>{1abee511-6c9c-4f88-ba59-040ee0af6e6b}</Project>
       <Name>SG50.Model</Name>
