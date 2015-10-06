@@ -13,6 +13,7 @@ using SG50.Base.Security;
 using SG50.Base.Util;
 using System.Net.Http.Headers;
 using SG50.TokenService.Models.BusinessLogic;
+using SG50.Base.Logging;
 
 namespace SG50.TokenService.Controllers
 {
@@ -20,13 +21,15 @@ namespace SG50.TokenService.Controllers
     public class AccountController : ApiController
     {    
         string Key_ModelStateInvalidError = "Key_ModelStateInvalidError";
+        const string LoggerName = "SG50_TokenService_Appender_Logger";
 
         [HttpPost]
         [AllowAnonymous]  
         [Route("UserLogin")]        
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         public IHttpActionResult UserLogin(LoginUserBindingModel _LoginUserBindingModel)
-        {
+        {   
+            ApplicationLogger.WriteTrace("Start UserLogin", LoggerName);
             string JWTToken = string.Empty;
             if (!ModelState.IsValid)
             {
@@ -34,6 +37,7 @@ namespace SG50.TokenService.Controllers
                                         .SelectMany(x => x.Errors)
                                         .Select(x => x.ErrorMessage));
                 ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
                 return BadRequest(ModelState);
             }
 
@@ -42,24 +46,28 @@ namespace SG50.TokenService.Controllers
                 JWTToken = (new UserAccountBusinessLogic()).GetJWTToken(_LoginUserBindingModel);
             }
             catch (Exception ex) {
+                BaseExceptionLogger.LogError(ex, LoggerName);
                 return InternalServerError(ex);
             }
 
+            ApplicationLogger.WriteTrace("End UserLogin", LoggerName);            
             return Ok(JWTToken);            
         }
 
         [HttpPost]        
         [AllowAnonymous]        
-        [Route("CreateUser")]        
-        [ValidateAntiForgeryToken]
+        [Route("CreateUser")]
+        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         public IHttpActionResult CreateUser(CreateUserBindingModel _CreateUserBindingModel)
         {
+            ApplicationLogger.WriteTrace("Start CreateUser", LoggerName);
             if (!ModelState.IsValid)
             {
                 string messages = string.Join("; ", ModelState.Values
                                        .SelectMany(x => x.Errors)
                                        .Select(x => x.ErrorMessage));
                 ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
                 return BadRequest(ModelState);
             }
 
@@ -69,9 +77,11 @@ namespace SG50.TokenService.Controllers
             }
             catch (Exception ex)
             {
+                BaseExceptionLogger.LogError(ex, LoggerName);
                 return InternalServerError(ex);
             }
 
+            ApplicationLogger.WriteTrace("End CreateUser", LoggerName);
             return Ok();
         }
     }

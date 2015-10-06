@@ -78,3 +78,5 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Common\bin\Debug\Micr
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Common\obj\Debug\SG50.Common.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Common\obj\Debug\SG50.Common.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Common\obj\Debug\SG50.Common.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Common\bin\Debug\log4net.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Common\bin\Debug\log4net.xml

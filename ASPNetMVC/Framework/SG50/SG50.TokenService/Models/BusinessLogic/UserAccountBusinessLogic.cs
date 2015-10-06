@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin.Security.DataHandler.Encoder;
+using SG50.Base.Logging;
 using SG50.Base.Security;
 using SG50.Base.Util;
 using SG50.TokenService.Models.Entities;
@@ -20,6 +21,7 @@ namespace SG50.TokenService.Models.BusinessLogic
         string UserPasswordNotCorrect = "The user name or password is incorrect.";
         string SignatureAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#hmac-sha256";
         string DigestAlgorithm = "http://www.w3.org/2001/04/xmlenc#sha256";
+        string LoggerName = "SG50_TokenService_Appender_Logger";
         int SaltKeyLength = 16;
 
         public void RegisterUser(CreateUserBindingModel _CreateUserBindingModel)
@@ -50,7 +52,7 @@ namespace SG50.TokenService.Models.BusinessLogic
             }
             catch(Exception ex)
             {
-                throw ex;
+                BaseExceptionLogger.LogError(ex, LoggerName);                
             }
         }
 
@@ -110,7 +112,7 @@ namespace SG50.TokenService.Models.BusinessLogic
             }
             catch (Exception ex) 
             {
-                throw ex;
+                BaseExceptionLogger.LogError(ex, LoggerName);                
             }
             return JWTToken;
         }

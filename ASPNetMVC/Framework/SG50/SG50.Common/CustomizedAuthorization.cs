@@ -13,11 +13,14 @@ using System.IdentityModel.Tokens;
 using SG50.Model.Models.Entities;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using SG50.Base.Util;
+using SG50.Base.Logging;
 
 namespace SG50.Common
 {   
     public class CustomizedAuthorizationAttribute : AuthorizationFilterAttribute
-    {   
+    {
+        public string LoggerName { get; set; }
+
         public override Task OnAuthorizationAsync(HttpActionContext actionContext, System.Threading.CancellationToken cancellationToken)
         {
             try
@@ -71,6 +74,7 @@ namespace SG50.Common
             }
             catch (Exception ex)
             {
+                BaseExceptionLogger.LogError(ex, LoggerName);
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
                 return Task.FromResult<object>(null);
             }

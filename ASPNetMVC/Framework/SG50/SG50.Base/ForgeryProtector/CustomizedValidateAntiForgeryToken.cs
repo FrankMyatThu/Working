@@ -10,12 +10,15 @@ using System.Web.Http.Controllers;
 using System.Threading;
 using System.Net;
 using System.Web.Http.Filters;
+using SG50.Base.Logging;
 
 namespace SG50.Base.ForgeryProtector
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public sealed class ValidateAntiForgeryTokenAttribute : FilterAttribute, IAuthorizationFilter
     {
+        public string LoggerName { get; set; }
+
         public Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
             try
@@ -35,14 +38,19 @@ namespace SG50.Base.ForgeryProtector
                 }
                 AntiForgery.Validate(cookieToken, formToken);
             }
-            catch (System.Web.Mvc.HttpAntiForgeryException e)
+            catch (System.Web.Mvc.HttpAntiForgeryException ex)
             {
+                BaseExceptionLogger.LogError(ex, LoggerName);
                 actionContext.Response = new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.Forbidden,
                     RequestMessage = actionContext.ControllerContext.Request
                 };
                 return FromResult(actionContext.Response);
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
             }
             return continuation();
         }
