@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Home Page";
 }
 @functions{
     public string GetAntiForgeryToken()
@@ -10,21 +10,11 @@
     }
 }
 
-<!DOCTYPE html>
-
-<html ng-app="AppHome">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Home</title>
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/App/HomeController.js"></script>
-    @*<script src="~/Scripts/App/Util.js"></script>*@
-</head>
-<body>
+<script src="~/Scripts/App/HomeController.js"></script>
+<div ng-app="AppHome">
     <form name="mainForm" data-ng-submit="sendForm()" data-ng-controller="HomeController">
         <div><input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@GetAntiForgeryToken()'" /></div>
         <div><p>{{greeting.text}}, world [Home]</p></div>
         <div><button type="submit">Submit</button></div>
     </form>
-</body>
-</html>
+</div>

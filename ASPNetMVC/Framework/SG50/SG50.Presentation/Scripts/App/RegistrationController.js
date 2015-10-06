@@ -1,16 +1,5 @@
-﻿/*
-var appname = angular.module('AppRegistration', []);
-appname.controller('RegistrationController', ['$scope',
-    function ($scope) {
-        $scope.greeting = { text: 'Hello' };
-    }
-]);
-*/
-
-
-
-var app = angular.module('AppRegistration', []);
-app.controller('RegistrationController', function ($scope, $http) {
+﻿var app = angular.module('AppRegistration', []);
+app.controller('RegistrationController', function ($scope, $http, $window) {
     $scope.greeting = { text: 'Hello' };
     $scope.person = {
         "FirstName": "Myat",
@@ -41,8 +30,9 @@ app.controller('RegistrationController', function ($scope, $http) {
                 $scope.message = str;
             }
             else {
-                $scope.message = 'Saved Successfully';
                 $scope.person = {};
+                console.log("Saved Successfully : " + data);
+                $window.location.href = '../Account/Login';
             }
         }).error(function (data, status, headers, config) {
             $scope.message = 'Unexpected Error';
