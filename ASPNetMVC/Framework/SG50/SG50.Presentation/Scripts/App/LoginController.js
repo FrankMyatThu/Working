@@ -1,5 +1,5 @@
 ﻿var app = angular.module('AppLogin', []);
-app.controller('LoginController', function ($scope, $http, $window) {
+app.controller('LoginController', function ($scope, $http, $window) {    
     $scope.greeting = { text: 'Hello' };
     $scope.person = {
         "UserName": "myat",        

@@ -2,13 +2,9 @@
 app.run(function ($rootScope, $timeout, $document, $window, $http) {
     console.log('starting run');
 
-    $window.onbeforeunload = function () {
-        confirm("Are you sure?");
-        LogoutByTimer();
-    };
-
     // Timeout timer value
-    var TimeOutTimerValue = 5000;    
+    var TimeOutTimerValue = 5000;
+    //var TimeOutTimerValue = 500000;
 
     // Start a timeout
     var TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
@@ -33,9 +29,17 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
     bodyElement.bind('scroll', function (e) { TimeOut_Resetter(e) });
     bodyElement.bind('focus', function (e) { TimeOut_Resetter(e) });
 
+    $window.onbeforeunload = function () {
+        var answer = confirm("Are you sure you want to leave this page?")
+        if (answer) {
+            //LogoutByTimer();
+        }
+        return null;
+    };
+
     function LogoutByTimer() {
-        console.log('Logout');        
-        if($window.sessionStorage.getItem("JWTToken") != "")
+        console.log('Logout');
+        if ($window.sessionStorage.getItem("JWTToken") != "")
             RemoveActiveUser();
 
         ///////////////////////////////////////////////////
@@ -54,9 +58,8 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
         TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
     }
 
-    function RemoveActiveUser()
-    {
-        console.log("$window.sessionStorage.getItem(\"JWTToken\") " + $window.sessionStorage.getItem("JWTToken"));        
+    function RemoveActiveUser() {
+        console.log("$window.sessionStorage.getItem(\"JWTToken\") " + $window.sessionStorage.getItem("JWTToken"));
         console.log("$rootScope.antiForgeryToken " + $rootScope.antiForgeryToken);
 
         $http({
@@ -67,20 +70,21 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
                 'RequestVerificationToken': $rootScope.antiForgeryToken
             }
-        }).success(function (data, status, headers, config) {            
+        }).success(function (data, status, headers, config) {
             if (data.success == false) {
                 var str = '';
                 for (var error in data.errors) {
                     str += data.errors[error] + '\n';
-                }                
+                }
             }
             else {
                 console.log('Logout Successfully');
-                $window.sessionStorage.setItem("JWTToken", "");                
+                $window.sessionStorage.setItem("JWTToken", "");
                 $window.location.href = '../Account/Login';
             }
         }).error(function (data, status, headers, config) {
             console.log('Unexpected Error');
         });
     }
-})
+});
+
