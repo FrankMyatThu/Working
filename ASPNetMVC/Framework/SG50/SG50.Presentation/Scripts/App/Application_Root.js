@@ -29,13 +29,24 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
     bodyElement.bind('scroll', function (e) { TimeOut_Resetter(e) });
     bodyElement.bind('focus', function (e) { TimeOut_Resetter(e) });
 
+    //$rootScope.$on('$locationChangeSuccess', function () {
+    //    console.log("$locationChangeSuccess");
+    //    $window.trigger('beforeunload'); //then trigger beforeunload from here
+    //});
+
+    //$window.onbeforeunload = function () {
+    //    var answer = confirm("Are you sure you want to leave this page?");
+    //    if (answer) {
+    //        LogoutByTimer();
+    //    }
+    //    return null;
+    //};
+
     $window.onbeforeunload = function () {
-        var answer = confirm("Are you sure you want to leave this page?")
-        if (answer) {
-            //LogoutByTimer();
-        }
-        return null;
-    };
+        //return "Are you sure you want to leave this page?";
+        LogoutByTimer();
+        return "***"; 
+    }
 
     function LogoutByTimer() {
         console.log('Logout');

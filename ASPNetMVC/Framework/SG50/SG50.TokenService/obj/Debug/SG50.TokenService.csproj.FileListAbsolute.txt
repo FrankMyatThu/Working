@@ -128,3 +128,9 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Common.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\log4net.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Model.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Common.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\log4net.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Model.pdb
