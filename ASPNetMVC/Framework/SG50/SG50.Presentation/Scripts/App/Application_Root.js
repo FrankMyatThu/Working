@@ -2,6 +2,11 @@
 app.run(function ($rootScope, $timeout, $document, $window, $http) {
     console.log('starting run');
 
+    $window.onbeforeunload = function () {
+        confirm("Are you sure?");
+        LogoutByTimer();
+    };
+
     // Timeout timer value
     var TimeOutTimerValue = 5000;    
 
@@ -29,8 +34,9 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
     bodyElement.bind('focus', function (e) { TimeOut_Resetter(e) });
 
     function LogoutByTimer() {
-        console.log('Logout');
-        RemoveActiveUser();
+        console.log('Logout');        
+        if($window.sessionStorage.getItem("JWTToken") != "")
+            RemoveActiveUser();
 
         ///////////////////////////////////////////////////
         /// redirect to another page(eg. Login.html) here
