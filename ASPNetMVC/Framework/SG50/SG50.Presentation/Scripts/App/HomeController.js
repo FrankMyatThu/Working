@@ -1,5 +1,4 @@
-﻿var app = angular.module('AppHome', []);
-app.controller('HomeController', function ($scope, $http, $window) {
+﻿app.controller('HomeController', function ($scope, $http, $window) {
     $scope.greeting = { text: 'Hello' };    
     $scope.sendForm = function () {        
         $http({

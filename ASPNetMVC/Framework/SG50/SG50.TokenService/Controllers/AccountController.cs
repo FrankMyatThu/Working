@@ -28,7 +28,7 @@ namespace SG50.TokenService.Controllers
         [Route("UserLogin")]        
         [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         public IHttpActionResult UserLogin(LoginUserBindingModel _LoginUserBindingModel)
-        {   
+        { 
             ApplicationLogger.WriteTrace("Start UserLogin", LoggerName);
             string JWTToken = string.Empty;
             if (!ModelState.IsValid)
