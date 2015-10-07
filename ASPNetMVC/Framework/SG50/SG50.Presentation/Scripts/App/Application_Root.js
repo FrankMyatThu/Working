@@ -30,11 +30,12 @@ app.run(function ($rootScope, $timeout, $document, $window) {
 
     function LogoutByTimer() {
         console.log('Logout');
+        RemoveActiveUser();
 
         ///////////////////////////////////////////////////
         /// redirect to another page(eg. Login.html) here
         ///////////////////////////////////////////////////
-        $window.location.href = '../Account/Login';
+        //$window.location.href = '../Account/Login';
     }
 
     function TimeOut_Resetter(e) {
@@ -49,22 +50,23 @@ app.run(function ($rootScope, $timeout, $document, $window) {
 
     function RemoveActiveUser()
     {
+        console.log("$window.sessionStorage.getItem(\"JWTToken\") " + $window.sessionStorage.getItem("JWTToken"));
+        console.log("$rootScope.$parent.antiForgeryToken " + $rootScope.$parent.antiForgeryToken);
+
         $http({
             method: 'POST',
             url: 'https://localhost:44300/api/accounts/Logout',
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': $scope.$parent.antiForgeryToken
+                'RequestVerificationToken': $rootScope.$parent.antiForgeryToken
             }
-        }).success(function (data, status, headers, config) {
-            $scope.message = '';
+        }).success(function (data, status, headers, config) {            
             if (data.success == false) {
                 var str = '';
                 for (var error in data.errors) {
                     str += data.errors[error] + '\n';
-                }
-                $scope.message = str;
+                }                
             }
             else {
                 console.log('Logout Successfully');
@@ -72,7 +74,7 @@ app.run(function ($rootScope, $timeout, $document, $window) {
                 $window.location.href = '../Account/Login';
             }
         }).error(function (data, status, headers, config) {
-            $scope.message = 'Unexpected Error';
+            console.log('Unexpected Error');
         });
     }
 })
