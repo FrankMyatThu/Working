@@ -1,17 +1,8 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@functions{
-    public string GetAntiForgeryToken()
-    {
-        string cookieToken, formToken;
-        AntiForgery.GetTokens(null, out cookieToken, out formToken);
-        return cookieToken + ":" + formToken;
-    }
-}
 <script src="~/Scripts/App/HomeController.js"></script>
-<form name="mainForm" data-ng-submit="sendForm()" data-ng-controller="HomeController">
-    <div><input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@GetAntiForgeryToken()'" /></div>
+<form name="mainForm" data-ng-submit="sendForm()" data-ng-controller="HomeController">    
     <div><p>{{greeting.text}}, world [Home]</p></div>
     <div><button type="submit">Submit</button></div>
 </form>

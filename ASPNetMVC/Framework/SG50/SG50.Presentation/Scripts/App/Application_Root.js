@@ -47,8 +47,32 @@ app.run(function ($rootScope, $timeout, $document, $window) {
         TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
     }
 
-    function RemoveCurrentUser()
+    function RemoveActiveUser()
     {
-        
+        $http({
+            method: 'POST',
+            url: 'https://localhost:44300/api/accounts/Logout',
+            headers: {
+                'accept': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
+                'RequestVerificationToken': $scope.$parent.antiForgeryToken
+            }
+        }).success(function (data, status, headers, config) {
+            $scope.message = '';
+            if (data.success == false) {
+                var str = '';
+                for (var error in data.errors) {
+                    str += data.errors[error] + '\n';
+                }
+                $scope.message = str;
+            }
+            else {
+                console.log('Logout Successfully');
+                $window.sessionStorage.setItem("JWTToken", "");                
+                $window.location.href = '../Account/Login';
+            }
+        }).error(function (data, status, headers, config) {
+            $scope.message = 'Unexpected Error';
+        });
     }
 })

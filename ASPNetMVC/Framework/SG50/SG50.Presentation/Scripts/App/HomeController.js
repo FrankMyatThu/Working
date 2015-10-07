@@ -1,5 +1,5 @@
 ﻿app.controller('HomeController', function ($scope, $http, $window) {
-    $scope.greeting = { text: 'Hello' };    
+    $scope.greeting = { text: 'Hello' };
     $scope.sendForm = function () {        
         $http({
             method: 'POST',            
@@ -7,7 +7,7 @@
             headers: {                
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': $scope.antiForgeryToken
+                'RequestVerificationToken': $scope.$parent.antiForgeryToken
             }
         }).success(function (data, status, headers, config) {
             $scope.message = '';
