@@ -56,6 +56,29 @@ namespace SG50.TokenService.Models.BusinessLogic
             }
         }
 
+        public void RemoveActiveUser(string EncodedJWTToken)
+        {
+            try
+            {
+                var _JwtSecurityToken = new JwtSecurityToken(EncodedJWTToken);
+                string AudienceId = _JwtSecurityToken.Audiences.First();
+
+                using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
+                {    
+                    ActiveUser _ActiveUser = _ApplicationDbContext.ActiveUser.Where(x => x.Id.Equals(new Guid(AudienceId))).FirstOrDefault();
+                    if (_ActiveUser == null)
+                        return;
+
+                    _ApplicationDbContext.ActiveUser.Remove(_ActiveUser);
+                    _ApplicationDbContext.SaveChanges();
+                }
+            }
+            catch (Exception ex) 
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);                   
+            }
+        }
+
         public string GetJWTToken(LoginUserBindingModel _LoginUserBindingModel)
         {
             string JWTToken = string.Empty;

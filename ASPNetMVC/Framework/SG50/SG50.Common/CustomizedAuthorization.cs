@@ -30,9 +30,7 @@ namespace SG50.Common
                 if (actionContext == null)
                 {
                     throw new ArgumentNullException(Exception_ActionContext);
-                }   
-             
-                var principal = actionContext.RequestContext.Principal as ClaimsPrincipal;
+                }
 
                 if (actionContext.Request.Headers.Authorization.Parameter == null)
                 {

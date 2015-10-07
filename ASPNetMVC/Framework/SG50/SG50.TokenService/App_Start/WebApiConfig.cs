@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SG50.Base.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -10,15 +11,29 @@ namespace SG50.TokenService
     {
         public static void Register(HttpConfiguration config)
         {
-            // Attribute routing.
+            // Web API configuration and services
+
+            // Web API routes
             config.MapHttpAttributeRoutes();
 
-            // Convention-based routing.
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            AccessToCors(config);
+        }
+
+        public static void AccessToCors(HttpConfiguration config)
+        {
+            var corsPolicy = new EnableCorsAttribute(
+                                    origins: AppConfiger.CorsOrigins,
+                                    headers: AppConfiger.CorsHeaders,
+                                    methods: AppConfiger.CorsMethods);
+
+            //// Enable CORS for Web API
+            config.EnableCors(corsPolicy);
         }
     }
 }

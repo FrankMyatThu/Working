@@ -14,6 +14,7 @@ using SG50.Base.Util;
 using System.Net.Http.Headers;
 using SG50.TokenService.Models.BusinessLogic;
 using SG50.Base.Logging;
+using SG50.Common;
 
 namespace SG50.TokenService.Controllers
 {
@@ -52,6 +53,29 @@ namespace SG50.TokenService.Controllers
 
             ApplicationLogger.WriteTrace("End UserLogin", LoggerName);            
             return Ok(JWTToken);            
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("UserLogout")]
+        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
+        [CustomizedAuthorization(LoggerName = LoggerName)]
+        public IHttpActionResult UserLogout()
+        {
+            ApplicationLogger.WriteTrace("Start UserLogout", LoggerName);
+            try
+            {
+                string EncodedJWTToken = Request.Headers.Authorization.Parameter;
+                (new UserAccountBusinessLogic()).RemoveActiveUser(EncodedJWTToken);                
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                return InternalServerError(ex);
+            }
+
+            ApplicationLogger.WriteTrace("End UserLogout", LoggerName);
+            return Ok();
         }
 
         [HttpPost]        

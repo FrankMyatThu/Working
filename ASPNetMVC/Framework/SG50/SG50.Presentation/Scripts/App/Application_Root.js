@@ -1,5 +1,5 @@
 ﻿var app = angular.module('Application_Root', []);
-app.run(function ($rootScope, $timeout, $document, $window) {
+app.run(function ($rootScope, $timeout, $document, $window, $http) {
     console.log('starting run');
 
     // Timeout timer value
@@ -50,16 +50,16 @@ app.run(function ($rootScope, $timeout, $document, $window) {
 
     function RemoveActiveUser()
     {
-        console.log("$window.sessionStorage.getItem(\"JWTToken\") " + $window.sessionStorage.getItem("JWTToken"));
-        console.log("$rootScope.$parent.antiForgeryToken " + $rootScope.$parent.antiForgeryToken);
+        console.log("$window.sessionStorage.getItem(\"JWTToken\") " + $window.sessionStorage.getItem("JWTToken"));        
+        console.log("$rootScope.antiForgeryToken " + $rootScope.antiForgeryToken);
 
         $http({
             method: 'POST',
-            url: 'https://localhost:44300/api/accounts/Logout',
+            url: 'https://localhost:44305/api/accounts/UserLogout',
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': $rootScope.$parent.antiForgeryToken
+                'RequestVerificationToken': $rootScope.antiForgeryToken
             }
         }).success(function (data, status, headers, config) {            
             if (data.success == false) {
