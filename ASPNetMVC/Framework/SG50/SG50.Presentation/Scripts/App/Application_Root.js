@@ -29,25 +29,6 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
     bodyElement.bind('scroll', function (e) { TimeOut_Resetter(e) });
     bodyElement.bind('focus', function (e) { TimeOut_Resetter(e) });
 
-    //$rootScope.$on('$locationChangeSuccess', function () {
-    //    console.log("$locationChangeSuccess");
-    //    $window.trigger('beforeunload'); //then trigger beforeunload from here
-    //});
-
-    //$window.onbeforeunload = function () {
-    //    var answer = confirm("Are you sure you want to leave this page?");
-    //    if (answer) {
-    //        LogoutByTimer();
-    //    }
-    //    return null;
-    //};
-
-    $window.onbeforeunload = function () {
-        //return "Are you sure you want to leave this page?";
-        LogoutByTimer();
-        return "***"; 
-    }
-
     function LogoutByTimer() {
         console.log('Logout');
         if ($window.sessionStorage.getItem("JWTToken") != "")
@@ -94,7 +75,10 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
                 $window.location.href = '../Account/Login';
             }
         }).error(function (data, status, headers, config) {
-            console.log('Unexpected Error');
+            console.log("data :" + data);
+            console.log("status :" + status);
+            console.log("headers :" + headers);
+            console.log("config :" + config);
         });
     }
 });
