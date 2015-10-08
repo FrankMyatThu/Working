@@ -91,7 +91,6 @@
     <Folder Include="Models\POCO\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <EntityDeploy Include="Models\Entities\SG50DB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SG50DB.Designer.cs</LastGenOutput>
