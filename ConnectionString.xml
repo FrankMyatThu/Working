@@ -1,9 +1,31 @@
+%systemroot%\Microsoft.NET\Framework\versionNumber
+C:\Windows\Microsoft.NET\Framework\v4.0.30319>aspnet_regiis 
+-pef 
+"connectionStrings" 
+"D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService" 
+-prov 
+"DataProtectionConfigurationProvider"
+Microsoft (R) ASP.NET RegIIS version 4.0.30319.0
+Administration utility to install and uninstall ASP.NET on the local machine.
+Copyright (C) Microsoft Corporation.  All rights reserved.
+Encrypting configuration section...
+Succeeded!
+
 -- ---------------------------------------------------------------------------------------------------------------------------
 -- SG50.ApplicationService
 -- ---------------------------------------------------------------------------------------------------------------------------
 <!-- Office Dev PC -->
 <connectionStrings>    		
 	<add name="SG50DBEntities" connectionString="metadata=res://*/Models.Entities.SG50DB.csdl|res://*/Models.Entities.SG50DB.ssdl|res://*/Models.Entities.SG50DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=MYATTHU;initial catalog=SG50DB;user id=sa;password=sa;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>
+
+<!-- Office Dev PC -->
+<connectionStrings configProtectionProvider="DataProtectionConfigurationProvider">
+<EncryptedData>
+  <CipherData>
+	<CipherValue>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANoJbz3rzgEqiXKaPBC111gQAAAACAAAAAAAQZgAAAAEAACAAAAA9ZGDSqfG5BOVi4t0rR+07gVeLwkxhqfjtkQ7Sfpy8AQAAAAAOgAAAAAIAACAAAACjNWQFwoie36C40e2EKrmq9GhpfbwQsR+5bac2HGgE93ADAAAE6/3BNx4iq7QRCrsXDMGYOxOiTgqYTxDwe5jlYhnVcnvWI0f6QV1DupHKJ8Ad5JE6SIyC0KqIe0u8jWRQyYv6jhuXE3kufKRR616h3pg1i6QPQWZLbtKqRoPFeisMDoY0CMalwSjqSXjXFaIhP+LxZ8PCI22jUsUw2vdU6bT6cEm4HZ751DXqeF0iF4JxSpw54vX7ZxCZePLlO4tcvETZYifjEODOqgRYzaQ8C9dnYnJzNvTYBmg8gKhrGjk/R02NRV8+sxlqnOcS5dhoXGb6vK1ELqUIHRWRHX7VBV6xawKwWRgYOtb81txLqCvih2bxcqKmfHW0C4MZ7d28zUq6rA2fftTSXiVtYf7KIawAgJUYbCgS6MpyxwY7ygxWywRJprHTnvf+CpHNeMfHV2Ok52GKiIvNCYgBYqCfWJxAlb0qDkugVAgIo2N4lvnfOblzRdmOc7VXYas6a5jVaoe8RaEyqznMpjrBgCYviglac0C5sZ2FN/Md4IYWyOfVSwq0yaueJUsO3TDLsz0eQrEha+XTx6i4BuJhLPKl/aPy7qnWrnrqxy6z3g/9/uES3a8LDMbNosrINhqfLlXauXlfTZWGOzIFMsDn7LdnGvlY3iIPWq//wEbOff/t27A6Q30s57afH81w7h5iji1K+gpLKkud8Vfb7bYsVNTkPbBzDMu+3JjlF4XA/1xWjgfBjXVeAZ7KrHXqwwwy9lMWZ/Sb7YxC2rrQCIIeHCP054aKGSZt9mhU9aknKovzJHNl9AvnsZpOxWQCbKMOVwPrQSHrNCqaYO5y1iQRGt57HH5BeZEXvnFRXblM9wPBOGt10xnShTVMPDjicPKPUF4BZRSxSsapBNm4oEOH0XK343Std2OxQa387bFttXmxo1/AwD1tsqXYG3HvUiPxugOBlgnX/Pjg8U/Hr605tijpw849IWR47OHAYiia+8PUzzVdvEVEWO32/ps1ILkRm0e12Eu11mKFISe3AgWe16VXpPwC8S6aFRBEeXh/GDKblfflUfc6mLzYBT+sdZ29n6W7VVEkwDrTcLOWo32OqHy5diEO8co/LyuM8h4sXVB9IuVZqqGrU9WrXw41taf1gdbPX/eIDzQYnOOmfSdgcuhRUirA3/oE9NLEAL37IKVKehV3GpeJ11yvLKX82s9Xa9ICbM8uQAAAAMg2qQ1DXq9T7Q8Q1UptQkY4JnqIX73tsKb1lKAI1yR3t3OT2bONlu398OQofUCkB2KbTjNqMdjFFSiO5BdoVAg=</CipherValue>
+  </CipherData>
+</EncryptedData>
 </connectionStrings>
 
 <!-- Home PC -->
@@ -18,6 +40,15 @@
 <connectionStrings>    	
 	<add name="AuthContext" connectionString="Data Source=MYATTHU;Initial Catalog=SG50DB;User Id=sa;Password=sa;Integrated Security=false;" providerName="System.Data.SqlClient" />
 	<add name="SG50DBEntities" connectionString="metadata=res://*/Models.Entities.SG50DB.csdl|res://*/Models.Entities.SG50DB.ssdl|res://*/Models.Entities.SG50DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=MYATTHU;initial catalog=SG50DB;user id=sa;password=sa;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>
+
+<!-- Office Dev PC -->
+<connectionStrings configProtectionProvider="DataProtectionConfigurationProvider">
+<EncryptedData>
+  <CipherData>
+	<CipherValue>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANoJbz3rzgEqiXKaPBC111gQAAAACAAAAAAAQZgAAAAEAACAAAAD2B7cbzEdd/SgbpXsSXcsRecbR5B5OgydYwfLQmLOpoAAAAAAOgAAAAAIAACAAAABapkIJOHC4TALniRYrxRwdiF+4Hzk4y0h9ROHAAol4X+AEAADShE5+BUtUCMkZy8L08jvKKOUgqToN+NKMXn+zC3Z4cPV8F1BKRY6jJYwUeAg5vD8+rAqram/2cKP/QDGJlCpqqXhig1yz7jU1L9TKl3YACKW/N1sGVqSvocx9J90T01riQ5J/AvvxlRm9uAgBpmpitCxasTu171MbWsDy0PSg/FvNBsNUZ4YQN7NWQyyopGAMtkQWbJsueTytxhPSZayWHxaZOK/2NKRIBQemAwh4ZtH6eAyQSYvSyjKoXPGkoxYoG81IGklK6VZAk9ZebPekW/B2jLc5FwHT3DKikjX4q7QJSdRU1ntMIXSSuu00+u+D5mZZhWb7GXUlliH7pIH2c3zUXD3nwOL5ZWlsDcr4BvTHloHO9u2Wbtk2qN1QeowGEH7FD3SlYK6hByyfGa2P2/1I9hYJSSFewSmuAJCRnt+lYPY+hWBIAA8nOU/XSW6u/hhR3G4HTGt+ynhMJjQ453xnxzvJDXfA3SfLvO8oWUWpOVkKhdCcgR8DFsUME5Fkag2yAJN/zA5vHJvjO1ZPj/7qC2fLXlFegJR6JEBQkXY+lbzVt7YPSnK59mBUes5hrqcctZaUZ0H2VEUsll+/Z+qxDadQmQ/aNuLQLPH3wmUABxvkY9Mn9T/w6unpFW35TrhFPJeRmEazivtCeVGzcffSsytzDN9ibD1BurAMVnaEsKHaoUKfkfoSAYpyApN06Oa7DPPPjuZeJcbguCEg6F3bgutpBm6b43hVeCr55Zqpsw1/FvaMb+9ia5SHMBpw8nq9m7FUYGtTahS9n5ZZ7/ejwTpQg2AMkyeyhvPlPiFF0/cHJLZ10WVTgNakZB2066Hl1UUDMDeQpzvYkzRXph3irzZiIe9aVmqNDkCDS9UKjYBKOgvXuencNBMia64Bwozx1eyLNkxtjDeQGBsNEQhw9ZtiOwgmbxpdu9a37g/zFPSR2dARwPND09qTxj6Ep62Z3sMByp/SEq/H1hl04qvXEq0OkxFaqwv+piGuajREt+EuPspBhziKuFb5uX6R/qnu0C0zh5vAg2mjQo3+uysqFY84xQzjEXKkg5FA/gnyLmILTMaKPLXfjugfGNvBJS1+3/EQefEMrnY4Rh8NvZ1GtjJ1QptWTVcW4glFRPHVthGE+sCEso73hQ6T1WsKLE6uhByxrElwLVXyXRZd9XQyLVEO2q1ycKxui0NQ5mSgAyWYXOc8jGDBPL6PVt4rP+qfOiR/7SUphTxkCEW1xZt2/dMywKVb8ZIbtju9Hr0tRAta2b3P8RhqHgaKRU+Gk6wL+nbJIHjpMenZOPqkS07e/aH1EV1JWFOUXEtbHDsb75aJvobGyptHtsPgVLwkXKO8Nc9H28R9hJPt4yi3E1/zVcc9t0okyc9w+GGo86V1Tye4mkZLcH9LD7QjRQTpiOnjQQYO/wPKKV02efEVpzvnhZVotrPRShB24wfj+y8dlzfY3oXwKr6jBSuRW+h0NJ1lPr9TNxGT64d7IGaK5mq/U5KgVRFkbg/00dx+MdrlmCx2QHs3rp5zqUnO+sZDEPbh00+dMBxWwdVKQPUO4RGtvknoo6uUuenECsBFBZKzQbo1bC2QlrRbvikFdSoOietKM6AA5+xi39eV0kaYlZzgGXhNm9wi9jmlrxSn2Sx/zajUUTmfivehWDhjZyFAAAAAYI3g+cO7rfKOdXAdn5tlIPyd/riraDgOgRBigpD0wfpaGKGE6DTjRAKYAeErVdOBAj15cZfEtMx1cDF6zj5kCA==</CipherValue>
+  </CipherData>
+</EncryptedData>
 </connectionStrings>
 
 <!-- Home PC -->
