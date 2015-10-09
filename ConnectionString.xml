@@ -33,6 +33,15 @@ Succeeded!
 	<add name="SG50DBEntities" connectionString="metadata=res://*/Models.Entities.SG50DB.csdl|res://*/Models.Entities.SG50DB.ssdl|res://*/Models.Entities.SG50DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=MT-PC;initial catalog=SG50DB;user id=sa;password=sa;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
 </connectionStrings>
 
+<!-- Home PC -->
+<connectionStrings configProtectionProvider="DataProtectionConfigurationProvider">
+<EncryptedData>
+  <CipherData>
+	<CipherValue>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAmdDZJ7wlzUqBs4QrTa4MegQAAAACAAAAAAAQZgAAAAEAACAAAAAkGPxFslSMENn7L9IszxYDaXU7w8P0XPxVZkUHMeYRrgAAAAAOgAAAAAIAACAAAADQtlIB6VCZ92fS73AlWjQiEH/W1IYotNufuE8hI5xUGnADAADCfZGfikARSpsK2ON/WMasD4M9i7CCeeK/PCmPLxMV+yhpfLJH41GrGYM3P2L+pWgoNXIM7nR3milgrP6VvK+Szb3mL0JIVqr4j9uujBy+Br+JsaU5j427+X01VgGA9NkJYx/69+ER9YfK2viL1FDWUlPM++2kiiWzOI2QFsE3OX8BA6gZBGuC2zS8ALu9decjLjMeTaD6wK8BDGIPnqVnxUgBWBCS5+ywoh0lbLFsJPFdTXk7dDPmu2T7X/2zrGcocI+AAlPq8hBmpttrIUvYNRClyawYml1EReD8ymCcBA6kD91eociaxleqfy2Iehxd+aMAUsiRIZPUBXb7MbXlDFtv+LKIKFo02Xr5CO33nkM0FCImSAU0NXc2/miZm9T2dqL//C4vWPkz38a3EyqPoNHUd4z0roIq69sIRIRd464dXxUkwua7OgNltoTi3cc5aRI5/pcYsRVxnPqp34Cv84YT3CcBvwM40iRlreQf8yVHdymNUuy2uZvaxRqDSrQFR0vTsYRcyVve2JigNstyzKXsJhFWPe39QzUOBhJj5oYP/dlu3U59RgTenSJobM/Zc6rMyXgd4GkNFdwX8Hj/eIHQRB80RmGT7/IbTHepZ2sbcmVRHc3q4z6s3a7mObwJ81/tU56QHhOHlrQt3E2IcTUo6m8re3XVD1G8YbmgiwIDxh4p2Gf1MWmlPU+gjgHreQQ3hslb+QC0N5lDY/jYyknlSOjxBEDXDM1hFJw/rfg/RtWwgpYR8qcYHCRNp2c1S16+aVeGxEKdYE8+GXSmnSgJ5Qwj/LjLP5UPQjJa7M2DMqLll9rg1I30SjmVi2cbdJP4tEOMwjXHxU9i7bdO8YoAXAYdYr4h3A/qwwOKbMTtQVgBDsxDQywBHfUbmOE5gFel8bF2v5Juo8+iX7Ab32zhduDPykvivFOLQsS30gRJcBYQF9dh6KjhZ4R38/Dle863aP7QwL6KX7KX9K2SXygcraMDqImfTnvyExH8r2mkKKk4Px4LFVsobSn5wrIX26LQAUlrtq5Pb0TbMHNIBHt5pS8ZENUKRfJYeIMetlnbCnjkBEE6F87tPRaZ2zH6Wghms/kfpPVuMYm/dSYgF63OWMNpiMKNLDCFfVLoEBcpnrmKlxRD8KSskmNNfveUe5bjT0oal81jgz3c8oBNQAAAAOhdCWn8epWy9ZqijCbQc1Otli9efyjgvtgirJST1qYfqh4KGvmu5XIrgQyTXBrqDyE4qoPavF88RLBlXbmIK8o=</CipherValue>
+  </CipherData>
+</EncryptedData>
+</connectionStrings>
+
 -- ---------------------------------------------------------------------------------------------------------------------------
 -- SG50.TokenService
 -- ---------------------------------------------------------------------------------------------------------------------------
@@ -55,4 +64,13 @@ Succeeded!
 <connectionStrings>    
 	<add name="AuthContext" connectionString="Data Source=MT-PC;Initial Catalog=SG50DB;User Id=sa;Password=sa;Integrated Security=false;" providerName="System.Data.SqlClient" />
 	<add name="SG50DBEntities" connectionString="metadata=res://*/Models.Entities.SG50DB.csdl|res://*/Models.Entities.SG50DB.ssdl|res://*/Models.Entities.SG50DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=MT-PC;initial catalog=SG50DB;user id=sa;password=sa;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>
+
+<!-- Home PC -->
+<connectionStrings configProtectionProvider="DataProtectionConfigurationProvider">
+<EncryptedData>
+  <CipherData>
+	<CipherValue>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAmdDZJ7wlzUqBs4QrTa4MegQAAAACAAAAAAAQZgAAAAEAACAAAACGfEh3AVszr6jPOFsHKyG0aWrKAqsACbchEX3bFPhE1QAAAAAOgAAAAAIAACAAAAAfxXkZaDae+erxsAofwN7SYoRH2hl3pxbbPNj1y0zvVdAEAADOTSBbr7X9TSNo9WTRgD90Qf51cnGe3MKkLfyyGn76OYmFsvrjvVhh8weIyVhMs+Jjb5W4Ml93wYgQsoJVE9X9F3TIJrfFzdGJ5BHhee/Ssjf+SvxIIgJHjlroEa0simRdcfYGgCXnQc0wH6MPwqis9+bx6/259HflvszrNbmnYeXQlzF0blmeVkQAB+A4mxest1xwmpo/7e4NWnuEyV9DUzSIJ0NiPf/UshO2xvX14DXJE+bf5ILwEi+EWbYM0z914e1ewRyGySHF/xHypbmL0hztqfVS3zxSp0h4eOm2P9gCz6xsnL2Afr8Mtw4eYiMbKo01ExR3P6SEcZYF2sqe7p6dgYbUyWp4rF67l1M/8UoRXJjeNxMPfrDlMuQ8DnKQD3eEEBn44UIDhWciWy2uLq34kgx6wl62a0vtMd8zoLYgAck7dXyWR7ACJcwxi4uKhhvoA5tnGiHzWwxjfK6iP+wsFHumr+G3wWSKxLJYVs8sBBxV5luw5lziie96peKnCQLqXJ72a4WdVCTkjevWtZ2IZb67PwNiLmRFFE1KGksrdAswReUMm9hAWCWEVVAV4VEYI6Ff1uZhezc//0qZUnVXsNzPnAFuqvR0zag1PgToVKB/0UuzmlyFi1xnf9AFpQNVlo0aatwSENmJ5tXZKBgqbSlNtS3XS3GMeZ7v6R3vklZ48Zo89kBzAlfUk5+gcdDEQxJEuEWd4aWnwugP+NiDsprVb8wgdPb92WRnHCGyTZBjuYWGGtLusxUdkc6EijN3uCAHw3VrT6zM0fX4c/h6B9q/jSK8AZkXQTEmW7A965gxkTjRiXb4Tg0aenUdGcEAPQUDA5S6pvjOTLle4YyTae6x6InazAwJOLoARTHXB33Gh+HfKNbkoSMZx9DzbZR+M4w43BwtPX6SdoQeww4Co2ZiwCVxc23o9AzRo0b0owg+RAXSesbKZTNxLaJjd7eD8KwdRNY7xLGLeKq1U1hIrTT2Uq6OgtbWeUiO7ahHYGhCNXl8uTBnPwfPaQ9vPtLR4I1/I3sD1bjamqkH8UoedsCfb9jDQGRZugNU+sM8fMmAtbuagCT2AWHVGRKXtHfJ0/u5f54cK75SZztcagd4x96N/3qOuZzmxGrcLrS03LnK8b2RmO1KPLVGrHKzsbAhdyUKzCI/BC96rey7BiGZCqEAbZSvVgSXzavBRkMk5/obbxlW18CPztH0R9XyFrswwcpGK3pLlM83xkIkCra+rBkA0rWMEA45DPgvlyCMtOolVFF5b8YXZMx+VgbQ8GdNKmRjm31qrd2dh5ohVIqx8vOjZ9KHS3jSNv2bk9r+nPC4UsVbA+Z6Nzt9WseA8/0SmbY6qOO+QPHRU6uLbCCjYrARVhDCCaOr6sSVIF+3q7cfD/uJilBEl+fTNyVIzj383iRzIEYJKx5+eKJZFQSAdJ7jWTdslBDkPjGITpt1LnrH3qEWkt08I7cWtqIEDFjqNeY78x1OpT8yrg4ZB7exa0PvUS8J0nKt2RecInYcE9rHElcC1RJBeN0o54YzS5+AdFHfXYM17wBG1MLutyLWY8xugjOetybzlRFxXIywkVr7tYHqub13/RiorAwG6OiQrKIuWz6lw9/tYH+iShT+vl6B2wN6SPwu3x77ckAAAAC3jaYV7ae6h0cDyMTLxKTy8B4bsKABB+wnUQj9JsdZBwh2LHLsLXtEVaTKdLfPbdELsS2LmDgH19kcsTLG1+oK</CipherValue>
+  </CipherData>
+</EncryptedData>
 </connectionStrings>

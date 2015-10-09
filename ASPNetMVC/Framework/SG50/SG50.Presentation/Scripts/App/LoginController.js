@@ -29,13 +29,28 @@ app.controller('LoginController', function ($scope, $http, $window) {
                 $scope.person = {};                
                 $window.location.href = '../Home/Home';                
             }
-        }).error(function (data, status, headers, config) {            
-            angular.forEach(data, function (value, key) {
-                console.log(key + ': ' + value);
-                if (key == "ExceptionMessage") {
-                    $scope.error = value;
-                }
-            });
+        }).error(function (data, status, headers, config) {
+            var ErrorMessageValue = "";
+            var ExceptionMessageValue = "";
+            ErrorNotifier(data);
+            function ErrorNotifier(data) {
+                angular.forEach(data, function (value, key) {
+                    console.log("key = " + key + " value = " + value);
+                    if (key == "ExceptionMessage") {
+                        ExceptionMessageValue = value;
+                    }
+                    ErrorMessageValue = value;                    
+                    if (typeof value === 'object') {
+                        ErrorNotifier(value);
+                    }
+                });
+            }
+            if (ExceptionMessageValue != "") {
+                $scope.error = ExceptionMessageValue;
+            }
+            else {
+                $scope.error = ErrorMessageValue;
+            }            
             $scope.dataLoading = false;
         });
     };

@@ -20,9 +20,5 @@ namespace SG50.Presentation.Controllers
             return View();
         }
 
-        public ActionResult Tester()
-        {
-            return View();
-        }
     }
 }
