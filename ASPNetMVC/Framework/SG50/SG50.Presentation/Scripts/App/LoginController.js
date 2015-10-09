@@ -1,12 +1,13 @@
 ﻿var app = angular.module('AppLogin', []);
 app.controller('LoginController', function ($scope, $http, $window) {    
-    $scope.greeting = { text: 'Hello' };
-    $scope.person = {
-        "UserName": "myat",        
-        "Password": "Ent3rP@ss"
-    };
-    $scope.sendForm = function () {
-        console.log("$scope.person\n " + JSON.stringify($scope.person));
+    $scope.greeting = { text: 'Hello' };    
+    $scope.login = function () {
+        $scope.dataLoading = true;
+        $scope.person = {
+            "UserName": $scope.username,
+            "Password": $scope.password
+        };
+        console.log("$scope.person\n " + JSON.stringify($scope.person) + "\n $scope.antiForgeryToken " + $scope.antiForgeryToken);
         $http({
             method: 'POST',
             url: 'https://localhost:44305/api/accounts/UserLogin',            
@@ -23,14 +24,19 @@ app.controller('LoginController', function ($scope, $http, $window) {
                 }
                 $scope.message = str;
             }
-            else {
-                $scope.message = 'Login Successfully';
+            else {                
                 $window.sessionStorage.setItem("JWTToken", data);
                 $scope.person = {};                
                 $window.location.href = '../Home/Home';                
             }
-        }).error(function (data, status, headers, config) {
-            $scope.message = 'Unexpected Error';
+        }).error(function (data, status, headers, config) {            
+            angular.forEach(data, function (value, key) {
+                console.log(key + ': ' + value);
+                if (key == "ExceptionMessage") {
+                    $scope.error = value;
+                }
+            });
+            $scope.dataLoading = false;
         });
     };
 });

@@ -52,7 +52,8 @@ namespace SG50.TokenService.Models.BusinessLogic
             }
             catch(Exception ex)
             {
-                BaseExceptionLogger.LogError(ex, LoggerName);                
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                throw ex;
             }
         }
 
@@ -75,7 +76,8 @@ namespace SG50.TokenService.Models.BusinessLogic
             }
             catch (Exception ex) 
             {
-                BaseExceptionLogger.LogError(ex, LoggerName);                   
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                throw ex;  
             }
         }
 
@@ -135,7 +137,8 @@ namespace SG50.TokenService.Models.BusinessLogic
             }
             catch (Exception ex) 
             {
-                BaseExceptionLogger.LogError(ex, LoggerName);                
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                throw ex;
             }
             return JWTToken;
         }
