@@ -4,8 +4,7 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
 
     // Timeout timer value
     //var TimeOutTimerValue = 5000;
-    var TimeOutTimerValue = 50000;
-    //var TimeOutTimerValue = 500000;
+    var TimeOutTimerValue = 50000;    
 
     // Start a timeout
     var TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
