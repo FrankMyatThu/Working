@@ -2,6 +2,9 @@
 app.run(function ($rootScope, $timeout, $document, $window, $http) {
     console.log('starting run');
 
+    /// Global variables
+    // ....
+
     // Timeout timer value
     //var TimeOutTimerValue = 5000;
     var TimeOutTimerValue = 50000;    

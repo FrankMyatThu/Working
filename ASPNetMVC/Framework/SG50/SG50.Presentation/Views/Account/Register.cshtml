@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    
 }
 @functions{
     public string GetAntiForgeryToken()
@@ -27,42 +28,48 @@
         <h2>Register</h2>
         <form name="form" ng-submit="register()" ng-controller="RegistrationController" role="form">
             <div ng-show="error" class="alert alert-danger">{{error}}</div>
-            <div class="form-group" ng-class="{ 'has-error': form.FirstName.$dirty && form.FirstName.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.FirstName.$dirty && (form.FirstName.$error.required || form.FirstName.$error.maxlength) }">
                 <label for="FirstName">First Name</label>
-                <input type="text" name="FirstName" id="FirstName" class="form-control" ng-model="FirstName" required />
+                <input type="text" name="FirstName" id="FirstName" class="form-control" ng-model="FirstName" ng-minlength="1" ng-maxlength="100" required />
                 <span ng-show="form.FirstName.$dirty && form.FirstName.$error.required" class="help-block">FirstName is required</span>
+                <span ng-show="form.FirstName.$dirty && form.FirstName.$error.maxlength" class="help-block">Maximum length is 100</span>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': form.LastName.$dirty && form.LastName.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.maxlength) }">
                 <label for="LastName">Last Name</label>
-                <input type="text" name="LastName" id="LastName" class="form-control" ng-model="LastName" required />
+                <input type="text" name="LastName" id="LastName" class="form-control" ng-model="LastName" ng-minlength="1" ng-maxlength="100" required />
                 <span ng-show="form.LastName.$dirty && form.LastName.$error.required" class="help-block">LastName is required</span>
+                <span ng-show="form.LastName.$dirty && form.LastName.$error.maxlength" class="help-block">Maximum length is 100</span>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': form.Email.$dirty && form.Email.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.Email.$dirty && (form.Email.$error.required || form.Email.$error.pattern || form.Email.$error.maxlength) }">
                 <label for="Email">Email</label>
-                <input type="email" name="Email" id="Email" class="form-control" ng-model="Email" ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" required />
+                <input type="text" name="Email" id="Email" class="form-control" ng-model="Email" ng-minlength="1" ng-maxlength="100" ng-pattern="EmailFormat" required />
                 <span ng-show="form.Email.$dirty && form.Email.$error.required" class="help-block">Email is required</span>
-                <span class="error" ng-show="form.Email.$error.email">Not valid email.</span>
+                <span ng-show="form.Email.$dirty && form.Email.$error.pattern" class="help-block">Not valid email.</span>
+                <span ng-show="form.Email.$dirty && form.Email.$error.maxlength" class="help-block">Maximum length is 100</span>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': form.UserName.$dirty && form.UserName.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.UserName.$dirty && (form.UserName.$error.required || form.UserName.$error.maxlength)}">
                 <label for="UserName">User Name</label>
-                <input type="text" name="UserName" id="UserName" class="form-control" ng-model="UserName" required />
+                <input type="text" name="UserName" id="UserName" class="form-control" ng-model="UserName" ng-minlength="1" ng-maxlength="100" required />
                 <span ng-show="form.UserName.$dirty && form.UserName.$error.required" class="help-block">Username is required</span>
+                <span ng-show="form.UserName.$dirty && form.UserName.$error.maxlength" class="help-block">Maximum length is 100</span>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': form.RoleName.$dirty && form.RoleName.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.RoleName.$dirty && (form.RoleName.$error.required || form.RoleName.$error.maxlength) }">
                 <label for="RoleName">Role Name</label>
-                <input type="text" name="RoleName" id="RoleName" class="form-control" ng-model="RoleName" required />
+                <input type="text" name="RoleName" id="RoleName" class="form-control" ng-model="RoleName" ng-minlength="1" ng-maxlength="100" required />
                 <span ng-show="form.RoleName.$dirty && form.RoleName.$error.required" class="help-block">RoleName is required</span>
+                <span ng-show="form.RoleName.$dirty && form.RoleName.$error.maxlength" class="help-block">Maximum length is 100</span>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': form.Password.$dirty && form.Password.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.Password.$dirty && (form.Password.$error.required || form.Password.$error.maxlength) }">
                 <label for="Password">Password</label>
-                <input type="password" name="Password" id="Password" class="form-control" ng-model="Password" required />
+                <input type="password" name="Password" id="Password" class="form-control" ng-model="Password" ng-minlength="1" ng-maxlength="100" required />
                 <span ng-show="form.Password.$dirty && form.Password.$error.required" class="help-block">Password is required</span>
+                <span ng-show="form.Password.$dirty && form.Password.$error.maxlength" class="help-block">Maximum length is 100</span>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': form.ConfirmPassword.$dirty && form.ConfirmPassword.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.ConfirmPassword.$dirty && (form.ConfirmPassword.$error.required || form.ConfirmPassword.$invalid) }">
                 <label for="ConfirmPassword">ConfirmPassword</label>
                 <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" ng-model="ConfirmPassword" ng-match="Password" required />
                 <span ng-show="form.ConfirmPassword.$dirty && form.ConfirmPassword.$error.required" class="help-block">ConfirmPassword is required</span>
-                <span ng-show="form.ConfirmPassword.$dirty && form.ConfirmPassword.$error.match" class="help-block">Password have to match</span>
+                <span ng-show="form.ConfirmPassword.$dirty && form.ConfirmPassword.$invalid" class="help-block">Password have to match</span>
             </div>
             <div class="form-group" ng-class="{ 'has-error': form.JoinDate.$dirty && form.JoinDate.$error.required }">
                 <label for="JoinDate">Join Date</label>

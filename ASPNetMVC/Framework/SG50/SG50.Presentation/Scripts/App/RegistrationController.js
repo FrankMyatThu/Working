@@ -1,5 +1,38 @@
 ﻿var app = angular.module('AppRegistration', []);
+var directiveId_ngMatch = 'ngMatch';
+app.directive(directiveId_ngMatch, ['$parse', function ($parse) {
+
+    var directive = {
+        link: link,
+        restrict: 'A',
+        require: '?ngModel'
+    };
+    return directive;
+
+    function link(scope, elem, attrs, ctrl) {
+        // if ngModel is not defined, we don't need to do anything
+        if (!ctrl) return;
+        if (!attrs[directiveId_ngMatch]) return;
+
+        var firstValue = $parse(attrs[directiveId_ngMatch]);
+
+        var validator = function (value) {
+            var temp = firstValue(scope),
+            v = value === temp;
+            ctrl.$setValidity('match', v);
+            return value;
+        }
+
+        ctrl.$parsers.unshift(validator);
+        ctrl.$formatters.push(validator);
+        attrs.$observe(directiveId_ngMatch, function () {
+            validator(ctrl.$viewValue);
+        });
+
+    }
+}]);
 app.controller('RegistrationController', function ($scope, $http, $window) {
+    $scope.EmailFormat = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,4}$/i;
     $scope.greeting = { text: 'Hello' };    
     $scope.register = function () {
         $scope.dataLoading = true;
