@@ -39,8 +39,9 @@
             </div>
             <div class="form-group" ng-class="{ 'has-error': form.Email.$dirty && form.Email.$error.required }">
                 <label for="Email">Email</label>
-                <input type="text" name="Email" id="Email" class="form-control" ng-model="Email" required />
+                <input type="email" name="Email" id="Email" class="form-control" ng-model="Email" ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" required />
                 <span ng-show="form.Email.$dirty && form.Email.$error.required" class="help-block">Email is required</span>
+                <span class="error" ng-show="form.Email.$error.email">Not valid email.</span>
             </div>
             <div class="form-group" ng-class="{ 'has-error': form.UserName.$dirty && form.UserName.$error.required }">
                 <label for="UserName">User Name</label>
@@ -59,8 +60,9 @@
             </div>
             <div class="form-group" ng-class="{ 'has-error': form.ConfirmPassword.$dirty && form.ConfirmPassword.$error.required }">
                 <label for="ConfirmPassword">ConfirmPassword</label>
-                <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" ng-model="ConfirmPassword" required />
+                <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" ng-model="ConfirmPassword" ng-match="Password" required />
                 <span ng-show="form.ConfirmPassword.$dirty && form.ConfirmPassword.$error.required" class="help-block">ConfirmPassword is required</span>
+                <span ng-show="form.ConfirmPassword.$dirty && form.ConfirmPassword.$error.match" class="help-block">Password have to match</span>
             </div>
             <div class="form-group" ng-class="{ 'has-error': form.JoinDate.$dirty && form.JoinDate.$error.required }">
                 <label for="JoinDate">Join Date</label>
