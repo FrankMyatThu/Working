@@ -31,8 +31,7 @@ app.directive(directiveId_ngMatch, ['$parse', function ($parse) {
 
     }
 }]);
-app.controller('RegistrationController', function ($scope, $http, $window) {
-    $scope.EmailFormat = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,4}$/i;
+app.controller('RegistrationController', function ($scope, $http, $window) {    
     $scope.greeting = { text: 'Hello' };    
     $scope.register = function () {
         $scope.dataLoading = true;
