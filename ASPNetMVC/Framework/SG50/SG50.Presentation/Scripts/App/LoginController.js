@@ -2,10 +2,12 @@
 app.controller('LoginController', function ($scope, $http, $window) {    
     $scope.greeting = { text: 'Hello' };    
     $scope.login = function () {
+        console.log("$scope.UserName " + $scope.UserName);
+
         $scope.dataLoading = true;
         $scope.person = {
-            "UserName": $scope.username,
-            "Password": $scope.password
+            "UserName": $scope.UserName,
+            "Password": $scope.Password
         };
         console.log("$scope.person\n " + JSON.stringify($scope.person) + "\n $scope.antiForgeryToken " + $scope.antiForgeryToken);
         $http({
