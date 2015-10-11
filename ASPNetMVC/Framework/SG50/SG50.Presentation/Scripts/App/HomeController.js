@@ -1,6 +1,8 @@
 ﻿app.controller('HomeController', function ($scope, $http, $window) {
     $scope.greeting = { text: 'Hello' };
-    $scope.sendForm = function () {        
+    $scope.DisplayData = "";
+    $scope.Home = function () {
+        $scope.dataLoading = true;
         $http({
             method: 'POST',            
             url: 'https://localhost:44300/api/home/GetUserList',            
@@ -19,10 +21,33 @@
                 $scope.message = str;
             }
             else {           
-                console.log(data);                
+                console.log(data);
+                $scope.DisplayData = data;
+                $scope.dataLoading = false;
             }
         }).error(function (data, status, headers, config) {
-            $scope.message = 'Unexpected Error';
+            var ErrorMessageValue = "";
+            var ExceptionMessageValue = "";
+            ErrorNotifier(data);
+            function ErrorNotifier(data) {
+                angular.forEach(data, function (value, key) {
+                    console.log("key = " + key + " value = " + value);
+                    if (key == "ExceptionMessage") {
+                        ExceptionMessageValue = value;
+                    }
+                    ErrorMessageValue = value;
+                    if (typeof value === 'object') {
+                        ErrorNotifier(value);
+                    }
+                });
+            }
+            if (ExceptionMessageValue != "") {
+                $scope.error = ExceptionMessageValue;
+            }
+            else {
+                $scope.error = ErrorMessageValue;
+            }
+            $scope.dataLoading = false;
         });
     };
 });
