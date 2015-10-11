@@ -1,9 +1,7 @@
 ﻿var app = angular.module('AppLogin', []);
 app.controller('LoginController', function ($scope, $http, $window) {    
     $scope.greeting = { text: 'Hello' };    
-    $scope.login = function () {
-        console.log("$scope.UserName " + $scope.UserName);
-
+    $scope.login = function () {  
         $scope.dataLoading = true;
         $scope.person = {
             "UserName": $scope.UserName,
