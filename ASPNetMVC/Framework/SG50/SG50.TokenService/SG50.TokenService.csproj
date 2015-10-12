@@ -167,6 +167,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510120417091_InitialCreate.cs" />
+    <Compile Include="Migrations\201510120417091_InitialCreate.Designer.cs">
+      <DependentUpon>201510120417091_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510120649021_ActiveUser_LastRequestedTime.cs" />
+    <Compile Include="Migrations\201510120649021_ActiveUser_LastRequestedTime.Designer.cs">
+      <DependentUpon>201510120649021_ActiveUser_LastRequestedTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessLogic\ClaimManager.cs" />
     <Compile Include="Models\BusinessLogic\UserAccountBusinessLogic.cs" />
     <Compile Include="Models\Entities\ApplicationDbContext.cs" />
@@ -198,6 +207,14 @@
       <Project>{b9883a2d-9ef9-40b4-be67-cf6257e11641}</Project>
       <Name>SG50.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510120417091_InitialCreate.resx">
+      <DependentUpon>201510120417091_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510120649021_ActiveUser_LastRequestedTime.resx">
+      <DependentUpon>201510120649021_ActiveUser_LastRequestedTime.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
