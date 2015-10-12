@@ -1,5 +1,4 @@
-﻿app.controller('HomeController', function ($scope, $http, $window) {
-    $scope.greeting = { text: 'Hello' };
+﻿app.controller('HomeController', function ($scope, $http, $window) {    
     $scope.DisplayData = "";
     $scope.Home = function () {
         $scope.dataLoading = true;
@@ -11,14 +10,13 @@
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
                 'RequestVerificationToken': $scope.$parent.antiForgeryToken
             }
-        }).success(function (data, status, headers, config) {
-            $scope.message = '';
+        }).success(function (data, status, headers, config) {            
             if (data.success == false) {
                 var str = '';
                 for (var error in data.errors) {
                     str += data.errors[error] + '\n';
                 }
-                $scope.message = str;
+                console.log(str);
             }
             else {           
                 console.log(data);

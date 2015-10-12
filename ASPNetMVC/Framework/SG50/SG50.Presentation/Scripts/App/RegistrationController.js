@@ -31,8 +31,7 @@ app.directive(directiveId_ngMatch, ['$parse', function ($parse) {
 
     }
 }]);
-app.controller('RegistrationController', function ($scope, $http, $window) {    
-    $scope.greeting = { text: 'Hello' };    
+app.controller('RegistrationController', function ($scope, $http, $window) {        
     $scope.register = function () {
         $scope.dataLoading = true;
         $scope.person = {
@@ -44,8 +43,7 @@ app.controller('RegistrationController', function ($scope, $http, $window) {
             "Password": $scope.Password,
             "ConfirmPassword": $scope.ConfirmPassword,
             "JoinDate": $scope.JoinDate
-        };
-        console.log("$scope.person\n " + JSON.stringify($scope.person) + "\n $scope.antiForgeryToken " + $scope.antiForgeryToken);
+        };        
         $http({
             method: 'POST',
             url: 'https://localhost:44305/api/accounts/CreateUser',
@@ -53,14 +51,13 @@ app.controller('RegistrationController', function ($scope, $http, $window) {
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken
             }
-        }).success(function (data, status, headers, config) {
-            $scope.message = '';
+        }).success(function (data, status, headers, config) {            
             if (data.success == false) {
                 var str = '';
                 for (var error in data.errors) {
                     str += data.errors[error] + '\n';
                 }
-                $scope.message = str;
+                console.log(str);
             }
             else {
                 $scope.person = {};

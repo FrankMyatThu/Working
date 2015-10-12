@@ -1,7 +1,5 @@
 ﻿var app = angular.module('ApplicationRoot', []);
-app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
-    console.log('starting run');
-
+app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {    
     /// Global variables
     // ....
 
@@ -54,9 +52,6 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
     }
 
     function RemoveActiveUser() {
-        console.log("$window.sessionStorage.getItem(\"JWTToken\") " + $window.sessionStorage.getItem("JWTToken"));
-        console.log("$scope.antiForgeryToken " + $scope.antiForgeryToken);
-
         $http({
             method: 'POST',
             url: 'https://localhost:44305/api/accounts/UserLogout',
@@ -71,6 +66,7 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
                 for (var error in data.errors) {
                     str += data.errors[error] + '\n';
                 }
+                console.log(str);
             }
             else {
                 console.log('Logout Successfully');
@@ -78,10 +74,27 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
                 $window.location.href = '../Account/Login';
             }
         }).error(function (data, status, headers, config) {
-            console.log("data :" + data);
-            console.log("status :" + status);
-            console.log("headers :" + headers);
-            console.log("config :" + config);
+            var ErrorMessageValue = "";
+            var ExceptionMessageValue = "";
+            ErrorNotifier(data);
+            function ErrorNotifier(data) {
+                angular.forEach(data, function (value, key) {
+                    console.log("key = " + key + " value = " + value);
+                    if (key == "ExceptionMessage") {
+                        ExceptionMessageValue = value;
+                    }
+                    ErrorMessageValue = value;
+                    if (typeof value === 'object') {
+                        ErrorNotifier(value);
+                    }
+                });
+            }
+            if (ExceptionMessageValue != "") {
+                console.log(ExceptionMessageValue);
+            }
+            else {                
+                console.log(ErrorMessageValue);
+            }
         });
     }
 });

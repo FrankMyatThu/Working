@@ -1,13 +1,11 @@
 ﻿var app = angular.module('AppLogin', []);
-app.controller('LoginController', function ($scope, $http, $window) {    
-    $scope.greeting = { text: 'Hello' };    
+app.controller('LoginController', function ($scope, $http, $window) {
     $scope.login = function () {  
         $scope.dataLoading = true;
         $scope.person = {
             "UserName": $scope.UserName,
             "Password": $scope.Password
-        };
-        console.log("$scope.person\n " + JSON.stringify($scope.person) + "\n $scope.antiForgeryToken " + $scope.antiForgeryToken);
+        };        
         $http({
             method: 'POST',
             url: 'https://localhost:44305/api/accounts/UserLogin',            
@@ -15,14 +13,13 @@ app.controller('LoginController', function ($scope, $http, $window) {
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken
             }
-        }).success(function (data, status, headers, config) {
-            $scope.message = '';
+        }).success(function (data, status, headers, config) {            
             if (data.success == false) {
                 var str = '';
                 for (var error in data.errors) {
                     str += data.errors[error] + '\n';
                 }
-                $scope.message = str;
+                console.log(str);
             }
             else {                
                 $window.sessionStorage.setItem("JWTToken", data);
