@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
-<html ng-app="Application_Root">
+<html ng-app="ApplicationRoot">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>    
     <script src="~/Scripts/jquery-1.9.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/App/Application_Root.js"></script>
+    <script src="~/Scripts/App/ApplicationRoot.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/SG50.css" />      
     @functions{
@@ -18,7 +18,7 @@
         }
     }
 </head>
-<body>    
+<body ng-controller="ApplicationRootController">    
     <div id="header">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -50,6 +50,9 @@
                                 <li class="divider"></li>
                                 <li><a href="#">One more separated link</a></li>
                             </ul>
+                        </li>
+                        <li class="">
+                            <a href="#" ng-click="LogoutByClick();">Log out</a>                          
                         </li>                        
                     </ul>
                 </div>                

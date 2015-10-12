@@ -1,3 +1,11 @@
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\SG50.Model.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\SG50.Model.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\obj\Debug\SG50.Model.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\obj\Debug\SG50.Model.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\SG50.Model.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\SG50.Model.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.dll
@@ -7,11 +15,3 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\Entit
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\obj\Debug\SG50.Model.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\obj\Debug\SG50.Model.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\obj\Debug\SG50.Model.pdb
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\SG50.Model.dll
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\SG50.Model.pdb
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.dll
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.SqlServer.dll
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.xml
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\bin\Debug\EntityFramework.SqlServer.xml
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\obj\Debug\SG50.Model.dll
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.Model\obj\Debug\SG50.Model.pdb

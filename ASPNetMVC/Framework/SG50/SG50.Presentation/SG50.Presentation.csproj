@@ -112,7 +112,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\App\Application_Root.js" />
+    <Content Include="Scripts\App\ApplicationRoot.js" />
     <Content Include="Scripts\App\HomeController.js" />
     <Content Include="Scripts\App\LoginController.js" />
     <Content Include="Scripts\App\Util.js" />

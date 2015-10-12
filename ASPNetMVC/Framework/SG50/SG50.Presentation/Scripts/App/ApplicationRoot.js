@@ -1,5 +1,5 @@
-﻿var app = angular.module('Application_Root', []);
-app.run(function ($rootScope, $timeout, $document, $window, $http) {
+﻿var app = angular.module('ApplicationRoot', []);
+app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
     console.log('starting run');
 
     /// Global variables
@@ -7,6 +7,7 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
 
     // Timeout timer value
     //var TimeOutTimerValue = 5000;
+    //var TimeOutTimerValue = 6000;
     var TimeOutTimerValue = 50000;    
 
     // Start a timeout
@@ -32,15 +33,14 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
     bodyElement.bind('scroll', function (e) { TimeOut_Resetter(e) });
     bodyElement.bind('focus', function (e) { TimeOut_Resetter(e) });
 
+    $scope.LogoutByClick = function () {
+        RemoveActiveUser();
+    }
+
     function LogoutByTimer() {
         console.log('Logout');
         if ($window.sessionStorage.getItem("JWTToken") != "")
             RemoveActiveUser();
-
-        ///////////////////////////////////////////////////
-        /// redirect to another page(eg. Login.html) here
-        ///////////////////////////////////////////////////
-        //$window.location.href = '../Account/Login';
     }
 
     function TimeOut_Resetter(e) {
@@ -55,7 +55,7 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
 
     function RemoveActiveUser() {
         console.log("$window.sessionStorage.getItem(\"JWTToken\") " + $window.sessionStorage.getItem("JWTToken"));
-        console.log("$rootScope.antiForgeryToken " + $rootScope.antiForgeryToken);
+        console.log("$scope.antiForgeryToken " + $scope.antiForgeryToken);
 
         $http({
             method: 'POST',
@@ -63,7 +63,7 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': $rootScope.antiForgeryToken
+                'RequestVerificationToken': $scope.antiForgeryToken
             }
         }).success(function (data, status, headers, config) {
             if (data.success == false) {
@@ -85,4 +85,5 @@ app.run(function ($rootScope, $timeout, $document, $window, $http) {
         });
     }
 });
+
 
