@@ -17,6 +17,8 @@ namespace SG50.Base.Util
         public static string IsWriteTraceOn = ConfigurationManager.AppSettings["IsWriteTraceOn"].ToString();
         public static string IsWriteInfoOn = ConfigurationManager.AppSettings["IsWriteInfoOn"].ToString();
         public static string IsWriteWarningOn = ConfigurationManager.AppSettings["IsWriteWarningOn"].ToString();
-        public static string IsWriteErrorOn = ConfigurationManager.AppSettings["IsWriteErrorOn"].ToString();   
+        public static string IsWriteErrorOn = ConfigurationManager.AppSettings["IsWriteErrorOn"].ToString();
+        public static string ApplicationTokenLifeTime = ConfigurationManager.AppSettings["ApplicationTokenLifeTime"].ToString();
+        public static string LoginNotificationMessage = ConfigurationManager.AppSettings["LoginNotificationMessage"].ToString();   
     }
 }
