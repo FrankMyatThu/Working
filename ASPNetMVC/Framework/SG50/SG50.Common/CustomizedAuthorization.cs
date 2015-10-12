@@ -14,6 +14,7 @@ using SG50.Model.Models.Entities;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using SG50.Base.Util;
 using SG50.Base.Logging;
+using SG50.Base.Security;
 
 namespace SG50.Common
 {   
@@ -58,7 +59,7 @@ namespace SG50.Common
                     var _JwtSecurityTokenHandler = new JwtSecurityTokenHandler();
                     var _JwtSecurityTokenHandler_JWTToken = _JwtSecurityTokenHandler.ReadToken(EncodedJwtToken);
 
-                    /// Validate Token
+                    /// (1) Validate Token
                     SecurityToken _SecurityToken = null;
                     _JwtSecurityTokenHandler.ValidateToken(
                         EncodedJwtToken,
@@ -79,10 +80,17 @@ namespace SG50.Common
                         return Task.FromResult<object>(null);
                     }
 
-                    /// Validate Token expiration
-                    
+                    /// (2) Validate if token is already expired.
+                    if ((new LoginChecker()).IsUserIdle(_tbl_AppActiveUser.LastRequestedTime))
+                    {
+                        /// Kick out user who is Idle or whose token is expired.
+                        _SG50DBEntities.tbl_AppActiveUser.Remove(_tbl_AppActiveUser);
+                        _SG50DBEntities.SaveChanges();
+                        actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+                        return Task.FromResult<object>(null);
+                    }
 
-                    /// Validate IP & User Agent                    
+                    /// (3) Validate IP & User Agent                    
                     Requester_IP = ((HttpContextWrapper)actionContext.Request.Properties[MS_HttpContext]).Request.UserHostName;
                     Requester_UserAgent = ((HttpContextWrapper)actionContext.Request.Properties[MS_HttpContext]).Request.UserAgent;
                     if (!_tbl_AppActiveUser.IP.Equals(Requester_IP, StringComparison.InvariantCultureIgnoreCase) ||
@@ -91,6 +99,12 @@ namespace SG50.Common
                         actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
                         return Task.FromResult<object>(null);  
                     }
+
+                    /// All Validation are passed.
+                    /// So, Set current time to _tbl_AppActiveUser.LastRequestedTime
+                    /// in order to extend token expireation time.
+                    _tbl_AppActiveUser.LastRequestedTime = DateTime.Now;
+                    _SG50DBEntities.SaveChanges();
 
                 }
             }
