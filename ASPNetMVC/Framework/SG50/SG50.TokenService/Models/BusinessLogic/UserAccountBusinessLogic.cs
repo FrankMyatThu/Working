@@ -18,7 +18,7 @@ namespace SG50.TokenService.Models.BusinessLogic
     {
         string ClaimType_Dummy = "Dummy Type";
         string ClaimValue_Dummy = "Dummy Value";
-        string UserPasswordNotCorrect = "The user name or password is incorrect.";
+        string UserPasswordNotCorrect = "The user name or password is incorrect.";        
         string SignatureAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#hmac-sha256";
         string DigestAlgorithm = "http://www.w3.org/2001/04/xmlenc#sha256";
         string LoggerName = "SG50_TokenService_Appender_Logger";
@@ -102,9 +102,22 @@ namespace SG50.TokenService.Models.BusinessLogic
                     }
 
                     ActiveUser _ActiveUser = _ApplicationDbContext.ActiveUser.Where(x => x.AppUserId.Equals(_ApplicationUser.Id)).FirstOrDefault();
+                    /// Checking if user is already login.
                     if (_ActiveUser != null) 
                     {
-                        _ApplicationDbContext.ActiveUser.Remove(_ActiveUser);
+                        /// Checking if user is Idle.
+                        if ((new LoginChecker()).IsUserIdle(_ActiveUser.LastRequestedTime))
+                        {
+                            /// Kick out user who is Idle.
+                            _ApplicationDbContext.ActiveUser.Remove(_ActiveUser);
+                        }
+                        else
+                        {
+                            /// Current user is using on other machine or on the same machine without logging out properly.
+                            /// So raise error for those people/person who want to use the same account at the same moment.
+                            string _ExceptionMessage = string.Format(AppConfiger.LoginNotificationMessage, AppConfiger.ApplicationTokenLifeTime);
+                            throw new Exception(_ExceptionMessage);
+                        }
                     }
 
                     _ActiveUser = CreateActiveUser(_ApplicationUser);
@@ -162,6 +175,7 @@ namespace SG50.TokenService.Models.BusinessLogic
             _ActiveUser.CreatedBy = _ApplicationUser.UserName;
             _ActiveUser.UpdateDate = null;
             _ActiveUser.UpdateBy = null;
+            _ActiveUser.LastRequestedTime = DateTime.Now;
             return _ActiveUser;
         }
     }

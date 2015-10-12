@@ -79,6 +79,9 @@ namespace SG50.Common
                         return Task.FromResult<object>(null);
                     }
 
+                    /// Validate Token expiration
+                    
+
                     /// Validate IP & User Agent                    
                     Requester_IP = ((HttpContextWrapper)actionContext.Request.Properties[MS_HttpContext]).Request.UserHostName;
                     Requester_UserAgent = ((HttpContextWrapper)actionContext.Request.Properties[MS_HttpContext]).Request.UserAgent;

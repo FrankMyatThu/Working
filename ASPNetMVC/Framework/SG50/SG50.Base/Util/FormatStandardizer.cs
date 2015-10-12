@@ -20,7 +20,7 @@ namespace SG50.Base.Util
         /// Ref http://stackoverflow.com/a/12019115/900284
         /// </summary>                
         public const string Server_UserName = "(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])";
-        public const string Client_UserName = @"/^(?![_.])(?!.*[_.]{2})[a-z0-9._]+[a-z0-9]$/i";
+        public const string Client_UserName = @"/^(?![_.])(?!.*[_.]{2})[a-z0-9._]*[a-z0-9]$/i";
 
         /// <summary>
         /// AlphaNumericFormat

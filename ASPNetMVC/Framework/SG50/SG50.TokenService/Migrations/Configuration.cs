@@ -10,7 +10,6 @@ namespace SG50.TokenService.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "SG50.TokenService.Models.Entities.ApplicationDbContext";
         }
 
         protected override void Seed(SG50.TokenService.Models.Entities.ApplicationDbContext context)

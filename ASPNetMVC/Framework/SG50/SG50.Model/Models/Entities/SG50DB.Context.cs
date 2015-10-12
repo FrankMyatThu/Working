@@ -25,7 +25,6 @@ namespace SG50.Model.Models.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<tbl_AppActiveUser> tbl_AppActiveUser { get; set; }
         public virtual DbSet<tbl_AppRole> tbl_AppRole { get; set; }
         public virtual DbSet<tbl_AppUsedPassword> tbl_AppUsedPassword { get; set; }

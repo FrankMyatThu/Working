@@ -7,12 +7,12 @@ namespace SG50.TokenService.Migrations
     {
         public override void Up()
         {
-            Sql("ALTER TABLE tbl_AppActiveUser ADD LastRequestedTime DATETIME NOT NULL DEFAULT (GETDATE())");
+            AddColumn("dbo.tbl_AppActiveUser", "LastRequestedTime", c => c.DateTime(nullable: false));
         }
         
         public override void Down()
         {
-
+            DropColumn("dbo.tbl_AppActiveUser", "LastRequestedTime");
         }
     }
 }

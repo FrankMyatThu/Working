@@ -25,6 +25,7 @@ namespace SG50.Model.Models.Entities
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
+        public System.DateTime LastRequestedTime { get; set; }
     
         public virtual tbl_AppUser tbl_AppUser { get; set; }
     }

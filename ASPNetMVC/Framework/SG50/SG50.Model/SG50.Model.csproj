@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Entities\C__MigrationHistory.cs">
-      <DependentUpon>SG50DB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Entities\SG50DB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

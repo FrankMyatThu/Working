@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SG50DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-  </EntityType>
   <EntityType Name="tbl_AppActiveUser">
     <Key>
       <PropertyRef Name="Id" />
@@ -25,6 +15,7 @@
     <Property Name="CreatedBy" Type="nvarchar(max)" />
     <Property Name="UpdateDate" Type="datetime" />
     <Property Name="UpdateBy" Type="nvarchar(max)" />
+    <Property Name="LastRequestedTime" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_AppRole">
     <Key>
@@ -188,7 +179,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="SG50DBModelStoreContainer">
-    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_AppActiveUser" EntityType="Self.tbl_AppActiveUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_AppRole" EntityType="Self.tbl_AppRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_AppUsedPassword" EntityType="Self.tbl_AppUsedPassword" Schema="dbo" store:Type="Tables" />

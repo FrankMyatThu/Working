@@ -132,7 +132,7 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\Syst
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\log4net.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Model.pdb
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.csprojResolveAssemblyReference.cache
-D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.InitialCreate.resources
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.SG50DB_Migration.resources
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.ActiveUser_LastRequestedTime.resources
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.csproj.GenerateResource.Cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.dll

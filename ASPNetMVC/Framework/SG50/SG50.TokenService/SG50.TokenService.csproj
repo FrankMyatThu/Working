@@ -167,13 +167,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510120417091_InitialCreate.cs" />
-    <Compile Include="Migrations\201510120417091_InitialCreate.Designer.cs">
-      <DependentUpon>201510120417091_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201510120952015_SG50DB_Migration.cs" />
+    <Compile Include="Migrations\201510120952015_SG50DB_Migration.Designer.cs">
+      <DependentUpon>201510120952015_SG50DB_Migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510120649021_ActiveUser_LastRequestedTime.cs" />
-    <Compile Include="Migrations\201510120649021_ActiveUser_LastRequestedTime.Designer.cs">
-      <DependentUpon>201510120649021_ActiveUser_LastRequestedTime.cs</DependentUpon>
+    <Compile Include="Migrations\201510120956165_ActiveUser_LastRequestedTime.cs" />
+    <Compile Include="Migrations\201510120956165_ActiveUser_LastRequestedTime.Designer.cs">
+      <DependentUpon>201510120956165_ActiveUser_LastRequestedTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessLogic\ClaimManager.cs" />
@@ -209,11 +209,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510120417091_InitialCreate.resx">
-      <DependentUpon>201510120417091_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510120952015_SG50DB_Migration.resx">
+      <DependentUpon>201510120952015_SG50DB_Migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510120649021_ActiveUser_LastRequestedTime.resx">
-      <DependentUpon>201510120649021_ActiveUser_LastRequestedTime.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510120956165_ActiveUser_LastRequestedTime.resx">
+      <DependentUpon>201510120956165_ActiveUser_LastRequestedTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

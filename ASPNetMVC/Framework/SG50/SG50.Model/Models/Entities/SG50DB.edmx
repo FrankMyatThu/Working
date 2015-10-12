@@ -4,17 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SG50DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="SG50DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_AppActiveUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,6 +20,7 @@
           <Property Name="CreatedBy" Type="nvarchar(max)" />
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastRequestedTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_AppRole">
           <Key>
@@ -193,7 +184,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SG50DBModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_AppActiveUser" EntityType="Self.tbl_AppActiveUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_AppRole" EntityType="Self.tbl_AppRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_AppUsedPassword" EntityType="Self.tbl_AppUsedPassword" Schema="dbo" store:Type="Tables" />
@@ -226,73 +216,91 @@
             <End Role="tbl_AppUserRole" EntitySet="tbl_AppUserRole" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SG50DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
+        <EntityContainer Name="SG50DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_AppActiveUser" EntityType="SG50DBModel.tbl_AppActiveUser" />
+          <EntitySet Name="tbl_AppRole" EntityType="SG50DBModel.tbl_AppRole" />
+          <EntitySet Name="tbl_AppUsedPassword" EntityType="SG50DBModel.tbl_AppUsedPassword" />
+          <EntitySet Name="tbl_AppUser" EntityType="SG50DBModel.tbl_AppUser" />
+          <EntitySet Name="tbl_AppUserClaim" EntityType="SG50DBModel.tbl_AppUserClaim" />
+          <EntitySet Name="tbl_AppUserLogin" EntityType="SG50DBModel.tbl_AppUserLogin" />
+          <AssociationSet Name="FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" Association="SG50DBModel.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId">
+            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
+            <End Role="tbl_AppActiveUser" EntitySet="tbl_AppActiveUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" Association="SG50DBModel.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId">
+            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
+            <End Role="tbl_AppUsedPassword" EntitySet="tbl_AppUsedPassword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" Association="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId">
+            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
+            <End Role="tbl_AppUserClaim" EntitySet="tbl_AppUserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId" Association="SG50DBModel.FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId">
+            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
+            <End Role="tbl_AppUserLogin" EntitySet="tbl_AppUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_AppUserRole" Association="SG50DBModel.tbl_AppUserRole">
+            <End Role="tbl_AppRole" EntitySet="tbl_AppRole" />
+            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="tbl_AppActiveUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="AppUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AppUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="IP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JwtHMACKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ExecutedTime" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_AppUser" Relationship="Self.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppActiveUser" ToRole="tbl_AppUser" />
+          <Property Name="LastRequestedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tbl_AppUser" Relationship="SG50DBModel.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppActiveUser" ToRole="tbl_AppUser" />
         </EntityType>
         <EntityType Name="tbl_AppRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbl_AppUser" Relationship="Self.tbl_AppUserRole" FromRole="tbl_AppRole" ToRole="tbl_AppUser" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_AppUser" Relationship="SG50DBModel.tbl_AppUserRole" FromRole="tbl_AppRole" ToRole="tbl_AppUser" />
         </EntityType>
         <EntityType Name="tbl_AppUsedPassword">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="AppUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AppUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SaltKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ExecutedTime" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_AppUser" Relationship="Self.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUsedPassword" ToRole="tbl_AppUser" />
+          <NavigationProperty Name="tbl_AppUser" Relationship="SG50DBModel.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUsedPassword" ToRole="tbl_AppUser" />
         </EntityType>
         <EntityType Name="tbl_AppUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SaltKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SaltKey" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PasswordResetToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ExecutedTime" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -308,22 +316,22 @@
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbl_AppActiveUser" Relationship="Self.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUser" ToRole="tbl_AppActiveUser" />
-          <NavigationProperty Name="tbl_AppUsedPassword" Relationship="Self.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUser" ToRole="tbl_AppUsedPassword" />
-          <NavigationProperty Name="tbl_AppUserClaim" Relationship="Self.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUser" ToRole="tbl_AppUserClaim" />
-          <NavigationProperty Name="tbl_AppUserLogin" Relationship="Self.FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUser" ToRole="tbl_AppUserLogin" />
-          <NavigationProperty Name="tbl_AppRole" Relationship="Self.tbl_AppUserRole" FromRole="tbl_AppUser" ToRole="tbl_AppRole" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_AppActiveUser" Relationship="SG50DBModel.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUser" ToRole="tbl_AppActiveUser" />
+          <NavigationProperty Name="tbl_AppUsedPassword" Relationship="SG50DBModel.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUser" ToRole="tbl_AppUsedPassword" />
+          <NavigationProperty Name="tbl_AppUserClaim" Relationship="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUser" ToRole="tbl_AppUserClaim" />
+          <NavigationProperty Name="tbl_AppUserLogin" Relationship="SG50DBModel.FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUser" ToRole="tbl_AppUserLogin" />
+          <NavigationProperty Name="tbl_AppRole" Relationship="SG50DBModel.tbl_AppUserRole" FromRole="tbl_AppUser" ToRole="tbl_AppRole" />
         </EntityType>
         <EntityType Name="tbl_AppUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_AppUser" Relationship="Self.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUserClaim" ToRole="tbl_AppUser" />
+          <NavigationProperty Name="tbl_AppUser" Relationship="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUserClaim" ToRole="tbl_AppUser" />
         </EntityType>
         <EntityType Name="tbl_AppUserLogin">
           <Key>
@@ -331,16 +339,16 @@
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tbl_AppUser" Relationship="Self.FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUserLogin" ToRole="tbl_AppUser" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_AppUser" Relationship="SG50DBModel.FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUserLogin" ToRole="tbl_AppUser" />
         </EntityType>
         <Association Name="FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId">
-          <End Role="tbl_AppUser" Type="Self.tbl_AppUser" Multiplicity="1">
+          <End Type="SG50DBModel.tbl_AppUser" Role="tbl_AppUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="tbl_AppActiveUser" Type="Self.tbl_AppActiveUser" Multiplicity="*" />
+          <End Type="SG50DBModel.tbl_AppActiveUser" Role="tbl_AppActiveUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_AppUser">
               <PropertyRef Name="Id" />
@@ -351,10 +359,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId">
-          <End Role="tbl_AppUser" Type="Self.tbl_AppUser" Multiplicity="1">
+          <End Type="SG50DBModel.tbl_AppUser" Role="tbl_AppUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="tbl_AppUsedPassword" Type="Self.tbl_AppUsedPassword" Multiplicity="*" />
+          <End Type="SG50DBModel.tbl_AppUsedPassword" Role="tbl_AppUsedPassword" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_AppUser">
               <PropertyRef Name="Id" />
@@ -365,10 +373,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId">
-          <End Role="tbl_AppUser" Type="Self.tbl_AppUser" Multiplicity="1">
+          <End Type="SG50DBModel.tbl_AppUser" Role="tbl_AppUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="tbl_AppUserClaim" Type="Self.tbl_AppUserClaim" Multiplicity="*" />
+          <End Type="SG50DBModel.tbl_AppUserClaim" Role="tbl_AppUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_AppUser">
               <PropertyRef Name="Id" />
@@ -379,10 +387,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId">
-          <End Role="tbl_AppUser" Type="Self.tbl_AppUser" Multiplicity="1">
+          <End Type="SG50DBModel.tbl_AppUser" Role="tbl_AppUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="tbl_AppUserLogin" Type="Self.tbl_AppUserLogin" Multiplicity="*" />
+          <End Type="SG50DBModel.tbl_AppUserLogin" Role="tbl_AppUserLogin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_AppUser">
               <PropertyRef Name="Id" />
@@ -393,149 +401,111 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="tbl_AppUserRole">
-          <End Role="tbl_AppRole" Type="Self.tbl_AppRole" Multiplicity="*" />
-          <End Role="tbl_AppUser" Type="Self.tbl_AppUser" Multiplicity="*" />
+          <End Type="SG50DBModel.tbl_AppRole" Role="tbl_AppRole" Multiplicity="*" />
+          <End Type="SG50DBModel.tbl_AppUser" Role="tbl_AppUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="SG50DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="tbl_AppActiveUser" EntityType="Self.tbl_AppActiveUser" />
-          <EntitySet Name="tbl_AppRole" EntityType="Self.tbl_AppRole" />
-          <EntitySet Name="tbl_AppUsedPassword" EntityType="Self.tbl_AppUsedPassword" />
-          <EntitySet Name="tbl_AppUser" EntityType="Self.tbl_AppUser" />
-          <EntitySet Name="tbl_AppUserClaim" EntityType="Self.tbl_AppUserClaim" />
-          <EntitySet Name="tbl_AppUserLogin" EntityType="Self.tbl_AppUserLogin" />
-          <AssociationSet Name="FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" Association="Self.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId">
-            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
-            <End Role="tbl_AppActiveUser" EntitySet="tbl_AppActiveUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" Association="Self.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId">
-            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
-            <End Role="tbl_AppUsedPassword" EntitySet="tbl_AppUsedPassword" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" Association="Self.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId">
-            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
-            <End Role="tbl_AppUserClaim" EntitySet="tbl_AppUserClaim" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId" Association="Self.FK_dbo_tbl_AppUserLogin_dbo_tbl_AppUser_UserId">
-            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
-            <End Role="tbl_AppUserLogin" EntitySet="tbl_AppUserLogin" />
-          </AssociationSet>
-          <AssociationSet Name="tbl_AppUserRole" Association="Self.tbl_AppUserRole">
-            <End Role="tbl_AppRole" EntitySet="tbl_AppRole" />
-            <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SG50DBModelStoreContainer" CdmEntityContainer="SG50DBEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SG50DBModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_AppActiveUser">
             <EntityTypeMapping TypeName="SG50DBModel.tbl_AppActiveUser">
               <MappingFragment StoreEntitySet="tbl_AppActiveUser">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
-                <ScalarProperty Name="IP" ColumnName="IP" />
-                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
-                <ScalarProperty Name="JwtHMACKey" ColumnName="JwtHMACKey" />
-                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="LastRequestedTime" ColumnName="LastRequestedTime" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="JwtHMACKey" ColumnName="JwtHMACKey" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_AppRole">
             <EntityTypeMapping TypeName="SG50DBModel.tbl_AppRole">
               <MappingFragment StoreEntitySet="tbl_AppRole">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_AppUsedPassword">
             <EntityTypeMapping TypeName="SG50DBModel.tbl_AppUsedPassword">
               <MappingFragment StoreEntitySet="tbl_AppUsedPassword">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
-                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_AppUser">
             <EntityTypeMapping TypeName="SG50DBModel.tbl_AppUser">
               <MappingFragment StoreEntitySet="tbl_AppUser">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
-                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
-                <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
-                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_AppUserClaim">
             <EntityTypeMapping TypeName="SG50DBModel.tbl_AppUserClaim">
               <MappingFragment StoreEntitySet="tbl_AppUserClaim">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_AppUserLogin">
             <EntityTypeMapping TypeName="SG50DBModel.tbl_AppUserLogin">
               <MappingFragment StoreEntitySet="tbl_AppUserLogin">
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="tbl_AppUserRole" TypeName="SG50DBModel.tbl_AppUserRole" StoreEntitySet="tbl_AppUserRole">
-            <EndProperty Name="tbl_AppRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
             <EndProperty Name="tbl_AppUser">
               <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="tbl_AppRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

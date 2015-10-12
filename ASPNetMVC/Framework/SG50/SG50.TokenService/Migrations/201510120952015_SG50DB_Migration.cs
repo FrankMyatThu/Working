@@ -3,7 +3,7 @@ namespace SG50.TokenService.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class SG50DB_Migration : DbMigration
     {
         public override void Up()
         {

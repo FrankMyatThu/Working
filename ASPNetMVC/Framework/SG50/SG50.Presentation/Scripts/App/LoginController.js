@@ -32,7 +32,7 @@ app.controller('LoginController', function ($scope, $http, $window) {
             ErrorNotifier(data);
             function ErrorNotifier(data) {
                 angular.forEach(data, function (value, key) {
-                    console.log("key = " + key + " value = " + value);
+                    console.log("data key = " + key + " value = " + value);
                     if (key == "ExceptionMessage") {
                         ExceptionMessageValue = value;
                     }
@@ -48,6 +48,8 @@ app.controller('LoginController', function ($scope, $http, $window) {
             else {
                 $scope.error = ErrorMessageValue;
             }            
+
+            console.log("status " + status);            
             $scope.dataLoading = false;
         });
     };

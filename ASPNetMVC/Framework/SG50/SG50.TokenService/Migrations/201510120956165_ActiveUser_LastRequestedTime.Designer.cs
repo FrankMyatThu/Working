@@ -13,7 +13,7 @@ namespace SG50.TokenService.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201510120649021_ActiveUser_LastRequestedTime"; }
+            get { return "201510120956165_ActiveUser_LastRequestedTime"; }
         }
         
         string IMigrationMetadata.Source
