@@ -7,9 +7,11 @@ using SG50.TokenService.Models.POCO;
 using SG50.TokenService.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace SG50.TokenService.Models.BusinessLogic
@@ -49,6 +51,23 @@ namespace SG50.TokenService.Models.BusinessLogic
                     _ApplicationDbContext.Users.Add(_ApplicationUser);
                     _ApplicationDbContext.SaveChanges();
                 }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder _ExceptionMessageList = new StringBuilder();
+                foreach (var _ex in ex.EntityValidationErrors)
+                {
+                    ApplicationLogger.WriteError(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        _ex.Entry.Entity.GetType().Name, _ex.Entry.State),
+                        LoggerName);
+
+                    foreach (var __ex in _ex.ValidationErrors)
+                    {
+                        ApplicationLogger.WriteError(string.Format("- Property: \"{0}\", Error: \"{1}\"", __ex.PropertyName, __ex.ErrorMessage), LoggerName);
+                        _ExceptionMessageList.Append(__ex.ErrorMessage);
+                    }
+                }
+                throw new Exception(_ExceptionMessageList.ToString());
             }
             catch(Exception ex)
             {

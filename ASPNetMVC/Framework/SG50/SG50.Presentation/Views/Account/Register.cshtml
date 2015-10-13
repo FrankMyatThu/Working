@@ -28,7 +28,8 @@
         <div class="col-md-6 col-md-offset-3">
             <h2>Registration</h2>
             <form name="form" ng-submit="register()" ng-controller="RegistrationController" role="form">
-                <div ng-show="error" class="alert alert-danger">{{error}}</div>
+                <div ng-show="error" class="alert alert-danger" ng-if="IsShow_error">{{error}}</div>
+                <div ng-show="success" class="alert alert-success" ng-if="IsShow_success">{{success}}</div>
                 <div class="form-group" ng-class="{ 'has-error': form.FirstName.$dirty && (form.FirstName.$error.required || form.FirstName.$error.pattern || form.FirstName.$error.maxlength) }">
                     <label for="FirstName">First Name</label>
                     <input type="text" name="FirstName" id="FirstName" class="form-control" ng-model="FirstName" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_Name_SingleWord" required />
@@ -85,7 +86,7 @@
                 <div class="form-actions">
                     <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Register</button>
                     <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                    <a href="../Account/Login" class="btn btn-link">Cancel</a>
+                    <a href="../Account/Login" class="btn btn-link">Login</a>                    
                 </div>
                 <div><input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@GetAntiForgeryToken()'" /></div>
             </form>

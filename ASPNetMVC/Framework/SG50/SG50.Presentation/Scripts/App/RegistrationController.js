@@ -31,8 +31,10 @@ app.directive(directiveId_ngMatch, ['$parse', function ($parse) {
 
     }
 }]);
-app.controller('RegistrationController', function ($scope, $http, $window) {        
+app.controller('RegistrationController', function ($scope, $http, $window, $timeout) {
     $scope.register = function () {
+        $scope.IsShow_error = false;
+        $scope.IsShow_success = false;
         $scope.dataLoading = true;
         $scope.person = {
             "FirstName": $scope.FirstName,
@@ -51,7 +53,7 @@ app.controller('RegistrationController', function ($scope, $http, $window) {
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken
             }
-        }).success(function (data, status, headers, config) {            
+        }).success(function (data, status, headers, config) {
             if (data.success == false) {
                 var str = '';
                 for (var error in data.errors) {
@@ -61,9 +63,14 @@ app.controller('RegistrationController', function ($scope, $http, $window) {
             }
             else {
                 $scope.person = {};
-                console.log("Saved Successfully : " + data);
-                $window.location.href = '../Account/Login';
+                $scope.success = "Registration success";
+                $scope.IsShow_success = true;
+                $timeout(function () {
+                    $scope.IsShow_success = false;
+                }, 4000);
+                //$window.location.href = '../Account/Login';
             }
+            $scope.dataLoading = false;
         }).error(function (data, status, headers, config) {
             var ErrorMessageValue = "";
             var ExceptionMessageValue = "";
@@ -86,7 +93,8 @@ app.controller('RegistrationController', function ($scope, $http, $window) {
             else {
                 $scope.error = ErrorMessageValue;
             }
+            $scope.IsShow_error = true;
             $scope.dataLoading = false;
-        });
+        });        
     };
 });

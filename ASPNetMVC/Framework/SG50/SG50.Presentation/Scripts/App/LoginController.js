@@ -1,5 +1,24 @@
 ﻿var app = angular.module('AppLogin', []);
-app.controller('LoginController', function ($scope, $http, $window) {
+app.directive('autoFocus', function ($timeout) {
+    /// Chrome browser's autofill issue fixed.
+    return {
+        restrict: 'AC',
+        link: function (_scope, _element) {
+            $timeout(function () {                               
+                if (_scope.UserName === undefined)                 
+                {   
+                    return;
+                }
+                if (_scope.UserName == "")
+                {
+                    return;
+                }
+                _scope.form.$setValidity(true);
+            }, 500);
+        }
+    };
+});
+app.controller('LoginController', function ($scope, $http, $window, $timeout) {
     $scope.login = function () {  
         $scope.dataLoading = true;
         $scope.person = {

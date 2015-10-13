@@ -4,9 +4,9 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
     // ....
 
     // Timeout timer value
-    //var TimeOutTimerValue = 5000;
-    //var TimeOutTimerValue = 6000;
-    var TimeOutTimerValue = 50000;    
+    //var TimeOutTimerValue = 5000; // 5 Seconds
+    //var TimeOutTimerValue = 6000; // 6 Seconds
+    var TimeOutTimerValue = 100000; // 10 Minutes    
 
     // Start a timeout
     var TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
