@@ -13,7 +13,10 @@ app.directive('autoFocus', function ($timeout) {
                 {
                     return;
                 }
-                _scope.form.$setValidity("form", true);
+
+                try {
+                    _scope.form.$setValidity(true);
+                } catch (e) { }                
             }, 500);
         }
     };
