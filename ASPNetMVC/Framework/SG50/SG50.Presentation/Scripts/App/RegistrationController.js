@@ -93,6 +93,10 @@ app.controller('RegistrationController', function ($scope, $http, $window, $time
             else {
                 $scope.error = ErrorMessageValue;
             }
+            console.log("status " + status);
+            if (status == "-1") {
+                $scope.error = "Service unavailable.";
+            }
             $scope.IsShow_error = true;
             $scope.dataLoading = false;
         });        

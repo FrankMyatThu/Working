@@ -71,7 +71,11 @@ app.controller('LoginController', function ($scope, $http, $window, $timeout) {
                 $scope.error = ErrorMessageValue;
             }            
 
-            console.log("status " + status);            
+            console.log("status " + status);
+            if (status == "-1"){
+                $scope.error = "Service unavailable.";
+            }
+            
             $scope.dataLoading = false;
         });
     };
