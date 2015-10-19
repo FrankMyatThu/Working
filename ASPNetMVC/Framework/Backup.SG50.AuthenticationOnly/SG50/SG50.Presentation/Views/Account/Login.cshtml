@@ -1,0 +1,57 @@
+﻿@using SG50.Base.Util;
+@{
+    Layout = null;
+}
+@functions{
+    public string GetAntiForgeryToken()
+    {
+        string cookieToken, formToken;
+        AntiForgery.GetTokens(null, out cookieToken, out formToken);
+        return cookieToken + ":" + formToken;
+    }
+}
+
+<!DOCTYPE html>
+
+<html ng-app="AppLogin">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>    
+    <script src="~/Scripts/angular.min.js"></script>    
+    <script src="~/Scripts/App/LoginController.js"></script>    
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/SG50.css" />    
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Login</h2>
+            <form name="form" ng-submit="login()" ng-controller="LoginController" role="form" auto-focus>
+                <div ng-show="error" class="alert alert-danger">{{error}}</div>
+                <div class="form-group" ng-class="{ 'has-error': form.UserName.$dirty && (form.UserName.$error.required || form.UserName.$error.pattern || form.UserName.$error.maxlength)}">
+                    <label for="UserName">User Name</label>
+                    <input type="text" name="UserName" id="UserName" class="form-control" ng-model="UserName" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_UserName" required />
+                    <span ng-show="form.UserName.$dirty && form.UserName.$error.required" class="help-block">Username is required</span>
+                    <span ng-show="form.UserName.$dirty && form.UserName.$error.pattern" class="help-block">Invalid User Name.</span>
+                    <span ng-show="form.UserName.$dirty && form.UserName.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.Password.$dirty && (form.Password.$error.required || form.Password.$error.pattern || form.Password.$error.maxlength) }">
+                    <label for="Password">Password</label>
+                    <input type="password" name="Password" id="Password" class="form-control" ng-model="Password" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_Password" required />
+                    <span ng-show="form.Password.$dirty && form.Password.$error.required" class="help-block">Password is required</span>
+                    <span ng-show="form.Password.$dirty && form.Password.$error.pattern" class="help-block">Invalid Password.</span>
+                    <span ng-show="form.Password.$dirty && form.Password.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Login</button>
+                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <a href="../Account/Register" class="btn btn-link">Register</a>
+                </div>
+                <div><input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@GetAntiForgeryToken()'" /></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

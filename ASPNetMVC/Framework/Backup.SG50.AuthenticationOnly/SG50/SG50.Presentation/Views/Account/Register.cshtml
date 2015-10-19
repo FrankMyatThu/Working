@@ -1,0 +1,96 @@
+﻿@using SG50.Base.Util;
+@{    
+    Layout = null;
+}
+@functions{
+    public string GetAntiForgeryToken()
+    {
+        string cookieToken, formToken;
+        AntiForgery.GetTokens(null, out cookieToken, out formToken);
+        return cookieToken + ":" + formToken;
+    }
+}
+
+<!DOCTYPE html>
+
+<html ng-app="AppRegistration">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/App/RegistrationController.js"></script>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" /> 
+</head>
+<body>    
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Registration</h2>
+            <form name="form" ng-submit="register()" ng-controller="RegistrationController" role="form">
+                <div ng-show="error" class="alert alert-danger" ng-if="IsShow_error">{{error}}</div>
+                <div ng-show="success" class="alert alert-success" ng-if="IsShow_success">{{success}}</div>
+                <div class="form-group" ng-class="{ 'has-error': form.FirstName.$dirty && (form.FirstName.$error.required || form.FirstName.$error.pattern || form.FirstName.$error.maxlength) }">
+                    <label for="FirstName">First Name</label>
+                    <input type="text" name="FirstName" id="FirstName" class="form-control" ng-model="FirstName" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_Name_SingleWord" required />
+                    <span ng-show="form.FirstName.$dirty && form.FirstName.$error.required" class="help-block">First Name is required</span>
+                    <span ng-show="form.FirstName.$dirty && form.FirstName.$error.pattern" class="help-block">Invalid First Name.</span>
+                    <span ng-show="form.FirstName.$dirty && form.FirstName.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.LastName.$dirty && (form.LastName.$error.required || form.LastName.$error.pattern || form.LastName.$error.maxlength) }">
+                    <label for="LastName">Last Name</label>
+                    <input type="text" name="LastName" id="LastName" class="form-control" ng-model="LastName" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_Name_SingleWord" required />
+                    <span ng-show="form.LastName.$dirty && form.LastName.$error.required" class="help-block">Last Name is required</span>
+                    <span ng-show="form.LastName.$dirty && form.LastName.$error.pattern" class="help-block">Invalid Last Name.</span>
+                    <span ng-show="form.LastName.$dirty && form.LastName.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.Email.$dirty && (form.Email.$error.required || form.Email.$error.pattern || form.Email.$error.maxlength) }">
+                    <label for="Email">Email</label>
+                    <input type="text" name="Email" id="Email" class="form-control" ng-model="Email" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_EmailFormat" required />
+                    <span ng-show="form.Email.$dirty && form.Email.$error.required" class="help-block">Email is required</span>
+                    <span ng-show="form.Email.$dirty && form.Email.$error.pattern" class="help-block">Invalid Email.</span>
+                    <span ng-show="form.Email.$dirty && form.Email.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.UserName.$dirty && (form.UserName.$error.required || form.UserName.$error.pattern || form.UserName.$error.maxlength)}">
+                    <label for="UserName">User Name</label>
+                    <input type="text" name="UserName" id="UserName" class="form-control" ng-model="UserName" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_UserName" required />
+                    <span ng-show="form.UserName.$dirty && form.UserName.$error.required" class="help-block">Username is required</span>
+                    <span ng-show="form.UserName.$dirty && form.UserName.$error.pattern" class="help-block">Invalid User Name.</span>
+                    <span ng-show="form.UserName.$dirty && form.UserName.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.RoleName.$dirty && (form.RoleName.$error.required || form.RoleName.$error.pattern || form.RoleName.$error.maxlength) }">
+                    <label for="RoleName">Role Name</label>
+                    <input type="text" name="RoleName" id="RoleName" class="form-control" ng-model="RoleName" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_AlphaNumeric" required />
+                    <span ng-show="form.RoleName.$dirty && form.RoleName.$error.required" class="help-block">RoleName is required</span>
+                    <span ng-show="form.RoleName.$dirty && form.RoleName.$error.pattern" class="help-block">Invalid Role Name.</span>
+                    <span ng-show="form.RoleName.$dirty && form.RoleName.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.Password.$dirty && (form.Password.$error.required || form.Password.$error.pattern || form.Password.$error.maxlength) }">
+                    <label for="Password">Password</label>
+                    <input type="password" name="Password" id="Password" class="form-control" ng-model="Password" ng-minlength="1" ng-maxlength="100" ng-pattern="@FormatStandardizer.Client_Password" required />
+                    <span ng-show="form.Password.$dirty && form.Password.$error.required" class="help-block">Password is required</span>
+                    <span ng-show="form.Password.$dirty && form.Password.$error.pattern" class="help-block">Invalid Password.</span>
+                    <span ng-show="form.Password.$dirty && form.Password.$error.maxlength" class="help-block">Maximum length is 100</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.ConfirmPassword.$dirty && (form.ConfirmPassword.$error.required || form.ConfirmPassword.$invalid) }">
+                    <label for="ConfirmPassword">ConfirmPassword</label>
+                    <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" ng-model="ConfirmPassword" ng-match="Password" required />
+                    <span ng-show="form.ConfirmPassword.$dirty && form.ConfirmPassword.$error.required" class="help-block">ConfirmPassword is required</span>
+                    <span ng-show="form.ConfirmPassword.$dirty && form.ConfirmPassword.$invalid" class="help-block">Password have to match</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.JoinDate.$dirty && form.JoinDate.$error.required }">
+                    <label for="JoinDate">Join Date</label>
+                    <input type="date" name="JoinDate" id="JoinDate" class="form-control" ng-model="JoinDate" required />
+                    <span ng-show="form.JoinDate.$dirty && form.JoinDate.$error.required" class="help-block">JoinDate is required</span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Register</button>
+                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <a href="../Account/Login" class="btn btn-link">Login</a>                    
+                </div>
+                <div><input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@GetAntiForgeryToken()'" /></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
