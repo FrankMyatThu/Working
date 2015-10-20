@@ -1,0 +1,10 @@
+Get last joined employee in each department(s)
+==============================================
+tbl_EmpDep
+{
+	EmployeeID
+	EmployeeName
+	DepartmentID
+	DepartmentName
+	JoinDate
+}
