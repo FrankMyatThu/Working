@@ -9,12 +9,6 @@ namespace SG50.Presentation.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Home
         public ActionResult Home()
         {
             return View();
