@@ -102,8 +102,8 @@ app.controller('RegistrationController', function ($scope, $http, $window, $time
             $scope.Password = "";
             $scope.ConfirmPassword = "";
             $scope.person = {};
-            $scope.form.$setPristine();
             $scope.success = "Registration success";
+            $scope.form.$setPristine();            
             $scope.IsShow_success = true;
             $timeout(function () {
                 $scope.IsShow_success = false;
