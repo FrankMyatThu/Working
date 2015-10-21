@@ -1,0 +1,8 @@
+Administration{
+	tbl_AppUser{
+		AppUserID
+	}
+	tbl_AppActiveUser{
+	
+	}
+}
