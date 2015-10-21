@@ -171,6 +171,8 @@
     <Content Include="Scripts\App\ApplicationRoot.js" />
     <Content Include="Scripts\App\HomeController.js" />
     <Content Include="Scripts\App\LoginController.js" />
+    <Content Include="Scripts\App\themeapp.js" />
+    <Content Include="Scripts\App\themeapp.min.js" />
     <Content Include="Scripts\App\Util.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
