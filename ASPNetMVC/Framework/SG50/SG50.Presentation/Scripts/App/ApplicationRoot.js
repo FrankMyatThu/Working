@@ -1,5 +1,10 @@
 ﻿var app = angular.module('ApplicationRoot', []);
-app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {    
+app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
+
+    if (!$window.sessionStorage.getItem("JWTToken")) {
+        $window.location.href = '../Account/Login';
+    }
+
     /// Global variables
     // ....
 
@@ -12,24 +17,10 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
     var TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
     var bodyElement = angular.element($document);
 
-    /// Keyboard Events
-    bodyElement.bind('keydown', function (e) { TimeOut_Resetter(e) });
-    bodyElement.bind('keyup', function (e) { TimeOut_Resetter(e) });
-
-    /// Mouse Events    
-    bodyElement.bind('click', function (e) { TimeOut_Resetter(e) });
-    bodyElement.bind('mousemove', function (e) { TimeOut_Resetter(e) });
-    bodyElement.bind('DOMMouseScroll', function (e) { TimeOut_Resetter(e) });
-    bodyElement.bind('mousewheel', function (e) { TimeOut_Resetter(e) });
-    bodyElement.bind('mousedown', function (e) { TimeOut_Resetter(e) });
-
-    /// Touch Events
-    bodyElement.bind('touchstart', function (e) { TimeOut_Resetter(e) });
-    bodyElement.bind('touchmove', function (e) { TimeOut_Resetter(e) });
-
-    /// Common Events
-    bodyElement.bind('scroll', function (e) { TimeOut_Resetter(e) });
-    bodyElement.bind('focus', function (e) { TimeOut_Resetter(e) });
+    angular.forEach(['keydown', 'keyup', 'click', 'mousemove', 'DOMMouseScroll', 'mousewheel', 'mousedown', 'touchstart', 'touchmove', 'scroll', 'focus'],
+    function (EventName) {
+        bodyElement.bind(EventName, function (e) { TimeOut_Resetter(e) });
+    });
 
     $scope.LogoutByClick = function () {
         RemoveActiveUser();

@@ -14,5 +14,9 @@ namespace SG50.Presentation.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }
