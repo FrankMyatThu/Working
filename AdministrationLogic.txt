@@ -1,7 +1,14 @@
 Administration{
-	tbl_AppUser{
-		AppUserID
-	}
+	tbl_AppUser(
+		Id nvarchar(128),
+		FistName nvarchar(100),
+		LastName nvarchar(100),
+		SaltKey nvarchar(max),
+		PasswordResetToken nvarchar(max),
+		ExecutedTime timestamp,
+		IsActive bit,
+		CreatedDate 
+	)
 	tbl_AppActiveUser{
 	
 	}
