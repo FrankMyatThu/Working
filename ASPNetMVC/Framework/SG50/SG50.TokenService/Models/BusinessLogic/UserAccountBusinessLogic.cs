@@ -44,8 +44,8 @@ namespace SG50.TokenService.Models.BusinessLogic
                         IsActive = true,
                         CreatedDate = DateTime.Now,
                         CreatedBy = _CreateUserBindingModel.UserName,
-                        UpdateDate = null,
-                        UpdateBy = null
+                        UpdatedDate = null,
+                        UpdatedBy = null
                     };
                     _ApplicationDbContext.Users.Add(_ApplicationUser);
                     _ApplicationDbContext.SaveChanges();
@@ -191,8 +191,8 @@ namespace SG50.TokenService.Models.BusinessLogic
             _ActiveUser.IsActive = true;
             _ActiveUser.CreatedDate = DateTime.Now;
             _ActiveUser.CreatedBy = _ApplicationUser.UserName;
-            _ActiveUser.UpdateDate = null;
-            _ActiveUser.UpdateBy = null;
+            _ActiveUser.UpdatedDate = null;
+            _ActiveUser.UpdatedBy = null;
             _ActiveUser.LastRequestedTime = DateTime.Now;
             return _ActiveUser;
         }
