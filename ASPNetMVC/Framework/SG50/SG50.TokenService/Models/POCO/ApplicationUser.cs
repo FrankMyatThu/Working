@@ -40,6 +40,7 @@ namespace SG50.TokenService.Models.POCO
         public DateTime? DOB { get; set; }
 
         public bool IsReceivedEmail { get; set; }
+        public bool IsNotifyCCMails { get; set; }
         #endregion
 
         #region Step 3 (Location Info)

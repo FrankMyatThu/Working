@@ -135,6 +135,7 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debu
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.SG50DB_Migration.resources
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.ActiveUser_LastRequestedTime.resources
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.ApplicationUser_DropColumn_JoinDate.resources
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.ApplicationUser_AddMoreColumns.resources
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.csproj.GenerateResource.Cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.pdb

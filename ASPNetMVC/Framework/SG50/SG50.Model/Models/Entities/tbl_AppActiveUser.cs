@@ -23,9 +23,9 @@ namespace SG50.Model.Models.Entities
         public bool IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
-        public string UpdateBy { get; set; }
         public System.DateTime LastRequestedTime { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public string UpdatedBy { get; set; }
     
         public virtual tbl_AppUser tbl_AppUser { get; set; }
     }

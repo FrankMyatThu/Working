@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Entities\C__MigrationHistory.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\SG50DB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +95,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SG50DB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="Models\Entities\SG50DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SG50DB.edmx</DependentUpon>

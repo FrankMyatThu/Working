@@ -27,14 +27,10 @@ namespace SG50.Model.Models.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string SaltKey { get; set; }
-        public System.DateTime JoinDate { get; set; }
-        public string PasswordResetToken { get; set; }
         public byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
-        public string UpdateBy { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
@@ -46,6 +42,25 @@ namespace SG50.Model.Models.Entities
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
+        public string NickName { get; set; }
+        public string Photo { get; set; }
+        public string CCMail { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
+        public bool IsReceivedEmail { get; set; }
+        public string Fax { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> PostalCode { get; set; }
+        public string City { get; set; }
+        public string CountryID { get; set; }
+        public string CompanyID { get; set; }
+        public string BusinessUnitID { get; set; }
+        public string Remark { get; set; }
+        public string GroupID { get; set; }
+        public bool IsLocked { get; set; }
+        public bool IsEnable { get; set; }
+        public Nullable<System.DateTime> LastLoginTime { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public string UpdatedBy { get; set; }
     
         public virtual ICollection<tbl_AppActiveUser> tbl_AppActiveUser { get; set; }
         public virtual ICollection<tbl_AppUsedPassword> tbl_AppUsedPassword { get; set; }

@@ -7,18 +7,16 @@ using System.Web;
 
 namespace SG50.TokenService.Models.POCO
 {
-    public class ActiveUser
-    {   
-        [Key]        
+    public class BusinessUnit
+    {
+        [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("ApplicationUser")]        
-        public string AppUserId { get; set; }
+        [ForeignKey("Company")]
+        public string CompanyId { get; set; }
 
-        public string IP { get; set; }
-        public string UserAgent { get; set; }
-        public string JwtHMACKey { get; set; }
-        public DateTime LastRequestedTime { get; set; }
+        [MaxLength(255)]
+        public string BusinessUnitName { get; set; }
 
         [Timestamp]
         public Byte[] ExecutedTime { get; set; }
@@ -29,6 +27,6 @@ namespace SG50.TokenService.Models.POCO
         public string UpdatedBy { get; set; }
 
         [Required]
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual Company Company { get; set; }
     }
 }

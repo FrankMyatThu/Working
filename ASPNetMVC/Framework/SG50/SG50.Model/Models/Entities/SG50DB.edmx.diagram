@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e59d99d71ccf407fb06ebfd019162dd5" Name="Diagram1">
-        <EntityTypeShape EntityType="SG50DBModel.tbl_AppActiveUser" Width="1.5" PointX="5.25" PointY="9.75" />
+      <Diagram DiagramId="e59d99d71ccf407fb06ebfd019162dd5" Name="Diagram1" ZoomLevel="99">
+        <EntityTypeShape EntityType="SG50DBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppActiveUser" Width="1.5" PointX="5.25" PointY="1.375" />
         <EntityTypeShape EntityType="SG50DBModel.tbl_AppRole" Width="1.5" PointX="0.75" PointY="6.375" />
-        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUsedPassword" Width="1.5" PointX="5.25" PointY="1.375" />
-        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUser" Width="1.5" PointX="3" PointY="4.375" />
-        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUserClaim" Width="1.5" PointX="5.25" PointY="4.875" />
-        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUserLogin" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUsedPassword" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUser" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUserClaim" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUserLogin" Width="1.5" PointX="5.25" PointY="8.75" />
         <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" />
         <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" />
         <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" />

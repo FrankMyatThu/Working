@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SG50DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="SG50DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="SG50DBModel.C__MigrationHistory" />
     <EntitySet Name="tbl_AppActiveUser" EntityType="SG50DBModel.tbl_AppActiveUser" />
     <EntitySet Name="tbl_AppRole" EntityType="SG50DBModel.tbl_AppRole" />
     <EntitySet Name="tbl_AppUsedPassword" EntityType="SG50DBModel.tbl_AppUsedPassword" />
@@ -28,6 +29,16 @@
       <End Role="tbl_AppUser" EntitySet="tbl_AppUser" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="tbl_AppActiveUser">
     <Key>
       <PropertyRef Name="Id" />
@@ -41,9 +52,9 @@
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="LastRequestedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tbl_AppUser" Relationship="SG50DBModel.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppActiveUser" ToRole="tbl_AppUser" />
   </EntityType>
   <EntityType Name="tbl_AppRole">
@@ -66,8 +77,8 @@
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tbl_AppUser" Relationship="SG50DBModel.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUsedPassword" ToRole="tbl_AppUser" />
   </EntityType>
   <EntityType Name="tbl_AppUser">
@@ -78,14 +89,10 @@
     <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="SaltKey" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="PasswordResetToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
     <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -97,6 +104,25 @@
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NickName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CCMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="IsReceivedEmail" Type="Boolean" Nullable="false" />
+    <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CountryID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessUnitID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GroupID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+    <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+    <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+    <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tbl_AppActiveUser" Relationship="SG50DBModel.FK_dbo_tbl_AppActiveUser_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUser" ToRole="tbl_AppActiveUser" />
     <NavigationProperty Name="tbl_AppUsedPassword" Relationship="SG50DBModel.FK_dbo_tbl_AppUsedPassword_dbo_tbl_AppUser_AppUserId" FromRole="tbl_AppUser" ToRole="tbl_AppUsedPassword" />
     <NavigationProperty Name="tbl_AppUserClaim" Relationship="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_AppUser_UserId" FromRole="tbl_AppUser" ToRole="tbl_AppUserClaim" />
