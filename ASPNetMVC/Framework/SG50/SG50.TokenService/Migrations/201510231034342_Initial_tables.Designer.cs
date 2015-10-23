@@ -7,13 +7,13 @@ namespace SG50.TokenService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ApplicationUser_AddMoreColumns : IMigrationMetadata
+    public sealed partial class Initial_tables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ApplicationUser_AddMoreColumns));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_tables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510230312211_ApplicationUser_AddMoreColumns"; }
+            get { return "201510231034342_Initial_tables"; }
         }
         
         string IMigrationMetadata.Source

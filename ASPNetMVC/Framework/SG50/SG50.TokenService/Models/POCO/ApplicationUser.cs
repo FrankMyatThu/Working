@@ -60,8 +60,8 @@ namespace SG50.TokenService.Models.POCO
         #endregion
 
         #region Step 4 (Company Info)
-        [MaxLength(36)]
-        public string CompanyID { get; set; }
+        [ForeignKey("Company")]
+        public Guid CompanyID { get; set; }
 
         [MaxLength(36)]
         public string BusinessUnitID { get; set; }
@@ -92,6 +92,8 @@ namespace SG50.TokenService.Models.POCO
         public string UpdatedBy { get; set; }
         #endregion
 
+        [Required]
+        public virtual Company Company { get; set; }
         public virtual IList<UsedPassword> UserUsedPassword { get; set; }
         public virtual IList<ActiveUser> ActiveUser { get; set; }
     }

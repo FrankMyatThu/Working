@@ -19,27 +19,25 @@ namespace SG50.TokenService.Models.Entities
             Configuration.LazyLoadingEnabled = false;
         }
 
+        /// Helper table(s)
         public DbSet<ActiveUser> ActiveUser { get; set; }
         public DbSet<UsedPassword> UsedPassword { get; set; }
 
+        /// Company table(s)
+        public DbSet<Company> Company { get; set; }
+        public DbSet<BusinessUnit> BusinessUnit { get; set; }
+        public DbSet<WhiteListIP> WhiteListIP { get; set; }
+
+        /// Menu program role table(s)
+        public DbSet<Group> Group { get; set; }
+        public DbSet<GroupPermission> GroupPermission { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<RolePermission> RolePermission { get; set; }
+        public DbSet<ProgramMenu> ProgramMenu { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
-
-            //modelBuilder.Configurations.Add(new ApplicationUserMap());
-
-            //modelBuilder.Entity<ApplicationUser>().HasRequired(x => x.ActiveUser).WithRequiredPrincipal(y => y.ApplicationUser);
-            
-            //// Configure AppUserId as PK for ActiveUser
-            //modelBuilder.Entity<ActiveUser>()
-            //    .HasKey(ActiveUser => ActiveUser.AppUserId);
-
-            //// Configure AppUserId as FK for ActiveUser
-            //modelBuilder.Entity<ApplicationUser>()
-            //            .HasOptional(AppUser => AppUser.ActiveUser) // Mark StudentAddress is optional for Student
-            //            .WithRequired(ActiveUser => ActiveUser.ApplicationUser); // Create inverse relationship
-
-
 
             /// Main table(s)
             modelBuilder.Entity<ApplicationUser>().ToTable("tbl_AppUser");
@@ -51,6 +49,18 @@ namespace SG50.TokenService.Models.Entities
             /// Helper table(s)
             modelBuilder.Entity<ActiveUser>().ToTable("tbl_AppActiveUser");
             modelBuilder.Entity<UsedPassword>().ToTable("tbl_AppUsedPassword");
+
+            /// Company table(s)
+            modelBuilder.Entity<Company>().ToTable("tbl_Company");
+            modelBuilder.Entity<BusinessUnit>().ToTable("tbl_BusinessUnit");
+            modelBuilder.Entity<WhiteListIP>().ToTable("tbl_WhiteListIP");
+
+            /// Menu program role table(s)
+            modelBuilder.Entity<Group>().ToTable("tbl_Group");
+            modelBuilder.Entity<GroupPermission>().ToTable("tbl_GroupPermission");
+            modelBuilder.Entity<Role>().ToTable("tbl_Role");
+            modelBuilder.Entity<RolePermission>().ToTable("tbl_RolePermission");
+            modelBuilder.Entity<ProgramMenu>().ToTable("tbl_ProgramMenu");
         }
 
         public static ApplicationDbContext Create()

@@ -13,7 +13,7 @@ namespace SG50.TokenService.Models.POCO
         public Guid Id { get; set; }
 
         [ForeignKey("Company")]
-        public string CompanyId { get; set; }
+        public Guid CompanyId { get; set; }
 
         [MaxLength(255)]
         public string BusinessUnitName { get; set; }
