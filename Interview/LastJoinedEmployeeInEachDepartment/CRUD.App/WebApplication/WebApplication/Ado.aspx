@@ -41,7 +41,7 @@
                         <tr>
                             <td>Join Date</td>
                             <td>
-                                <input type="date" runat="server" id="txtJoinDate" />
+                                <input type="date" runat="server" id="txtJoinDate"/>
                             </td>
                         </tr>
                         <tr>
