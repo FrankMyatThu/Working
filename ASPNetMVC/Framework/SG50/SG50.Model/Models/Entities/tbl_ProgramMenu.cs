@@ -12,12 +12,15 @@ namespace SG50.Model.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_AppUserLogin
+    public partial class tbl_ProgramMenu
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
-        public string UserId { get; set; }
+        public tbl_ProgramMenu()
+        {
+            this.tbl_RolePermission = new HashSet<tbl_RolePermission>();
+        }
     
-        public virtual tbl_User tbl_User { get; set; }
+        public System.Guid Id { get; set; }
+    
+        public virtual ICollection<tbl_RolePermission> tbl_RolePermission { get; set; }
     }
 }

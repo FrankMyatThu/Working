@@ -60,11 +60,11 @@ namespace SG50.TokenService.Models.POCO
         #endregion
 
         #region Step 4 (Company Info)
-        [ForeignKey("Company")]
-        public Guid CompanyID { get; set; }
+        //[ForeignKey("Company")]
+        //public Guid CompanyID { get; set; }
 
-        [MaxLength(36)]
-        public string BusinessUnitID { get; set; }
+        //[ForeignKey("BusinessUnit")]
+        //public string BusinessUnitID { get; set; }
         #endregion
 
         #region Step 5 (Optional)
@@ -75,8 +75,8 @@ namespace SG50.TokenService.Models.POCO
         #endregion
 
         #region User Setting (Only administrator can configure)
-        [MaxLength(36)]
-        public string GroupID { get; set; }
+        //[ForeignKey("Group")]
+        //public string GroupID { get; set; }
         public bool IsLocked { get; set; }
         public bool IsEnable { get; set; }
         public DateTime? LastLoginTime { get; set; }
@@ -92,9 +92,10 @@ namespace SG50.TokenService.Models.POCO
         public string UpdatedBy { get; set; }
         #endregion
 
-        [Required]
-        public virtual Company Company { get; set; }
-        public virtual IList<UsedPassword> UserUsedPassword { get; set; }
+        //public virtual Company Company { get; set; }
+        //public virtual Group Group { get; set; }
+        //public virtual BusinessUnit BusinessUnit { get; set; } 
+        public virtual IList<UserUsedPassword> UserUsedPassword { get; set; }
         public virtual IList<ActiveUser> ActiveUser { get; set; }
     }
 }

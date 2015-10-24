@@ -26,20 +26,24 @@ namespace SG50.TokenService.Models.POCO
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
 
-        [Required]
         public virtual Company Company { get; set; }
+        public IList<GroupPermission> GroupPermission { get; set; }
     }
 
     public class GroupPermission
     {
-        [Key]
+        [Key, Column(Order = 1)]
         public Guid Id { get; set; }
 
+        [Key, Column(Order = 2)]
         [ForeignKey("Group")]
-        public Guid GroupID { get; set; }
+        public Guid GroupId { get; set; }
+        public Group Group { get; set; }
 
+        [Key, Column(Order = 3)]
         [ForeignKey("Role")]
-        public Guid RoleID { get; set; }
+        public Guid RoleId { get; set; }
+        public Role Role { get; set; }
 
         [Timestamp]
         public Byte[] ExecutedTime { get; set; }
@@ -48,10 +52,6 @@ namespace SG50.TokenService.Models.POCO
         public string CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
-
-        [Required]
-        public virtual Group Group { get; set; }        
-        public virtual IList<Role> Role { get; set; }
     }
 
     public class Role
@@ -69,18 +69,25 @@ namespace SG50.TokenService.Models.POCO
         public string CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
+
+        public IList<GroupPermission> GroupPermission { get; set; }
+        public IList<RolePermission> RolePermission { get; set; }
     }
 
     public class RolePermission
     {
-        [Key]
+        [Key, Column(Order = 1)]
         public Guid Id { get; set; }
 
+        [Key, Column(Order = 2)]
         [ForeignKey("Role")]
-        public Guid RoleID { get; set; }
+        public Guid RoleId { get; set; }
+        public Role Role { get; set; }
 
+        [Key, Column(Order = 3)]
         [ForeignKey("ProgramMenu")]
-        public Guid ProgramMenuID { get; set; }
+        public Guid ProgramMenuId { get; set; }
+        public ProgramMenu ProgramMenu { get; set; }
 
         public bool IsAllowedCreate { get; set; }
         public bool IsAllowedRetrieve { get; set; }
@@ -95,15 +102,13 @@ namespace SG50.TokenService.Models.POCO
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
 
-        [Required]
-        public virtual Role Role { get; set; }
-        [Required]
-        public virtual IList<ProgramMenu> ProgramMenu { get; set; }
     }
 
     public class ProgramMenu
     {
         [Key]
         public Guid Id { get; set; }
+
+        public IList<RolePermission> RolePermission { get; set; }
     }
 }

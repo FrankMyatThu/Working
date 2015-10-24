@@ -66,22 +66,46 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SG50DB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\tbl_AppActiveUser.cs">
+    <Compile Include="Models\Entities\tbl_ActiveUser.cs">
       <DependentUpon>SG50DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\tbl_AppRole.cs">
-      <DependentUpon>SG50DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entities\tbl_AppUsedPassword.cs">
-      <DependentUpon>SG50DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entities\tbl_AppUser.cs">
       <DependentUpon>SG50DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\tbl_AppUserClaim.cs">
       <DependentUpon>SG50DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\tbl_AppUserLogin.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_BusinessUnit.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_Company.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_Group.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_GroupPermission.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_ProgramMenu.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_Role.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_RolePermission.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_User.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_UserUsedPassword.cs">
+      <DependentUpon>SG50DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\tbl_WhiteListIP.cs">
       <DependentUpon>SG50DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

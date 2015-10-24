@@ -12,7 +12,7 @@ namespace SG50.Model.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_AppUsedPassword
+    public partial class tbl_UserUsedPassword
     {
         public System.Guid Id { get; set; }
         public string AppUserId { get; set; }
@@ -25,6 +25,6 @@ namespace SG50.Model.Models.Entities
         public System.DateTime UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
     
-        public virtual tbl_AppUser tbl_AppUser { get; set; }
+        public virtual tbl_User tbl_User { get; set; }
     }
 }

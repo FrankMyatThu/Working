@@ -3,16 +3,16 @@ namespace SG50.TokenService.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial_tables : DbMigration
+    public partial class initial_table_creation : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.tbl_AppActiveUser",
+                "dbo.tbl_ActiveUser",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        AppUserId = c.String(nullable: false, maxLength: 128),
+                        AppUserId = c.String(maxLength: 128),
                         IP = c.String(),
                         UserAgent = c.String(),
                         JwtHMACKey = c.String(),
@@ -25,11 +25,11 @@ namespace SG50.TokenService.Migrations
                         UpdatedBy = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_AppUser", t => t.AppUserId, cascadeDelete: true)
+                .ForeignKey("dbo.tbl_User", t => t.AppUserId)
                 .Index(t => t.AppUserId);
             
             CreateTable(
-                "dbo.tbl_AppUser",
+                "dbo.tbl_User",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
@@ -47,10 +47,7 @@ namespace SG50.TokenService.Migrations
                         PostalCode = c.Int(),
                         City = c.String(maxLength: 255),
                         CountryID = c.String(maxLength: 36),
-                        CompanyID = c.Guid(nullable: false),
-                        BusinessUnitID = c.String(maxLength: 36),
                         Remark = c.String(),
-                        GroupID = c.String(maxLength: 36),
                         IsLocked = c.Boolean(nullable: false),
                         IsEnable = c.Boolean(nullable: false),
                         LastLoginTime = c.DateTime(),
@@ -71,11 +68,12 @@ namespace SG50.TokenService.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
+                        Company_Id = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_Company", t => t.CompanyID, cascadeDelete: true)
-                .Index(t => t.CompanyID)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
+                .ForeignKey("dbo.tbl_Company", t => t.Company_Id)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
+                .Index(t => t.Company_Id);
             
             CreateTable(
                 "dbo.tbl_AppUserClaim",
@@ -87,8 +85,70 @@ namespace SG50.TokenService.Migrations
                         ClaimValue = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_AppUser", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.tbl_User", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.tbl_AppUserLogin",
+                c => new
+                    {
+                        LoginProvider = c.String(nullable: false, maxLength: 128),
+                        ProviderKey = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
+                .ForeignKey("dbo.tbl_User", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.tbl_AppUserRole",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.tbl_User", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.tbl_AppRole", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.tbl_UserUsedPassword",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false, identity: true),
+                        AppUserId = c.String(maxLength: 128),
+                        Password = c.String(),
+                        SaltKey = c.String(),
+                        ExecutedTime = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
+                        UpdatedDate = c.DateTime(nullable: false),
+                        UpdatedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.tbl_User", t => t.AppUserId)
+                .Index(t => t.AppUserId);
+            
+            CreateTable(
+                "dbo.tbl_BusinessUnit",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        CompanyId = c.Guid(nullable: false),
+                        BusinessUnitName = c.String(maxLength: 255),
+                        ExecutedTime = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
+                        UpdatedDate = c.DateTime(),
+                        UpdatedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.tbl_Company", t => t.CompanyId, cascadeDelete: true)
+                .Index(t => t.CompanyId);
             
             CreateTable(
                 "dbo.tbl_Company",
@@ -125,68 +185,6 @@ namespace SG50.TokenService.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.tbl_BusinessUnit",
-                c => new
-                    {
-                        Id = c.Guid(nullable: false),
-                        CompanyId = c.Guid(nullable: false),
-                        BusinessUnitName = c.String(maxLength: 255),
-                        ExecutedTime = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        IsActive = c.Boolean(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_Company", t => t.CompanyId, cascadeDelete: true)
-                .Index(t => t.CompanyId);
-            
-            CreateTable(
-                "dbo.tbl_AppUserLogin",
-                c => new
-                    {
-                        LoginProvider = c.String(nullable: false, maxLength: 128),
-                        ProviderKey = c.String(nullable: false, maxLength: 128),
-                        UserId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
-                .ForeignKey("dbo.tbl_AppUser", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.tbl_AppUserRole",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.tbl_AppUser", t => t.UserId, cascadeDelete: true)
-                .ForeignKey("dbo.tbl_AppRole", t => t.RoleId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.tbl_AppUsedPassword",
-                c => new
-                    {
-                        Id = c.Guid(nullable: false, identity: true),
-                        AppUserId = c.String(nullable: false, maxLength: 128),
-                        Password = c.String(),
-                        SaltKey = c.String(),
-                        ExecutedTime = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        IsActive = c.Boolean(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        UpdatedDate = c.DateTime(nullable: false),
-                        UpdatedBy = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_AppUser", t => t.AppUserId, cascadeDelete: true)
-                .Index(t => t.AppUserId);
-            
-            CreateTable(
                 "dbo.tbl_Group",
                 c => new
                     {
@@ -209,8 +207,8 @@ namespace SG50.TokenService.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        GroupID = c.Guid(nullable: false),
-                        RoleID = c.Guid(nullable: false),
+                        GroupId = c.Guid(nullable: false),
+                        RoleId = c.Guid(nullable: false),
                         ExecutedTime = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
@@ -218,9 +216,11 @@ namespace SG50.TokenService.Migrations
                         UpdatedDate = c.DateTime(),
                         UpdatedBy = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_Group", t => t.GroupID, cascadeDelete: true)
-                .Index(t => t.GroupID);
+                .PrimaryKey(t => new { t.Id, t.GroupId, t.RoleId })
+                .ForeignKey("dbo.tbl_Group", t => t.GroupId, cascadeDelete: true)
+                .ForeignKey("dbo.tbl_Role", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.GroupId)
+                .Index(t => t.RoleId);
             
             CreateTable(
                 "dbo.tbl_Role",
@@ -234,30 +234,16 @@ namespace SG50.TokenService.Migrations
                         CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
                         UpdatedBy = c.String(),
-                        GroupPermission_Id = c.Guid(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_GroupPermission", t => t.GroupPermission_Id)
-                .Index(t => t.GroupPermission_Id);
-            
-            CreateTable(
-                "dbo.tbl_ProgramMenu",
-                c => new
-                    {
-                        Id = c.Guid(nullable: false),
-                        RolePermission_Id = c.Guid(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_RolePermission", t => t.RolePermission_Id)
-                .Index(t => t.RolePermission_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.tbl_RolePermission",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        RoleID = c.Guid(nullable: false),
-                        ProgramMenuID = c.Guid(nullable: false),
+                        RoleId = c.Guid(nullable: false),
+                        ProgramMenuId = c.Guid(nullable: false),
                         IsAllowedCreate = c.Boolean(nullable: false),
                         IsAllowedRetrieve = c.Boolean(nullable: false),
                         IsAllowedUpdate = c.Boolean(nullable: false),
@@ -269,9 +255,19 @@ namespace SG50.TokenService.Migrations
                         UpdatedDate = c.DateTime(),
                         UpdatedBy = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_Role", t => t.RoleID, cascadeDelete: true)
-                .Index(t => t.RoleID);
+                .PrimaryKey(t => new { t.Id, t.RoleId, t.ProgramMenuId })
+                .ForeignKey("dbo.tbl_ProgramMenu", t => t.ProgramMenuId, cascadeDelete: true)
+                .ForeignKey("dbo.tbl_Role", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.RoleId)
+                .Index(t => t.ProgramMenuId);
+            
+            CreateTable(
+                "dbo.tbl_ProgramMenu",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.tbl_AppRole",
@@ -307,49 +303,49 @@ namespace SG50.TokenService.Migrations
         {
             DropForeignKey("dbo.tbl_WhiteListIP", "CompanyId", "dbo.tbl_Company");
             DropForeignKey("dbo.tbl_AppUserRole", "RoleId", "dbo.tbl_AppRole");
-            DropForeignKey("dbo.tbl_RolePermission", "RoleID", "dbo.tbl_Role");
-            DropForeignKey("dbo.tbl_ProgramMenu", "RolePermission_Id", "dbo.tbl_RolePermission");
-            DropForeignKey("dbo.tbl_Role", "GroupPermission_Id", "dbo.tbl_GroupPermission");
-            DropForeignKey("dbo.tbl_GroupPermission", "GroupID", "dbo.tbl_Group");
+            DropForeignKey("dbo.tbl_GroupPermission", "RoleId", "dbo.tbl_Role");
+            DropForeignKey("dbo.tbl_RolePermission", "RoleId", "dbo.tbl_Role");
+            DropForeignKey("dbo.tbl_RolePermission", "ProgramMenuId", "dbo.tbl_ProgramMenu");
+            DropForeignKey("dbo.tbl_GroupPermission", "GroupId", "dbo.tbl_Group");
             DropForeignKey("dbo.tbl_Group", "CompanyId", "dbo.tbl_Company");
-            DropForeignKey("dbo.tbl_AppActiveUser", "AppUserId", "dbo.tbl_AppUser");
-            DropForeignKey("dbo.tbl_AppUsedPassword", "AppUserId", "dbo.tbl_AppUser");
-            DropForeignKey("dbo.tbl_AppUserRole", "UserId", "dbo.tbl_AppUser");
-            DropForeignKey("dbo.tbl_AppUserLogin", "UserId", "dbo.tbl_AppUser");
-            DropForeignKey("dbo.tbl_AppUser", "CompanyID", "dbo.tbl_Company");
             DropForeignKey("dbo.tbl_BusinessUnit", "CompanyId", "dbo.tbl_Company");
-            DropForeignKey("dbo.tbl_AppUserClaim", "UserId", "dbo.tbl_AppUser");
+            DropForeignKey("dbo.tbl_User", "Company_Id", "dbo.tbl_Company");
+            DropForeignKey("dbo.tbl_ActiveUser", "AppUserId", "dbo.tbl_User");
+            DropForeignKey("dbo.tbl_UserUsedPassword", "AppUserId", "dbo.tbl_User");
+            DropForeignKey("dbo.tbl_AppUserRole", "UserId", "dbo.tbl_User");
+            DropForeignKey("dbo.tbl_AppUserLogin", "UserId", "dbo.tbl_User");
+            DropForeignKey("dbo.tbl_AppUserClaim", "UserId", "dbo.tbl_User");
             DropIndex("dbo.tbl_WhiteListIP", new[] { "CompanyId" });
             DropIndex("dbo.tbl_AppRole", "RoleNameIndex");
-            DropIndex("dbo.tbl_RolePermission", new[] { "RoleID" });
-            DropIndex("dbo.tbl_ProgramMenu", new[] { "RolePermission_Id" });
-            DropIndex("dbo.tbl_Role", new[] { "GroupPermission_Id" });
-            DropIndex("dbo.tbl_GroupPermission", new[] { "GroupID" });
+            DropIndex("dbo.tbl_RolePermission", new[] { "ProgramMenuId" });
+            DropIndex("dbo.tbl_RolePermission", new[] { "RoleId" });
+            DropIndex("dbo.tbl_GroupPermission", new[] { "RoleId" });
+            DropIndex("dbo.tbl_GroupPermission", new[] { "GroupId" });
             DropIndex("dbo.tbl_Group", new[] { "CompanyId" });
-            DropIndex("dbo.tbl_AppUsedPassword", new[] { "AppUserId" });
+            DropIndex("dbo.tbl_BusinessUnit", new[] { "CompanyId" });
+            DropIndex("dbo.tbl_UserUsedPassword", new[] { "AppUserId" });
             DropIndex("dbo.tbl_AppUserRole", new[] { "RoleId" });
             DropIndex("dbo.tbl_AppUserRole", new[] { "UserId" });
             DropIndex("dbo.tbl_AppUserLogin", new[] { "UserId" });
-            DropIndex("dbo.tbl_BusinessUnit", new[] { "CompanyId" });
             DropIndex("dbo.tbl_AppUserClaim", new[] { "UserId" });
-            DropIndex("dbo.tbl_AppUser", "UserNameIndex");
-            DropIndex("dbo.tbl_AppUser", new[] { "CompanyID" });
-            DropIndex("dbo.tbl_AppActiveUser", new[] { "AppUserId" });
+            DropIndex("dbo.tbl_User", new[] { "Company_Id" });
+            DropIndex("dbo.tbl_User", "UserNameIndex");
+            DropIndex("dbo.tbl_ActiveUser", new[] { "AppUserId" });
             DropTable("dbo.tbl_WhiteListIP");
             DropTable("dbo.tbl_AppRole");
-            DropTable("dbo.tbl_RolePermission");
             DropTable("dbo.tbl_ProgramMenu");
+            DropTable("dbo.tbl_RolePermission");
             DropTable("dbo.tbl_Role");
             DropTable("dbo.tbl_GroupPermission");
             DropTable("dbo.tbl_Group");
-            DropTable("dbo.tbl_AppUsedPassword");
+            DropTable("dbo.tbl_Company");
+            DropTable("dbo.tbl_BusinessUnit");
+            DropTable("dbo.tbl_UserUsedPassword");
             DropTable("dbo.tbl_AppUserRole");
             DropTable("dbo.tbl_AppUserLogin");
-            DropTable("dbo.tbl_BusinessUnit");
-            DropTable("dbo.tbl_Company");
             DropTable("dbo.tbl_AppUserClaim");
-            DropTable("dbo.tbl_AppUser");
-            DropTable("dbo.tbl_AppActiveUser");
+            DropTable("dbo.tbl_User");
+            DropTable("dbo.tbl_ActiveUser");
         }
     }
 }

@@ -19,6 +19,6 @@ namespace SG50.Model.Models.Entities
         public string ClaimType { get; set; }
         public string ClaimValue { get; set; }
     
-        public virtual tbl_AppUser tbl_AppUser { get; set; }
+        public virtual tbl_User tbl_User { get; set; }
     }
 }

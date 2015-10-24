@@ -12,21 +12,24 @@ namespace SG50.Model.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_AppActiveUser
+    public partial class tbl_Role
     {
+        public tbl_Role()
+        {
+            this.tbl_GroupPermission = new HashSet<tbl_GroupPermission>();
+            this.tbl_RolePermission = new HashSet<tbl_RolePermission>();
+        }
+    
         public System.Guid Id { get; set; }
-        public string AppUserId { get; set; }
-        public string IP { get; set; }
-        public string UserAgent { get; set; }
-        public string JwtHMACKey { get; set; }
+        public string Name { get; set; }
         public byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public System.DateTime LastRequestedTime { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
     
-        public virtual tbl_AppUser tbl_AppUser { get; set; }
+        public virtual ICollection<tbl_GroupPermission> tbl_GroupPermission { get; set; }
+        public virtual ICollection<tbl_RolePermission> tbl_RolePermission { get; set; }
     }
 }

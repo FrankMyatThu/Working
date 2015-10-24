@@ -26,7 +26,6 @@ namespace SG50.TokenService.Models.POCO
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
 
-        [Required]
         public virtual Company Company { get; set; }
     }
 }

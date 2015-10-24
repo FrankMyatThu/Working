@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SG50.TokenService.Models.POCO
 {
-    public class UsedPassword
+    public class UserUsedPassword
     {
         [Key]        
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,7 +26,6 @@ namespace SG50.TokenService.Models.POCO
         public DateTime UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
 
-        [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

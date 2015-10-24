@@ -12,14 +12,14 @@ namespace SG50.Model.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_AppUser
+    public partial class tbl_User
     {
-        public tbl_AppUser()
+        public tbl_User()
         {
-            this.tbl_AppActiveUser = new HashSet<tbl_AppActiveUser>();
-            this.tbl_AppUsedPassword = new HashSet<tbl_AppUsedPassword>();
+            this.tbl_ActiveUser = new HashSet<tbl_ActiveUser>();
             this.tbl_AppUserClaim = new HashSet<tbl_AppUserClaim>();
             this.tbl_AppUserLogin = new HashSet<tbl_AppUserLogin>();
+            this.tbl_UserUsedPassword = new HashSet<tbl_UserUsedPassword>();
             this.tbl_AppRole = new HashSet<tbl_AppRole>();
         }
     
@@ -27,10 +27,30 @@ namespace SG50.Model.Models.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string SaltKey { get; set; }
+        public string NickName { get; set; }
+        public string Photo { get; set; }
+        public string CCMail { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
+        public bool IsReceivedEmail { get; set; }
+        public bool IsNotifyCCMails { get; set; }
+        public string Fax { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> PostalCode { get; set; }
+        public string City { get; set; }
+        public string CountryID { get; set; }
+        public System.Guid CompanyID { get; set; }
+        public string BusinessUnitID { get; set; }
+        public string Remark { get; set; }
+        public string GroupID { get; set; }
+        public bool IsLocked { get; set; }
+        public bool IsEnable { get; set; }
+        public Nullable<System.DateTime> LastLoginTime { get; set; }
         public byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public string UpdatedBy { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
@@ -42,30 +62,12 @@ namespace SG50.Model.Models.Entities
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public string NickName { get; set; }
-        public string Photo { get; set; }
-        public string CCMail { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
-        public bool IsReceivedEmail { get; set; }
-        public string Fax { get; set; }
-        public string Address { get; set; }
-        public Nullable<int> PostalCode { get; set; }
-        public string City { get; set; }
-        public string CountryID { get; set; }
-        public string CompanyID { get; set; }
-        public string BusinessUnitID { get; set; }
-        public string Remark { get; set; }
-        public string GroupID { get; set; }
-        public bool IsLocked { get; set; }
-        public bool IsEnable { get; set; }
-        public Nullable<System.DateTime> LastLoginTime { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
     
-        public virtual ICollection<tbl_AppActiveUser> tbl_AppActiveUser { get; set; }
-        public virtual ICollection<tbl_AppUsedPassword> tbl_AppUsedPassword { get; set; }
+        public virtual ICollection<tbl_ActiveUser> tbl_ActiveUser { get; set; }
         public virtual ICollection<tbl_AppUserClaim> tbl_AppUserClaim { get; set; }
         public virtual ICollection<tbl_AppUserLogin> tbl_AppUserLogin { get; set; }
+        public virtual tbl_Company tbl_Company { get; set; }
+        public virtual ICollection<tbl_UserUsedPassword> tbl_UserUsedPassword { get; set; }
         public virtual ICollection<tbl_AppRole> tbl_AppRole { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace SG50.TokenService.Models.Entities
 
         /// Helper table(s)
         public DbSet<ActiveUser> ActiveUser { get; set; }
-        public DbSet<UsedPassword> UsedPassword { get; set; }
+        public DbSet<UserUsedPassword> UserUsedPassword { get; set; }
 
         /// Company table(s)
         public DbSet<Company> Company { get; set; }
@@ -40,15 +40,19 @@ namespace SG50.TokenService.Models.Entities
             base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
 
             /// Main table(s)
-            modelBuilder.Entity<ApplicationUser>().ToTable("tbl_AppUser");
+            modelBuilder.Entity<ApplicationUser>().ToTable("tbl_User");
             modelBuilder.Entity<IdentityRole>().ToTable("tbl_AppRole");
             modelBuilder.Entity<IdentityUserRole>().ToTable("tbl_AppUserRole");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("tbl_AppUserClaim");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("tbl_AppUserLogin");
+            //modelBuilder.Ignore<IdentityRole>();
+            //modelBuilder.Ignore<IdentityUserRole>();
+            //modelBuilder.Ignore<IdentityUserClaim>();            
+            //modelBuilder.Ignore<IdentityUserLogin>();            
 
             /// Helper table(s)
-            modelBuilder.Entity<ActiveUser>().ToTable("tbl_AppActiveUser");
-            modelBuilder.Entity<UsedPassword>().ToTable("tbl_AppUsedPassword");
+            modelBuilder.Entity<ActiveUser>().ToTable("tbl_ActiveUser");
+            modelBuilder.Entity<UserUsedPassword>().ToTable("tbl_UserUsedPassword");
 
             /// Company table(s)
             modelBuilder.Entity<Company>().ToTable("tbl_Company");

@@ -16,12 +16,12 @@ namespace SG50.Model.Models.Entities
     {
         public tbl_AppRole()
         {
-            this.tbl_AppUser = new HashSet<tbl_AppUser>();
+            this.tbl_User = new HashSet<tbl_User>();
         }
     
         public string Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<tbl_AppUser> tbl_AppUser { get; set; }
+        public virtual ICollection<tbl_User> tbl_User { get; set; }
     }
 }

@@ -48,13 +48,13 @@ namespace SG50.Common
 
                 using(SG50DBEntities _SG50DBEntities = new SG50DBEntities())
                 {
-                    tbl_AppActiveUser _tbl_AppActiveUser = _SG50DBEntities.tbl_AppActiveUser.Where(x => x.Id.Equals(new Guid(AudienceId))).FirstOrDefault();
-                    if (_tbl_AppActiveUser == null)
+                    tbl_ActiveUser _tbl_ActiveUser = _SG50DBEntities.tbl_ActiveUser.Where(x => x.Id.Equals(new Guid(AudienceId))).FirstOrDefault();
+                    if (_tbl_ActiveUser == null)
                     {
                         actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
                         return Task.FromResult<object>(null);
                     }
-                    SecurityKey = _tbl_AppActiveUser.JwtHMACKey;
+                    SecurityKey = _tbl_ActiveUser.JwtHMACKey;
 
                     var _JwtSecurityTokenHandler = new JwtSecurityTokenHandler();
                     var _JwtSecurityTokenHandler_JWTToken = _JwtSecurityTokenHandler.ReadToken(EncodedJwtToken);
@@ -66,7 +66,7 @@ namespace SG50.Common
                         new TokenValidationParameters()
                         {
                             IssuerSigningKey = new InMemorySymmetricSecurityKey(TextEncodings.Base64Url.Decode(SecurityKey)),
-                            ValidAudience = _tbl_AppActiveUser.Id.ToString(),                                                     
+                            ValidAudience = _tbl_ActiveUser.Id.ToString(),                                                     
                             ValidIssuer = AppConfiger.UrlTokenIssuer,
                             ValidateLifetime = false,
                             ValidateAudience = true,
@@ -81,10 +81,10 @@ namespace SG50.Common
                     }
 
                     /// (2) Validate if token is already expired.
-                    if ((new LoginChecker()).IsUserIdle(_tbl_AppActiveUser.LastRequestedTime))
+                    if ((new LoginChecker()).IsUserIdle(_tbl_ActiveUser.LastRequestedTime))
                     {
                         /// Kick out user who is Idle or whose token is expired.
-                        _SG50DBEntities.tbl_AppActiveUser.Remove(_tbl_AppActiveUser);
+                        _SG50DBEntities.tbl_ActiveUser.Remove(_tbl_ActiveUser);
                         _SG50DBEntities.SaveChanges();
                         actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
                         return Task.FromResult<object>(null);
@@ -93,17 +93,17 @@ namespace SG50.Common
                     /// (3) Validate IP & User Agent                    
                     Requester_IP = ((HttpContextWrapper)actionContext.Request.Properties[MS_HttpContext]).Request.UserHostName;
                     Requester_UserAgent = ((HttpContextWrapper)actionContext.Request.Properties[MS_HttpContext]).Request.UserAgent;
-                    if (!_tbl_AppActiveUser.IP.Equals(Requester_IP, StringComparison.InvariantCultureIgnoreCase) ||
-                        !_tbl_AppActiveUser.UserAgent.Equals(Requester_UserAgent, StringComparison.InvariantCultureIgnoreCase))
+                    if (!_tbl_ActiveUser.IP.Equals(Requester_IP, StringComparison.InvariantCultureIgnoreCase) ||
+                        !_tbl_ActiveUser.UserAgent.Equals(Requester_UserAgent, StringComparison.InvariantCultureIgnoreCase))
                     {
                         actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
                         return Task.FromResult<object>(null);  
                     }
 
                     /// All Validation are passed.
-                    /// So, Set current time to _tbl_AppActiveUser.LastRequestedTime
+                    /// So, Set current time to _tbl_ActiveUser.LastRequestedTime
                     /// in order to extend token expireation time.
-                    _tbl_AppActiveUser.LastRequestedTime = DateTime.Now;
+                    _tbl_ActiveUser.LastRequestedTime = DateTime.Now;
                     _SG50DBEntities.SaveChanges();
 
                 }

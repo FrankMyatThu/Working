@@ -28,7 +28,6 @@ namespace SG50.TokenService.Models.POCO
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
 
-        [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

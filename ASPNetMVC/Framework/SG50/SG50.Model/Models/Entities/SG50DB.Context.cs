@@ -26,11 +26,19 @@ namespace SG50.Model.Models.Entities
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<tbl_AppActiveUser> tbl_AppActiveUser { get; set; }
+        public virtual DbSet<tbl_ActiveUser> tbl_ActiveUser { get; set; }
         public virtual DbSet<tbl_AppRole> tbl_AppRole { get; set; }
-        public virtual DbSet<tbl_AppUsedPassword> tbl_AppUsedPassword { get; set; }
-        public virtual DbSet<tbl_AppUser> tbl_AppUser { get; set; }
         public virtual DbSet<tbl_AppUserClaim> tbl_AppUserClaim { get; set; }
         public virtual DbSet<tbl_AppUserLogin> tbl_AppUserLogin { get; set; }
+        public virtual DbSet<tbl_BusinessUnit> tbl_BusinessUnit { get; set; }
+        public virtual DbSet<tbl_Company> tbl_Company { get; set; }
+        public virtual DbSet<tbl_Group> tbl_Group { get; set; }
+        public virtual DbSet<tbl_GroupPermission> tbl_GroupPermission { get; set; }
+        public virtual DbSet<tbl_ProgramMenu> tbl_ProgramMenu { get; set; }
+        public virtual DbSet<tbl_Role> tbl_Role { get; set; }
+        public virtual DbSet<tbl_RolePermission> tbl_RolePermission { get; set; }
+        public virtual DbSet<tbl_User> tbl_User { get; set; }
+        public virtual DbSet<tbl_UserUsedPassword> tbl_UserUsedPassword { get; set; }
+        public virtual DbSet<tbl_WhiteListIP> tbl_WhiteListIP { get; set; }
     }
 }
