@@ -67,13 +67,13 @@ namespace WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtJoinDate;
         
         /// <summary>
-        /// butSubmit control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button butSubmit;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
         /// grdEmployeeList control.
