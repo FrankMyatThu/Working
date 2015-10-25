@@ -35,12 +35,10 @@ namespace SG50.TokenService.Models.POCO
         [Key, Column(Order = 1)]
         public Guid Id { get; set; }
 
-        [Key, Column(Order = 2)]
         [ForeignKey("Group")]
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
 
-        [Key, Column(Order = 3)]
         [ForeignKey("Role")]
         public Guid RoleId { get; set; }
         public Role Role { get; set; }
@@ -79,12 +77,10 @@ namespace SG50.TokenService.Models.POCO
         [Key, Column(Order = 1)]
         public Guid Id { get; set; }
 
-        [Key, Column(Order = 2)]
         [ForeignKey("Role")]
         public Guid RoleId { get; set; }
         public Role Role { get; set; }
 
-        [Key, Column(Order = 3)]
         [ForeignKey("ProgramMenu")]
         public Guid ProgramMenuId { get; set; }
         public ProgramMenu ProgramMenu { get; set; }

@@ -167,9 +167,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510240342372_initial_table_creation.cs" />
-    <Compile Include="Migrations\201510240342372_initial_table_creation.Designer.cs">
-      <DependentUpon>201510240342372_initial_table_creation.cs</DependentUpon>
+    <Compile Include="Migrations\201510251211170_initial_tables.cs" />
+    <Compile Include="Migrations\201510251211170_initial_tables.Designer.cs">
+      <DependentUpon>201510251211170_initial_tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusinessLogic\ClaimManager.cs" />
@@ -209,8 +209,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510240342372_initial_table_creation.resx">
-      <DependentUpon>201510240342372_initial_table_creation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510251211170_initial_tables.resx">
+      <DependentUpon>201510251211170_initial_tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

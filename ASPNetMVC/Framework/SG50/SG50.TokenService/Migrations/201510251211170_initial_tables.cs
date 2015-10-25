@@ -3,7 +3,7 @@ namespace SG50.TokenService.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial_table_creation : DbMigration
+    public partial class initial_tables : DbMigration
     {
         public override void Up()
         {
@@ -216,7 +216,7 @@ namespace SG50.TokenService.Migrations
                         UpdatedDate = c.DateTime(),
                         UpdatedBy = c.String(),
                     })
-                .PrimaryKey(t => new { t.Id, t.GroupId, t.RoleId })
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.tbl_Group", t => t.GroupId, cascadeDelete: true)
                 .ForeignKey("dbo.tbl_Role", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.GroupId)
@@ -255,7 +255,7 @@ namespace SG50.TokenService.Migrations
                         UpdatedDate = c.DateTime(),
                         UpdatedBy = c.String(),
                     })
-                .PrimaryKey(t => new { t.Id, t.RoleId, t.ProgramMenuId })
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.tbl_ProgramMenu", t => t.ProgramMenuId, cascadeDelete: true)
                 .ForeignKey("dbo.tbl_Role", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.RoleId)

@@ -7,13 +7,13 @@ namespace SG50.TokenService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initial_table_creation : IMigrationMetadata
+    public sealed partial class initial_tables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial_table_creation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial_tables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510240342372_initial_table_creation"; }
+            get { return "201510251211170_initial_tables"; }
         }
         
         string IMigrationMetadata.Source

@@ -133,8 +133,8 @@ D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\Syst
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\System.Web.WebPages.Razor.xml
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\log4net.xml
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\bin\SG50.Model.pdb
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.csprojResolveAssemblyReference.cache
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.pdb
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.initial_table_creation.resources
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.Migrations.initial_tables.resources
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.csproj.GenerateResource.Cache
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50\SG50.TokenService\obj\Debug\SG50.TokenService.csprojResolveAssemblyReference.cache
