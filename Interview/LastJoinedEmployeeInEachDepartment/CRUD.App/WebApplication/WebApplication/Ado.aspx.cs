@@ -16,7 +16,11 @@ namespace WebApplication
         #region Events
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindData();
+            if (!IsPostBack)
+            {
+                ResetFormControl();
+                BindGrid();
+            }            
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -24,45 +28,47 @@ namespace WebApplication
             switch (btnSubmit.Text)
             {
                 case "Save":
-                    Insert();
-                    BindData();
-                    btnSubmit.Text = "Save";
+                    Insert();                    
                     break;
 
                 case "Update":
-                    Update();
-                    BindData();
-                    btnSubmit.Text = "Update";
+                    Update();                    
                     break;
-            }
+            }            
+            ResetFormControl();
+            BindGrid();
         }
 
         protected void btnEdit_Command(object sender, CommandEventArgs e)
         {
             int EmployeeID = Convert.ToInt32(e.CommandArgument.ToString());
-            BindData(SelectData(EmployeeID));
+            BindFormControl(SelectData(EmployeeID));
+            btnSubmit.Text = "Update";
         }
 
         protected void btnDelete_Command(object sender, CommandEventArgs e)
         {
             int EmployeeID = Convert.ToInt32(e.CommandArgument.ToString());
+            Delete(EmployeeID);            
+            ResetFormControl();
+            BindGrid();
         }
         #endregion
 
         #region Function
-        public void BindData(DataTable _DataTable = null) 
-        {
-            /// Bind Grid
-            grdEmployeeList.DataSource = SelectData();
-            grdEmployeeList.DataBind();
 
-            /// Bind From
+        #region Binding
+        public void ResetFormControl()
+        {
             txtEmployeeID.Text = "";
             txtEmployeeName.Text = "";
             txtDepartmentID.Text = "";
             txtDepartmentName.Text = "";
             txtJoinDate.Value = "";
-            if (_DataTable == null) return;
+            btnSubmit.Text = "Save";
+        }
+        public void BindFormControl(DataTable _DataTable)
+        {
             foreach (DataRow _DataRow in _DataTable.Rows)
             {
                 txtEmployeeID.Text = _DataRow["EmployeeID"].ToString();
@@ -72,7 +78,14 @@ namespace WebApplication
                 txtJoinDate.Value = Convert.ToDateTime(_DataRow["JoinDate"]).ToString("yyyy-MM-dd");
             }
         }
+        public void BindGrid() 
+        {
+            grdEmployeeList.DataSource = SelectData();
+            grdEmployeeList.DataBind();
+        }
+        #endregion
 
+        #region CRUD
         public DataTable SelectData(int EmployeeID = 0)
         {   
             using (DataSet _DataSet = new DataSet())
@@ -168,11 +181,6 @@ namespace WebApplication
 
         public void Delete(int EmployeeID)
         {   
-            string EmployeeName = txtEmployeeName.Text.Trim();
-            int DepartmentID = Convert.ToInt32(txtDepartmentID.Text.Trim());
-            string DepartmentName = txtDepartmentName.Text.Trim();
-            DateTime JoinDate = Convert.ToDateTime(txtJoinDate.Value.Trim());
-
             string SqlCommandText = "DELETE FROM tbl_EmpDep WHERE EmployeeID = @EmployeeID";
 
             using (SqlConnection _SqlConnection = new SqlConnection(ConnetionString))
@@ -188,6 +196,8 @@ namespace WebApplication
             }
         }
         #endregion
-    
+
+        #endregion
+
     }
 }
