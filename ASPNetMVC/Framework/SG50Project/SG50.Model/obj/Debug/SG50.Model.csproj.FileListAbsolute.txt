@@ -1,0 +1,11 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\SG50.Model.dll.config
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\SG50.Model.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\SG50.Model.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\EntityFramework.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\EntityFramework.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debug\SG50.Model.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debug\SG50.Model.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debug\SG50.Model.Migrations.Initial_Setup.resources
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debug\SG50.Model.csproj.GenerateResource.Cache

@@ -1,0 +1,1317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SG50DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ActiveUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AppUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="IP" Type="nvarchar(max)" />
+          <Property Name="UserAgent" Type="nvarchar(max)" />
+          <Property Name="JwtHMACKey" Type="nvarchar(max)" />
+          <Property Name="LastRequestedTime" Type="datetime" Nullable="false" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_AppRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_AppUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_AppUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_AppUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_BusinessUnit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BusinessUnitName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="PhoneNo1" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNo2" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNo3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fax" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostalCode" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="CountryID" Type="nvarchar" MaxLength="36" />
+          <Property Name="Logo" Type="nvarchar(max)" />
+          <Property Name="ShoppingCartHoldingTimeInMinute" Type="int" Nullable="false" />
+          <Property Name="MaximumDayForPasswordValidity" Type="int" Nullable="false" />
+          <Property Name="MaximumAllowedPasswordFailedAttempt" Type="int" Nullable="false" />
+          <Property Name="MaximumAllowedDayBeforeDeleteFile" Type="int" Nullable="false" />
+          <Property Name="MaximumAllowedUserInactivityDays" Type="int" Nullable="false" />
+          <Property Name="MaximumAllowedDayToApproveFile" Type="int" Nullable="false" />
+          <Property Name="MaximumDayForPasswordLifeTime" Type="int" Nullable="false" />
+          <Property Name="IsWhiteListIPCheck" Type="bit" Nullable="false" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_GroupPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_ProgramMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_RolePermission">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="ProgramMenuId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProgramMenuId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsAllowedCreate" Type="bit" Nullable="false" />
+          <Property Name="IsAllowedRetrieve" Type="bit" Nullable="false" />
+          <Property Name="IsAllowedUpdate" Type="bit" Nullable="false" />
+          <Property Name="IsAllowedDelete" Type="bit" Nullable="false" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SaltKey" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+          <Property Name="CCMail" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="IsReceivedEmail" Type="bit" Nullable="false" />
+          <Property Name="IsNotifyCCMails" Type="bit" Nullable="false" />
+          <Property Name="Fax" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostalCode" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="CountryID" Type="nvarchar" MaxLength="36" />
+          <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BusinessUnitID" Type="nvarchar" MaxLength="36" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="GroupID" Type="nvarchar" MaxLength="36" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="IsEnable" Type="bit" Nullable="false" />
+          <Property Name="LastLoginTime" Type="datetime" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_UserUsedPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AppUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="SaltKey" Type="nvarchar(max)" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_WhiteListIP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_ActiveUser" Type="Self.tbl_ActiveUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_ActiveUser">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_AppUserClaim" Type="Self.tbl_AppUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_AppUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_AppUserLogin" Type="Self.tbl_AppUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_AppUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_AppUserRole_dbo_tbl_AppRole_RoleId">
+          <End Role="tbl_AppRole" Type="Self.tbl_AppRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_AppUserRole" Type="Self.tbl_AppUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_AppRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_AppUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_AppUserRole_dbo_tbl_User_UserId">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_AppUserRole" Type="Self.tbl_AppUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_AppUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId">
+          <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_BusinessUnit" Type="Self.tbl_BusinessUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_BusinessUnit">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId">
+          <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Group" Type="Self.tbl_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_Group">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId">
+          <End Role="tbl_Group" Type="Self.tbl_Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_GroupPermission" Type="Self.tbl_GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_GroupPermission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId">
+          <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_GroupPermission" Type="Self.tbl_GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_GroupPermission">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId">
+          <End Role="tbl_ProgramMenu" Type="Self.tbl_ProgramMenu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_RolePermission" Type="Self.tbl_RolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProgramMenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_RolePermission">
+              <PropertyRef Name="ProgramMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId">
+          <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_RolePermission" Type="Self.tbl_RolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_RolePermission">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_User_dbo_tbl_Company_CompanyID">
+          <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_User">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_UserUsedPassword" Type="Self.tbl_UserUsedPassword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_UserUsedPassword">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId">
+          <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_WhiteListIP" Type="Self.tbl_WhiteListIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_WhiteListIP">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SG50DBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ActiveUser" EntityType="Self.tbl_ActiveUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AppRole" EntityType="Self.tbl_AppRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AppUserClaim" EntityType="Self.tbl_AppUserClaim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AppUserLogin" EntityType="Self.tbl_AppUserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AppUserRole" EntityType="Self.tbl_AppUserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_BusinessUnit" EntityType="Self.tbl_BusinessUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Company" EntityType="Self.tbl_Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Group" EntityType="Self.tbl_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_GroupPermission" EntityType="Self.tbl_GroupPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProgramMenu" EntityType="Self.tbl_ProgramMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RolePermission" EntityType="Self.tbl_RolePermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_UserUsedPassword" EntityType="Self.tbl_UserUsedPassword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_WhiteListIP" EntityType="Self.tbl_WhiteListIP" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId" Association="Self.FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_ActiveUser" EntitySet="tbl_ActiveUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId" Association="Self.FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_AppUserClaim" EntitySet="tbl_AppUserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId" Association="Self.FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_AppUserLogin" EntitySet="tbl_AppUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserRole_dbo_tbl_AppRole_RoleId" Association="Self.FK_dbo_tbl_AppUserRole_dbo_tbl_AppRole_RoleId">
+            <End Role="tbl_AppRole" EntitySet="tbl_AppRole" />
+            <End Role="tbl_AppUserRole" EntitySet="tbl_AppUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserRole_dbo_tbl_User_UserId" Association="Self.FK_dbo_tbl_AppUserRole_dbo_tbl_User_UserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_AppUserRole" EntitySet="tbl_AppUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId" Association="Self.FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_BusinessUnit" EntitySet="tbl_BusinessUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId" Association="Self.FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_Group" EntitySet="tbl_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId" Association="Self.FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId">
+            <End Role="tbl_Group" EntitySet="tbl_Group" />
+            <End Role="tbl_GroupPermission" EntitySet="tbl_GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId" Association="Self.FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId">
+            <End Role="tbl_Role" EntitySet="tbl_Role" />
+            <End Role="tbl_GroupPermission" EntitySet="tbl_GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId" Association="Self.FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId">
+            <End Role="tbl_ProgramMenu" EntitySet="tbl_ProgramMenu" />
+            <End Role="tbl_RolePermission" EntitySet="tbl_RolePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId" Association="Self.FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId">
+            <End Role="tbl_Role" EntitySet="tbl_Role" />
+            <End Role="tbl_RolePermission" EntitySet="tbl_RolePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_User_dbo_tbl_Company_CompanyID" Association="Self.FK_dbo_tbl_User_dbo_tbl_Company_CompanyID">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_User" EntitySet="tbl_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId" Association="Self.FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_UserUsedPassword" EntitySet="tbl_UserUsedPassword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId" Association="Self.FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_WhiteListIP" EntitySet="tbl_WhiteListIP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SG50DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SG50DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="SG50DBModel.C__MigrationHistory" />
+          <EntitySet Name="tbl_ActiveUser" EntityType="SG50DBModel.tbl_ActiveUser" />
+          <EntitySet Name="tbl_AppRole" EntityType="SG50DBModel.tbl_AppRole" />
+          <EntitySet Name="tbl_AppUserClaim" EntityType="SG50DBModel.tbl_AppUserClaim" />
+          <EntitySet Name="tbl_AppUserLogin" EntityType="SG50DBModel.tbl_AppUserLogin" />
+          <EntitySet Name="tbl_BusinessUnit" EntityType="SG50DBModel.tbl_BusinessUnit" />
+          <EntitySet Name="tbl_Company" EntityType="SG50DBModel.tbl_Company" />
+          <EntitySet Name="tbl_Group" EntityType="SG50DBModel.tbl_Group" />
+          <EntitySet Name="tbl_GroupPermission" EntityType="SG50DBModel.tbl_GroupPermission" />
+          <EntitySet Name="tbl_ProgramMenu" EntityType="SG50DBModel.tbl_ProgramMenu" />
+          <EntitySet Name="tbl_Role" EntityType="SG50DBModel.tbl_Role" />
+          <EntitySet Name="tbl_RolePermission" EntityType="SG50DBModel.tbl_RolePermission" />
+          <EntitySet Name="tbl_User" EntityType="SG50DBModel.tbl_User" />
+          <EntitySet Name="tbl_UserUsedPassword" EntityType="SG50DBModel.tbl_UserUsedPassword" />
+          <EntitySet Name="tbl_WhiteListIP" EntityType="SG50DBModel.tbl_WhiteListIP" />
+          <AssociationSet Name="FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId" Association="SG50DBModel.FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_ActiveUser" EntitySet="tbl_ActiveUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId" Association="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_AppUserClaim" EntitySet="tbl_AppUserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId" Association="SG50DBModel.FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_AppUserLogin" EntitySet="tbl_AppUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId" Association="SG50DBModel.FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_BusinessUnit" EntitySet="tbl_BusinessUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId" Association="SG50DBModel.FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_Group" EntitySet="tbl_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_User_dbo_tbl_Company_CompanyID" Association="SG50DBModel.FK_dbo_tbl_User_dbo_tbl_Company_CompanyID">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_User" EntitySet="tbl_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId" Association="SG50DBModel.FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId">
+            <End Role="tbl_Company" EntitySet="tbl_Company" />
+            <End Role="tbl_WhiteListIP" EntitySet="tbl_WhiteListIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId" Association="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId">
+            <End Role="tbl_Group" EntitySet="tbl_Group" />
+            <End Role="tbl_GroupPermission" EntitySet="tbl_GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId" Association="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId">
+            <End Role="tbl_Role" EntitySet="tbl_Role" />
+            <End Role="tbl_GroupPermission" EntitySet="tbl_GroupPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId" Association="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId">
+            <End Role="tbl_ProgramMenu" EntitySet="tbl_ProgramMenu" />
+            <End Role="tbl_RolePermission" EntitySet="tbl_RolePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId" Association="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId">
+            <End Role="tbl_Role" EntitySet="tbl_Role" />
+            <End Role="tbl_RolePermission" EntitySet="tbl_RolePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId" Association="SG50DBModel.FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_UserUsedPassword" EntitySet="tbl_UserUsedPassword" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_AppUserRole" Association="SG50DBModel.tbl_AppUserRole">
+            <End Role="tbl_AppRole" EntitySet="tbl_AppRole" />
+            <End Role="tbl_User" EntitySet="tbl_User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ActiveUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AppUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JwtHMACKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastRequestedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_User" Relationship="SG50DBModel.FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId" FromRole="tbl_ActiveUser" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_AppRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_User" Relationship="SG50DBModel.tbl_AppUserRole" FromRole="tbl_AppRole" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_AppUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_User" Relationship="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId" FromRole="tbl_AppUserClaim" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_AppUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_User" Relationship="SG50DBModel.FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId" FromRole="tbl_AppUserLogin" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_BusinessUnit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CompanyId" Type="Guid" Nullable="false" />
+          <Property Name="BusinessUnitName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Company" Relationship="SG50DBModel.FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId" FromRole="tbl_BusinessUnit" ToRole="tbl_Company" />
+        </EntityType>
+        <EntityType Name="tbl_Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShoppingCartHoldingTimeInMinute" Type="Int32" Nullable="false" />
+          <Property Name="MaximumDayForPasswordValidity" Type="Int32" Nullable="false" />
+          <Property Name="MaximumAllowedPasswordFailedAttempt" Type="Int32" Nullable="false" />
+          <Property Name="MaximumAllowedDayBeforeDeleteFile" Type="Int32" Nullable="false" />
+          <Property Name="MaximumAllowedUserInactivityDays" Type="Int32" Nullable="false" />
+          <Property Name="MaximumAllowedDayToApproveFile" Type="Int32" Nullable="false" />
+          <Property Name="MaximumDayForPasswordLifeTime" Type="Int32" Nullable="false" />
+          <Property Name="IsWhiteListIPCheck" Type="Boolean" Nullable="false" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_BusinessUnit" Relationship="SG50DBModel.FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId" FromRole="tbl_Company" ToRole="tbl_BusinessUnit" />
+          <NavigationProperty Name="tbl_Group" Relationship="SG50DBModel.FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId" FromRole="tbl_Company" ToRole="tbl_Group" />
+          <NavigationProperty Name="tbl_User" Relationship="SG50DBModel.FK_dbo_tbl_User_dbo_tbl_Company_CompanyID" FromRole="tbl_Company" ToRole="tbl_User" />
+          <NavigationProperty Name="tbl_WhiteListIP" Relationship="SG50DBModel.FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId" FromRole="tbl_Company" ToRole="tbl_WhiteListIP" />
+        </EntityType>
+        <EntityType Name="tbl_Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CompanyId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Company" Relationship="SG50DBModel.FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId" FromRole="tbl_Group" ToRole="tbl_Company" />
+          <NavigationProperty Name="tbl_GroupPermission" Relationship="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId" FromRole="tbl_Group" ToRole="tbl_GroupPermission" />
+        </EntityType>
+        <EntityType Name="tbl_GroupPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Group" Relationship="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId" FromRole="tbl_GroupPermission" ToRole="tbl_Group" />
+          <NavigationProperty Name="tbl_Role" Relationship="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId" FromRole="tbl_GroupPermission" ToRole="tbl_Role" />
+        </EntityType>
+        <EntityType Name="tbl_ProgramMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tbl_RolePermission" Relationship="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId" FromRole="tbl_ProgramMenu" ToRole="tbl_RolePermission" />
+        </EntityType>
+        <EntityType Name="tbl_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_GroupPermission" Relationship="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId" FromRole="tbl_Role" ToRole="tbl_GroupPermission" />
+          <NavigationProperty Name="tbl_RolePermission" Relationship="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId" FromRole="tbl_Role" ToRole="tbl_RolePermission" />
+        </EntityType>
+        <EntityType Name="tbl_RolePermission">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="ProgramMenuId" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="ProgramMenuId" Type="Guid" Nullable="false" />
+          <Property Name="IsAllowedCreate" Type="Boolean" Nullable="false" />
+          <Property Name="IsAllowedRetrieve" Type="Boolean" Nullable="false" />
+          <Property Name="IsAllowedUpdate" Type="Boolean" Nullable="false" />
+          <Property Name="IsAllowedDelete" Type="Boolean" Nullable="false" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ProgramMenu" Relationship="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId" FromRole="tbl_RolePermission" ToRole="tbl_ProgramMenu" />
+          <NavigationProperty Name="tbl_Role" Relationship="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId" FromRole="tbl_RolePermission" ToRole="tbl_Role" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SaltKey" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NickName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CCMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="IsReceivedEmail" Type="Boolean" Nullable="false" />
+          <Property Name="IsNotifyCCMails" Type="Boolean" Nullable="false" />
+          <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyID" Type="Guid" Nullable="false" />
+          <Property Name="BusinessUnitID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+          <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ActiveUser" Relationship="SG50DBModel.FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId" FromRole="tbl_User" ToRole="tbl_ActiveUser" />
+          <NavigationProperty Name="tbl_AppUserClaim" Relationship="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId" FromRole="tbl_User" ToRole="tbl_AppUserClaim" />
+          <NavigationProperty Name="tbl_AppUserLogin" Relationship="SG50DBModel.FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId" FromRole="tbl_User" ToRole="tbl_AppUserLogin" />
+          <NavigationProperty Name="tbl_Company" Relationship="SG50DBModel.FK_dbo_tbl_User_dbo_tbl_Company_CompanyID" FromRole="tbl_User" ToRole="tbl_Company" />
+          <NavigationProperty Name="tbl_UserUsedPassword" Relationship="SG50DBModel.FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId" FromRole="tbl_User" ToRole="tbl_UserUsedPassword" />
+          <NavigationProperty Name="tbl_AppRole" Relationship="SG50DBModel.tbl_AppUserRole" FromRole="tbl_User" ToRole="tbl_AppRole" />
+        </EntityType>
+        <EntityType Name="tbl_UserUsedPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AppUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SaltKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_User" Relationship="SG50DBModel.FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId" FromRole="tbl_UserUsedPassword" ToRole="tbl_User" />
+        </EntityType>
+        <EntityType Name="tbl_WhiteListIP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CompanyId" Type="Guid" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExecutedTime" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Company" Relationship="SG50DBModel.FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId" FromRole="tbl_WhiteListIP" ToRole="tbl_Company" />
+        </EntityType>
+        <Association Name="FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId">
+          <End Type="SG50DBModel.tbl_User" Role="tbl_User" Multiplicity="0..1" />
+          <End Type="SG50DBModel.tbl_ActiveUser" Role="tbl_ActiveUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_ActiveUser">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId">
+          <End Type="SG50DBModel.tbl_User" Role="tbl_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_AppUserClaim" Role="tbl_AppUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_AppUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId">
+          <End Type="SG50DBModel.tbl_User" Role="tbl_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_AppUserLogin" Role="tbl_AppUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_AppUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId">
+          <End Type="SG50DBModel.tbl_Company" Role="tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_BusinessUnit" Role="tbl_BusinessUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_BusinessUnit">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId">
+          <End Type="SG50DBModel.tbl_Company" Role="tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_Group" Role="tbl_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_Group">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_User_dbo_tbl_Company_CompanyID">
+          <End Type="SG50DBModel.tbl_Company" Role="tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_User" Role="tbl_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_User">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId">
+          <End Type="SG50DBModel.tbl_Company" Role="tbl_Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_WhiteListIP" Role="tbl_WhiteListIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_WhiteListIP">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId">
+          <End Type="SG50DBModel.tbl_Group" Role="tbl_Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_GroupPermission" Role="tbl_GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_GroupPermission">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId">
+          <End Type="SG50DBModel.tbl_Role" Role="tbl_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_GroupPermission" Role="tbl_GroupPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_GroupPermission">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId">
+          <End Type="SG50DBModel.tbl_ProgramMenu" Role="tbl_ProgramMenu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_RolePermission" Role="tbl_RolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProgramMenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_RolePermission">
+              <PropertyRef Name="ProgramMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId">
+          <End Type="SG50DBModel.tbl_Role" Role="tbl_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SG50DBModel.tbl_RolePermission" Role="tbl_RolePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_RolePermission">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId">
+          <End Type="SG50DBModel.tbl_User" Role="tbl_User" Multiplicity="0..1" />
+          <End Type="SG50DBModel.tbl_UserUsedPassword" Role="tbl_UserUsedPassword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_UserUsedPassword">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_AppUserRole">
+          <End Type="SG50DBModel.tbl_AppRole" Role="tbl_AppRole" Multiplicity="*" />
+          <End Type="SG50DBModel.tbl_User" Role="tbl_User" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SG50DBModelStoreContainer" CdmEntityContainer="SG50DBEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SG50DBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ActiveUser">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_ActiveUser">
+              <MappingFragment StoreEntitySet="tbl_ActiveUser">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="LastRequestedTime" ColumnName="LastRequestedTime" />
+                <ScalarProperty Name="JwtHMACKey" ColumnName="JwtHMACKey" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AppRole">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_AppRole">
+              <MappingFragment StoreEntitySet="tbl_AppRole">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AppUserClaim">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_AppUserClaim">
+              <MappingFragment StoreEntitySet="tbl_AppUserClaim">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AppUserLogin">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_AppUserLogin">
+              <MappingFragment StoreEntitySet="tbl_AppUserLogin">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_BusinessUnit">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_BusinessUnit">
+              <MappingFragment StoreEntitySet="tbl_BusinessUnit">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="BusinessUnitName" ColumnName="BusinessUnitName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Company">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_Company">
+              <MappingFragment StoreEntitySet="tbl_Company">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="IsWhiteListIPCheck" ColumnName="IsWhiteListIPCheck" />
+                <ScalarProperty Name="MaximumDayForPasswordLifeTime" ColumnName="MaximumDayForPasswordLifeTime" />
+                <ScalarProperty Name="MaximumAllowedDayToApproveFile" ColumnName="MaximumAllowedDayToApproveFile" />
+                <ScalarProperty Name="MaximumAllowedUserInactivityDays" ColumnName="MaximumAllowedUserInactivityDays" />
+                <ScalarProperty Name="MaximumAllowedDayBeforeDeleteFile" ColumnName="MaximumAllowedDayBeforeDeleteFile" />
+                <ScalarProperty Name="MaximumAllowedPasswordFailedAttempt" ColumnName="MaximumAllowedPasswordFailedAttempt" />
+                <ScalarProperty Name="MaximumDayForPasswordValidity" ColumnName="MaximumDayForPasswordValidity" />
+                <ScalarProperty Name="ShoppingCartHoldingTimeInMinute" ColumnName="ShoppingCartHoldingTimeInMinute" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="PhoneNo3" ColumnName="PhoneNo3" />
+                <ScalarProperty Name="PhoneNo2" ColumnName="PhoneNo2" />
+                <ScalarProperty Name="PhoneNo1" ColumnName="PhoneNo1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Group">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_Group">
+              <MappingFragment StoreEntitySet="tbl_Group">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_GroupPermission">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_GroupPermission">
+              <MappingFragment StoreEntitySet="tbl_GroupPermission">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProgramMenu">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_ProgramMenu">
+              <MappingFragment StoreEntitySet="tbl_ProgramMenu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Role">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_Role">
+              <MappingFragment StoreEntitySet="tbl_Role">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RolePermission">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_RolePermission">
+              <MappingFragment StoreEntitySet="tbl_RolePermission">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="IsAllowedDelete" ColumnName="IsAllowedDelete" />
+                <ScalarProperty Name="IsAllowedUpdate" ColumnName="IsAllowedUpdate" />
+                <ScalarProperty Name="IsAllowedRetrieve" ColumnName="IsAllowedRetrieve" />
+                <ScalarProperty Name="IsAllowedCreate" ColumnName="IsAllowedCreate" />
+                <ScalarProperty Name="ProgramMenuId" ColumnName="ProgramMenuId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="IsNotifyCCMails" ColumnName="IsNotifyCCMails" />
+                <ScalarProperty Name="IsReceivedEmail" ColumnName="IsReceivedEmail" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="CCMail" ColumnName="CCMail" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_UserUsedPassword">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_UserUsedPassword">
+              <MappingFragment StoreEntitySet="tbl_UserUsedPassword">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_WhiteListIP">
+            <EntityTypeMapping TypeName="SG50DBModel.tbl_WhiteListIP">
+              <MappingFragment StoreEntitySet="tbl_WhiteListIP">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExecutedTime" ColumnName="ExecutedTime" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tbl_AppUserRole" TypeName="SG50DBModel.tbl_AppUserRole" StoreEntitySet="tbl_AppUserRole">
+            <EndProperty Name="tbl_User">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="tbl_AppRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

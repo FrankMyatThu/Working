@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SG50DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ActiveUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AppUserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="IP" Type="nvarchar(max)" />
+    <Property Name="UserAgent" Type="nvarchar(max)" />
+    <Property Name="JwtHMACKey" Type="nvarchar(max)" />
+    <Property Name="LastRequestedTime" Type="datetime" Nullable="false" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_AppRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_AppUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_AppUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_AppUserRole">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_BusinessUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BusinessUnitName" Type="nvarchar" MaxLength="255" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="PhoneNo1" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhoneNo2" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhoneNo3" Type="nvarchar" MaxLength="100" />
+    <Property Name="Fax" Type="nvarchar(max)" />
+    <Property Name="Website" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="PostalCode" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="255" />
+    <Property Name="CountryID" Type="nvarchar" MaxLength="36" />
+    <Property Name="Logo" Type="nvarchar(max)" />
+    <Property Name="ShoppingCartHoldingTimeInMinute" Type="int" Nullable="false" />
+    <Property Name="MaximumDayForPasswordValidity" Type="int" Nullable="false" />
+    <Property Name="MaximumAllowedPasswordFailedAttempt" Type="int" Nullable="false" />
+    <Property Name="MaximumAllowedDayBeforeDeleteFile" Type="int" Nullable="false" />
+    <Property Name="MaximumAllowedUserInactivityDays" Type="int" Nullable="false" />
+    <Property Name="MaximumAllowedDayToApproveFile" Type="int" Nullable="false" />
+    <Property Name="MaximumDayForPasswordLifeTime" Type="int" Nullable="false" />
+    <Property Name="IsWhiteListIPCheck" Type="bit" Nullable="false" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_GroupPermission">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="GroupId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_ProgramMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_RolePermission">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="ProgramMenuId" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProgramMenuId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsAllowedCreate" Type="bit" Nullable="false" />
+    <Property Name="IsAllowedRetrieve" Type="bit" Nullable="false" />
+    <Property Name="IsAllowedUpdate" Type="bit" Nullable="false" />
+    <Property Name="IsAllowedDelete" Type="bit" Nullable="false" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="SaltKey" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NickName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+    <Property Name="CCMail" Type="nvarchar(max)" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="IsReceivedEmail" Type="bit" Nullable="false" />
+    <Property Name="IsNotifyCCMails" Type="bit" Nullable="false" />
+    <Property Name="Fax" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="PostalCode" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="255" />
+    <Property Name="CountryID" Type="nvarchar" MaxLength="36" />
+    <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BusinessUnitID" Type="nvarchar" MaxLength="36" />
+    <Property Name="Remark" Type="nvarchar(max)" />
+    <Property Name="GroupID" Type="nvarchar" MaxLength="36" />
+    <Property Name="IsLocked" Type="bit" Nullable="false" />
+    <Property Name="IsEnable" Type="bit" Nullable="false" />
+    <Property Name="LastLoginTime" Type="datetime" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_UserUsedPassword">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AppUserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="SaltKey" Type="nvarchar(max)" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_WhiteListIP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IPAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="ExecutedTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_ActiveUser" Type="Self.tbl_ActiveUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_ActiveUser">
+        <PropertyRef Name="AppUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_AppUserClaim" Type="Self.tbl_AppUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_AppUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_AppUserLogin" Type="Self.tbl_AppUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_AppUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_AppUserRole_dbo_tbl_AppRole_RoleId">
+    <End Role="tbl_AppRole" Type="Self.tbl_AppRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_AppUserRole" Type="Self.tbl_AppUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AppRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_AppUserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_AppUserRole_dbo_tbl_User_UserId">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_AppUserRole" Type="Self.tbl_AppUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_AppUserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId">
+    <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_BusinessUnit" Type="Self.tbl_BusinessUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_BusinessUnit">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId">
+    <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Group" Type="Self.tbl_Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Group">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId">
+    <End Role="tbl_Group" Type="Self.tbl_Group" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_GroupPermission" Type="Self.tbl_GroupPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_GroupPermission">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId">
+    <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_GroupPermission" Type="Self.tbl_GroupPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_GroupPermission">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId">
+    <End Role="tbl_ProgramMenu" Type="Self.tbl_ProgramMenu" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_RolePermission" Type="Self.tbl_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ProgramMenu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_RolePermission">
+        <PropertyRef Name="ProgramMenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId">
+    <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_RolePermission" Type="Self.tbl_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_RolePermission">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_User_dbo_tbl_Company_CompanyID">
+    <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_User">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_UserUsedPassword" Type="Self.tbl_UserUsedPassword" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_UserUsedPassword">
+        <PropertyRef Name="AppUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId">
+    <End Role="tbl_Company" Type="Self.tbl_Company" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_WhiteListIP" Type="Self.tbl_WhiteListIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_WhiteListIP">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SG50DBModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ActiveUser" EntityType="Self.tbl_ActiveUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AppRole" EntityType="Self.tbl_AppRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AppUserClaim" EntityType="Self.tbl_AppUserClaim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AppUserLogin" EntityType="Self.tbl_AppUserLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AppUserRole" EntityType="Self.tbl_AppUserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_BusinessUnit" EntityType="Self.tbl_BusinessUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Company" EntityType="Self.tbl_Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Group" EntityType="Self.tbl_Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_GroupPermission" EntityType="Self.tbl_GroupPermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ProgramMenu" EntityType="Self.tbl_ProgramMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RolePermission" EntityType="Self.tbl_RolePermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_UserUsedPassword" EntityType="Self.tbl_UserUsedPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_WhiteListIP" EntityType="Self.tbl_WhiteListIP" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId" Association="Self.FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_ActiveUser" EntitySet="tbl_ActiveUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId" Association="Self.FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_AppUserClaim" EntitySet="tbl_AppUserClaim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId" Association="Self.FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_AppUserLogin" EntitySet="tbl_AppUserLogin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_AppUserRole_dbo_tbl_AppRole_RoleId" Association="Self.FK_dbo_tbl_AppUserRole_dbo_tbl_AppRole_RoleId">
+      <End Role="tbl_AppRole" EntitySet="tbl_AppRole" />
+      <End Role="tbl_AppUserRole" EntitySet="tbl_AppUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_AppUserRole_dbo_tbl_User_UserId" Association="Self.FK_dbo_tbl_AppUserRole_dbo_tbl_User_UserId">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_AppUserRole" EntitySet="tbl_AppUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId" Association="Self.FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId">
+      <End Role="tbl_Company" EntitySet="tbl_Company" />
+      <End Role="tbl_BusinessUnit" EntitySet="tbl_BusinessUnit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId" Association="Self.FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId">
+      <End Role="tbl_Company" EntitySet="tbl_Company" />
+      <End Role="tbl_Group" EntitySet="tbl_Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId" Association="Self.FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId">
+      <End Role="tbl_Group" EntitySet="tbl_Group" />
+      <End Role="tbl_GroupPermission" EntitySet="tbl_GroupPermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId" Association="Self.FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId">
+      <End Role="tbl_Role" EntitySet="tbl_Role" />
+      <End Role="tbl_GroupPermission" EntitySet="tbl_GroupPermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId" Association="Self.FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId">
+      <End Role="tbl_ProgramMenu" EntitySet="tbl_ProgramMenu" />
+      <End Role="tbl_RolePermission" EntitySet="tbl_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId" Association="Self.FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId">
+      <End Role="tbl_Role" EntitySet="tbl_Role" />
+      <End Role="tbl_RolePermission" EntitySet="tbl_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_User_dbo_tbl_Company_CompanyID" Association="Self.FK_dbo_tbl_User_dbo_tbl_Company_CompanyID">
+      <End Role="tbl_Company" EntitySet="tbl_Company" />
+      <End Role="tbl_User" EntitySet="tbl_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId" Association="Self.FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_UserUsedPassword" EntitySet="tbl_UserUsedPassword" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId" Association="Self.FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId">
+      <End Role="tbl_Company" EntitySet="tbl_Company" />
+      <End Role="tbl_WhiteListIP" EntitySet="tbl_WhiteListIP" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

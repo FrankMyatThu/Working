@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e59d99d71ccf407fb06ebfd019162dd5" Name="Diagram1" ZoomLevel="99">
+        <EntityTypeShape EntityType="SG50DBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_ActiveUser" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppRole" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUserClaim" Width="1.5" PointX="5.25" PointY="15.75" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_AppUserLogin" Width="1.5" PointX="5.25" PointY="18.5" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_BusinessUnit" Width="1.5" PointX="3" PointY="29.75" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_Company" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_Group" Width="1.5" PointX="3" PointY="22.125" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_GroupPermission" Width="1.5" PointX="5.25" PointY="22.125" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_ProgramMenu" Width="1.5" PointX="3" PointY="38" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_Role" Width="1.5" PointX="3" PointY="34.25" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_RolePermission" Width="1.5" PointX="5.25" PointY="33.75" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_User" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_UserUsedPassword" Width="1.5" PointX="5.25" PointY="11.875" />
+        <EntityTypeShape EntityType="SG50DBModel.tbl_WhiteListIP" Width="1.5" PointX="3" PointY="26" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_ActiveUser_dbo_tbl_User_AppUserId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_AppUserClaim_dbo_tbl_User_UserId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_AppUserLogin_dbo_tbl_User_UserId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_BusinessUnit_dbo_tbl_Company_CompanyId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_Group_dbo_tbl_Company_CompanyId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_User_dbo_tbl_Company_CompanyID" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_WhiteListIP_dbo_tbl_Company_CompanyId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Group_GroupId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_GroupPermission_dbo_tbl_Role_RoleId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_ProgramMenu_ProgramMenuId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_RolePermission_dbo_tbl_Role_RoleId" />
+        <AssociationConnector Association="SG50DBModel.FK_dbo_tbl_UserUsedPassword_dbo_tbl_User_AppUserId" />
+        <AssociationConnector Association="SG50DBModel.tbl_AppUserRole" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
