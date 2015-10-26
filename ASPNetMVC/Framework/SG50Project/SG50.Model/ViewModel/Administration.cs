@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SG50.Base.ViewModel
+namespace SG50.Model.ViewModel
 {
     #region User related view model(s)
     public class CreateUserBindingModel

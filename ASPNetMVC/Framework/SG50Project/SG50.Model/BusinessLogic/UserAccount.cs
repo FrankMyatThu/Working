@@ -1,12 +1,14 @@
-﻿using SG50.Base.Logging;
+﻿using Microsoft.Owin.Security.DataHandler.Encoder;
+using SG50.Base.Logging;
 using SG50.Base.Security;
 using SG50.Base.Util;
-using SG50.Base.ViewModel;
 using SG50.Model.Entity;
 using SG50.Model.POCO;
+using SG50.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,13 +17,11 @@ using System.Threading.Tasks;
 namespace SG50.Model.BusinessLogic
 {
     public class UserAccount
-    {
-        string ClaimType_Dummy = "Dummy Type";
-        string ClaimValue_Dummy = "Dummy Value";
+    {   
         string UserPasswordNotCorrect = "Email address or password is incorrect.";
         string SignatureAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#hmac-sha256";
         string DigestAlgorithm = "http://www.w3.org/2001/04/xmlenc#sha256";
-        string LoggerName = "SG50_TokenService_Appender_Logger";
+        string LoggerName = "SG50Project_Appender_Logger";
         int SaltKeyLength = 16;
 
         public void RegisterUser(CreateUserBindingModel _CreateUserBindingModel)
@@ -75,7 +75,7 @@ namespace SG50.Model.BusinessLogic
         public void RemoveActiveUser(string EncodedJWTToken)
         {
             try
-            {
+            {   
                 var _JwtSecurityToken = new JwtSecurityToken(EncodedJWTToken);
                 string AudienceId = _JwtSecurityToken.Audiences.First();
 
