@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SG50.Model", "SG50.Model\SG50.Model.csproj", "{A708ED19-FECF-459C-9CF2-38051F5D5F0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SG50.Base", "SG50.Base\SG50.Base.csproj", "{2AA9BB6B-2FEC-430D-825D-C2028CAA28F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A708ED19-FECF-459C-9CF2-38051F5D5F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A708ED19-FECF-459C-9CF2-38051F5D5F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A708ED19-FECF-459C-9CF2-38051F5D5F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AA9BB6B-2FEC-430D-825D-C2028CAA28F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AA9BB6B-2FEC-430D-825D-C2028CAA28F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA9BB6B-2FEC-430D-825D-C2028CAA28F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AA9BB6B-2FEC-430D-825D-C2028CAA28F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
