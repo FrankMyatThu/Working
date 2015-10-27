@@ -20,9 +20,8 @@ NewProject.Model
 get-project <<ProjectName>> | install-package Microsoft.Owin.Security.jwt
 add reference System.IdentityModel
 
-NewProject.Service
-==================
-get-project <<ProjectName>> | install-Package microsoft-web-helpers
+NewProject.Service (type webapi + MVC)
+======================================
 get-project <<ProjectName>> | install-package Microsoft.AspNet.WebApi.Cors
 
 NewProject.Client
