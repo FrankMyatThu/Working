@@ -24,3 +24,8 @@ NewProject.Service
 ==================
 get-project <<ProjectName>> | install-Package microsoft-web-helpers
 get-project <<ProjectName>> | install-package Microsoft.AspNet.WebApi.Cors
+
+NewProject.Client
+=================
+get-project sg50.Client | Install-Package bootstrap -Version 3.3.5
+get-project sg50.Client | Install-Package AngularJS.Core
