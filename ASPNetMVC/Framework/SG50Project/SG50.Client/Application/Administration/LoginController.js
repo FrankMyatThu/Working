@@ -30,7 +30,7 @@ app.controller('LoginController', function ($scope, $http, $window, $timeout) {
         };        
         $http({
             method: 'POST',
-            url: 'https://localhost:44305/api/accounts/UserLogin',            
+            url: 'https://localhost:44307/api/accounts/UserLogin',
             data: $scope.person,
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken

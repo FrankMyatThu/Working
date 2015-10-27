@@ -13,7 +13,8 @@ namespace SG50.Service
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
-        {   
+        {
+            AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);            
         }
     }

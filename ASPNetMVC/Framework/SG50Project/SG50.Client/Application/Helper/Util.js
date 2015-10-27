@@ -8,7 +8,8 @@
     return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
 }
 
-function getJsonDate(value) {
+function getJsonDate(value)
+{
     console.log("getJsonDate " + value);
     var dt = new Date(value);
     console.log("dt " + dt);

@@ -47,7 +47,7 @@ app.controller('RegistrationController', function ($scope, $http, $window, $time
         
         $http({
             method: 'POST',
-            url: 'https://localhost:44305/api/accounts/CreateUser',
+            url: 'https://localhost:44307/api/accounts/CreateUser',
             data: $scope.person,
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken
