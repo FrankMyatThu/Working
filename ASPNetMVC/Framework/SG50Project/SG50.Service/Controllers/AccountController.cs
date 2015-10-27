@@ -14,7 +14,7 @@ namespace SG50.Service.Controllers
     public class AccountController : ApiController
     {
         string Key_ModelStateInvalidError = "Key_ModelStateInvalidError";
-        const string LoggerName = "SG50_TokenService_Appender_Logger";
+        const string LoggerName = "SG50Project_Appender_Logger";
 
         [HttpPost]
         [AllowAnonymous]
