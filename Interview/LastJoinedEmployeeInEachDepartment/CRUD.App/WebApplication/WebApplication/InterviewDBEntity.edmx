@@ -4,15 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InterviewDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'InterviewDB.dbo.tbl_EmpDep' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="InterviewDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_EmpDep">
           <Key>
             <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="EmployeeName" />
-            <PropertyRef Name="DepartmentID" />
-            <PropertyRef Name="DepartmentName" />
           </Key>
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="EmployeeName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -21,37 +16,25 @@ warning 6002: The table/view 'InterviewDB.dbo.tbl_EmpDep' does not have a primar
           <Property Name="JoinDate" Type="datetime" />
         </EntityType>
         <EntityContainer Name="InterviewDBModelStoreContainer">
-          <EntitySet Name="tbl_EmpDep" EntityType="Self.tbl_EmpDep" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [tbl_EmpDep].[EmployeeID] AS [EmployeeID], 
-    [tbl_EmpDep].[EmployeeName] AS [EmployeeName], 
-    [tbl_EmpDep].[DepartmentID] AS [DepartmentID], 
-    [tbl_EmpDep].[DepartmentName] AS [DepartmentName], 
-    [tbl_EmpDep].[JoinDate] AS [JoinDate]
-    FROM [dbo].[tbl_EmpDep] AS [tbl_EmpDep]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="tbl_EmpDep" EntityType="Self.tbl_EmpDep" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InterviewDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="InterviewDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_EmpDep" EntityType="InterviewDBModel.tbl_EmpDep" />
+        </EntityContainer>
         <EntityType Name="tbl_EmpDep">
           <Key>
             <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="EmployeeName" />
-            <PropertyRef Name="DepartmentID" />
-            <PropertyRef Name="DepartmentName" />
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="JoinDate" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="InterviewDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tbl_EmpDep" EntityType="Self.tbl_EmpDep" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -61,11 +44,11 @@ warning 6002: The table/view 'InterviewDB.dbo.tbl_EmpDep' does not have a primar
           <EntitySetMapping Name="tbl_EmpDep">
             <EntityTypeMapping TypeName="InterviewDBModel.tbl_EmpDep">
               <MappingFragment StoreEntitySet="tbl_EmpDep">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

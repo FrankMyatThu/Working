@@ -121,84 +121,42 @@ namespace WebApplication
         }
 
         public void Insert()
-        {
-            //int EmployeeID = Convert.ToInt32(txtEmployeeID.Text.Trim());
-            //string EmployeeName = txtEmployeeName.Text.Trim();
-            //int DepartmentID = Convert.ToInt32(txtDepartmentID.Text.Trim());
-            //string DepartmentName = txtDepartmentName.Text.Trim();
-            //DateTime JoinDate = Convert.ToDateTime(txtJoinDate.Value.Trim());
-
-            //string SqlCommandText = " INSERT INTO tbl_EmpDep (EmployeeID,EmployeeName,DepartmentID,DepartmentName,JoinDate) " +
-            //                            " VALUES (@EmployeeID, @EmployeeName, @DepartmentID, @DepartmentName, @JoinDate) ";
-
-            //using (SqlConnection _SqlConnection = new SqlConnection(ConnetionString))
-            //{
-            //    using (SqlCommand _SqlCommand = new SqlCommand(SqlCommandText, _SqlConnection))
-            //    {
-            //        _SqlCommand.CommandType = CommandType.Text;
-            //        _SqlCommand.CommandText = SqlCommandText;
-            //        _SqlCommand.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = EmployeeID;
-            //        _SqlCommand.Parameters.Add("@EmployeeName", SqlDbType.VarChar, 100).Value = EmployeeName;
-            //        _SqlCommand.Parameters.Add("@DepartmentID", SqlDbType.Int).Value = DepartmentID;
-            //        _SqlCommand.Parameters.Add("@DepartmentName", SqlDbType.VarChar, 100).Value = DepartmentName;
-            //        _SqlCommand.Parameters.Add("@JoinDate", SqlDbType.DateTime).Value = JoinDate;
-
-            //        _SqlConnection.Open();
-            //        _SqlCommand.ExecuteNonQuery();
-            //    }
-            //}
+        {   
+            using (InterviewDBEntities _InterviewDBEntities = new InterviewDBEntities()) {
+                tbl_EmpDep _tbl_EmpDep = new tbl_EmpDep();
+                _tbl_EmpDep.EmployeeID = Convert.ToInt32(txtEmployeeID.Text.Trim());
+                _tbl_EmpDep.EmployeeName = txtEmployeeName.Text.Trim();
+                _tbl_EmpDep.DepartmentID = Convert.ToInt32(txtDepartmentID.Text.Trim());
+                _tbl_EmpDep.DepartmentName = txtDepartmentName.Text.Trim();
+                _tbl_EmpDep.JoinDate = Convert.ToDateTime(txtJoinDate.Value.Trim());
+                _InterviewDBEntities.tbl_EmpDep.Add(_tbl_EmpDep);
+                _InterviewDBEntities.SaveChanges();
+            }
         }
 
         public void Update()
         {
-            //int EmployeeID = Convert.ToInt32(txtEmployeeID.Text.Trim());
-            //string EmployeeName = txtEmployeeName.Text.Trim();
-            //int DepartmentID = Convert.ToInt32(txtDepartmentID.Text.Trim());
-            //string DepartmentName = txtDepartmentName.Text.Trim();
-            //DateTime JoinDate = Convert.ToDateTime(txtJoinDate.Value.Trim());
-
-            //string SqlCommandText = " UPDATE tbl_EmpDep " +
-            //                            " SET  " +
-            //                            "     EmployeeID = @EmployeeID,  " +
-            //                            "     EmployeeName = @EmployeeName, " +
-            //                            "     DepartmentID = @DepartmentID, " +
-            //                            "     DepartmentName = @DepartmentName, " +
-            //                            "     JoinDate = @JoinDate " +
-            //                            " WHERE EmployeeID = @EmployeeID ";
-
-            //using (SqlConnection _SqlConnection = new SqlConnection(ConnetionString))
-            //{
-            //    using (SqlCommand _SqlCommand = new SqlCommand(SqlCommandText, _SqlConnection))
-            //    {
-            //        _SqlCommand.CommandType = CommandType.Text;
-            //        _SqlCommand.CommandText = SqlCommandText;
-            //        _SqlCommand.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = EmployeeID;
-            //        _SqlCommand.Parameters.Add("@EmployeeName", SqlDbType.VarChar, 100).Value = EmployeeName;
-            //        _SqlCommand.Parameters.Add("@DepartmentID", SqlDbType.Int).Value = DepartmentID;
-            //        _SqlCommand.Parameters.Add("@DepartmentName", SqlDbType.VarChar, 100).Value = DepartmentName;
-            //        _SqlCommand.Parameters.Add("@JoinDate", SqlDbType.DateTime).Value = JoinDate;
-
-            //        _SqlConnection.Open();
-            //        _SqlCommand.ExecuteNonQuery();
-            //    }
-            //}
+            int EmployeeID = Convert.ToInt32(txtEmployeeID.Text.Trim());            
+            using (InterviewDBEntities _InterviewDBEntities = new InterviewDBEntities())
+            {
+                tbl_EmpDep _tbl_EmpDep = _InterviewDBEntities.tbl_EmpDep.Where(x => x.EmployeeID.Equals(EmployeeID)).Select(x => x).FirstOrDefault();
+                _tbl_EmpDep.EmployeeName = txtEmployeeName.Text.Trim();
+                _tbl_EmpDep.DepartmentID = Convert.ToInt32(txtDepartmentID.Text.Trim());
+                _tbl_EmpDep.DepartmentName = txtDepartmentName.Text.Trim();
+                _tbl_EmpDep.JoinDate = Convert.ToDateTime(txtJoinDate.Value.Trim());
+                _InterviewDBEntities.SaveChanges();
+            }
+            
         }
 
         public void Delete(int EmployeeID)
         {
-            //string SqlCommandText = "DELETE FROM tbl_EmpDep WHERE EmployeeID = @EmployeeID";
-
-            //using (SqlConnection _SqlConnection = new SqlConnection(ConnetionString))
-            //{
-            //    using (SqlCommand _SqlCommand = new SqlCommand(SqlCommandText, _SqlConnection))
-            //    {
-            //        _SqlCommand.CommandType = CommandType.Text;
-            //        _SqlCommand.CommandText = SqlCommandText;
-            //        _SqlCommand.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = EmployeeID;
-            //        _SqlConnection.Open();
-            //        _SqlCommand.ExecuteNonQuery();
-            //    }
-            //}
+            using (InterviewDBEntities _InterviewDBEntities = new InterviewDBEntities())
+            {
+                tbl_EmpDep _tbl_EmpDep = _InterviewDBEntities.tbl_EmpDep.Where(x => x.EmployeeID.Equals(EmployeeID)).Select(x => x).FirstOrDefault();
+                _InterviewDBEntities.tbl_EmpDep.Remove(_tbl_EmpDep);
+                _InterviewDBEntities.SaveChanges();
+            }
         }
         #endregion
 

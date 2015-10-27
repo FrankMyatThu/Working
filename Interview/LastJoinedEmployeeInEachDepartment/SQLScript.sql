@@ -4,7 +4,7 @@ USE InterviewDB
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE tbl_EmpDep
 (
-	EmployeeID INT NOT NULL,
+	EmployeeID INT NOT NULL PRIMARY KEY,
 	EmployeeName VARCHAR(100) NOT NULL,
 	DepartmentID INT NOT NULL,
 	DepartmentName VARCHAR(100) NOT NULL,
