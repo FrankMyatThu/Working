@@ -2,16 +2,10 @@
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
 
     if (!$window.sessionStorage.getItem("JWTToken")) {
-        $window.location.href = '../Account/Login';
+        $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
     }
 
-    /// Global variables
-    // ....
-
-    // Timeout timer value
-    //var TimeOutTimerValue = 5000; // 5 Seconds
-    //var TimeOutTimerValue = 6000; // 6 Seconds
-    var TimeOutTimerValue = 100000; // 10 Minutes    
+    var TimeOutTimerValue = ApplicationConfig.MaximumAllowedIdelTime;
 
     // Start a timeout
     var TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
@@ -45,7 +39,7 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
     function RemoveActiveUser() {
         $http({
             method: 'POST',
-            url: 'https://localhost:44307/api/accounts/UserLogout',
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Logout),
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
@@ -62,7 +56,7 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
             else {
                 console.log('Logout Successfully');
                 $window.sessionStorage.setItem("JWTToken", "");
-                $window.location.href = '../Account/Login';
+                $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
             }
         }).error(function (data, status, headers, config) {
             var ErrorMessageValue = "";

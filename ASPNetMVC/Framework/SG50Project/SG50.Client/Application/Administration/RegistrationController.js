@@ -32,6 +32,7 @@ app.directive(directiveId_ngMatch, ['$parse', function ($parse) {
     }
 }]);
 app.controller('RegistrationController', function ($scope, $http, $window, $timeout) {
+    $scope.Login = function () { $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login); }
     $scope.register = function () {
         $scope.IsShow_error = false;
         $scope.IsShow_success = false;
@@ -47,7 +48,7 @@ app.controller('RegistrationController', function ($scope, $http, $window, $time
         
         $http({
             method: 'POST',
-            url: 'https://localhost:44307/api/accounts/CreateUser',
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_CreateUser),
             data: $scope.person,
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken

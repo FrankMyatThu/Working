@@ -22,6 +22,7 @@ app.directive('autoFocus', function ($timeout) {
     };
 });
 app.controller('LoginController', function ($scope, $http, $window, $timeout) {
+    $scope.Register = function () { $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Registration); }
     $scope.login = function () {  
         $scope.dataLoading = true;
         $scope.person = {
@@ -30,7 +31,7 @@ app.controller('LoginController', function ($scope, $http, $window, $timeout) {
         };        
         $http({
             method: 'POST',
-            url: 'https://localhost:44307/api/accounts/UserLogin',
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Login),
             data: $scope.person,
             headers: {
                 'RequestVerificationToken': $scope.antiForgeryToken
@@ -46,7 +47,7 @@ app.controller('LoginController', function ($scope, $http, $window, $timeout) {
             else {                
                 $window.sessionStorage.setItem("JWTToken", data);
                 $scope.person = {};                
-                $window.location.href = '../../Home/Home';                
+                $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Home);
             }
         }).error(function (data, status, headers, config) {
             var ErrorMessageValue = "";

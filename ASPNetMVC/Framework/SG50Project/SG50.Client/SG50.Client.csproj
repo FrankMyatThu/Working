@@ -85,6 +85,7 @@
     <Content Include="Application\Administration\RegistrationController.js" />
     <Content Include="Application\Helper\Util.js" />
     <Content Include="Application\Root\ApplicationRoot.js" />
+    <Content Include="Application\Root\Config.js" />
     <Content Include="Application\Root\themeapp.js" />
     <Content Include="Application\Root\themeapp.min.js" />
     <Content Include="Content\AdminLTE.css" />
@@ -219,7 +220,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4167</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44308/Account/Login</IISUrl>
+          <IISUrl>https://localhost:44308/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

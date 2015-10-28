@@ -4,7 +4,7 @@
         $scope.dataLoading = true;
         $http({
             method: 'POST',            
-            url: 'https://localhost:44300/api/home/GetUserList',            
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetUserList),            
             headers: {                
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
