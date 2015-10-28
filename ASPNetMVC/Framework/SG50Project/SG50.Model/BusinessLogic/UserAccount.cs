@@ -33,6 +33,7 @@ namespace SG50.Model.BusinessLogic
                     var SaltKey_ByteArray = Security.GetSaltKey(SaltKeyLength);
                     var _tbl_User = new tbl_User()
                     {
+                        Id = Guid.NewGuid(),
                         FirstName = _CreateUserBindingModel.FirstName,
                         LastName = _CreateUserBindingModel.LastName,
                         Email = _CreateUserBindingModel.Email,                        

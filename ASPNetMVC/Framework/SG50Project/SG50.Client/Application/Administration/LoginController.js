@@ -25,7 +25,7 @@ app.controller('LoginController', function ($scope, $http, $window, $timeout) {
     $scope.login = function () {  
         $scope.dataLoading = true;
         $scope.person = {
-            "UserName": $scope.UserName,
+            "Email": $scope.UserName,
             "Password": $scope.Password
         };        
         $http({
@@ -46,7 +46,7 @@ app.controller('LoginController', function ($scope, $http, $window, $timeout) {
             else {                
                 $window.sessionStorage.setItem("JWTToken", data);
                 $scope.person = {};                
-                $window.location.href = '../Home/Home';                
+                $window.location.href = '../../Home/Home';                
             }
         }).error(function (data, status, headers, config) {
             var ErrorMessageValue = "";

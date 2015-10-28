@@ -45,7 +45,7 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
     function RemoveActiveUser() {
         $http({
             method: 'POST',
-            url: 'https://localhost:44305/api/accounts/UserLogout',
+            url: 'https://localhost:44307/api/accounts/UserLogout',
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),

@@ -23,6 +23,7 @@ add reference System.IdentityModel
 NewProject.Service (type webapi + MVC)
 ======================================
 get-project <<ProjectName>> | install-package Microsoft.AspNet.WebApi.Cors
+get-project sg50.service | Install-Package EntityFramework
 
 NewProject.Client
 =================
