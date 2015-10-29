@@ -17,6 +17,21 @@ namespace SG50.Model.BusinessLogic
     {
         string LoggerName = "SG50Project_Appender_Logger";
 
+        public string GetAudienceId(string EncodedJWTToken)
+        {
+            string AudienceId = string.Empty;
+            try
+            {
+                var _JwtSecurityToken = new JwtSecurityToken(EncodedJWTToken);
+                AudienceId = _JwtSecurityToken.Audiences.First();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return AudienceId;
+        }
+
         public bool IsTokenAuthorized(string EncodedJWTToken, string ClientIPAddress, string ClientBrowserAgentInfo)
         {
             bool IsValidToken = false;

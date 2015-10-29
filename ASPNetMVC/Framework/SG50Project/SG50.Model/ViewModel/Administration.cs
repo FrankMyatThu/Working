@@ -64,5 +64,17 @@ namespace SG50.Model.ViewModel
         public string Password { get; set; }
 
     }
+    public class CountryBindingModel
+    {
+
+        public string Id { get; set; }
+
+        [Display(Name = "Country name")]
+        [Required(ErrorMessage = "{0} is required.")]
+        [StringLength(255, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [RegularExpression(FormatStandardizer.Server_Name_MultiWord, ErrorMessage = "Invalid {0}")]
+        public string FirstName { get; set; }
+    
+    }
     #endregion
 }

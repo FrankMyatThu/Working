@@ -11,11 +11,8 @@ using System.Web.Http;
 namespace SG50.Service.Controllers
 {
     [RoutePrefix("api/accounts")]
-    public class AccountController : ApiController
-    {
-        string Key_ModelStateInvalidError = "Key_ModelStateInvalidError";
-        const string LoggerName = "SG50Project_Appender_Logger";
-
+    public class AccountController : BasedController
+    {   
         [HttpPost]
         [AllowAnonymous]
         [Route("UserLogin")]

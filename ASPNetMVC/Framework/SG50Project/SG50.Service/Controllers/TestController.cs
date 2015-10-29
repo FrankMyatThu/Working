@@ -10,10 +10,8 @@ using System.Web.Http;
 namespace SG50.Service.Controllers
 {
     [RoutePrefix("api/test")]
-    public class TestController : ApiController
-    {
-        const string LoggerName = "SG50Project_Appender_Logger";
-
+    public class TestController : BasedController
+    {   
         [HttpPost]
         [Route("GetUserList")]
         [ValidateAntiForgeryToken(LoggerName = LoggerName)]
@@ -24,7 +22,7 @@ namespace SG50.Service.Controllers
             string ReturnString = string.Empty;
             try
             {
-                ReturnString = "Returned UserList .... bla bla bla ...";
+                ReturnString = "Returned UserList .... bla bla bla ...  " + CurrentUserID;
             }
             catch (Exception ex)
             {
