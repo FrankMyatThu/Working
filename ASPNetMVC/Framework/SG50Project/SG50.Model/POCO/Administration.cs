@@ -75,9 +75,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
         #endregion
 
         public virtual IList<tbl_User> tbl_User { get; set; }
@@ -99,9 +99,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual tbl_Company tbl_Company { get; set; }
 
@@ -121,9 +121,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual tbl_Company tbl_Company { get; set; }
 
@@ -140,9 +140,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
     }
     #endregion
@@ -236,9 +236,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
         #endregion
 
         public virtual tbl_Company tbl_Company { get; set; }
@@ -266,9 +266,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual tbl_User tbl_User { get; set; }
 
@@ -288,9 +288,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual tbl_User tbl_User { get; set; }
     }
@@ -312,9 +312,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual tbl_Company tbl_Company { get; set; }
         public IList<tbl_GroupPermission> tbl_GroupPermission { get; set; }
@@ -337,9 +337,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
     }
     public class tbl_Role {
@@ -354,9 +354,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public IList<tbl_GroupPermission> tbl_GroupPermission { get; set; }
         public IList<tbl_RolePermission> tbl_RolePermission { get; set; }
@@ -384,9 +384,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
     }
     public class tbl_ProgramMenu {
@@ -414,9 +414,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual tbl_Module tbl_Module { get; set; }
         public IList<tbl_RolePermission> tbl_RolePermission { get; set; }
@@ -442,9 +442,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual tbl_Application tbl_Application { get; set; }
 
@@ -461,9 +461,9 @@ namespace SG50.Model.POCO
         public Byte[] ExecutedTime { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
     }
     #endregion

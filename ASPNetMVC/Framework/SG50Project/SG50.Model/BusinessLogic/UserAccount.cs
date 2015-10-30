@@ -31,9 +31,10 @@ namespace SG50.Model.BusinessLogic
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
                 {
                     var SaltKey_ByteArray = Security.GetSaltKey(SaltKeyLength);
+                    Guid KeyId = Guid.NewGuid();
                     var _tbl_User = new tbl_User()
                     {
-                        Id = Guid.NewGuid(),
+                        Id = KeyId,
                         FirstName = _CreateUserBindingModel.FirstName,
                         LastName = _CreateUserBindingModel.LastName,
                         Email = _CreateUserBindingModel.Email,                        
@@ -41,7 +42,7 @@ namespace SG50.Model.BusinessLogic
                         HashedPassword = Security.HashCode(Converter.GetBytes(_CreateUserBindingModel.Password), SaltKey_ByteArray),
                         IsActive = true,
                         CreatedDate = DateTime.Now,
-                        CreatedBy = _CreateUserBindingModel.UserName,
+                        CreatedBy = KeyId,
                         UpdatedDate = null,
                         UpdatedBy = null
                     };
@@ -183,7 +184,7 @@ namespace SG50.Model.BusinessLogic
             _tbl_ActiveUser.JwtHMACKey = Convert.ToBase64String((new AesManaged()).Key);
             _tbl_ActiveUser.IsActive = true;
             _tbl_ActiveUser.CreatedDate = DateTime.Now;
-            _tbl_ActiveUser.CreatedBy = _tbl_User.Email;
+            _tbl_ActiveUser.CreatedBy = _tbl_User.Id;
             _tbl_ActiveUser.UpdatedDate = null;
             _tbl_ActiveUser.UpdatedBy = null;
             _tbl_ActiveUser.LastRequestedTime = DateTime.Now;

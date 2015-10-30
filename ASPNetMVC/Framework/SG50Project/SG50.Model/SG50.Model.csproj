@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\AuthTokenChecker.cs" />
+    <Compile Include="BusinessLogic\Country.cs" />
     <Compile Include="BusinessLogic\UserAccount.cs" />
     <Compile Include="Entity\ApplicationDbContext.cs" />
     <Compile Include="Migrations\201510260647513_Initial_Setup.cs" />
