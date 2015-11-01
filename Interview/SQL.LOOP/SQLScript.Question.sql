@@ -11,18 +11,7 @@ CREATE TABLE tbl_Array
 -- Business logic
 -- tbl_Array[] _tbl_Array  = "asiatechnic@gmail.com".toArray();
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-DELETE FROM tbl_Array;
-GO
-DECLARE @Value VARCHAR(MAX)
-DECLARE @i INT
-SET @Value = 'asiatechnic@gmail.com'
-SET @i = 1
-WHILE (@i <= LEN(@Value))
-BEGIN
-	INSERT INTO tbl_Array (Id, ColumnA) VALUES (@i, SUBSTRING(@Value, @i, 1));
-	SET @i = @i + 1
-END
-SELECT * FROM tbl_Array;
+
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Select All 
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
