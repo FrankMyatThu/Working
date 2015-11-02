@@ -14,6 +14,15 @@ namespace SG50.Service.Controllers
     public class CountryController : BasedController
     {
         [HttpPost]
+        [Route("GetCountry")]
+        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
+        [CustomizedAuthorization(LoggerName = LoggerName)]
+        public IHttpActionResult GetCountry(CountryBindingModel _LoginUserBindingModel)
+        {
+            return Ok();  
+        }
+
+        [HttpPost]
         [Route("Create")]
         [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         [CustomizedAuthorization(LoggerName = LoggerName)]
