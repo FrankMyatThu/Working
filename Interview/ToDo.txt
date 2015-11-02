@@ -30,6 +30,7 @@ At home tasks
 		
 	Behavioral Patterns
 		9.Command
-	   10.Stratergy
+	   10.Stratergy	   
+	   11.Observer
 		
 5.Cryptography (General Knowledge)
