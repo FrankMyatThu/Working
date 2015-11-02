@@ -16,14 +16,20 @@ At home tasks
 	2.http://www.sitepoint.com/5-javascript-interview-exercises/
 	3.http://programmers.stackexchange.com/questions/251101/i-know-javascript-really-well-but-i-bomb-coding-interviews/251108#251108
 4.DesignPattern (General Knowledge)
-	1. Singleton 
-	2. Factory 
-	3. decorator 
-	4. builder 
-	5. proxy 
-	6. template 
-	7. adapter 
-	8. Command 
-	9. stratergy 
-   10. Facade 
+	Creational Patterns
+		1.Singleton 
+		2.Factory
+		3.Builder 
+		4.Template
+		
+	Structural Patterns
+		5.Decorator 
+		6.Proxy 
+		7.Adapter
+		8.Facade
+		
+	Behavioral Patterns
+		9.Command
+		10.Stratergy
+		
 5.Cryptography (General Knowledge)
