@@ -1,7 +1,6 @@
 ﻿app.controller('HomeController', function ($scope, $http, $window) {    
     $scope.DisplayData = "";    
-    $scope.Home = function () {
-        console.log("HomeController $scope.$parent.antiForgeryToken " + $scope.$parent.antiForgeryToken);
+    $scope.Home = function () {        
         $scope.dataLoading = true;
         $http({
             method: 'POST',            
@@ -9,7 +8,7 @@
             headers: {                
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': $scope.$parent.antiForgeryToken
+                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey // $scope.$parent.antiForgeryToken
             }
         }).success(function (data, status, headers, config) {            
             if (data.success == false) {

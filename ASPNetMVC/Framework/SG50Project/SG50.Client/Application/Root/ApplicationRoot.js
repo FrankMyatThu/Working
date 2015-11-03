@@ -47,7 +47,7 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': $scope.antiForgeryToken
+                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
             }
         }).success(function (data, status, headers, config) {
             if (data.success == false) {

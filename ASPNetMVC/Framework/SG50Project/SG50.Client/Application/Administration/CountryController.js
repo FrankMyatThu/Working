@@ -1,16 +1,13 @@
 ﻿app.controller('CountryController', function ($scope, $http, $window) {
-    $scope.DisplayData = "";
-    angular.element(document).ready(function () {
-        console.log("CountryController $scope.$parent.antiForgeryToken ... " + $scope.$parent.antiForgeryToken);
-        console.log("CountryController init event " + ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList));
-        console.log("$scope.$parent.antiForgeryToken " + $scope.$parent.antiForgeryToken);
+    $scope.DisplayData = "";    
+    $scope.init = function () {        
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': $scope.$parent.antiForgeryToken
+                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey // $scope.$parent.antiForgeryToken
             }
         }).success(function (data, status, headers, config) {
             if (data.success == false) {
@@ -49,7 +46,15 @@
             }
             //$scope.dataLoading = false;
         });
-    });
+    };
+
+    //angular.element(document).ready(function () {
+    //    //console.log("inside jqlite ApplicationConfig.AntiForgeryTokenKey " + ApplicationConfig.AntiForgeryTokenKey);
+    //    //console.log("CountryController $scope.$parent.antiForgeryToken ... " + $scope.$parent.antiForgeryToken);
+    //    //console.log("CountryController init event " + ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList));
+    //    //console.log("$scope.$parent.antiForgeryToken " + $scope.$parent.antiForgeryToken);
+        
+    //});
     
     $scope.Home = function () {
         $scope.dataLoading = true;
