@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201510260647513_Initial_Setup.Designer.cs">
       <DependentUpon>201510260647513_Initial_Setup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511030349555_pending_script.cs" />
+    <Compile Include="Migrations\201511030349555_pending_script.Designer.cs">
+      <DependentUpon>201511030349555_pending_script.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="POCO\Administration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +99,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510260647513_Initial_Setup.resx">
       <DependentUpon>201510260647513_Initial_Setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511030349555_pending_script.resx">
+      <DependentUpon>201511030349555_pending_script.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

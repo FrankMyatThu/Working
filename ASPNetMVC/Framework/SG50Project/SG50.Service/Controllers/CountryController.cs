@@ -1,4 +1,6 @@
 ﻿using SG50.Base.Logging;
+using SG50.Model.BusinessLogic;
+using SG50.Model.POCO;
 using SG50.Model.ViewModel;
 using SG50.Service.Common;
 using System;
@@ -19,7 +21,30 @@ namespace SG50.Service.Controllers
         [CustomizedAuthorization(LoggerName = LoggerName)]
         public IHttpActionResult GetCountry(CountryBindingModel _LoginUserBindingModel)
         {
-            return Ok();  
+            ApplicationLogger.WriteTrace("Start CountryController GetCountry", LoggerName);
+            List<tbl_Country> List_tbl_Country = new List<tbl_Country>();
+            if (!ModelState.IsValid)
+            {
+                string messages = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
+                return BadRequest(ModelState);
+            }
+
+            try
+            {   
+                List_tbl_Country = (new Country()).GetCountry();
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                return InternalServerError(ex);
+            }
+
+            ApplicationLogger.WriteTrace("End CountryController GetCountry", LoggerName);
+            return Ok(List_tbl_Country);  
         }
 
         [HttpPost]

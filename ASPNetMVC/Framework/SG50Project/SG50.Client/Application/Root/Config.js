@@ -14,6 +14,7 @@ var ApplicationConfig = {
     Client_Login: "/Account/Login",
     Client_Home: "/Home/Home",
     Client_Registration: "/Account/Register",
+    Client_Country: "/Country/List",
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// URL Setting Area    
@@ -24,6 +25,7 @@ var ApplicationConfig = {
     Service_Login: "/api/accounts/UserLogin",
     Service_GetUserList: "/api/test/GetUserList",
     Service_CreateUser: "/api/accounts/CreateUser",
+    Service_GetCountryList: "/api/country/GetCountry",
     
 
 };

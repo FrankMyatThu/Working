@@ -16,6 +16,10 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
         bodyElement.bind(EventName, function (e) { TimeOut_Resetter(e) });
     });
 
+    $scope.CountryByClick = function () {
+        $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country);
+    }
+
     $scope.LogoutByClick = function () {
         RemoveActiveUser();
     }

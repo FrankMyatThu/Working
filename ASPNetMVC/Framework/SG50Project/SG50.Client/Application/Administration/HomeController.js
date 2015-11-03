@@ -1,6 +1,7 @@
 ﻿app.controller('HomeController', function ($scope, $http, $window) {    
-    $scope.DisplayData = "";
+    $scope.DisplayData = "";    
     $scope.Home = function () {
+        console.log("HomeController $scope.$parent.antiForgeryToken " + $scope.$parent.antiForgeryToken);
         $scope.dataLoading = true;
         $http({
             method: 'POST',            

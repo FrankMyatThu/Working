@@ -43,13 +43,13 @@ namespace SG50.Model.BusinessLogic
             }
         }
 
-        public List<tbl_Country> Retrieve()
+        public List<tbl_Country> GetCountry()
         {
             List<tbl_Country> List_tbl_Country = new List<tbl_Country>();
             try {
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
-                { 
-                    //_ApplicationDbContext.tbl_Country.
+                {
+                    List_tbl_Country = _ApplicationDbContext.tbl_Country.Select(x => x).ToList<tbl_Country>();
                 }
             }
             catch (Exception ex) {

@@ -3,6 +3,10 @@
 <head>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Tell the browser not to keep cache -->
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     <title>@ViewBag.Title</title>    
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>    
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -313,18 +317,18 @@
                             <i class="fa fa-dashboard"></i> <span>Administration</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Company</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Business Unit</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> White List IP</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Country</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> User</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Group</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Group Permission</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Role</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Role Permission</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> ProgramMenu</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Module</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Application</a></li>
+                            <li class="active"><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Company</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Business Unit</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> White List IP</a></li>
+                            <li><a href="" ng-click="CountryByClick();"><i class="fa fa-circle-o"></i> Country</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> User</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Group</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Group Permission</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Role</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Role Permission</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> ProgramMenu</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Module</a></li>
+                            <li><a href="" ng-click="CompanyByClick();"><i class="fa fa-circle-o"></i> Application</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -492,6 +496,9 @@
             <strong>Copyright &copy; 2015-2016 <a href="http://google.com">Google</a>.</strong> All rights reserved.
         </footer>
     </div>
-    <div id="hiddenAntiForgery"><input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@GetAntiForgeryToken()'" /></div>
+    <div id="hiddenAntiForgery">        
+        <input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@GetAntiForgeryToken()'" />
+        <input id="antiForgeryToken_test" data-ng-model="antiForgeryToken_test" type="hidden" data-ng-init="antiForgeryToken_test='123Pass'" />
+    </div>
 </body>
 </html>
