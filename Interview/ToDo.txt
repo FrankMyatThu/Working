@@ -34,3 +34,8 @@ At home tasks
 	   11.Observer
 		
 5.Cryptography (General Knowledge)
+	1.http://securitygeekpro.com/cryptography-questions-asked-during-it-interviews/
+	2.http://security.stackexchange.com/questions/14858/mac-vs-encryption (Encryption vs Mac)
+	3.http://security.stackexchange.com/questions/2202/lessons-learned-and-misconceptions-regarding-encryption-and-cryptology/2206#2206 (Encryption Vs MAC)
+	4.http://stackoverflow.com/a/454069/900284 (Encryption vs Signing)
+	5.My own cyber security video at google drive 
