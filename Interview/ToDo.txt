@@ -39,3 +39,4 @@ At home tasks
 	3.http://security.stackexchange.com/questions/2202/lessons-learned-and-misconceptions-regarding-encryption-and-cryptology/2206#2206 (Encryption Vs MAC)
 	4.http://stackoverflow.com/a/454069/900284 (Encryption vs Signing)
 	5.My own cyber security video at google drive 
+	6.http://crypto.stackexchange.com/questions/2362/what-are-advantages-of-using-a-hmac-over-rsa-with-sha-1-hashes (HMAC vs RSA)
