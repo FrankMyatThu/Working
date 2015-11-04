@@ -1,0 +1,21 @@
+<html>
+<head>
+	<script type="text/javascript">
+		alert("*");
+		var nodes = document.getElementsByTagName('button');
+		for (var i = 0; i < nodes.length; i++) {
+		   alert(" i "+ i);
+		   nodes[i].addEventListener('click', function() {
+			  console.log('You clicked element #' + i);
+		   });
+		}
+	</script>
+</head>
+<body>
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+</body>
+</html>
