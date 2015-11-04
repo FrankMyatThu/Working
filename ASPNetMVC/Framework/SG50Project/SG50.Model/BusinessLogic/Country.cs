@@ -49,7 +49,7 @@ namespace SG50.Model.BusinessLogic
             try {
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
                 {
-                    List_tbl_Country = _ApplicationDbContext.tbl_Country.Select(x => x).ToList<tbl_Country>();
+                    List_tbl_Country = _ApplicationDbContext.tbl_Country.Select(x => x).Take(2).ToList<tbl_Country>();
                 }
             }
             catch (Exception ex) {

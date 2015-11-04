@@ -18,7 +18,7 @@
                 console.log(str);
             }
             else {
-                console.log(data);
+                console.log(JSON.stringify(data));
                 //$scope.DisplayData = data;
                 //$scope.dataLoading = false;
             }
@@ -52,8 +52,7 @@
     //    //console.log("inside jqlite ApplicationConfig.AntiForgeryTokenKey " + ApplicationConfig.AntiForgeryTokenKey);
     //    //console.log("CountryController $scope.$parent.antiForgeryToken ... " + $scope.$parent.antiForgeryToken);
     //    //console.log("CountryController init event " + ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList));
-    //    //console.log("$scope.$parent.antiForgeryToken " + $scope.$parent.antiForgeryToken);
-        
+    //    //console.log("$scope.$parent.antiForgeryToken " + $scope.$parent.antiForgeryToken);        
     //});
     
     $scope.Home = function () {
