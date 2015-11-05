@@ -1,4 +1,4 @@
-﻿var app = angular.module('ApplicationRoot', ['ngTouch', 'ui.grid', 'ui.grid.pagination']);
+﻿var app = angular.module('ApplicationRoot', []);
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
 
     if (!$window.sessionStorage.getItem("JWTToken")) {
@@ -81,11 +81,9 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
             if (ExceptionMessageValue != "") {
                 console.log(ExceptionMessageValue);
             }
-            else {                
+            else {
                 console.log(ErrorMessageValue);
             }
         });
     }
 });
-
-

@@ -7,21 +7,18 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
-    <title>@ViewBag.Title</title>    
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>    
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>    
-    <script src="~/Scripts/angular-touch.min.js"></script>    
-    <script src="~/Scripts/ui-grid.min.js"></script>    
-    <script src="~/Application/Root/Config.js"></script>   
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Application/Root/Config.js"></script>
     <script src="~/Application/Root/ApplicationRoot.js"></script>
     <script src="~/Application/Root/themeapp.min.js"></script>
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />     
-    <link rel="stylesheet" href="~/Content/ui-grid.min.css" />     
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/skins/_all-skins.min.css">
-    <link rel="stylesheet" href="~/Content/skins/skin-blue-light.min.css">    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="~/Content/skins/skin-blue-light.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     @functions{
         public string GetAntiForgeryToken()
@@ -465,7 +462,7 @@
     <div id="body">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            
+
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
@@ -481,15 +478,15 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="row">     
+                <div class="row">
                     <div class="col-md-12 col-md-offset-0">
                         <div class="box box-primary">
                             @RenderBody()
                         </div>
-                    </div>               
+                    </div>
                 </div>
             </section>
-          </div>
+        </div>
     </div>
     <div id="footer">
         <footer class="main-footer">
@@ -498,9 +495,9 @@
             </div>
             <strong>Copyright &copy; 2015-2016 <a href="http://google.com">Google</a>.</strong> All rights reserved.
         </footer>
-    </div>    
+    </div>
     <script type="text/javascript">
-        ApplicationConfig.AntiForgeryTokenKey = '@GetAntiForgeryToken()';       
+        ApplicationConfig.AntiForgeryTokenKey = '@GetAntiForgeryToken()';
     </script>
 </body>
 </html>
