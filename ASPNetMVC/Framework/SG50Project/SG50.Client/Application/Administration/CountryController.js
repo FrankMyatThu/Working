@@ -1,14 +1,39 @@
-﻿app.controller('CountryController', function ($scope, $http, $window) {
-    $scope.DisplayData = "";    
+﻿app.controller('CountryController', function ($scope, $http, $window, uiGridConstants) {
+    $scope.DisplayData = "";
+    $scope.CustomizedGridFilter = [
+                    {
+                        condition: uiGridConstants.filter.CONTAINS,
+                        placeholder: 'Contains'
+                    },
+                    {
+                        condition: uiGridConstants.filter.GREATER_THAN,
+                        placeholder: 'Greater than'
+                    },
+                    {
+                        condition: uiGridConstants.filter.LESS_THAN,
+                        placeholder: 'Less than'
+                    },
+    ];
     $scope.gridOptions = {
+        enableFiltering: true,
         paginationPageSizes: [25, 50, 75],
         paginationPageSize: 25,
         columnDefs: [
-            { name: 'Id' },
-            { name: 'Name' }
+            { field: 'Id', filters: $scope.CustomizedGridFilter },
+            { field: 'Name', filters: $scope.CustomizedGridFilter },
+            { field: 'IsActive', filters: $scope.CustomizedGridFilter },
+            { field: 'CreatedDate', filters: $scope.CustomizedGridFilter },
+            { field: 'CreatedBy', filters: $scope.CustomizedGridFilter },
+            { field: 'UpdatedDate', filters: $scope.CustomizedGridFilter },
+            { field: 'UpdatedBy', filters: $scope.CustomizedGridFilter },
         ]
     };
-    //$scope.gridOptions.data = [{ "Id": "0735aca6-d4fa-40f0-ba7c-000044a0600c", "Name": "Test Data 124870 value" }];
+    $scope.toggleFiltering = function () {
+        $scope.gridOptions.enableFiltering = !$scope.gridOptions.enableFiltering;
+        alert("$scope.gridOptions.enableFiltering " + $scope.gridOptions.enableFiltering);
+        /// Need to add animate angular js ....
+        $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
+    };
     $scope.init = function () {
         console.log("$scope.init...");        
         $http({
@@ -29,8 +54,7 @@
             }
             else {
                 console.log(JSON.stringify(data));
-                $scope.gridOptions.data = data;
-                //$scope.DisplayData = data;
+                $scope.gridOptions.data = data;                
                 //$scope.dataLoading = false;
             }
         }).error(function (data, status, headers, config) {            

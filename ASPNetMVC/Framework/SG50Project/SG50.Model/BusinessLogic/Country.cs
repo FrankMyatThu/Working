@@ -50,7 +50,7 @@ namespace SG50.Model.BusinessLogic
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
                 {
                     List_tbl_Country = _ApplicationDbContext.tbl_Country.Select(x => x)                                                                                    
-                                                                                    //.Take(10)
+                                                                                    .Take(10000)
                                                                                     .ToList<tbl_Country>();
                 }
             }
