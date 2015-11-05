@@ -10,8 +10,8 @@
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <div class="form-group">
             <label for="DisplayData">Display Data</label>            
-            <input type="text" name="DisplayData" id="DisplayData" class="form-control" ng-model="DisplayData" />
-            <div id="grid1" ui-grid="gridOptions" class="grid"></div>
+            <input type="text" name="DisplayData" id="DisplayData" class="form-control" ng-model="DisplayData" />                        
+            <div id="grid1" ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
         </div>
     </div>
     <div class="box-footer">

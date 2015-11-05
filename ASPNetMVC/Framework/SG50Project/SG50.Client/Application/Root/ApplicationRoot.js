@@ -1,4 +1,4 @@
-﻿var app = angular.module('ApplicationRoot', ['ngTouch', 'ui.grid']);
+﻿var app = angular.module('ApplicationRoot', ['ngTouch', 'ui.grid', 'ui.grid.pagination']);
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
 
     if (!$window.sessionStorage.getItem("JWTToken")) {
