@@ -29,3 +29,4 @@ NewProject.Client
 =================
 get-project sg50.Client | Install-Package bootstrap -Version 3.3.5
 get-project sg50.Client | Install-Package AngularJS.Core
+get-project sg50.client | Install-Package Angular.UI.Bootstrap
