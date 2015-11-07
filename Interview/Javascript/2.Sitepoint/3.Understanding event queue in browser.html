@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>setTimeout</title>
+  <meta charset="UTF-8" />
+  <script>
+	function printing() {
+	   console.log(1); 
+	   setTimeout(function() { console.log(2); }, 1000); 
+	   setTimeout(function() { console.log(3); }, 0);     /// Even if its time is set to zero, Browser's event queue keep it until it has no more task to execute.
+	   console.log(4);
+	}
+	printing();
+  </script>
+</head>
+<body>	
+</body>
+</html>

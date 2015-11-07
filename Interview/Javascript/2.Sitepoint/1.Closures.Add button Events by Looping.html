@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Closures</title>
+  <meta charset="UTF-8" />
+  <script>
+	/*
+	window.addEventListener("load", function() {
+		for (var i = 1; i < 4; i++) {
+			var button = document.getElementById("button" + i);
+			button.addEventListener("click", function() {
+				console.log("Inside of addEventListener " + i);
+				alert("Clicked button " + i);				
+			});
+		}
+	});
+	*/
+	
+	function ButtonClickHandlerParent(i)
+	{
+		console.log("ButtonClickHandlerParent i " + i);
+		return function ButtonClickHandlerChild(){			
+			alert("Clicked button " + i);
+		}
+	}
+	
+	window.addEventListener("load", function() {
+		for (var i = 1; i < 4; i++) {
+			var button = document.getElementById("button" + i);
+			button.addEventListener("click", ButtonClickHandlerParent(i));
+		}
+	});
+  </script>
+</head>
+<body>
+	<input type="button" id="button1" value="One" />
+	<input type="button" id="button2" value="Two" />
+	<input type="button" id="button3" value="Three" />
+</body>
+</html>

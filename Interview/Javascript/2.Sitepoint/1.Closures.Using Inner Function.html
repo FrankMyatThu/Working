@@ -1,0 +1,35 @@
+<html>
+<head>
+	<script type="text/javascript">
+		function add(value1) {
+			console.log("add.value1 = " + value1);
+			return function doAdd(value2) {
+				console.log("doAdd.value1 = " + value1);
+				console.log("doAdd.value2 = " + value2);
+				//return value1 + value2;
+				return function InnerMost(value3){
+					console.log("InnerMost.value1 = "+ value1);
+					console.log("InnerMost.value2 = "+ value2);
+					console.log("InnerMost.value3 = "+ value3);
+					return value3 + value2 + value1;
+				}
+			};
+		}
+
+		console.log("Before add(1)");
+		var increment = add(1);
+		console.log("Before increment(2)");
+		var foo = increment(2);
+		console.log("Before foo(3)");
+		var finalvalue = foo(3);
+		console.log("finalvalue " + finalvalue);
+	</script>
+</head>
+<body>
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+	<button type="button">Click Me!</button>&nbsp;
+</body>
+</html>

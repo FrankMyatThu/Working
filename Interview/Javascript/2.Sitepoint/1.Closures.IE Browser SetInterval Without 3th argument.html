@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Closures</title>
+  <meta charset="UTF-8" />
+  <script>
+    /*
+	/// This region play without using closure so it can only be run in browsers which is not IE.
+	window.addEventListener("load", function() {
+      window.setInterval(showMessage, 1000, "some message<br />");
+    });
+
+    function showMessage(message) {
+      document.getElementById("message").innerHTML += message;
+    }*/
+	window.addEventListener("load", function() {
+	  var showMessage = getClosure("some message<br />");
+	  window.setInterval(showMessage, 1000);  /// IE cannot run setInteval function which takes 3 arguments.
+	});
+
+	function getClosure(message) {
+	  console.log("getColosure Start");	
+	  
+	  /// Below line will be executed only once, because it is not closure object.
+	  //document.getElementById("message").innerHTML += message;
+
+	  /// Only closure object can be called in multiple times.
+	  return function InnerFunction() {
+	    console.log("Inner Function start");
+		document.getElementById("message").innerHTML += message;
+		console.log("Inner Function end");
+	  };
+	  
+	  console.log("getColosure End");
+	}
+  </script>
+</head>
+<body>
+  <span id="message"></span>
+</body>
+</html>
