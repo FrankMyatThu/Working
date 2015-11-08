@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Prime Checking</title>
+  <meta charset="UTF-8" />
+  <script>
+    console.log(isPrime(16));
+	function isPrime(number) {
+	   // If your browser doesn't support the method Number.isInteger of ECMAScript 6,
+	   // you can implement your own pretty easily
+	   if (typeof number !== 'number' || !Number.isInteger(number)) {
+		  // Alternatively you can throw an error.
+		  return false;
+	   }
+
+	   if (number < 2) {
+		  return false;
+	   }
+	   
+	   if (number === 2) {
+		  return true;
+	   } else if (number % 2 === 0) {
+		  return false;
+	   }
+
+	   /// you don’t need to test numbers greater than the square root of the input number. 
+	   /// I feel that people are allowed to miss this point and I don’t think they should obtain negative feedback for that. 
+	   /// However, showing knowledge of this concept should give extra points.	   
+	   console.log("Before square root of number is " + number);
+	   var squareRoot = Math.sqrt(number);
+	   console.log("squareRoot " + squareRoot);
+	   for(var i = 3; i <= squareRoot; i += 2) {
+		  if (number % i === 0) {
+			 return false;
+		  }
+	   }
+
+	   return true;
+	}
+  </script>
+</head>
+<body>	
+</body>
+</html>

@@ -38,7 +38,7 @@ At home tasks
 	4.http://stackoverflow.com/a/454069/900284 (Encryption vs Signing)
 	5.My own cyber security video at google drive 
 	6.http://crypto.stackexchange.com/questions/2362/what-are-advantages-of-using-a-hmac-over-rsa-with-sha-1-hashes (HMAC vs RSA)	
-6.Algorithm (to be written in C#)
+6.Algorithm (to be written in C# and JavaScript)
 	1.IsPrime()
 	/// (Ref [1.]http://stackoverflow.com/a/7879559/900284  
 	///      [2.]http://stackoverflow.com/a/3959275/900284 
