@@ -13,17 +13,25 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th><a href="" ng-click="order('name')">Name</a></th>
-                            <th><a href="" ng-click="order('age')"> Age</a></th>
-                            <th><a href="" ng-click="order('gender')">Gender</a></th>
+                            <th><a href="" ng-click="order('Id')">Id</a></th>
+                            <th><a href="" ng-click="order('Name')">Name</a></th>
+                            <th><a href="" ng-click="order('IsActive')">IsActive</a></th>
+                            <th><a href="" ng-click="order('CreatedDate')">CreatedDate</a></th>
+                            <th><a href="" ng-click="order('CreatedBy')">CreatedBy</a></th>
+                            <th><a href="" ng-click="order('UpdatedDate')">UpdatedDate</a></th>
+                            <th><a href="" ng-click="order('UpdatedBy')">UpdatedBy</a></th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text" ng-model="search.name" /></td>
-                            <td><input type="text" ng-model="search.age" /></td>
-                            <td><input type="text" ng-model="search.gender" /></td>
+                            <td><input type="text" ng-model="search.Id" /></td>
+                            <td><input type="text" ng-model="search.Name" /></td>
+                            <td><input type="text" ng-model="search.IsActive" /></td>
+                            <td><input type="text" ng-model="search.CreatedDate" /></td>
+                            <td><input type="text" ng-model="search.CreatedBy" /></td>
+                            <td><input type="text" ng-model="search.UpdatedDate" /></td>
+                            <td><input type="text" ng-model="search.UpdatedBy" /></td>
                             <td></td>
                         </tr>
                         <tr ng-repeat="user in students | filter:paginate" ng-class-odd="'odd'">
