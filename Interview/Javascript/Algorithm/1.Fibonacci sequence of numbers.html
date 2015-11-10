@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fibonacci sequence of numbers</title>
+  <meta charset="UTF-8" />
+  <script>
+	/// Fibonacci sequence of numbers
+	/// Example: F0 = 0, F1 = 1, F2 = 1, F3 = 2, F10 = 55.    
+	var fibonacci = function (n) {
+		//console.log("fibonacci n = " + n);
+		switch (n) {
+			case 0: return 0;
+			case 1: return 1;		
+			//default: return fibonacci(n - 2) + fibonacci(n - 1);		
+			default: 
+					console.log("n value = " + n + " ::  f_2(n - 2)");				
+					var MinusTwoValue = fibonacci(n - 2);
+					console.log("n value = " + n + " ::  f_1(n - 1)");				
+					var MinusOneValue = fibonacci(n - 1);
+					var CombineValue = MinusTwoValue + MinusOneValue;				
+					console.log("f_2 = " + MinusTwoValue + " ::: f_1 = " + MinusOneValue + " ::: Combine = " + CombineValue );	
+					console.log("before return n value = " + n);
+					return CombineValue;
+		}
+	};
+	console.log(fibonacci(5));
+	
+	
+	/// var fibonacci = function (n) {		
+	/// 	switch (n) {
+	/// 		case 0: return 0;
+	/// 		case 1: return 1;					
+	/// 		default:
+	/// 				var MinusTwoValue = fibonacci(n - 2);
+	/// 				var MinusOneValue = fibonacci(n - 1);
+	/// 				return MinusTwoValue + MinusOneValue;
+	/// 	}
+	/// };
+	/// console.log(fibonacci(5));
+	
+  </script>
+</head>
+<body>	
+</body>
+</html>

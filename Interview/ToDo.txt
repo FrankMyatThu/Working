@@ -45,3 +45,4 @@ At home tasks
 	///      [3.]http://jsfiddle.net/margusmartsepp/tcfpvc1k/5/ )
 	2.factorial()  
 	3.IsMatch(RegexPattern, Value)
+	4.Fibonacci()
