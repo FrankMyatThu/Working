@@ -1,4 +1,4 @@
--- generate test data 1 million
+-- generate test data 100 thousand
 DECLARE @i INT
 SET @i = 1
 WHILE (@i <= 100000)
@@ -19,9 +19,9 @@ BEGIN
 		NEWID(), -- Id - uniqueidentifier
 		N'Test Data ' + CONVERT(VARCHAR(255), @i) + ' value', -- Name - nvarchar		
 		0, -- IsActive - bit
-		'2015-11-03 11:39:18', -- CreatedDate - datetime
+		GETDATE(), -- CreatedDate - datetime
 		N'B59D79E2-C4B8-4E9F-9B63-E4E51ABE6E4B', -- CreatedBy - nvarchar
-		'2015-11-03 11:39:18', -- UpdatedDate - datetime
+		GETDATE(), -- UpdatedDate - datetime
 		N'B59D79E2-C4B8-4E9F-9B63-E4E51ABE6E4B' -- UpdatedBy - nvarchar
 	)
 	SET @i = @i + 1

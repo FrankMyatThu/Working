@@ -1,5 +1,20 @@
 ﻿app.controller('CountryController', function ($scope, $http, $window) {
     $scope.DisplayData = "";
+    $scope.currentPage = 1;
+    $scope.order = function (predicate) {
+        console.log("order by " + predicate);
+    };
+    $scope.students = "";
+    $scope.totalItems = 100//$scope.students.length;  
+    $scope.numPerPage = 5;
+    $scope.paginate = function (value) {
+        console.log("$scope.currentPage " + $scope.currentPage);
+        var begin, end, index;
+        begin = ($scope.currentPage - 1) * $scope.numPerPage;
+        end = begin + $scope.numPerPage;
+        index = $scope.students.indexOf(value);
+        return (begin <= index && index < end);
+    };
     $scope.init = function () {
         $http({
             method: 'POST',
@@ -19,6 +34,7 @@
             }
             else {
                 console.log(JSON.stringify(data));
+                $scope.students = data;
                 //$scope.DisplayData = data;
                 //$scope.dataLoading = false;
             }
@@ -47,14 +63,6 @@
             //$scope.dataLoading = false;
         });
     };
-
-    //angular.element(document).ready(function () {
-    //    //console.log("inside jqlite ApplicationConfig.AntiForgeryTokenKey " + ApplicationConfig.AntiForgeryTokenKey);
-    //    //console.log("CountryController $scope.$parent.antiForgeryToken ... " + $scope.$parent.antiForgeryToken);
-    //    //console.log("CountryController init event " + ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList));
-    //    //console.log("$scope.$parent.antiForgeryToken " + $scope.$parent.antiForgeryToken);        
-    //});
-
     $scope.Home = function () {
         $scope.dataLoading = true;
         $http({

@@ -34,10 +34,14 @@
                             <td><input type="text" ng-model="search.UpdatedBy" /></td>
                             <td></td>
                         </tr>
-                        <tr ng-repeat="user in students | filter:paginate" ng-class-odd="'odd'">
-                            <td>{{ user.name}}</td>
-                            <td>{{ user.age}}</td>
-                            <td>{{ user.gender}}</td>
+                        <tr ng-repeat="country in countries | filter:paginate" ng-class-odd="'odd'">
+                            <td>{{ country.Id }}</td>
+                            <td>{{ country.Name }}</td>
+                            <td>{{ country.IsActive }}</td>
+                            <td>{{ country.CreatedDate }}</td>
+                            <td>{{ country.CreatedBy }}</td>
+                            <td>{{ country.UpdatedDate }}</td>
+                            <td>{{ country.UpdatedBy }}</td>
                             <td>
                                 <button class="btn">
                                     Edit
