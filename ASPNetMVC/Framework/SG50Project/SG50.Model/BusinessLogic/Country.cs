@@ -43,15 +43,68 @@ namespace SG50.Model.BusinessLogic
             }
         }
 
-        public List<tbl_Country> GetCountry()
+        public List<tbl_GridListing<CountryBindingModel>> GetCountryList(int PagerShowIndexOneUpToX = 5, int RecordPerPage = 5, int BatchIndex = 2, int RecordPerBatch = 25)
         {
-            List<tbl_Country> List_tbl_Country = new List<tbl_Country>();
+            List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();
             try {
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
                 {
-                    List_tbl_Country = _ApplicationDbContext.tbl_Country.Select(x => x)                                                                                    
-                                                                                    .Take(10000)
-                                                                                    .ToList<tbl_Country>();
+                    tbl_GridListing<CountryBindingModel> List_tbl_GridListing = new tbl_GridListing<CountryBindingModel>();
+                    int TotalRecordCount = _ApplicationDbContext.tbl_Country.Count();
+
+                    #region Preparing tbl_Pager
+                    List<tbl_Pager> List_tbl_Pager = new List<tbl_Pager>();
+                    int TotalPage = (int)Math.Ceiling((double)TotalRecordCount / (double)RecordPerPage);
+                    int Pager_BatchIndex = 1;
+                    int Pager_BehindTheScenseIndex = 1;
+                    for (int i = 0; i < TotalPage; i++)
+                    {
+                        if (Pager_BehindTheScenseIndex > PagerShowIndexOneUpToX)
+                            Pager_BehindTheScenseIndex = 1;
+
+                        if (i > PagerShowIndexOneUpToX)
+                            Pager_BatchIndex++;
+
+                        List_tbl_Pager.Add(new tbl_Pager { 
+                            BatchIndex = Pager_BatchIndex,
+                            DisplayPageIndex = (i+1),
+                            BehindTheScenesIndex = Pager_BehindTheScenseIndex
+                        });
+
+                        Pager_BehindTheScenseIndex++;
+                    }
+                    List_tbl_GridListing.List_tbl_Pager = List_tbl_Pager;
+                    #endregion
+
+                    #region Preparing data table
+                    List<CountryBindingModel> List_CountryBindingModel = _ApplicationDbContext.tbl_Country
+                                                                .OrderBy(x => x.CreatedDate)
+                                                                .Skip((BatchIndex - 1) * RecordPerBatch)
+                                                                .Take(RecordPerBatch)
+                                                                .AsEnumerable()
+                                                                .Select((x, i) => new CountryBindingModel
+                                                                {
+                                                                    SrNo = i + 1,
+                                                                    TotalRecordCount = TotalRecordCount,
+                                                                    Id = x.Id.ToString(),
+                                                                    Name = x.Name,
+                                                                    IsActive = x.IsActive,
+                                                                    CreatedBy = x.CreatedBy,
+                                                                    CreatedDate = x.CreatedDate,
+                                                                    UpdatedBy = x.UpdatedBy,
+                                                                    UpdatedDate = x.UpdatedDate
+                                                                })
+                                                                .OrderBy(x=> x.SrNo)
+                                                                .ToList();
+
+                    //// *********************************
+                    //// Still need to modify order ....
+                    //// *********************************
+                    List_tbl_GridListing.List_T = List_CountryBindingModel;
+                    #endregion
+
+                    List_tbl_Country.Add(List_tbl_GridListing);
+                    
                 }
             }
             catch (Exception ex) {

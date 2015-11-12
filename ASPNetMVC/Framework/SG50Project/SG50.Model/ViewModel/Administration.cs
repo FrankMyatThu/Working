@@ -60,6 +60,8 @@ namespace SG50.Model.ViewModel
     }
     public class CountryBindingModel
     {
+        public int? SrNo { get; set; }
+        public int? TotalRecordCount { get; set; }
 
         public string Id { get; set; }
 
@@ -68,7 +70,13 @@ namespace SG50.Model.ViewModel
         [StringLength(255, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
         [RegularExpression(FormatStandardizer.Server_Name_MultiWord, ErrorMessage = "Invalid {0}")]
         public string Name { get; set; }
+
+        public bool? IsActive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public Guid? CreatedBy { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public Guid? UpdatedBy { get; set; }
     
-    }
+    }    
     #endregion
 }

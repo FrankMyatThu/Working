@@ -22,7 +22,7 @@ namespace SG50.Service.Controllers
         public IHttpActionResult GetCountry(CountryBindingModel _CountryBindingModel)
         {
             ApplicationLogger.WriteTrace("Start CountryController GetCountry", LoggerName);
-            List<tbl_Country> List_tbl_Country = new List<tbl_Country>();            
+            List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();            
             if (!ModelState.IsValid)
             {
                 string messages = string.Join("; ", ModelState.Values
@@ -35,7 +35,7 @@ namespace SG50.Service.Controllers
 
             try
             {   
-                List_tbl_Country = (new Country()).GetCountry();                
+                List_tbl_Country = (new Country()).GetCountryList();                
             }
             catch (Exception ex)
             {

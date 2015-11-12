@@ -84,6 +84,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="POCO\Administration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Common.cs" />
     <Compile Include="ViewModel\Administration.cs" />
   </ItemGroup>
   <ItemGroup>
