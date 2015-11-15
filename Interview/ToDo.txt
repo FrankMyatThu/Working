@@ -5,44 +5,62 @@ On the way tasks
 
 At home tasks
 ==============
-1.Asp.net CRUD
-2.SQL
-	1.ROW_NUMBER() OR MAX() nested query
-	2.DENSE_RANK()
-	3.PIVOT()
-	4.LOOP
-	5.LINQ join statement implementation
-3.Javascript
-	1.http://www.sitepoint.com/5-typical-javascript-interview-exercises/
-	2.http://www.sitepoint.com/5-javascript-interview-exercises/
-	3.http://programmers.stackexchange.com/a/251108/50746
-4.DesignPattern (General Knowledge)
-	Creational Patterns
-		1.Singleton 
-		2.Factory
-		3.Builder 
-		4.Template		
-	Structural Patterns
-		5.Decorator 
-		6.Proxy 
-		7.Adapter
-		8.Facade		
-	Behavioral Patterns
-		9.Command
-	   10.Stratergy	   
-	   11.Observer		
-5.Cryptography (General Knowledge)
-	1.http://securitygeekpro.com/cryptography-questions-asked-during-it-interviews/
-	2.http://security.stackexchange.com/questions/14858/mac-vs-encryption (Encryption vs Mac)
-	3.http://security.stackexchange.com/questions/2202/lessons-learned-and-misconceptions-regarding-encryption-and-cryptology/2206#2206 (Encryption Vs MAC)
-	4.http://stackoverflow.com/a/454069/900284 (Encryption vs Signing)
-	5.My own cyber security video at google drive 
-	6.http://crypto.stackexchange.com/questions/2362/what-are-advantages-of-using-a-hmac-over-rsa-with-sha-1-hashes (HMAC vs RSA)	
-6.Algorithm (to be written in C# and JavaScript)
-	1.IsPrime()
-	/// (Ref [1.]http://stackoverflow.com/a/7879559/900284  
-	///      [2.]http://stackoverflow.com/a/3959275/900284 
-	///      [3.]http://jsfiddle.net/margusmartsepp/tcfpvc1k/5/ )
-	2.factorial()  
-	3.IsMatch(RegexPattern, Value)
-	4.Fibonacci()
+	Practical Area
+	==============
+		1.Asp.net CRUD
+		2.SQL
+			1.ROW_NUMBER() OR MAX() nested query
+			2.DENSE_RANK()
+			3.PIVOT()
+			4.LOOP
+			5.LINQ join statement implementation
+		3.Algorithm (to be written in C# and JavaScript)
+			1.IsPrime() [Checking if the value of user input field is prime number]
+			/// (Ref [1.]https://en.wikipedia.org/wiki/Factorial (It is some kind of looping process.)
+			///      [2.]http://stackoverflow.com/a/7879559/900284  
+			///      [3.]http://stackoverflow.com/a/3959275/900284 
+			///      [4.]http://jsfiddle.net/margusmartsepp/tcfpvc1k/5/ )
+			2.factorial() [Accept user input value and then generate its factorial number]
+			3.Fibonacci() [Accept user input value and then generate its Fibonacci number]
+			/// (Ref [1.]http://stackoverflow.com/a/12019115/900284)
+			/// ^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$
+			/// └─────┬────┘└───┬──┘└─────┬─────┘└─────┬─────┘ └───┬───┘
+			///	   │         │         │            │           no _ or . at the end
+			///	   │         │         │            │
+			///	   │         │         │            allowed characters
+			///	   │         │         │
+			///	   │         │         no __ or _. or ._ or .. inside
+			///	   │         │
+			///	   │         no _ or . at the beginning
+			///	   │
+			///	   username is 8-20 characters long
+			4.Check if user name is in corrected format.
+			
+	Theory and Reference Area
+	=========================
+		4.Javascript
+			1.http://www.sitepoint.com/5-typical-javascript-interview-exercises/
+			2.http://www.sitepoint.com/5-javascript-interview-exercises/
+			3.http://programmers.stackexchange.com/a/251108/50746
+		5.DesignPattern (General Knowledge)
+			Creational Patterns
+				1.Singleton 
+				2.Factory
+				3.Builder 
+				4.Template		
+			Structural Patterns
+				5.Decorator 
+				6.Proxy 
+				7.Adapter
+				8.Facade		
+			Behavioral Patterns
+				9.Command
+			   10.Stratergy	   
+			   11.Observer		
+		6.Cryptography (General Knowledge)
+			1.http://securitygeekpro.com/cryptography-questions-asked-during-it-interviews/
+			2.http://security.stackexchange.com/questions/14858/mac-vs-encryption (Encryption vs Mac)
+			3.http://security.stackexchange.com/questions/2202/lessons-learned-and-misconceptions-regarding-encryption-and-cryptology/2206#2206 (Encryption Vs MAC)
+			4.http://stackoverflow.com/a/454069/900284 (Encryption vs Signing)
+			5.My own cyber security video at google drive 
+			6.http://crypto.stackexchange.com/questions/2362/what-are-advantages-of-using-a-hmac-over-rsa-with-sha-1-hashes (HMAC vs RSA)
