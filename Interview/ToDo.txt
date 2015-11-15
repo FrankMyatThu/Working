@@ -15,7 +15,7 @@ At home tasks
 3.Javascript
 	1.http://www.sitepoint.com/5-typical-javascript-interview-exercises/
 	2.http://www.sitepoint.com/5-javascript-interview-exercises/
-	3.http://programmers.stackexchange.com/questions/251101/i-know-javascript-really-well-but-i-bomb-coding-interviews/251108#251108
+	3.http://programmers.stackexchange.com/a/251108/50746
 4.DesignPattern (General Knowledge)
 	Creational Patterns
 		1.Singleton 

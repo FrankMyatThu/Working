@@ -5,38 +5,35 @@
   <meta charset="UTF-8" />
   <script>
 	/// Fibonacci sequence of numbers
-	/// Example: F0 = 0, F1 = 1, F2 = 1, F3 = 2, F10 = 55.    
-	var fibonacci = function (n) {
-		//console.log("fibonacci n = " + n);
+	/// Example: F0 = 0, F1 = 1, F2 = 1, F3 = 2, F10 = 55. 
+	/// var fibonacci = function (n) {
+	/// 	return fibonacci(n - 2) + fibonacci(n - 1);
+	/// };
+	/// console.log(fibonacci(10));
+
+	var fibonacci = function (n) {	
+		console.log("[[[	Start fibonacci function (n is "+ n +") ]]]");
 		switch (n) {
 			case 0: return 0;
-			case 1: return 1;		
-			//default: return fibonacci(n - 2) + fibonacci(n - 1);		
+			case 1: return 1;
 			default: 
-					console.log("n value = " + n + " ::  f_2(n - 2)");				
-					var MinusTwoValue = fibonacci(n - 2);
-					console.log("n value = " + n + " ::  f_1(n - 1)");				
-					var MinusOneValue = fibonacci(n - 1);
-					var CombineValue = MinusTwoValue + MinusOneValue;				
-					console.log("f_2 = " + MinusTwoValue + " ::: f_1 = " + MinusOneValue + " ::: Combine = " + CombineValue );	
-					console.log("before return n value = " + n);
-					return CombineValue;
+					console.log("<<Before f_2>> n = " + n + " ::  f_2(n - 2)");				
+					var f_2 = fibonacci(n - 2);					
+					console.log("<<After f_2>> f_2 = " + f_2 + " :: n = "+ n);	
+					
+					console.log("[Before f_1] n = " + n + " ::  f_1(n - 1)");				
+					var f_1 = fibonacci(n - 1);					
+					console.log("[After f_1] f_1 = " + f_1 + " :: n = "+ n);	
+					
+					console.log("--Result-- f(n == "+ n +") f_2 is "+ f_2 +" + f_1 is "+ f_1 +" = " + (f_2 + f_1)) ;
+					return f_2 + f_1;
 		}
+		console.log("[[[	End fibonacci function (n is "+ n +") ]]]");
 	};
-	console.log(fibonacci(5));
-	
-	
-	/// var fibonacci = function (n) {		
-	/// 	switch (n) {
-	/// 		case 0: return 0;
-	/// 		case 1: return 1;					
-	/// 		default:
-	/// 				var MinusTwoValue = fibonacci(n - 2);
-	/// 				var MinusOneValue = fibonacci(n - 1);
-	/// 				return MinusTwoValue + MinusOneValue;
-	/// 	}
-	/// };
-	/// console.log(fibonacci(5));
+	console.log("Before fibonacci calling");
+	console.log(fibonacci(4));
+	console.log("After fibonacci calling");
+
 	
   </script>
 </head>
