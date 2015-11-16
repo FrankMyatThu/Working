@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Factorial</title>
+	<script type="text/javascript">
+		function ListOutFactorial1to1k()
+		{
+			var FactorialList = "";
+			for(var i=1; i<=1000; i++)
+			{				
+				FactorialList = FactorialList + GetFactorial(i) + "<br>";
+			}
+			document.getElementById("lblListOutFactorial1to1k").innerHTML = FactorialList;
+		}
+		
+		function GetFactorialNumber()
+		{
+			var txtNumber = document.getElementById("txtNumber").value;
+			document.getElementById("lblFactorial").innerHTML = GetFactorial(txtNumber);
+			return;
+		}
+	
+		function GetFactorial(ValueToGenerate)
+		{
+			var lastMultipliedValue = 1;
+			for(var i=1; i <= ValueToGenerate; i++)
+			{
+				lastMultipliedValue *= i;
+			}
+			return lastMultipliedValue;
+		}
+	</script>
+</head>
+<body>	
+	<input type="text" id="txtNumber" placeholder="Factorial Number" />
+	<button type="button" id="btnCheck" onclick="GetFactorialNumber();" >GetFactorialNumber</button>
+	<label id="lblFactorial">...</label>
+	
+	<br>
+	<button type="button" id="btnListOutFactorial1to1k" onclick="ListOutFactorial1to1k();">List out Factorial(s) 1 to 1k</button>
+	
+	<br>
+	<label id="lblListOutFactorial1to1k">...</label>
+	
+</body>
+</html>

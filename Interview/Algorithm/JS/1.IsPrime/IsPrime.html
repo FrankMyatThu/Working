@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Is Prime</title>
+	<script type="text/javascript">
+		function ListOutPrime1to1k()
+		{
+			var PrimeList = "";
+			for(var i=0; i<=1000; i++)
+			{				
+				if(IsPrime(i))
+				{
+					PrimeList = PrimeList + i + "<br>";
+				}				
+			}
+			document.getElementById("lblListOutPrime1to1k").innerHTML = PrimeList;
+		}
+		
+		function IsPrimeChecker()
+		{
+			var txtNumber = document.getElementById("txtNumber").value;
+			document.getElementById("lblIsPrime").innerHTML = IsPrime(txtNumber);
+			return;
+		}
+	
+		function IsPrime(ValueToCheck)
+		{
+			var IsPrime = true;			
+			if(ValueToCheck <= 1)
+			{
+				IsPrime = false;
+			}			
+			
+			for(var i=2; i <= Math.sqrt(ValueToCheck); i++)
+			{
+				if(ValueToCheck % i == 0) IsPrime = false;
+			}
+			return IsPrime;
+		}
+	</script>
+</head>
+<body>	
+	<input type="text" id="txtNumber" placeholder="Prime Number" />
+	<button type="button" id="btnCheck" onclick="IsPrimeChecker();" >Check</button>
+	<label id="lblIsPrime">...</label>
+	
+	<br>
+	<button type="button" id="btnListOutPrime1to1k" onclick="ListOutPrime1to1k();">List out prime(s) 1 to 1k</button>
+	
+	<br>
+	<label id="lblListOutPrime1to1k">...</label>
+	
+</body>
+</html>

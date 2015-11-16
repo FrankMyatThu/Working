@@ -15,13 +15,20 @@ At home tasks
 			4.LOOP
 			5.LINQ join statement implementation
 		3.Algorithm (to be written in C# and JavaScript)
-			1.IsPrime() [Checking if the value of user input field is prime number]
+		
+			/// (Ref [1.]https://en.wikipedia.org/wiki/Prime_number
+			///      [2.]http://studymaths.co.uk/topics/checkIfPrime.php )
+			1.IsPrime() [Checking if the value of user input field is prime number && List out prime number 1 to 1k]
+			
 			/// (Ref [1.]https://en.wikipedia.org/wiki/Factorial (It is some kind of looping process.)
 			///      [2.]http://stackoverflow.com/a/7879559/900284  
 			///      [3.]http://stackoverflow.com/a/3959275/900284 
 			///      [4.]http://jsfiddle.net/margusmartsepp/tcfpvc1k/5/ )
-			2.factorial() [Accept user input value and then generate its factorial number]
-			3.Fibonacci() [Accept user input value and then generate its Fibonacci number]
+			2.Factorial() [Accept user input value and then generate its factorial number && List out factorial number 1 to 1k]
+			
+			/// (Ref [1.]https://en.wikipedia.org/wiki/Fibonacci_number)
+			3.Fibonacci() [Accept user input value and then generate its Fibonacci number && List out fibonacci number 1 to 1k]
+			
 			/// (Ref [1.]http://stackoverflow.com/a/12019115/900284)
 			/// ^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$
 			/// └─────┬────┘└───┬──┘└─────┬─────┘└─────┬─────┘ └───┬───┘
