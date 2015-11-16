@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Fibonacci</title>
+	<script type="text/javascript">
+		function ListOutFibonacci1to1k()
+		{
+			var Fibonacci1to1k = "";
+			for(var i=1; i <= 10; i++)
+			{				
+				Fibonacci1to1k = Fibonacci1to1k + ""+ i +"  = " + GetFibonacci(i) + "<br>";
+			}
+			document.getElementById("lblListOutFibonacci1to1k").innerHTML = Fibonacci1to1k;
+		}
+		
+		function GetFibonacciNumber()
+		{
+			var txtNumber = document.getElementById("txtNumber").value;
+			document.getElementById("lblFibonacci").innerHTML = GetFibonacci(txtNumber);
+			return;
+		}
+	
+		function GetFibonacci(ValueToGenerate)
+		{
+			if(ValueToGenerate == 0)
+				return 0;
+			if(ValueToGenerate == 1)
+				return 1;
+			
+			return GetFibonacci(ValueToGenerate - 2) + GetFibonacci(ValueToGenerate - 1);
+		}
+	</script>
+</head>
+<body>	
+	<input type="text" id="txtNumber" placeholder="Fibonacci Number" />
+	<button type="button" id="btnCheck" onclick="GetFibonacciNumber();" >GetFibonacciNumber</button>
+	<label id="lblFibonacci">...</label>
+	
+	<br>
+	<button type="button" id="btnListOutFibonacci1to1k" onclick="ListOutFibonacci1to1k();">List out Fibonacci(s) 1 to 10</button>
+	
+	<br>
+	<label id="lblListOutFibonacci1to1k">...</label>
+	
+</body>
+</html>

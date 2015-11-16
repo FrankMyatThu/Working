@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Check user name format</title>
+	<script type="text/javascript">
+		function IsUserNameCorrect()
+		{
+			var txtUserName = document.getElementById("txtUserName").value;
+			document.getElementById("lblValidity").innerHTML = IsValid(txtUserName);
+			return;
+		}
+	
+		function IsValid(ValueToCheck)
+		{
+			var Pattern = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-z0-9._]*[a-z0-9]$/i;
+			var IsValid = Pattern.test(ValueToCheck);
+			return IsValid;
+		}
+	</script>
+</head>
+<body>	
+	<input type="text" id="txtUserName" placeholder="User Name" />
+	<button type="button" id="btnCheck" onclick="IsUserNameCorrect();" >Check validity</button>
+	<label id="lblValidity">...</label>
+</body>
+</html>

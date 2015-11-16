@@ -30,7 +30,8 @@ At home tasks
 			3.Fibonacci() [Accept user input value and then generate its Fibonacci number && List out fibonacci number 1 to 1k]
 			
 			/// (Ref [1.]http://stackoverflow.com/a/12019115/900284)
-			/// ^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$
+			/// ^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-z0-9._]*[a-z0-9]$/i  /// negative lookbehind cannot be used in some programming language.
+			/// ^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-z0-9._]+(?<![_.])$/i
 			/// └─────┬────┘└───┬──┘└─────┬─────┘└─────┬─────┘ └───┬───┘
 			///	   │         │         │            │           no _ or . at the end
 			///	   │         │         │            │
