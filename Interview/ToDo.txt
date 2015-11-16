@@ -14,7 +14,7 @@ At home tasks
 			3.PIVOT()
 			4.LOOP
 			5.LINQ join statement implementation
-		3.Algorithm (to be written in C# and JavaScript)
+		3.Algorithm (to be written in JavaScript)
 		
 			/// (Ref [1.]https://en.wikipedia.org/wiki/Prime_number
 			///      [2.]http://studymaths.co.uk/topics/checkIfPrime.php )
