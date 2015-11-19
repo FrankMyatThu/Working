@@ -10,54 +10,79 @@
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <div class="form-group">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped table-condensed table-hover">
                     <thead>
                         <tr>
-                            <th><a href="" ng-click="order('Id')">Id</a></th>
-                            <th><a href="" ng-click="order('Name')">Name</a></th>
-                            <th><a href="" ng-click="order('IsActive')">IsActive</a></th>
-                            <th><a href="" ng-click="order('CreatedDate')">CreatedDate</a></th>
-                            <th><a href="" ng-click="order('CreatedBy')">CreatedBy</a></th>
-                            <th><a href="" ng-click="order('UpdatedDate')">UpdatedDate</a></th>
-                            <th><a href="" ng-click="order('UpdatedBy')">UpdatedBy</a></th>
-                            <th>&nbsp;</th>
+                            <th>SrNo</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>IsActive</th>
+                            <th>CreatedDate</th>
+                            <th>CreatedBy</th>
+                            <th>UpdatedDate</th>
+                            <th>UpdatedBy</th>
+                        </tr>
+                        <tr>
+                            <th><input type="text" ng-model="search.SrNo" /></th>
+                            <th><input type="text" ng-model="search.Id" /></th>
+                            <th><input type="text" ng-model="search.Name" /></th>
+                            <th><input type="text" ng-model="search.IsActive" /></th>
+                            <th><input type="text" ng-model="search.CreatedDate" /></th>
+                            <th><input type="text" ng-model="search.CreatedBy" /></th>
+                            <th><input type="text" ng-model="search.UpdatedDate" /></th>
+                            <th><input type="text" ng-model="search.UpdatedBy" /></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="text" ng-model="search.Id" /></td>
-                            <td><input type="text" ng-model="search.Name" /></td>
-                            <td><input type="text" ng-model="search.IsActive" /></td>
-                            <td><input type="text" ng-model="search.CreatedDate" /></td>
-                            <td><input type="text" ng-model="search.CreatedBy" /></td>
-                            <td><input type="text" ng-model="search.UpdatedDate" /></td>
-                            <td><input type="text" ng-model="search.UpdatedBy" /></td>
-                            <td></td>
-                        </tr>
-                        <tr ng-repeat="country in countries | filter:paginate" ng-class-odd="'odd'">
-                            <td>{{ country.Id }}</td>
-                            <td>{{ country.Name }}</td>
-                            <td>{{ country.IsActive }}</td>
-                            <td>{{ country.CreatedDate }}</td>
-                            <td>{{ country.CreatedBy }}</td>
-                            <td>{{ country.UpdatedDate }}</td>
-                            <td>{{ country.UpdatedBy }}</td>
-                            <td>
-                                <button class="btn">
-                                    Edit
-                                </button>
-                            </td>
+                        <tr ng-repeat="item in items | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+                            <td>{{item.SrNo}}</td>
+                            <td>{{item.Id}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.IsActive}}</td>
+                            <td>{{item.CreatedDate}}</td>
+                            <td>{{item.CreatedBy}}</td>
+                            <td>{{item.UpdatedDate}}</td>
+                            <td>{{item.UpdatedBy}}</td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <span class="pull-left">
+                                            <ul class="pagination">
+                                                <li ng-class="prevPageDisabled()">
+                                                    <a href ng-click="prevPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;First</a>
+                                                </li>
+                                                <li ng-class="prevPageDisabled()">
+                                                    <a href ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous</a>
+                                                </li>
+                                                <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                                                    <a href="#">{{n+1}}</a>
+                                                </li>
+                                                <li ng-class="nextPageDisabled()">
+                                                    <a href ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;Next</a>
+                                                </li>
+                                                <li ng-class="nextPageDisabled()">
+                                                    <a href ng-click="nextPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;Last</a>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="pull-right">
+                                            <ul class="pagination">
+                                                <li><strong>100</strong> of <strong>100000</strong></li>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
-            </div>
-            <pagination ng-model="currentPage"
-                        total-items="totalItems"
-                        max-size="5"
-                        boundary-links="true"
-                        items-per-page="numPerPage"
-                        class="pagination-sm">
-            </pagination>
+            </div>            
         </div>
     </div>
     <div class="box-footer">

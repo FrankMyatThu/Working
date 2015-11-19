@@ -84,7 +84,7 @@ namespace SG50.Model.BusinessLogic
                                                                 .AsEnumerable()
                                                                 .Select((x, i) => new CountryBindingModel
                                                                 {
-                                                                    SrNo = i + 1,
+                                                                    SrNo = i + 1 + ((BatchIndex - 1) * RecordPerBatch),
                                                                     TotalRecordCount = TotalRecordCount,
                                                                     Id = x.Id.ToString(),
                                                                     Name = x.Name,
@@ -94,7 +94,7 @@ namespace SG50.Model.BusinessLogic
                                                                     UpdatedBy = x.UpdatedBy,
                                                                     UpdatedDate = x.UpdatedDate
                                                                 })
-                                                                .OrderBy(x=> x.SrNo)
+                                                                .OrderBy(x => x.CreatedDate)
                                                                 .ToList();
 
                     //// *********************************
