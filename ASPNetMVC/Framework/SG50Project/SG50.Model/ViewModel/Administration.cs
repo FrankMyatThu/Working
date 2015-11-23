@@ -58,6 +58,24 @@ namespace SG50.Model.ViewModel
         public string Password { get; set; }
 
     }
+
+    /// <summary>
+    ///  To search data
+    /// </summary>
+    public class Country_Criteria_Model : tbl_Pager_To_Service
+    {
+        public int? SrNo { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public bool? IsActive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public Guid? CreatedBy { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public Guid? UpdatedBy { get; set; }
+    }
+    /// <summary>
+    /// To bind data
+    /// </summary>
     public class CountryBindingModel
     {
         public int? SrNo { get; set; }

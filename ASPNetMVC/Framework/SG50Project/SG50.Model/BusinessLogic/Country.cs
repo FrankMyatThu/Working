@@ -43,7 +43,8 @@ namespace SG50.Model.BusinessLogic
             }
         }
 
-        public List<tbl_GridListing<CountryBindingModel>> GetCountryList(int PagerShowIndexOneUpToX = 5, int RecordPerPage = 5, int BatchIndex = 2, int RecordPerBatch = 25)
+        //public List<tbl_GridListing<CountryBindingModel>> GetCountryList(int PagerShowIndexOneUpToX = 5, int RecordPerPage = 5, int BatchIndex = 2, int RecordPerBatch = 25)
+        public List<tbl_GridListing<CountryBindingModel>> GetCountryList(Country_Criteria_Model _Country_Criteria_Model)
         {
             List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();
             try {
@@ -52,39 +53,41 @@ namespace SG50.Model.BusinessLogic
                     tbl_GridListing<CountryBindingModel> List_tbl_GridListing = new tbl_GridListing<CountryBindingModel>();
                     int TotalRecordCount = _ApplicationDbContext.tbl_Country.Count();
 
-                    #region Preparing tbl_Pager
-                    List<tbl_Pager> List_tbl_Pager = new List<tbl_Pager>();
-                    int TotalPage = (int)Math.Ceiling((double)TotalRecordCount / (double)RecordPerPage);
+                    #region Preparing tbl_Pager_To_Client
+                    List<tbl_Pager_To_Client> List_tbl_Pager_To_Client = new List<tbl_Pager_To_Client>();
+                    int TotalPage = (int)Math.Ceiling((double)TotalRecordCount / (double)_Country_Criteria_Model.RecordPerPage);
                     int Pager_BatchIndex = 1;
-                    int Pager_BehindTheScenseIndex = 1;
-                    for (int i = 0; i < TotalPage; i++)
+                    int Pager_BehindTheScenseIndex = 1;                    
+                    for (int i = 1; i <= TotalPage; i++)
                     {
-                        if (Pager_BehindTheScenseIndex > PagerShowIndexOneUpToX)
+                        if (Pager_BehindTheScenseIndex > _Country_Criteria_Model.PagerShowIndexOneUpToX)
                             Pager_BehindTheScenseIndex = 1;
 
-                        if (i > PagerShowIndexOneUpToX)
-                            Pager_BatchIndex++;
-
-                        List_tbl_Pager.Add(new tbl_Pager { 
+                        List_tbl_Pager_To_Client.Add(new tbl_Pager_To_Client { 
                             BatchIndex = Pager_BatchIndex,
-                            DisplayPageIndex = (i+1),
+                            DisplayPageIndex = i,
                             BehindTheScenesIndex = Pager_BehindTheScenseIndex
                         });
 
                         Pager_BehindTheScenseIndex++;
+
+                        if ((i % _Country_Criteria_Model.PagerShowIndexOneUpToX) == 0) {
+                            Pager_BatchIndex++;
+                        }
+                        
                     }
-                    List_tbl_GridListing.List_tbl_Pager = List_tbl_Pager;
+                    List_tbl_GridListing.List_tbl_Pager_To_Client = List_tbl_Pager_To_Client;
                     #endregion
 
                     #region Preparing data table
                     List<CountryBindingModel> List_CountryBindingModel = _ApplicationDbContext.tbl_Country
                                                                 .OrderBy(x => x.CreatedDate)
-                                                                .Skip((BatchIndex - 1) * RecordPerBatch)
-                                                                .Take(RecordPerBatch)
+                                                                .Skip((_Country_Criteria_Model.BatchIndex - 1) * _Country_Criteria_Model.RecordPerBatch)
+                                                                .Take(_Country_Criteria_Model.RecordPerBatch)
                                                                 .AsEnumerable()
                                                                 .Select((x, i) => new CountryBindingModel
                                                                 {
-                                                                    SrNo = i + 1 + ((BatchIndex - 1) * RecordPerBatch),
+                                                                    SrNo = i + 1 + ((_Country_Criteria_Model.BatchIndex - 1) * _Country_Criteria_Model.RecordPerBatch),
                                                                     TotalRecordCount = TotalRecordCount,
                                                                     Id = x.Id.ToString(),
                                                                     Name = x.Name,
@@ -97,9 +100,6 @@ namespace SG50.Model.BusinessLogic
                                                                 .OrderBy(x => x.CreatedDate)
                                                                 .ToList();
 
-                    //// *********************************
-                    //// Still need to modify order ....
-                    //// *********************************
                     List_tbl_GridListing.List_T = List_CountryBindingModel;
                     #endregion
 

@@ -10,6 +10,20 @@ app.controller('CountryController', function ($scope, $http, $window) {
     $scope.itemsPerPage = 5;
     $scope.currentPage = 0;
     $scope.items = [];
+    $scope.Country_Criteria_Model = {
+        "BatchIndex": "2",
+        "PagerShowIndexOneUpToX": "5",
+        "RecordPerPage": "5",
+        "RecordPerBatch": "25",
+        "SrNo": "",
+        "Id": "",
+        "Name": "",
+        "IsActive": "",
+        "CreatedDate": "",
+        "CreatedBy": "",
+        "UpdatedDate": "",
+        "UpdatedBy": "",
+    };
 
     $scope.range = function () {
         var rangeSize = 5;
@@ -25,6 +39,10 @@ app.controller('CountryController', function ($scope, $http, $window) {
             ret.push(i);
         }
         return ret;
+
+        ///var _List_tbl_Pager_To_Client = Json.where(x=> x.BatchIndex == 2).select(x=>x).list();
+        /// return _List_tbl_Pager_To_Client;
+
     };
 
     $scope.prevPage = function () {
@@ -56,6 +74,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
     };
     
     $scope.init = function () {
+        console.log("$scope.Country_Criteria_Model = " + $scope.Country_Criteria_Model);
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -63,7 +82,8 @@ app.controller('CountryController', function ($scope, $http, $window) {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
                 'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey // $scope.$parent.antiForgeryToken
-            }
+            },
+            data: $scope.Country_Criteria_Model
         }).success(function (data, status, headers, config) {
             if (data.success == false) {
                 var str = '';
@@ -74,11 +94,21 @@ app.controller('CountryController', function ($scope, $http, $window) {
             }
             else {
                 console.log("json string Raw : " + JSON.stringify(data));
-                console.log("json string List_tbl_Pager : " + JSON.stringify(data[0].List_tbl_Pager));
+                console.log(".......................................................................................................................");
+                console.log(".......................................................................................................................");
+                console.log("json string List_tbl_Pager_To_Client : " + JSON.stringify(data[0].List_tbl_Pager_To_Client));
+                console.log(".......................................................................................................................");
+                console.log(".......................................................................................................................");
                 console.log("json string List_T : " + JSON.stringify(data[0].List_T));
+                console.log(".......................................................................................................................");
+                console.log(".......................................................................................................................");
                 $scope.items = data[0].List_T;
                 //$scope.DisplayData = data;
                 //$scope.dataLoading = false;
+
+                var found = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === 2; });
+                console.log('found', JSON.stringify(found));
+
             }
         }).error(function (data, status, headers, config) {
             var ErrorMessageValue = "";

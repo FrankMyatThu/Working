@@ -19,7 +19,7 @@ namespace SG50.Service.Controllers
         [Route("GetCountry")]
         [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         [CustomizedAuthorization(LoggerName = LoggerName)]
-        public IHttpActionResult GetCountry(CountryBindingModel _CountryBindingModel)
+        public IHttpActionResult GetCountry(Country_Criteria_Model _Country_Criteria_Model)
         {
             ApplicationLogger.WriteTrace("Start CountryController GetCountry", LoggerName);
             List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();            
@@ -34,8 +34,8 @@ namespace SG50.Service.Controllers
             }
 
             try
-            {   
-                List_tbl_Country = (new Country()).GetCountryList();                
+            {
+                List_tbl_Country = (new Country()).GetCountryList(_Country_Criteria_Model);                
             }
             catch (Exception ex)
             {
