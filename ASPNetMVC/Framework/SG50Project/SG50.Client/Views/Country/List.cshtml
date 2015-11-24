@@ -58,8 +58,8 @@
                                                 <li ng-class="prevPageDisabled()">
                                                     <a href ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous</a>
                                                 </li>
-                                                <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
-                                                    <a href="#">{{n+1}}</a>
+                                                <li ng-repeat="tbl_Pager_To_Client in List_tbl_Pager_To_Client" ng-class="{active: (tbl_Pager_To_Client.DisplayPageIndex - 1) == currentPage}" ng-click="setPage((tbl_Pager_To_Client.DisplayPageIndex - 1))">
+                                                    <a href="#">{{tbl_Pager_To_Client.DisplayPageIndex}}</a>
                                                 </li>
                                                 <li ng-class="nextPageDisabled()">
                                                     <a href ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;Next</a>

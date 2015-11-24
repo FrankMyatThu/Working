@@ -9,7 +9,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
     $scope.DisplayData = "";
     $scope.itemsPerPage = 5;
     $scope.currentPage = 0;
-    $scope.items = [];
+    $scope.items = [];    
     $scope.Country_Criteria_Model = {
         "BatchIndex": "2",
         "PagerShowIndexOneUpToX": "5",
@@ -24,6 +24,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
         "UpdatedDate": "",
         "UpdatedBy": "",
     };
+    $scope.List_tbl_Pager_To_Client = "";
 
     $scope.range = function () {
         var rangeSize = 5;
@@ -108,6 +109,8 @@ app.controller('CountryController', function ($scope, $http, $window) {
 
                 var found = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === 2; });
                 console.log('found', JSON.stringify(found));
+
+                $scope.List_tbl_Pager_To_Client = data[0].List_tbl_Pager_To_Client;
 
             }
         }).error(function (data, status, headers, config) {
