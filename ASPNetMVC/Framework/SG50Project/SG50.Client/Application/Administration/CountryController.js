@@ -1,7 +1,7 @@
 ﻿app.filter('offset', function () {
     return function (input, start) {
         if (!input || !input.length) { return; }
-        start = parseInt(start, 10);
+        start = parseInt(start, 10);        
         return input.slice(start);
     };
 });
@@ -9,12 +9,15 @@ app.controller('CountryController', function ($scope, $http, $window) {
     $scope.DisplayData = "";
     $scope.itemsPerPage = 5;
     $scope.currentPage = 0;
-    $scope.items = [];    
+    $scope.items = [];
+    $scope.itemsLength = 0;
+    $scope.PagerBatchIndex = 1;
+    $scope.RecordPerBatch = 25;
     $scope.Country_Criteria_Model = {
-        "BatchIndex": "2",
+        "BatchIndex": $scope.PagerBatchIndex,
         "PagerShowIndexOneUpToX": "5",
         "RecordPerPage": "5",
-        "RecordPerBatch": "25",
+        "RecordPerBatch": $scope.RecordPerBatch,
         "SrNo": "",
         "Id": "",
         "Name": "",
@@ -25,49 +28,35 @@ app.controller('CountryController', function ($scope, $http, $window) {
         "UpdatedBy": "",
     };
     $scope.List_tbl_Pager_To_Client = "";
-
-    $scope.range = function () {
-        var rangeSize = 5;
-        var ret = [];
-        var start;
-
-        start = $scope.currentPage;
-        if (start > $scope.pageCount() - rangeSize) {
-            start = $scope.pageCount() - rangeSize + 1;
-        }
-
-        for (var i = start; i < start + rangeSize; i++) {
-            ret.push(i);
-        }
-        return ret;
-
-        ///var _List_tbl_Pager_To_Client = Json.where(x=> x.BatchIndex == 2).select(x=>x).list();
-        /// return _List_tbl_Pager_To_Client;
-
+    $scope.List_tbl_Pager_To_Client_ByBatchIndex = "";
+   
+    $scope.pageCount = function () {
+        return Math.ceil($scope.itemsLength / $scope.itemsPerPage) - 1;
     };
 
     $scope.prevPage = function () {
-        if ($scope.currentPage > 0) {
-            $scope.currentPage--;
+        if ($scope.PagerBatchIndex > 0) {
+            $scope.PagerBatchIndex--;
+            $scope.$apply();
+            $scope.init();
         }
     };
 
     $scope.prevPageDisabled = function () {
-        return $scope.currentPage === 0 ? "disabled" : "";
-    };
-
-    $scope.pageCount = function () {        
-        return Math.ceil($scope.items.length / $scope.itemsPerPage) - 1;
+        return $scope.PagerBatchIndex === 1 ? "disabled" : "";
     };
 
     $scope.nextPage = function () {
-        if ($scope.currentPage < $scope.pageCount()) {
-            $scope.currentPage++;
+        if ($scope.PagerBatchIndex < ($scope.itemsLength / $scope.RecordPerBatch)) {
+            $scope.PagerBatchIndex++;
+            $scope.$apply();
+            console.log("[nextPage] $scope.PagerBatchIndex -> ", $scope.PagerBatchIndex);
+            $scope.init();
         }
     };
 
-    $scope.nextPageDisabled = function () {
-        return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+    $scope.nextPageDisabled = function () {        
+        return $scope.PagerBatchIndex === ($scope.itemsLength / $scope.RecordPerBatch) ? "disabled" : "";
     };
 
     $scope.setPage = function (n) {
@@ -75,7 +64,8 @@ app.controller('CountryController', function ($scope, $http, $window) {
     };
     
     $scope.init = function () {
-        console.log("$scope.Country_Criteria_Model = " + $scope.Country_Criteria_Model);
+        console.log("[init] $scope.PagerBatchIndex -> ", $scope.PagerBatchIndex);
+        console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -94,24 +84,21 @@ app.controller('CountryController', function ($scope, $http, $window) {
                 console.log(str);
             }
             else {
-                console.log("json string Raw : " + JSON.stringify(data));
-                console.log(".......................................................................................................................");
-                console.log(".......................................................................................................................");
+                //$scope.Country_Criteria_Model = "";
+                //console.log("json string Raw : " + JSON.stringify(data));
+                //console.log(".......................................................................................................................");
+                //console.log(".......................................................................................................................");
                 console.log("json string List_tbl_Pager_To_Client : " + JSON.stringify(data[0].List_tbl_Pager_To_Client));
                 console.log(".......................................................................................................................");
                 console.log(".......................................................................................................................");
                 console.log("json string List_T : " + JSON.stringify(data[0].List_T));
                 console.log(".......................................................................................................................");
                 console.log(".......................................................................................................................");
+               
                 $scope.items = data[0].List_T;
-                //$scope.DisplayData = data;
-                //$scope.dataLoading = false;
-
-                var found = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === 2; });
-                console.log('found', JSON.stringify(found));
-
+                $scope.itemsLength = data[0].List_T[0].TotalRecordCount;
                 $scope.List_tbl_Pager_To_Client = data[0].List_tbl_Pager_To_Client;
-
+                $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.PagerBatchIndex; });
             }
         }).error(function (data, status, headers, config) {
             var ErrorMessageValue = "";

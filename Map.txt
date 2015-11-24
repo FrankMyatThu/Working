@@ -1,0 +1,353 @@
+int BatchIndex = 2, 
+int PagerShowIndexOneUpToX = 5, 
+int RecordPerPage = 5, 
+int RecordPerBatch = 25
+
+{
+"BatchIndex" : "2", 
+"PagerShowIndexOneUpToX" : "5", 
+"RecordPerPage" : "5", 
+"RecordPerBatch" : "25",
+"SrNo" : "",
+"Id" : "",
+"Name" : "",
+"IsActive" : "",
+"CreatedDate" : "",
+"CreatedBy" : "",
+"UpdatedDate" : "",
+"UpdatedBy" : "",
+}
+
+.......................................................................................................................
+.......................................................................................................................
+json string List_tbl_Pager_To_Client : 
+[{
+	"BatchIndex": 1,
+	"DisplayPageIndex": 1,
+	"BehindTheScenesIndex": 1
+},
+{
+	"BatchIndex": 1,
+	"DisplayPageIndex": 2,
+	"BehindTheScenesIndex": 2
+},
+{
+	"BatchIndex": 1,
+	"DisplayPageIndex": 3,
+	"BehindTheScenesIndex": 3
+},
+{
+	"BatchIndex": 1,
+	"DisplayPageIndex": 4,
+	"BehindTheScenesIndex": 4
+},
+{
+	"BatchIndex": 1,
+	"DisplayPageIndex": 5,
+	"BehindTheScenesIndex": 5
+},
+{
+	"BatchIndex": 2,
+	"DisplayPageIndex": 6,
+	"BehindTheScenesIndex": 1
+},
+{
+	"BatchIndex": 2,
+	"DisplayPageIndex": 7,
+	"BehindTheScenesIndex": 2
+},
+{
+	"BatchIndex": 2,
+	"DisplayPageIndex": 8,
+	"BehindTheScenesIndex": 3
+},
+{
+	"BatchIndex": 2,
+	"DisplayPageIndex": 9,
+	"BehindTheScenesIndex": 4
+},
+{
+	"BatchIndex": 2,
+	"DisplayPageIndex": 10,
+	"BehindTheScenesIndex": 5
+}]
+.......................................................................................................................
+.......................................................................................................................
+json string List_T : 
+[{
+	"SrNo": 26,
+	"TotalRecordCount": 50,
+	"Id": "3d9b3d24-e693-4a70-8cac-98acb9f38fd8",
+	"Name": "Test Data 20 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.25",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.25",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 27,
+	"TotalRecordCount": 50,
+	"Id": "a7a0accb-7b10-4305-938f-9040310445ca",
+	"Name": "Test Data 31 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.25",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.25",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 28,
+	"TotalRecordCount": 50,
+	"Id": "2ee62429-2832-4a53-ac5c-9261c95d3617",
+	"Name": "Test Data 28 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.25",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.25",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 29,
+	"TotalRecordCount": 50,
+	"Id": "35992d09-eab7-4fb0-bdef-61b6a547b8ed",
+	"Name": "Test Data 19 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.25",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.25",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 30,
+	"TotalRecordCount": 50,
+	"Id": "aa2d2641-1a93-4836-a01b-51b43d0b474b",
+	"Name": "Test Data 27 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.25",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.25",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 31,
+	"TotalRecordCount": 50,
+	"Id": "246594e1-c481-48b5-bac9-484438853fd4",
+	"Name": "Test Data 22 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.25",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.25",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 32,
+	"TotalRecordCount": 50,
+	"Id": "86b3fb18-28d5-4d90-ab2b-0beefa623039",
+	"Name": "Test Data 24 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.25",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.25",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 33,
+	"TotalRecordCount": 50,
+	"Id": "51030a82-8c59-4b52-b63b-406103c314b9",
+	"Name": "Test Data 36 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 34,
+	"TotalRecordCount": 50,
+	"Id": "5517578b-77b7-480e-aa30-5c2cf822a867",
+	"Name": "Test Data 38 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 35,
+	"TotalRecordCount": 50,
+	"Id": "5912a1dd-1413-4c4c-b950-6606652c7b64",
+	"Name": "Test Data 37 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 36,
+	"TotalRecordCount": 50,
+	"Id": "c9f768b8-9c2b-4171-b8a2-8c09a7bed27c",
+	"Name": "Test Data 39 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 37,
+	"TotalRecordCount": 50,
+	"Id": "a110a399-f7a7-4388-ad36-910ca7a888d3",
+	"Name": "Test Data 35 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 38,
+	"TotalRecordCount": 50,
+	"Id": "217fda38-fbfd-4f08-bc0e-a449bfa2944c",
+	"Name": "Test Data 34 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 39,
+	"TotalRecordCount": 50,
+	"Id": "7220079d-0b63-4848-84c5-c68525845f59",
+	"Name": "Test Data 40 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 40,
+	"TotalRecordCount": 50,
+	"Id": "595c8553-3c58-4ea2-bba4-f0b2456c5184",
+	"Name": "Test Data 33 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.253",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.253",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 41,
+	"TotalRecordCount": 50,
+	"Id": "339a5c92-4d8f-4346-ae13-f62b05c1dd80",
+	"Name": "Test Data 44 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.257",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.257",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 42,
+	"TotalRecordCount": 50,
+	"Id": "2a4708e0-eb93-4160-9c57-e22275e021b7",
+	"Name": "Test Data 43 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.257",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.257",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 43,
+	"TotalRecordCount": 50,
+	"Id": "b8d7632f-492a-45db-b818-e44f52580841",
+	"Name": "Test Data 45 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.257",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.257",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 44,
+	"TotalRecordCount": 50,
+	"Id": "aae0d0f4-8317-4583-800b-bc8b225363ab",
+	"Name": "Test Data 46 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.257",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.257",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 45,
+	"TotalRecordCount": 50,
+	"Id": "65f28dc8-41ca-4633-b418-92afa8e0d019",
+	"Name": "Test Data 42 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.257",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.257",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 46,
+	"TotalRecordCount": 50,
+	"Id": "6ff228b2-f701-49f3-bfee-086d7db3e764",
+	"Name": "Test Data 47 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.257",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.257",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 47,
+	"TotalRecordCount": 50,
+	"Id": "82988ae1-dd12-4583-b363-4a13b53bf522",
+	"Name": "Test Data 41 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.257",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.257",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 48,
+	"TotalRecordCount": 50,
+	"Id": "993704fc-c9ae-4c10-9554-446ba06a07db",
+	"Name": "Test Data 49 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.26",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.26",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 49,
+	"TotalRecordCount": 50,
+	"Id": "0e61cfd6-66c7-4bd4-a230-64ba74d64f55",
+	"Name": "Test Data 50 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.26",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.26",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+},
+{
+	"SrNo": 50,
+	"TotalRecordCount": 50,
+	"Id": "5269b66f-85cf-4687-9e6e-e5acc7b862ca",
+	"Name": "Test Data 48 value",
+	"IsActive": false,
+	"CreatedDate": "2015-11-18T12:28:22.26",
+	"CreatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9",
+	"UpdatedDate": "2015-11-18T12:28:22.26",
+	"UpdatedBy": "ebaa892a-b9b8-4f8c-8741-f326e396d3e9"
+}]
+.......................................................................................................................
+.......................................................................................................................
