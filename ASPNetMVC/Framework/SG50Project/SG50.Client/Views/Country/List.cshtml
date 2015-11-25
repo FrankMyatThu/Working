@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in items | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+                        <tr ng-repeat="item in items | offset: currentPage * Country_Criteria_Model.RecordPerPage | limitTo: Country_Criteria_Model.RecordPerPage">
                             <td>{{item.SrNo}}</td>
                             <td>{{item.Id}}</td>
                             <td>{{item.Name}}</td>
