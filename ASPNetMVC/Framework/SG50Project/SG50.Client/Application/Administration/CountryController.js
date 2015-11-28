@@ -37,6 +37,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
         if ($scope.Country_Criteria_Model.BatchIndex > 0) {
             $scope.Country_Criteria_Model.BatchIndex--;            
             $scope.init();
+            $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
         }
     };
 
@@ -48,6 +49,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
         if ($scope.Country_Criteria_Model.BatchIndex < ($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {            
             $scope.Country_Criteria_Model.BatchIndex++;
             $scope.init();
+            $scope.currentPage = 0;
         }
     };
 
