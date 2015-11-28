@@ -33,20 +33,32 @@ app.controller('CountryController', function ($scope, $http, $window) {
         return Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerPage) - 1;
     };
 
+    $scope.firstPage = function () {
+        $scope.Country_Criteria_Model.BatchIndex = 1;
+        $scope.init();
+        $scope.currentPage = 0;
+    }
+
+    $scope.lastPage = function () {
+        $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
+        $scope.init();
+        $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
+    }
+
     $scope.prevPage = function () {
-        if ($scope.Country_Criteria_Model.BatchIndex > 0) {
+        if ($scope.Country_Criteria_Model.BatchIndex > 1) {            
             $scope.Country_Criteria_Model.BatchIndex--;            
             $scope.init();
             $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
         }
     };
 
-    $scope.prevPageDisabled = function () {
+    $scope.prevPageDisabled = function () {        
         return $scope.Country_Criteria_Model.BatchIndex === 1 ? "disabled" : "";
     };
 
     $scope.nextPage = function () {
-        if ($scope.Country_Criteria_Model.BatchIndex < ($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {            
+        if ($scope.Country_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {            
             $scope.Country_Criteria_Model.BatchIndex++;
             $scope.init();
             $scope.currentPage = 0;
@@ -54,7 +66,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
     };
 
     $scope.nextPageDisabled = function () {        
-        return $scope.Country_Criteria_Model.BatchIndex === ($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch) ? "disabled" : "";
+        return $scope.Country_Criteria_Model.BatchIndex === Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch) ? "disabled" : "";
     };
 
     $scope.setPage = function (n) {
@@ -62,7 +74,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
     };
     
     $scope.init = function () {        
-        console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
+        //console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -81,12 +93,12 @@ app.controller('CountryController', function ($scope, $http, $window) {
                 console.log(str);
             }
             else {                
-                console.log("json string List_tbl_Pager_To_Client : " + JSON.stringify(data[0].List_tbl_Pager_To_Client));
-                console.log(".......................................................................................................................");
-                console.log(".......................................................................................................................");
-                console.log("json string List_T : " + JSON.stringify(data[0].List_T));
-                console.log(".......................................................................................................................");
-                console.log(".......................................................................................................................");
+                //console.log("json string List_tbl_Pager_To_Client : " + JSON.stringify(data[0].List_tbl_Pager_To_Client));
+                //console.log(".......................................................................................................................");
+                //console.log(".......................................................................................................................");
+                //console.log("json string List_T : " + JSON.stringify(data[0].List_T));
+                //console.log(".......................................................................................................................");
+                //console.log(".......................................................................................................................");
                
                 $scope.items = data[0].List_T;
                 $scope.itemsLength = data[0].List_T[0].TotalRecordCount;                
