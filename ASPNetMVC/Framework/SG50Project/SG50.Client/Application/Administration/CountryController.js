@@ -31,6 +31,10 @@ app.controller('CountryController', function ($scope, $http, $window) {
         "UpdatedBy": "",
     };    
     $scope.List_tbl_Pager_To_Client_ByBatchIndex = "";
+    $scope.sort = {
+        sortingOrder: 'CreatedDate',
+        reverse: false
+    };
    
     $scope.pageCount = function () {
         return Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerPage) - 1;
@@ -132,4 +136,45 @@ app.controller('CountryController', function ($scope, $http, $window) {
             //$scope.dataLoading = false;
         });
     };    
+});
+
+app.directive("customSort", function () {
+    return {
+        restrict: 'A',
+        transclude: true,
+        scope: {
+            order: '=',
+            sort: '='
+        },
+        template:
+          ' <a ng-click="sort_by(order)" style="color: #555555;">' +
+          '    <span ng-transclude></span>' +
+          '    <i ng-class="selectedCls(order)"></i>' +
+          '</a>',
+        link: function (scope) {
+
+            // change sorting order
+            scope.sort_by = function (newSortingOrder) {
+                var sort = scope.sort;
+
+                if (sort.sortingOrder == newSortingOrder) {
+                    sort.reverse = !sort.reverse;
+                }
+
+                sort.sortingOrder = newSortingOrder;
+
+                /// invoke server side here ...
+
+            };
+            
+            scope.selectedCls = function (column) {
+                if (column == scope.sort.sortingOrder) {
+                    return ('fa fa-chevron-' + ((scope.sort.reverse) ? 'down' : 'up'));
+                }
+                else {
+                    return 'fa fa-sort'
+                }
+            };
+        }// end link
+    }
 });

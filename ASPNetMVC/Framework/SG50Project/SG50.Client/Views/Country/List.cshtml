@@ -17,7 +17,7 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>IsActive</th>
-                            <th>CreatedDate</th>
+                            <th custom-sort order="'CreatedDate'" sort="sort">CreatedDate</th>
                             <th>CreatedBy</th>
                             <th>UpdatedDate</th>
                             <th>UpdatedBy</th>
@@ -43,19 +43,19 @@
                                         <span class="pull-left">
                                             <ul class="pagination">
                                                 <li>
-                                                    <a href ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;First</a>
+                                                    <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;First</a>
                                                 </li>
                                                 <li ng-class="prevPageDisabled()">
-                                                    <a href ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous</a>
+                                                    <a href="#" ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous</a>
                                                 </li>
                                                 <li ng-repeat="tbl_Pager_To_Client in List_tbl_Pager_To_Client_ByBatchIndex" ng-class="{active: (tbl_Pager_To_Client.BehindTheScenesIndex - 1) == currentPage}" ng-click="setPage(tbl_Pager_To_Client.BehindTheScenesIndex - 1)">
                                                     <a href="#">{{tbl_Pager_To_Client.DisplayPageIndex}}</a>
                                                 </li>
                                                 <li ng-class="nextPageDisabled()">
-                                                    <a href ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;Next</a>
+                                                    <a href="#" ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;Next</a>
                                                 </li>
                                                 <li>
-                                                    <a href ng-click="lastPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;Last</a>
+                                                    <a href="#" ng-click="lastPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;Last</a>
                                                 </li>
                                             </ul>
                                         </span>
