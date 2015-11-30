@@ -5,6 +5,7 @@ using SG50.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,7 +44,6 @@ namespace SG50.Model.BusinessLogic
             }
         }
 
-        //public List<tbl_GridListing<CountryBindingModel>> GetCountryList(int PagerShowIndexOneUpToX = 5, int RecordPerPage = 5, int BatchIndex = 2, int RecordPerBatch = 25)
         public List<tbl_GridListing<CountryBindingModel>> GetCountryList(Country_Criteria_Model _Country_Criteria_Model)
         {
             List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();
@@ -80,8 +80,8 @@ namespace SG50.Model.BusinessLogic
                     #endregion
 
                     #region Preparing data table
-                    List<CountryBindingModel> List_CountryBindingModel = _ApplicationDbContext.tbl_Country
-                                                                .OrderBy(x => x.CreatedDate)
+                    List<CountryBindingModel> List_CountryBindingModel = _ApplicationDbContext.tbl_Country                                                                
+                                                                .OrderBy(_Country_Criteria_Model.OrderByClause)
                                                                 .Skip((_Country_Criteria_Model.BatchIndex - 1) * _Country_Criteria_Model.RecordPerBatch)
                                                                 .Take(_Country_Criteria_Model.RecordPerBatch)
                                                                 .AsEnumerable()
@@ -96,8 +96,7 @@ namespace SG50.Model.BusinessLogic
                                                                     CreatedDate = x.CreatedDate,
                                                                     UpdatedBy = x.UpdatedBy,
                                                                     UpdatedDate = x.UpdatedDate
-                                                                })
-                                                                .OrderBy(x => x.CreatedDate)
+                                                                })                                                                
                                                                 .ToList();
 
                     List_tbl_GridListing.List_T = List_CountryBindingModel;

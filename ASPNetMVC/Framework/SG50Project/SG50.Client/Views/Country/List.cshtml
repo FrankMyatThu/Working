@@ -21,17 +21,7 @@
                             <th>CreatedBy</th>
                             <th>UpdatedDate</th>
                             <th>UpdatedBy</th>
-                        </tr>
-                        <tr>
-                            <th><input type="text" ng-model="search.SrNo" /></th>
-                            <th><input type="text" ng-model="search.Id" /></th>
-                            <th><input type="text" ng-model="search.Name" /></th>
-                            <th><input type="text" ng-model="search.IsActive" /></th>
-                            <th><input type="text" ng-model="search.CreatedDate" /></th>
-                            <th><input type="text" ng-model="search.CreatedBy" /></th>
-                            <th><input type="text" ng-model="search.UpdatedDate" /></th>
-                            <th><input type="text" ng-model="search.UpdatedBy" /></th>
-                        </tr>
+                        </tr>                        
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in items | offset: currentPage * Country_Criteria_Model.RecordPerPage | limitTo: Country_Criteria_Model.RecordPerPage">

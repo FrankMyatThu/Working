@@ -65,8 +65,16 @@ namespace SG50.Model.ViewModel
     public class Country_Criteria_Model : tbl_Pager_To_Service
     {
         public int? SrNo { get; set; }
+
+        [Display(Name = "Id")]
+        [RegularExpression(FormatStandardizer.Server_GuidFormat, ErrorMessage = "Invalid {0}")]
         public string Id { get; set; }
+        
+        [Display(Name = "Country name")]        
+        [StringLength(255, MinimumLength = 0, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [RegularExpression(FormatStandardizer.Server_Name_MultiWord, ErrorMessage = "Invalid {0}")]
         public string Name { get; set; }
+
         public bool? IsActive { get; set; }
         public DateTime? CreatedDate { get; set; }
         public Guid? CreatedBy { get; set; }

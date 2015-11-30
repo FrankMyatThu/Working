@@ -17,6 +17,9 @@ app.controller('CountryController', function ($scope, $http, $window) {
         "RecordPerPage": 5,
         "RecordPerBatch": 25,
 
+        // -- Sorting --
+        "OrderByClause": "CreatedDate ASC",
+
         // -- Data --
         "SrNo": "",
         "Id": "",

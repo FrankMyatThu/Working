@@ -20,7 +20,11 @@ namespace SG50.Model.ViewModel
         public int BatchIndex { get; set; }
         public int PagerShowIndexOneUpToX { get; set; }
         public int RecordPerPage { get; set; }
-        public int RecordPerBatch { get; set; }        
+        public int RecordPerBatch { get; set; }
+
+        [Display(Name = "OrderByClause")]        
+        [RegularExpression(FormatStandardizer.Server_OrderByClause, ErrorMessage = "Invalid {0}")]
+        public string OrderByClause { get; set; }
     }
     public class tbl_GridListing<T>
     {

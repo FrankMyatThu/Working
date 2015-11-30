@@ -19,8 +19,8 @@ namespace SG50.Base.Util
         /// <summary>
         /// Ref http://stackoverflow.com/a/12019115/900284
         /// </summary>                
-        public const string Server_UserName = "(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])";
         public const string Client_UserName = @"/^(?![_.])(?!.*[_.]{2})[a-z0-9._]*[a-z0-9]$/i";
+        public const string Server_UserName = "(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])";        
 
         /// <summary>
         /// AlphaNumericFormat
@@ -44,5 +44,16 @@ namespace SG50.Base.Util
         /// </summary>
         public const string Client_Password = @"/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/";
         public const string Server_Password = "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*";
+
+        /// <summary>
+        /// Author Frank Myat Thu
+        /// https://regex101.com/r/cM9nZ5/2
+        /// </summary>
+        public const string Server_OrderByClause = @"([A-Za-z0-9_]+\s(ASC|DESC),?\s?){1,}";
+
+        /// <summary>
+        /// ref http://stackoverflow.com/a/11040993
+        /// </summary>
+        public const string Server_GuidFormat = "\b[A-Fa-f0-9]{8}(?:-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}\b";
     }
 }

@@ -90,3 +90,4 @@ D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Service\bin\Mi
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Service\obj\Debug\SG50.Service.csprojResolveAssemblyReference.cache
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Service\obj\Debug\SG50.Service.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Service\obj\Debug\SG50.Service.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Service\bin\System.Linq.Dynamic.dll
