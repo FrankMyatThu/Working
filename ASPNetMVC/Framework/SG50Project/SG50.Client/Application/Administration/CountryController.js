@@ -36,6 +36,10 @@ app.controller('CountryController', function ($scope, $http, $window) {
         reverse: false
     };
    
+    $scope.testFunction = function (value) {
+        console.log("testFunction ...", value);
+    }
+
     $scope.firstPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = 1;
         $scope.init();
@@ -77,7 +81,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
     };
     
     $scope.init = function () {        
-        //console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
+        console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -138,30 +142,25 @@ app.directive("customSort", function () {
     return {
         restrict: 'A',
         transclude: true,
-        scope: {
-            order: '=',
-            sort: '='
-        },
+        scope: true,
         template:
           '<a href="#" ng-click="sort_by(order)" style="color: #555555;">' +
           '    <span ng-transclude></span>' +
           '    <i ng-class="selectedCls(order)"></i>' +
           '</a>',
-        link: function (scope) {
+        link: function (scope, elem, attrs) {            
+            scope.order = attrs.order;            
 
-            // change sorting order
             scope.sort_by = function (newSortingOrder) {                
                 var sort = scope.sort;
-
                 if (sort.sortingOrder == newSortingOrder) {
                     sort.reverse = !sort.reverse;
                     console.log(newSortingOrder + " : " + sort.reverse);
                 }
 
                 sort.sortingOrder = newSortingOrder;
-                /// invoke server side here ...
-                console.log(sort.sortingOrder + ((scope.sort.reverse) ? ' DESC' : ' ASC'));
-                //scope.init(); // does not known
+                scope.Country_Criteria_Model.OrderByClause = sort.sortingOrder + ((scope.sort.reverse) ? ' DESC' : ' ASC');                
+                scope.firstPage();
             };
             
             scope.selectedCls = function (column) {
