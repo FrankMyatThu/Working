@@ -35,11 +35,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
         sortingOrder: 'CreatedDate',
         reverse: false
     };
-   
-    $scope.testFunction = function (value) {
-        console.log("testFunction ...", value);
-    }
-
+    
     $scope.firstPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = 1;
         $scope.init();

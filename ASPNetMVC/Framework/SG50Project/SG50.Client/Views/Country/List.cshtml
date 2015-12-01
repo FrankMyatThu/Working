@@ -35,38 +35,58 @@
                             <td>{{item.UpdatedBy}}</td>
                         </tr>
                     </tbody>
-                    <tfoot>
+                    <tfoot>                        
                         <tr>
                             <td colspan="3">
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <span class="pull-left">
-                                            <ul class="pagination">
-                                                <li>
-                                                    <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;First</a>
-                                                </li>
-                                                <li ng-class="prevPageDisabled()">
-                                                    <a href="#" ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous</a>
-                                                </li>
-                                                <li ng-repeat="tbl_Pager_To_Client in List_tbl_Pager_To_Client_ByBatchIndex" ng-class="{active: (tbl_Pager_To_Client.BehindTheScenesIndex - 1) == currentPage}" ng-click="setPage(tbl_Pager_To_Client.BehindTheScenesIndex - 1)">
-                                                    <a href="#">{{tbl_Pager_To_Client.DisplayPageIndex}}</a>
-                                                </li>
-                                                <li ng-class="nextPageDisabled()">
-                                                    <a href="#" ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;Next</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" ng-click="lastPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;Last</a>
-                                                </li>
-                                            </ul>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <span class="pull-right">
-                                            <ul class="pagination">
-                                                <li><strong>{{ Country_Criteria_Model.RecordPerBatch * Country_Criteria_Model.BatchIndex }}</strong> of <strong>{{ itemsLength }}</strong></li>
-                                            </ul>
-                                        </span>
-                                    </div>
+                                <div class="navigation-bar">
+                                    <span class="pull-left"><strong>{{ Country_Criteria_Model.RecordPerBatch * Country_Criteria_Model.BatchIndex }}</strong>&nbsp;of&nbsp;<strong>{{ itemsLength }}</strong></span>
+                                    <ul class="pagination pull-right">
+                                        <li>
+                                            <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;</a>
+                                        </li>
+                                        <li ng-class="prevPageDisabled()">
+                                            <a href="#" ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;</a>
+                                        </li>
+                                        <li ng-repeat="tbl_Pager_To_Client in List_tbl_Pager_To_Client_ByBatchIndex" ng-class="{active: (tbl_Pager_To_Client.BehindTheScenesIndex - 1) == currentPage}" ng-click="setPage(tbl_Pager_To_Client.BehindTheScenesIndex - 1)">
+                                            <a href="#">{{tbl_Pager_To_Client.DisplayPageIndex}}</a>
+                                        </li>
+                                        <li ng-class="nextPageDisabled()">
+                                            <a href="#" ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" ng-click="lastPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="navigation-bar">
+                                    <button type="button" class="btn btn-default pull-left">Default</button>
+                                    <ul class="pagination pull-right">
+                                        <li>
+                                            <a href="#">«</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">3</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">4</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">5</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">»</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>

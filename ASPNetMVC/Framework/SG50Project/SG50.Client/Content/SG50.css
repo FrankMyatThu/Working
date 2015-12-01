@@ -1,8 +1,12 @@
-﻿html, body, .container{
+﻿/*html, body, .container{
     height: 100%;
 }
 
 body {
     padding-top: 60px;
     padding-bottom: 40px;
+}*/
+
+.navigation-bar .pagination {
+    margin-top: 0;
 }
