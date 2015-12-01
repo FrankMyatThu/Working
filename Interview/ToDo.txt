@@ -51,6 +51,7 @@ At home tasks
 			2.http://www.sitepoint.com/5-javascript-interview-exercises/
 			3.http://programmers.stackexchange.com/a/251108/50746
 		5.DesignPattern (General Knowledge)
+			(Ref [1.]http://www.tutorialspoint.com/design_pattern/design_pattern_overview.htm)
 			Creational Patterns
 				1.Singleton 
 				2.Factory
