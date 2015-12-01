@@ -36,10 +36,6 @@ app.controller('CountryController', function ($scope, $http, $window) {
         reverse: false
     };
    
-    $scope.pageCount = function () {
-        return Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerPage) - 1;
-    };
-
     $scope.firstPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = 1;
         $scope.init();
@@ -147,24 +143,25 @@ app.directive("customSort", function () {
             sort: '='
         },
         template:
-          ' <a ng-click="sort_by(order)" style="color: #555555;">' +
+          '<a href="#" ng-click="sort_by(order)" style="color: #555555;">' +
           '    <span ng-transclude></span>' +
           '    <i ng-class="selectedCls(order)"></i>' +
           '</a>',
         link: function (scope) {
 
             // change sorting order
-            scope.sort_by = function (newSortingOrder) {
+            scope.sort_by = function (newSortingOrder) {                
                 var sort = scope.sort;
 
                 if (sort.sortingOrder == newSortingOrder) {
                     sort.reverse = !sort.reverse;
+                    console.log(newSortingOrder + " : " + sort.reverse);
                 }
 
                 sort.sortingOrder = newSortingOrder;
-
                 /// invoke server side here ...
-
+                console.log(sort.sortingOrder + ((scope.sort.reverse) ? ' DESC' : ' ASC'));
+                //scope.init(); // does not known
             };
             
             scope.selectedCls = function (column) {
