@@ -37,10 +37,13 @@
                     </tbody>
                     <tfoot>                        
                         <tr>
-                            <td colspan="3">
+                            <td colspan="8">
                                 <div class="navigation-bar">
-                                    <span class="pull-left"><strong>{{ Country_Criteria_Model.RecordPerBatch * Country_Criteria_Model.BatchIndex }}</strong>&nbsp;of&nbsp;<strong>{{ itemsLength }}</strong></span>
+                                    <span class="pull-left"><strong>{{ Country_Criteria_Model.RecordPerBatch * Country_Criteria_Model.BatchIndex }}</strong>&nbsp;of&nbsp;total&nbsp;<strong>{{ itemsLength }}</strong></span>
                                     <ul class="pagination pull-right">
+                                        <li>
+                                            <a href="#" ng-click="searchPage()"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                        </li>
                                         <li>
                                             <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;</a>
                                         </li>
@@ -59,42 +62,12 @@
                                     </ul>
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <div class="navigation-bar">
-                                    <button type="button" class="btn btn-default pull-left">Default</button>
-                                    <ul class="pagination pull-right">
-                                        <li>
-                                            <a href="#">«</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">4</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">5</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">»</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+                        </tr>                                               
                     </tfoot>
                 </table>
             </div>            
         </div>
-    </div>
+    </div>    
     <div class="box-footer">
         <button type="submit" class="btn btn-primary">Show</button>
         <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
