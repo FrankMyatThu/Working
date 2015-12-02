@@ -13,9 +13,9 @@ app.controller('CountryController', function ($scope, $http, $window) {
     $scope.Country_Criteria_Model = {
         // -- Pager --
         "BatchIndex": 1,
-        "PagerShowIndexOneUpToX": 5,
-        "RecordPerPage": 5,
-        "RecordPerBatch": 25,
+        "PagerShowIndexOneUpToX": 10,
+        "RecordPerPage": 50,
+        "RecordPerBatch": 500,
 
         // -- Sorting --
         "OrderByClause": "CreatedDate ASC",

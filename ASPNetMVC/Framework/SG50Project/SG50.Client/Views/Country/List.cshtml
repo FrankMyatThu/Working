@@ -42,22 +42,22 @@
                                     <span class="pull-left"><strong>{{ Country_Criteria_Model.RecordPerBatch * Country_Criteria_Model.BatchIndex }}</strong>&nbsp;of&nbsp;total&nbsp;<strong>{{ itemsLength }}</strong></span>
                                     <ul class="pagination pull-right">
                                         <li>
-                                            <a href="#" ng-click="searchPage()"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                            <a href="#" ng-click="searchPage()"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</a>
                                         </li>
                                         <li>
-                                            <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;</a>
+                                            <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;First</a>
                                         </li>
                                         <li ng-class="prevPageDisabled()">
-                                            <a href="#" ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;</a>
+                                            <a href="#" ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous</a>
                                         </li>
                                         <li ng-repeat="tbl_Pager_To_Client in List_tbl_Pager_To_Client_ByBatchIndex" ng-class="{active: (tbl_Pager_To_Client.BehindTheScenesIndex - 1) == currentPage}" ng-click="setPage(tbl_Pager_To_Client.BehindTheScenesIndex - 1)">
                                             <a href="#">{{tbl_Pager_To_Client.DisplayPageIndex}}</a>
                                         </li>
                                         <li ng-class="nextPageDisabled()">
-                                            <a href="#" ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;</a>
+                                            <a href="#" ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;Next</a>
                                         </li>
                                         <li>
-                                            <a href="#" ng-click="lastPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;</a>
+                                            <a href="#" ng-click="lastPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;Last</a>
                                         </li>
                                     </ul>
                                 </div>
