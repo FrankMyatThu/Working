@@ -6,7 +6,8 @@
     };
 });
 app.controller('CountryController', function ($scope, $http, $window) {
-    $scope.DisplayData = "";    
+    $scope.DisplayData = "";
+    $scope.IsRecordFound = true;
     $scope.currentPage = 0;
     $scope.items = [];
     $scope.itemsLength = 0;        
@@ -65,6 +66,8 @@ app.controller('CountryController', function ($scope, $http, $window) {
             $scope.Country_Criteria_Model.BatchIndex++;
             $scope.init();
             $scope.currentPage = 0;
+            $scope.Country_Criteria_Model.RecordPerPage = 25;
+            $scope.Country_Criteria_Model.RecordPerBatch = $scope.Country_Criteria_Model.RecordPerPage * $scope.Country_Criteria_Model.PagerShowIndexOneUpToX;
         }
     };
 
@@ -101,8 +104,14 @@ app.controller('CountryController', function ($scope, $http, $window) {
                 //console.log(".......................................................................................................................");
                 //console.log("json string List_T : " + JSON.stringify(data[0].List_T));
                 //console.log(".......................................................................................................................");
-                //console.log(".......................................................................................................................");
-               
+                //console.log(".......................................................................................................................");               
+
+                if (data[0].List_T.length <= 0)
+                {
+                    $scope.IsRecordFound = false;
+                    return;
+                }
+
                 $scope.items = data[0].List_T;
                 $scope.itemsLength = data[0].List_T[0].TotalRecordCount;                
                 $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Country_Criteria_Model.BatchIndex; });

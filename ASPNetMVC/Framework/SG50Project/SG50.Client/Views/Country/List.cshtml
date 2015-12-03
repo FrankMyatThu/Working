@@ -9,19 +9,20 @@
     <div class="box-body">
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <div class="form-group">
-            <div class="table-responsive">
+            <div ng-hide="IsRecordFound">No record(s) found.</div>
+            <div class="table-responsive" ng-show="IsRecordFound">
                 <table class="table table-striped table-condensed table-hover">
                     <thead>
                         <tr>
                             <th>SrNo</th>
                             <th>Id</th>
-                            <th custom-sort order="Name" >Name</th>
-                            <th custom-sort order="IsActive" >IsActive</th>
-                            <th custom-sort order="CreatedDate" >CreatedDate</th>
+                            <th custom-sort order="Name">Name</th>
+                            <th custom-sort order="IsActive">IsActive</th>
+                            <th custom-sort order="CreatedDate">CreatedDate</th>
                             <th custom-sort order="CreatedBy">CreatedBy</th>
                             <th custom-sort order="UpdatedDate">UpdatedDate</th>
                             <th custom-sort order="UpdatedBy">UpdatedBy</th>
-                        </tr>                        
+                        </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in items | offset: currentPage * Country_Criteria_Model.RecordPerPage | limitTo: Country_Criteria_Model.RecordPerPage">
@@ -35,11 +36,11 @@
                             <td>{{item.UpdatedBy}}</td>
                         </tr>
                     </tbody>
-                    <tfoot>                        
+                    <tfoot>
                         <tr>
                             <td colspan="8">
                                 <div class="navigation-bar">
-                                    <span class="pull-left"><strong>{{ Country_Criteria_Model.RecordPerBatch * Country_Criteria_Model.BatchIndex }}</strong>&nbsp;of&nbsp;total&nbsp;<strong>{{ itemsLength }}</strong></span>
+                                    <span class="pull-left"><strong>Total record(s) = {{ itemsLength }}</strong></span>
                                     <ul class="pagination pull-right">
                                         <li>
                                             <a href="#" ng-click="searchPage()"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</a>
@@ -62,7 +63,7 @@
                                     </ul>
                                 </div>
                             </td>
-                        </tr>                                               
+                        </tr>
                     </tfoot>
                 </table>
             </div>            
