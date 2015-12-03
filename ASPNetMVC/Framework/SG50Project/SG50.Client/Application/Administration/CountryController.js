@@ -179,3 +179,31 @@ app.directive("customSort", function () {
         }// end link
     }
 });
+
+app.directive("ddlRecordFilterCount", function () {
+    return {
+        restrict: 'A',
+        transclude: true,
+        scope: false,
+        template:
+            ' <span class="glyphicon glyphicon-filter"></span>&nbsp;Filter By&nbsp; ' +
+            ' <select id="ddlRecordFilterCount" name="ddlRecordFilterCount"  ' +
+            ' ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption" ' +
+            ' ng-change="ddlRecordFilterCount_Change(data.selectedOption)" ></select> ',
+        link: function (scope, elem, attrs) {
+            scope.data = {
+                availableOptions: [
+                    { id: '10', name: '10' },
+                    { id: '20', name: '20' },
+                    { id: '50', name: '50' }
+                ],
+                selectedOption: { id: '10', name: '10' }
+            };
+            scope.ddlRecordFilterCount_Change = function (SelectedValue) {
+                console.log("SelectedValue.id", SelectedValue.id);
+                //scope.ddlSelectedValue = SelectedValue.id;
+                //scope.TestDDLFunction();
+            };
+        }
+    }
+});

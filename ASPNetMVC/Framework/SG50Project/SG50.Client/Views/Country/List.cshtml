@@ -40,11 +40,14 @@
                         <tr>
                             <td colspan="8">
                                 <div class="navigation-bar">
-                                    <span class="pull-left"><strong>Total record(s) = {{ itemsLength }}</strong></span>
-                                    <ul class="pagination pull-right">
+                                    <span class="pull-left"><strong>Total record(s) = {{ itemsLength }}</strong></span>                                    
+                                    <ul class="pagination pull-right">                                        
+                                        <li>
+                                            <a style="padding: 5px;"><div ddl-record-filter-count></div></a>
+                                        </li>
                                         <li>
                                             <a href="#" ng-click="searchPage()"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</a>
-                                        </li>
+                                        </li>                                        
                                         <li>
                                             <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;First</a>
                                         </li>
