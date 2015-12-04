@@ -55,7 +55,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'ModalContent_PopupSearch.html',
-            controller: 'ModalInstanceCtrl',
+            scope: $scope,
             size: size,            
             resolve: {
                 items: function () {
@@ -65,11 +65,20 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
         });
 
         modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
+            scope.selected = selectedItem;
         }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
+            console.log('Modal dismissed at: ' + new Date());
         });
 
+    };
+    $scope.Search = function () {
+        console.log("..Search..");
+        $uibModalInstance.close($scope.selected.item);
+    };
+
+    $scope.Cancel = function () {
+        console.log("..Cancel..");
+        $uibModalInstance.dismiss('cancel');
     };
 
     $scope.sort = {
