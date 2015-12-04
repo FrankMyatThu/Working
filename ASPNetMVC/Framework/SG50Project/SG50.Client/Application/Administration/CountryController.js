@@ -78,7 +78,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
     };
     
     $scope.init = function () {        
-        // console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
+        console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -191,10 +191,12 @@ app.directive("ddlRecordFilterCount", function () {
                 ],
                 selectedOption: { id: '10', name: '10' }
             };
-            scope.ddlRecordFilterCount_Change = function (SelectedValue) {                
+            scope.ddlRecordFilterCount_Change = function (SelectedValue) {
+                scope.Country_Criteria_Model.BatchIndex = 1;
                 scope.Country_Criteria_Model.RecordPerPage = SelectedValue.id;
                 scope.Country_Criteria_Model.RecordPerBatch = scope.Country_Criteria_Model.RecordPerPage * scope.Country_Criteria_Model.PagerShowIndexOneUpToX;
                 scope.init();
+                scope.currentPage = 0;
             };
         }
     }
