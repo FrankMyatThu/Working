@@ -45,8 +45,8 @@ app.controller('CountryController', function ($scope, $http, $window) {
 
     $scope.lastPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
-        $scope.init();
-        $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
+        $scope.init();        
+        $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
     }
 
     $scope.prevPage = function () {

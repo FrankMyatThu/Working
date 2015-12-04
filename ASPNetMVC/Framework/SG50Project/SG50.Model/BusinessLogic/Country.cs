@@ -51,7 +51,16 @@ namespace SG50.Model.BusinessLogic
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
                 {
                     tbl_GridListing<CountryBindingModel> List_tbl_GridListing = new tbl_GridListing<CountryBindingModel>();
-                    int TotalRecordCount = _ApplicationDbContext.tbl_Country.Count();
+
+                    var WhereAableQuery = _ApplicationDbContext.tbl_Country.OrderBy(_Country_Criteria_Model.OrderByClause);
+
+                    if (!string.IsNullOrEmpty(_Country_Criteria_Model.Id))
+                        WhereAableQuery = WhereAableQuery.Where(x => x.Id.Equals(_Country_Criteria_Model.Id));
+
+                    if (!string.IsNullOrEmpty(_Country_Criteria_Model.Name))
+                        WhereAableQuery = WhereAableQuery.Where(x => x.Name.Equals(_Country_Criteria_Model.Name));
+
+                    int TotalRecordCount = WhereAableQuery.Count();                            
 
                     #region Preparing tbl_Pager_To_Client
                     List<tbl_Pager_To_Client> List_tbl_Pager_To_Client = new List<tbl_Pager_To_Client>();
@@ -80,11 +89,10 @@ namespace SG50.Model.BusinessLogic
                     #endregion
 
                     #region Preparing data table
-                    List<CountryBindingModel> List_CountryBindingModel = _ApplicationDbContext.tbl_Country                                                                
-                                                                .OrderBy(_Country_Criteria_Model.OrderByClause)
+                    List<CountryBindingModel> List_CountryBindingModel = WhereAableQuery
+                                                                .AsEnumerable()                                                                                                                                
                                                                 .Skip((_Country_Criteria_Model.BatchIndex - 1) * _Country_Criteria_Model.RecordPerBatch)
-                                                                .Take(_Country_Criteria_Model.RecordPerBatch)
-                                                                .AsEnumerable()
+                                                                .Take(_Country_Criteria_Model.RecordPerBatch)                                                                  
                                                                 .Select((x, i) => new CountryBindingModel
                                                                 {
                                                                     SrNo = i + 1 + ((_Country_Criteria_Model.BatchIndex - 1) * _Country_Criteria_Model.RecordPerBatch),

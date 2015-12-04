@@ -11,10 +11,10 @@ namespace SG50.Base.Util
         /// <summary>
         ///  ref http://stackoverflow.com/a/2385967/900284
         /// </summary>
-        public const string Client_Name_SingleWord = @"/^[A-Za-z,.'-]+$/";
-        public const string Server_Name_SingleWord = "[A-Za-z,.'-]+";
-        public const string Client_Name_MultiWord = @"/^[A-Za-z ,.'-]+$/";
-        public const string Server_Name_MultiWord = "[A-Za-z ,.'-]+";
+        public const string Client_Name_SingleWord = @"/^[A-Za-z0-9,.'-]+$/";
+        public const string Server_Name_SingleWord = "[A-Za-z0-9,.'-]+";
+        public const string Client_Name_MultiWord = @"/^[A-Za-z0-9 ,.'-]+$/";
+        public const string Server_Name_MultiWord = "[A-Za-z0-9 ,.'-]+";
 
         /// <summary>
         /// Ref http://stackoverflow.com/a/12019115/900284
