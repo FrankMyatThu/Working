@@ -1,4 +1,4 @@
-﻿var app = angular.module('ApplicationRoot', []);
+﻿var app = angular.module('ApplicationRoot', ['ngAnimate', 'ui.bootstrap']);
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
 
     if (!$window.sessionStorage.getItem("JWTToken")) {

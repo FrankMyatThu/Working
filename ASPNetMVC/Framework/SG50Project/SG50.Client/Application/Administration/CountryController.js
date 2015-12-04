@@ -5,7 +5,25 @@
         return input.slice(start);
     };
 });
-app.controller('CountryController', function ($scope, $http, $window) {
+app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items[0]
+    };
+
+    $scope.Search = function () {
+        $uibModalInstance.close($scope.selected.item);
+    };
+
+    $scope.Cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
+});
+
+app.controller('CountryController', function ($scope, $http, $window, $uibModal) {
+    $scope.animationsEnabled = true;
     $scope.DisplayData = "";
     $scope.IsRecordFound = true;
     $scope.currentPage = 0;
@@ -32,6 +50,28 @@ app.controller('CountryController', function ($scope, $http, $window) {
         "UpdatedBy": "",
     };    
     $scope.List_tbl_Pager_To_Client_ByBatchIndex = "";
+
+    $scope.searchPage = function (size) {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'ModalContent_PopupSearch.html',
+            controller: 'ModalInstanceCtrl',
+            size: size,            
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+
+    };
+
     $scope.sort = {
         sortingOrder: 'CreatedDate',
         reverse: false
@@ -132,7 +172,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
             }
             //$scope.dataLoading = false;
         });
-    };    
+    };
 });
 
 app.directive("customSort", function () {
