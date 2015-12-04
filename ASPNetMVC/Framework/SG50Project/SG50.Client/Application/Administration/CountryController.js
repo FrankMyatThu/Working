@@ -15,8 +15,8 @@ app.controller('CountryController', function ($scope, $http, $window) {
         // -- Pager --
         "BatchIndex": 1,
         "PagerShowIndexOneUpToX": 10,
-        "RecordPerPage": 50,
-        "RecordPerBatch": 500,
+        "RecordPerPage": 10,
+        "RecordPerBatch": 100,
 
         // -- Sorting --
         "OrderByClause": "CreatedDate ASC",
@@ -65,9 +65,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
         if ($scope.Country_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {            
             $scope.Country_Criteria_Model.BatchIndex++;
             $scope.init();
-            $scope.currentPage = 0;
-            $scope.Country_Criteria_Model.RecordPerPage = 25;
-            $scope.Country_Criteria_Model.RecordPerBatch = $scope.Country_Criteria_Model.RecordPerPage * $scope.Country_Criteria_Model.PagerShowIndexOneUpToX;
+            $scope.currentPage = 0;            
         }
     };
 
@@ -80,7 +78,7 @@ app.controller('CountryController', function ($scope, $http, $window) {
     };
     
     $scope.init = function () {        
-        console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
+        // console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -99,12 +97,6 @@ app.controller('CountryController', function ($scope, $http, $window) {
                 console.log(str);
             }
             else {                
-                //console.log("json string List_tbl_Pager_To_Client : " + JSON.stringify(data[0].List_tbl_Pager_To_Client));
-                //console.log(".......................................................................................................................");
-                //console.log(".......................................................................................................................");
-                //console.log("json string List_T : " + JSON.stringify(data[0].List_T));
-                //console.log(".......................................................................................................................");
-                //console.log(".......................................................................................................................");               
 
                 if (data[0].List_T.length <= 0)
                 {
@@ -176,7 +168,7 @@ app.directive("customSort", function () {
                     return 'fa fa-sort'
                 }
             };
-        }// end link
+        }
     }
 });
 
@@ -186,7 +178,7 @@ app.directive("ddlRecordFilterCount", function () {
         transclude: true,
         scope: false,
         template:
-            ' <span class="glyphicon glyphicon-filter"></span>&nbsp;Filter By&nbsp; ' +
+            ' Filter By&nbsp;<span class="glyphicon glyphicon-filter"></span> ' +
             ' <select id="ddlRecordFilterCount" name="ddlRecordFilterCount"  ' +
             ' ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption" ' +
             ' ng-change="ddlRecordFilterCount_Change(data.selectedOption)" ></select> ',
@@ -199,10 +191,10 @@ app.directive("ddlRecordFilterCount", function () {
                 ],
                 selectedOption: { id: '10', name: '10' }
             };
-            scope.ddlRecordFilterCount_Change = function (SelectedValue) {
-                console.log("SelectedValue.id", SelectedValue.id);
-                //scope.ddlSelectedValue = SelectedValue.id;
-                //scope.TestDDLFunction();
+            scope.ddlRecordFilterCount_Change = function (SelectedValue) {                
+                scope.Country_Criteria_Model.RecordPerPage = SelectedValue.id;
+                scope.Country_Criteria_Model.RecordPerBatch = scope.Country_Criteria_Model.RecordPerPage * scope.Country_Criteria_Model.PagerShowIndexOneUpToX;
+                scope.init();
             };
         }
     }
