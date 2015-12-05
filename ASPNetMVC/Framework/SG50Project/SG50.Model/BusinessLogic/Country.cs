@@ -55,10 +55,10 @@ namespace SG50.Model.BusinessLogic
                     var WhereAableQuery = _ApplicationDbContext.tbl_Country.OrderBy(_Country_Criteria_Model.OrderByClause);
 
                     if (!string.IsNullOrEmpty(_Country_Criteria_Model.Id))
-                        WhereAableQuery = WhereAableQuery.Where(x => x.Id.Equals(_Country_Criteria_Model.Id));
+                        WhereAableQuery = WhereAableQuery.Where(x => x.Id.Equals(new Guid(_Country_Criteria_Model.Id)));
 
                     if (!string.IsNullOrEmpty(_Country_Criteria_Model.Name))
-                        WhereAableQuery = WhereAableQuery.Where(x => x.Name.Equals(_Country_Criteria_Model.Name));
+                        WhereAableQuery = WhereAableQuery.Where(x => x.Name.Contains(_Country_Criteria_Model.Name));
 
                     int TotalRecordCount = WhereAableQuery.Count();                            
 

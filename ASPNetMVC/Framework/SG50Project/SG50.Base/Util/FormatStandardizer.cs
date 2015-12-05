@@ -54,7 +54,7 @@ namespace SG50.Base.Util
         /// <summary>
         /// ref http://stackoverflow.com/a/11040993
         /// </summary>
-        public const string Client_GuidFormat = @"/^\b[A-Fa-f0-9]{8}(?:-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}\b$/";
-        public const string Server_GuidFormat = "\b[A-Fa-f0-9]{8}(?:-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}\b";
+        public const string Client_GuidFormat = @"/^[A-Fa-f0-9]{8}(?:-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}$/";
+        public const string Server_GuidFormat = "[A-Fa-f0-9]{8}(?:-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}";
     }
 }

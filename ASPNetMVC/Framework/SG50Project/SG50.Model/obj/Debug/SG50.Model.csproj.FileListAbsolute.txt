@@ -59,3 +59,4 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debu
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debug\SG50.Model.csproj.GenerateResource.Cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debug\SG50.Model.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\obj\Debug\SG50.Model.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\SG50Project\SG50.Model\bin\Debug\System.Linq.Dynamic.dll

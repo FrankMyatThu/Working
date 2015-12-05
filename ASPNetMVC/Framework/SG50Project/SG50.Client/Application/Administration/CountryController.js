@@ -5,15 +5,10 @@
         return input.slice(start);
     };
 });
-app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
 
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
-
-    $scope.Search = function () {
-        $uibModalInstance.close($scope.selected.item);
+    $scope.Search = function () {        
+        $uibModalInstance.close();
     };
 
     $scope.Cancel = function () {
@@ -55,30 +50,18 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'ModalContent_PopupSearch.html',
+            controller: 'ModalInstanceCtrl',
             scope: $scope,
-            size: size,            
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            }
+            size: size,
         });
 
-        modalInstance.result.then(function (selectedItem) {
-            scope.selected = selectedItem;
+        modalInstance.result.then(function () {
+            $scope.init();
+            $scope.currentPage = 0;
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
 
-    };
-    $scope.Search = function () {
-        console.log("..Search..");
-        $uibModalInstance.close($scope.selected.item);
-    };
-
-    $scope.Cancel = function () {
-        console.log("..Cancel..");
-        $uibModalInstance.dismiss('cancel');
     };
 
     $scope.sort = {
