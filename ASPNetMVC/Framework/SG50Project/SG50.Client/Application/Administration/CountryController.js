@@ -1,10 +1,30 @@
-﻿app.filter('offset', function () {
+﻿app.factory('countryDataFactory', ['$http', function ($http, $window) {
+    
+    var countryDataFactory = {};
+    countryDataFactory.selectCountry = function (_Country_Criteria_Model) {
+        return $http({
+            method: 'POST',
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
+            headers: {
+                'accept': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey // $scope.$parent.antiForgeryToken
+            },
+            data: _Country_Criteria_Model
+        });
+    };
+
+    return countryDataFactory;
+}]);
+
+app.filter('offset', function () {
     return function (input, start) {
         if (!input || !input.length) { return; }
         start = parseInt(start, 10);        
         return input.slice(start);
     };
 });
+
 app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
 
     $scope.Search = function () {        
@@ -17,7 +37,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
 
 });
 
-app.controller('CountryController', function ($scope, $http, $window, $uibModal) {
+app.controller('CountryController', function ($scope, $http, $window, $uibModal, countryDataFactory) {
     $scope.animationsEnabled = true;
     $scope.DisplayData = "";
     $scope.IsRecordFound = true;
@@ -85,14 +105,56 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
         $scope.currentPage = 0;
     }
 
-    $scope.lastPage = function () {        
+    $scope.lastPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
-        console.log("[LastPage]$scope.Country_Criteria_Model.BatchIndex", $scope.Country_Criteria_Model.BatchIndex);
-        $scope.List_tbl_Pager_To_Client_ByBatchIndex = {};
-        $scope.init();
-        console.log("[lastPage]JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex)", JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex));
-        $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;        
-    }
+        countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+        .success(function (data, status, headers, config) {
+            if (data.success == false) {
+                var str = '';
+                for (var error in data.errors) {
+                    str += data.errors[error] + '\n';
+                }
+                console.log(str);
+            }
+            else {
+
+                if (data[0].List_T.length <= 0) {
+                    $scope.IsRecordFound = false;
+                    return;
+                }
+
+                $scope.items = data[0].List_T;
+                $scope.itemsLength = data[0].List_T[0].TotalRecordCount;
+                console.log("[countryDataFactory]$scope.Country_Criteria_Model.BatchIndex", $scope.Country_Criteria_Model.BatchIndex);
+                $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Country_Criteria_Model.BatchIndex; });
+                console.log("[countryDataFactory]JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex)", JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex));
+                $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
+            }
+        }).error(function (data, status, headers, config) {
+            var ErrorMessageValue = "";
+            var ExceptionMessageValue = "";
+            ErrorNotifier(data);
+            function ErrorNotifier(data) {
+                angular.forEach(data, function (value, key) {
+                    console.log("key = " + key + " value = " + value);
+                    if (key == "ExceptionMessage") {
+                        ExceptionMessageValue = value;
+                    }
+                    ErrorMessageValue = value;
+                    if (typeof value === 'object') {
+                        ErrorNotifier(value);
+                    }
+                });
+            }
+            if (ExceptionMessageValue != "") {
+                //$scope.error = ExceptionMessageValue;
+            }
+            else {
+                //$scope.error = ErrorMessageValue;
+            }
+            //$scope.dataLoading = false;
+        });
+    };
 
     $scope.prevPage = function () {
         if ($scope.Country_Criteria_Model.BatchIndex > 1) {            
@@ -121,6 +183,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
     $scope.setPage = function (n) {
         $scope.currentPage = n;
     };
+    
     
     $scope.init = function () {        
         //console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
