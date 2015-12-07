@@ -44,6 +44,25 @@ namespace SG50.Model.BusinessLogic
             }
         }
 
+        public void Delete(List<Country_Criteria_Model> List_Country_Criteria_Model)
+        {
+            try
+            {
+                using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
+                {
+                    foreach (Country_Criteria_Model _Country_Criteria_Model in List_Country_Criteria_Model) { 
+                        _ApplicationDbContext.tbl_Country.RemoveRange(_ApplicationDbContext.tbl_Country.Where(x => x.Id.Equals(new Guid(_Country_Criteria_Model.Id))));
+                    }
+                    _ApplicationDbContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                throw ex;
+            }
+        }
+
         public List<tbl_GridListing<CountryBindingModel>> GetCountryList(Country_Criteria_Model _Country_Criteria_Model)
         {
             List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();

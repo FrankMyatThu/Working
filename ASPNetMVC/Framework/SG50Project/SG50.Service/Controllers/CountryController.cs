@@ -51,10 +51,9 @@ namespace SG50.Service.Controllers
         [Route("Create")]
         [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         [CustomizedAuthorization(LoggerName = LoggerName)]
-        public IHttpActionResult Create(CountryBindingModel _LoginUserBindingModel)
+        public IHttpActionResult Create(CountryBindingModel _CountryBindingModel)
         {
-            ApplicationLogger.WriteTrace("Start CountryController Create", LoggerName);
-            string JWTToken = string.Empty;
+            ApplicationLogger.WriteTrace("Start CountryController Create", LoggerName);            
             if (!ModelState.IsValid)
             {
                 string messages = string.Join("; ", ModelState.Values
@@ -78,7 +77,38 @@ namespace SG50.Service.Controllers
             }
 
             ApplicationLogger.WriteTrace("End CountryController Create", LoggerName);
-            return Ok(JWTToken);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("Delete")]
+        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
+        [CustomizedAuthorization(LoggerName = LoggerName)]
+        public IHttpActionResult Delete(List<Country_Criteria_Model> List_Country_Criteria_Model)
+        {
+            ApplicationLogger.WriteTrace("Start CountryController Delete", LoggerName);            
+            if (!ModelState.IsValid)
+            {
+                string messages = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                (new Country()).Delete(List_Country_Criteria_Model);      
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                return InternalServerError(ex);
+            }
+
+            ApplicationLogger.WriteTrace("End CountryController Delete", LoggerName);
+            return Ok();
         }
     }
 }

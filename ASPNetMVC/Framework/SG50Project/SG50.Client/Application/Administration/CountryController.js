@@ -46,6 +46,16 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
     };    
     $scope.List_tbl_Pager_To_Client_ByBatchIndex = "";
 
+    $scope.IsSelectedAll = false;    
+    $scope.currentDisplayedPageRecord = {};
+    $scope.selectAll = function () {        
+        $scope.currentDisplayedPageRecord = $scope.items.slice($scope.currentPage * $scope.Country_Criteria_Model.RecordPerPage, $scope.Country_Criteria_Model.RecordPerPage);        
+        for (var i = 0; i < $scope.currentDisplayedPageRecord.length; i++) {
+            var item = $scope.currentDisplayedPageRecord[i];            
+            $scope.currentDisplayedPageRecord[item.Id] = $scope.IsSelectedAll;
+        }
+    };
+
     $scope.searchPage = function (size) {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
@@ -75,10 +85,13 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
         $scope.currentPage = 0;
     }
 
-    $scope.lastPage = function () {
+    $scope.lastPage = function () {        
         $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
-        $scope.init();        
-        $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
+        console.log("[LastPage]$scope.Country_Criteria_Model.BatchIndex", $scope.Country_Criteria_Model.BatchIndex);
+        $scope.List_tbl_Pager_To_Client_ByBatchIndex = {};
+        $scope.init();
+        console.log("[lastPage]JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex)", JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex));
+        $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;        
     }
 
     $scope.prevPage = function () {
@@ -110,7 +123,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
     };
     
     $scope.init = function () {        
-        console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
+        //console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -138,6 +151,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal)
 
                 $scope.items = data[0].List_T;
                 $scope.itemsLength = data[0].List_T[0].TotalRecordCount;                
+                console.log("[init]$scope.Country_Criteria_Model.BatchIndex", $scope.Country_Criteria_Model.BatchIndex);
                 $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Country_Criteria_Model.BatchIndex; });
             }
         }).error(function (data, status, headers, config) {
