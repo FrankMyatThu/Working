@@ -2,11 +2,11 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<script src="~/Application/Administration/CountryController.js"></script>
+<script src="~/Application/Administration/CountryListingController.js"></script>
 <div class="box-header with-border">
     <h3 class="box-title">Country</h3>
 </div>
-<form name="form" ng-submit="Country()" ng-controller="CountryController" role="form" ng-init="firstPage()">
+<form name="form" ng-submit="Country()" ng-controller="CountryListingController" role="form" ng-init="firstPage()">
     <div class="box-body">
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <div class="form-group">

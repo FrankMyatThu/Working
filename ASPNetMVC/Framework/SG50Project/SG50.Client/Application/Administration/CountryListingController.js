@@ -1,8 +1,8 @@
-﻿app.factory('countryDataFactory', ['$http', function ($http) {
+﻿app.factory('countryListingDataFactory', ['$http', function ($http) {
     
-    var countryDataFactory = {};
-    countryDataFactory.selectCountry = function (_Country_Criteria_Model) {
-        console.log("[countryDataFactory] _Country_Criteria_Model", JSON.stringify(_Country_Criteria_Model));
+    var countryListingDataFactory = {};
+    countryListingDataFactory.selectCountry = function (_Country_Criteria_Model) {
+        console.log("[countryListingDataFactory] _Country_Criteria_Model", JSON.stringify(_Country_Criteria_Model));
         return $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -15,7 +15,7 @@
         });
     };
 
-    return countryDataFactory;
+    return countryListingDataFactory;
 }]);
 
 app.filter('offset', function () {
@@ -26,7 +26,7 @@ app.filter('offset', function () {
     };
 });
 
-app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+app.controller('Modal_PopupSearch_Controller', function ($scope, $uibModalInstance) {
 
     $scope.Search = function () {        
         $uibModalInstance.close();
@@ -38,7 +38,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
 
 });
 
-app.controller('CountryController', function ($scope, $http, $window, $uibModal, countryDataFactory) {
+app.controller('CountryListingController', function ($scope, $http, $window, $uibModal, countryListingDataFactory) {
     $scope.animationsEnabled = true;    
     $scope.IsRecordFound = true;
     $scope.currentPage = 0;
@@ -80,14 +80,14 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'ModalContent_PopupSearch.html',
-            controller: 'ModalInstanceCtrl',
+            controller: 'Modal_PopupSearch_Controller',
             scope: $scope,
             size: size,
         });
 
         modalInstance.result.then(function () {
             $scope.Country_Criteria_Model.BatchIndex = 1;
-            countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+            countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.dataOptimizer(data);
                 $scope.currentPage = 0;
@@ -107,7 +107,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
     
     $scope.firstPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = 1;
-        countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+        countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
             $scope.currentPage = 0;
@@ -118,7 +118,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
 
     $scope.lastPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
-        countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+        countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
             $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
@@ -130,7 +130,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
     $scope.prevPage = function () {
         if ($scope.Country_Criteria_Model.BatchIndex > 1) {            
             $scope.Country_Criteria_Model.BatchIndex--;            
-            countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+            countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.dataOptimizer(data);
                 $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
@@ -147,7 +147,7 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
     $scope.nextPage = function () {
         if ($scope.Country_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {            
             $scope.Country_Criteria_Model.BatchIndex++;
-            countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+            countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.dataOptimizer(data);
                 $scope.currentPage = 0;
@@ -248,7 +248,7 @@ app.directive("customSort", function () {
     }
 });
 
-app.directive("ddlRecordFilterCount", ['countryDataFactory', function(countryDataFactory) {
+app.directive("ddlRecordFilterCount", ['countryListingDataFactory', function(countryListingDataFactory) {
     return {
         restrict: 'A',
         transclude: true,
@@ -271,7 +271,7 @@ app.directive("ddlRecordFilterCount", ['countryDataFactory', function(countryDat
                 scope.Country_Criteria_Model.BatchIndex = 1;
                 scope.Country_Criteria_Model.RecordPerPage = SelectedValue.id;
                 scope.Country_Criteria_Model.RecordPerBatch = scope.Country_Criteria_Model.RecordPerPage * scope.Country_Criteria_Model.PagerShowIndexOneUpToX;
-                countryDataFactory.selectCountry(scope.Country_Criteria_Model)
+                countryListingDataFactory.selectCountry(scope.Country_Criteria_Model)
                 .success(function (data, status, headers, config) {
                     scope.dataOptimizer(data);
                     scope.currentPage = 0;

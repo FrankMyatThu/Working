@@ -97,7 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Application\Administration\CountryController.js" />
+    <Content Include="Application\Administration\CountryListingController.js" />
     <Content Include="Application\Administration\HomeController.js" />
     <Content Include="Application\Administration\LoginController.js" />
     <Content Include="Application\Administration\RegistrationController.js" />
