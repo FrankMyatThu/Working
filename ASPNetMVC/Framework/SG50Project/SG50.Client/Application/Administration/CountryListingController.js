@@ -82,13 +82,21 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
 
     $scope.IsSelectedAll = false;    
     $scope.currentDisplayedPageRecord = {};
+    $scope.currentDisplayedPageRecord_Total = 0;
     $scope.selectAll = function () {        
         $scope.currentDisplayedPageRecord = $scope.items.slice($scope.currentPage * $scope.Country_Criteria_Model.RecordPerPage, $scope.Country_Criteria_Model.RecordPerPage);        
         for (var i = 0; i < $scope.currentDisplayedPageRecord.length; i++) {
             var item = $scope.currentDisplayedPageRecord[i];            
             $scope.currentDisplayedPageRecord[item.Id] = $scope.IsSelectedAll;
         }
+        currentDisplayedPageRecord_Total = $scope.currentDisplayedPageRecord.length;
     };
+    $scope.voidSelect = function () {
+        $scope.IsSelectedAll = false;
+    }
+    $scope.lineChecked = function () {
+        console.log("checked");
+    }
 
     $scope.searchPage = function (size) {
         var modalInstance = $uibModal.open({
