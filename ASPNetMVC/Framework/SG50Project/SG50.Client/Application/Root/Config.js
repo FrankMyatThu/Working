@@ -12,6 +12,7 @@ var ApplicationConfig = {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Client path(s)
     Client_Domain: "https://localhost:44308",
+    Client_ServiceLoading : "/Content/img/Loading_Gears.gif",
     Client_Login: "/Account/Login",
     Client_Home: "/Home/Home",
     Client_Registration: "/Account/Register",
