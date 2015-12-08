@@ -1,14 +1,15 @@
-﻿app.factory('countryDataFactory', ['$http', function ($http, $window) {
+﻿app.factory('countryDataFactory', ['$http', function ($http) {
     
     var countryDataFactory = {};
     countryDataFactory.selectCountry = function (_Country_Criteria_Model) {
+        console.log("[countryDataFactory] _Country_Criteria_Model", JSON.stringify(_Country_Criteria_Model));
         return $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
             headers: {
                 'accept': 'application/json; charset=utf-8',
                 'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey // $scope.$parent.antiForgeryToken
+                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey 
             },
             data: _Country_Criteria_Model
         });
@@ -38,8 +39,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
 });
 
 app.controller('CountryController', function ($scope, $http, $window, $uibModal, countryDataFactory) {
-    $scope.animationsEnabled = true;
-    $scope.DisplayData = "";
+    $scope.animationsEnabled = true;    
     $scope.IsRecordFound = true;
     $scope.currentPage = 0;
     $scope.items = [];
@@ -86,8 +86,14 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
         });
 
         modalInstance.result.then(function () {
-            $scope.init();
-            $scope.currentPage = 0;
+            $scope.Country_Criteria_Model.BatchIndex = 1;
+            countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+            .success(function (data, status, headers, config) {
+                $scope.dataOptimizer(data);
+                $scope.currentPage = 0;
+            }).error(function (data, status, headers, config) {
+                $scope.errorHandler(data);
+            });            
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
@@ -101,66 +107,36 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
     
     $scope.firstPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = 1;
-        $scope.init();
-        $scope.currentPage = 0;
+        countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+        .success(function (data, status, headers, config) {
+            $scope.dataOptimizer(data);
+            $scope.currentPage = 0;
+        }).error(function (data, status, headers, config) {
+            $scope.errorHandler(data);
+        });
     }
 
     $scope.lastPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
         countryDataFactory.selectCountry($scope.Country_Criteria_Model)
         .success(function (data, status, headers, config) {
-            if (data.success == false) {
-                var str = '';
-                for (var error in data.errors) {
-                    str += data.errors[error] + '\n';
-                }
-                console.log(str);
-            }
-            else {
-
-                if (data[0].List_T.length <= 0) {
-                    $scope.IsRecordFound = false;
-                    return;
-                }
-
-                $scope.items = data[0].List_T;
-                $scope.itemsLength = data[0].List_T[0].TotalRecordCount;
-                console.log("[countryDataFactory]$scope.Country_Criteria_Model.BatchIndex", $scope.Country_Criteria_Model.BatchIndex);
-                $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Country_Criteria_Model.BatchIndex; });
-                console.log("[countryDataFactory]JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex)", JSON.stringify($scope.List_tbl_Pager_To_Client_ByBatchIndex));
-                $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
-            }
+            $scope.dataOptimizer(data);
+            $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
         }).error(function (data, status, headers, config) {
-            var ErrorMessageValue = "";
-            var ExceptionMessageValue = "";
-            ErrorNotifier(data);
-            function ErrorNotifier(data) {
-                angular.forEach(data, function (value, key) {
-                    console.log("key = " + key + " value = " + value);
-                    if (key == "ExceptionMessage") {
-                        ExceptionMessageValue = value;
-                    }
-                    ErrorMessageValue = value;
-                    if (typeof value === 'object') {
-                        ErrorNotifier(value);
-                    }
-                });
-            }
-            if (ExceptionMessageValue != "") {
-                //$scope.error = ExceptionMessageValue;
-            }
-            else {
-                //$scope.error = ErrorMessageValue;
-            }
-            //$scope.dataLoading = false;
+            $scope.errorHandler(data);
         });
     };
 
     $scope.prevPage = function () {
         if ($scope.Country_Criteria_Model.BatchIndex > 1) {            
             $scope.Country_Criteria_Model.BatchIndex--;            
-            $scope.init();
-            $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
+            countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+            .success(function (data, status, headers, config) {
+                $scope.dataOptimizer(data);
+                $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
+            }).error(function (data, status, headers, config) {
+                $scope.errorHandler(data);
+            });            
         }
     };
 
@@ -171,8 +147,13 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
     $scope.nextPage = function () {
         if ($scope.Country_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {            
             $scope.Country_Criteria_Model.BatchIndex++;
-            $scope.init();
-            $scope.currentPage = 0;            
+            countryDataFactory.selectCountry($scope.Country_Criteria_Model)
+            .success(function (data, status, headers, config) {
+                $scope.dataOptimizer(data);
+                $scope.currentPage = 0;
+            }).error(function (data, status, headers, config) {
+                $scope.errorHandler(data);
+            });                     
         }
     };
 
@@ -184,64 +165,50 @@ app.controller('CountryController', function ($scope, $http, $window, $uibModal,
         $scope.currentPage = n;
     };
     
-    
-    $scope.init = function () {        
-        //console.log("$scope.Country_Criteria_Model = " + JSON.stringify($scope.Country_Criteria_Model));
-        $http({
-            method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + $window.sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey // $scope.$parent.antiForgeryToken
-            },
-            data: $scope.Country_Criteria_Model
-        }).success(function (data, status, headers, config) {
-            if (data.success == false) {
-                var str = '';
-                for (var error in data.errors) {
-                    str += data.errors[error] + '\n';
-                }
-                console.log(str);
+    $scope.dataOptimizer = function (data) {
+        if (data.success == false) {
+            var str = '';
+            for (var error in data.errors) {
+                str += data.errors[error] + '\n';
             }
-            else {                
-
-                if (data[0].List_T.length <= 0)
-                {
-                    $scope.IsRecordFound = false;
-                    return;
-                }
-
-                $scope.items = data[0].List_T;
-                $scope.itemsLength = data[0].List_T[0].TotalRecordCount;                
-                console.log("[init]$scope.Country_Criteria_Model.BatchIndex", $scope.Country_Criteria_Model.BatchIndex);
-                $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Country_Criteria_Model.BatchIndex; });
+            console.log(str);
+        }
+        else {
+            if (data[0].List_T.length <= 0) {
+                $scope.IsRecordFound = false;
+                return;
             }
-        }).error(function (data, status, headers, config) {
-            var ErrorMessageValue = "";
-            var ExceptionMessageValue = "";
-            ErrorNotifier(data);
-            function ErrorNotifier(data) {
-                angular.forEach(data, function (value, key) {
-                    console.log("key = " + key + " value = " + value);
-                    if (key == "ExceptionMessage") {
-                        ExceptionMessageValue = value;
-                    }
-                    ErrorMessageValue = value;
-                    if (typeof value === 'object') {
-                        ErrorNotifier(value);
-                    }
-                });
-            }
-            if (ExceptionMessageValue != "") {
-                //$scope.error = ExceptionMessageValue;
-            }
-            else {
-                //$scope.error = ErrorMessageValue;
-            }
-            //$scope.dataLoading = false;
-        });
+            $scope.items = data[0].List_T;
+            $scope.itemsLength = data[0].List_T[0].TotalRecordCount;
+            $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Country_Criteria_Model.BatchIndex; });
+        }
     };
+
+    $scope.errorHandler = function (data) {
+        var ErrorMessageValue = "";
+        var ExceptionMessageValue = "";
+        ErrorNotifier(data);
+        function ErrorNotifier(data) {
+            angular.forEach(data, function (value, key) {
+                console.log("key = " + key + " value = " + value);
+                if (key == "ExceptionMessage") {
+                    ExceptionMessageValue = value;
+                }
+                ErrorMessageValue = value;
+                if (typeof value === 'object') {
+                    ErrorNotifier(value);
+                }
+            });
+        }
+        if (ExceptionMessageValue != "") {
+            //$scope.error = ExceptionMessageValue;
+        }
+        else {
+            //$scope.error = ErrorMessageValue;
+        }
+        //$scope.dataLoading = false;
+    };
+
 });
 
 app.directive("customSort", function () {
@@ -281,7 +248,7 @@ app.directive("customSort", function () {
     }
 });
 
-app.directive("ddlRecordFilterCount", function () {
+app.directive("ddlRecordFilterCount", ['countryDataFactory', function(countryDataFactory) {
     return {
         restrict: 'A',
         transclude: true,
@@ -304,9 +271,14 @@ app.directive("ddlRecordFilterCount", function () {
                 scope.Country_Criteria_Model.BatchIndex = 1;
                 scope.Country_Criteria_Model.RecordPerPage = SelectedValue.id;
                 scope.Country_Criteria_Model.RecordPerBatch = scope.Country_Criteria_Model.RecordPerPage * scope.Country_Criteria_Model.PagerShowIndexOneUpToX;
-                scope.init();
-                scope.currentPage = 0;
+                countryDataFactory.selectCountry(scope.Country_Criteria_Model)
+                .success(function (data, status, headers, config) {
+                    scope.dataOptimizer(data);
+                    scope.currentPage = 0;
+                }).error(function (data, status, headers, config) {
+                    scope.errorHandler(data);
+                });                
             };
         }
     }
-});
+}]);
