@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in items | offset: currentPage * Country_Criteria_Model.RecordPerPage | limitTo: Country_Criteria_Model.RecordPerPage">
-                            <td><input type="checkbox" ng-model="currentDisplayedPageRecord[item.Id]" ng-false-value="undefined" ng-change="voidSelect();" ng-checked="lineChecked();" /></td>
+                            <td><input type="checkbox" ng-model="currentDisplayedPageRecord[item.Id]" ng-false-value="undefined" ng-change="checkboxStateChanged(item.Id)" /></td>
                             <td>{{item.SrNo}}</td>
                             <td>{{item.Id}}</td>
                             <td>{{item.Name}}</td>

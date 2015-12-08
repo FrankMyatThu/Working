@@ -83,19 +83,31 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     $scope.IsSelectedAll = false;    
     $scope.currentDisplayedPageRecord = {};
     $scope.currentDisplayedPageRecord_Total = 0;
-    $scope.selectAll = function () {        
+    $scope.selectAll = function () {
+        console.log("[SelectAll]$scope.currentPage", $scope.currentPage);
+        console.log("[SelectAll]$scope.Country_Criteria_Model.RecordPerPage", $scope.Country_Criteria_Model.RecordPerPage);
+        console.log("[SelectAll]$scope.items", JSON.stringify($scope.items));
+
         $scope.currentDisplayedPageRecord = $scope.items.slice($scope.currentPage * $scope.Country_Criteria_Model.RecordPerPage, $scope.Country_Criteria_Model.RecordPerPage);        
         for (var i = 0; i < $scope.currentDisplayedPageRecord.length; i++) {
-            var item = $scope.currentDisplayedPageRecord[i];            
+            var item = $scope.currentDisplayedPageRecord[i];
+            console.log("[SelectAll] Id", item.Id);
             $scope.currentDisplayedPageRecord[item.Id] = $scope.IsSelectedAll;
         }
         currentDisplayedPageRecord_Total = $scope.currentDisplayedPageRecord.length;
-    };
-    $scope.voidSelect = function () {
-        $scope.IsSelectedAll = false;
-    }
-    $scope.lineChecked = function () {
-        console.log("checked");
+    };    
+    $scope.checkboxStateChanged = function (id) {
+        if ($scope.currentDisplayedPageRecord[id]) {
+            /// Checked  
+            console.log("Checked", id);
+        } else {
+            /// Not checked
+            $scope.IsSelectedAll = false;            
+        }
+        
+        var checkArrayList = $scope.currentDisplayedPageRecord.filter(function (item) { return item[id] === true; });
+        console.log("checked count", checkArrayList.length);
+        console.log("checkArrayList", JSON.stringify(checkArrayList));
     }
 
     $scope.searchPage = function (size) {
