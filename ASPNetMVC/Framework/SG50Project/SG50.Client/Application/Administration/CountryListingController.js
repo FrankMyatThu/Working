@@ -110,7 +110,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     //#region Grid's Checkbox 
     $scope.ResetCheckBoxControl = function (value) {
         $scope.checkboxControl.IsSelectedAll = value;
-        $scope.checkboxControl.IsSelectedAllTotally = !value;
+        $scope.checkboxControl.IsSelectedAllTotally = false;
         $scope.checkboxControl.SelectItemList = {};
         $scope.checkboxControl.currentDisplayedPageRecord = {};
     };
@@ -129,7 +129,6 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     };
     $scope.voidSelection = function (){
         $scope.ResetCheckBoxControl(false);
-        $scope.checkboxControl.IsSelectedAllTotally = false;
     }
     $scope.checkboxStateChanged = function (id) {
         if ($scope.checkboxControl.SelectItemList[id]) {
@@ -145,24 +144,35 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
 
     //#region Delete    
     $scope.deletePage = function () {
-        //console.log("delete...");
-        /*
-         * if(scope.checkboxControl.IsSelectedAllTotally)
-         * {
-         *      ajax.delete(scope.Country_Criteria_Model);
-         * }
-         * else
-         * {
-         *      var list = {};
-         *      for(var i=0; i<$scope.checkboxControl.SelectItemList.length; i++)
-         *      {
-         *          var _item = scope.Country_Criteria_Model.Id = $scope.checkboxControl.SelectItemList[i];
-         *          list.add(_item);
-         *      }
-         *      ajax.delete(list);
-         * }
-         * 
-         */
+        console.log("[deletePage] start");
+        if ($scope.checkboxControl.IsSelectedAllTotally) {
+            // ajax.delete(scope.Country_Criteria_Model);
+            console.log("Ajax.delete", JSON.stringify($scope.Country_Criteria_Model));
+        }
+        else {
+
+            console.log("[deletePage]$scope.checkboxControl.SelectItemList", JSON.stringify($scope.checkboxControl.SelectItemList));
+            //if ($scope.checkboxControl.SelectItemList === undefined
+            //    || $scope.checkboxControl.SelectItemList.length <= 0){
+            //    // $scope.Message = "Please select item(s) which you want to delete.";
+            //    console.log("Please select item(s) which you want to delete.");
+            //    return;
+            //}
+            
+            var List_Country_Criteria_Model = [];
+            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {
+                /// need to clear all attribute of Country_Criteria_Model before copy
+                /// ....
+                var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
+                _Country_Criteria_Model.Id = key;
+                List_Country_Criteria_Model.push(_Country_Criteria_Model);
+            });
+           
+            console.log("List_Country_Criteria_Model", JSON.stringify(List_Country_Criteria_Model));
+            //ajax.delete(List_Country_Criteria_Model);
+
+        }
+        console.log("[deletePage] end");
     };
     //#endregion
 
