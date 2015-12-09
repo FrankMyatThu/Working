@@ -1,4 +1,5 @@
-﻿app.factory('countryListingDataFactory', function ($http, $uibModal) {
+﻿//#region factory
+app.factory('countryListingDataFactory', function ($http, $uibModal) {
 
     var countryListingDataFactory = {};
     var modalInstance_Loading = "";
@@ -30,7 +31,9 @@
 
     return countryListingDataFactory;
 });
+//#endregion
 
+//#region filter
 app.filter('offset', function () {
     return function (input, start) {
         if (!input || !input.length) { return; }
@@ -38,10 +41,13 @@ app.filter('offset', function () {
         return input.slice(start);
     };
 });
+//#endregion
 
+//#region controller
+//#region Controller for searching popup dialog box.
 app.controller('Modal_PopupSearch_Controller', function ($scope, $uibModalInstance) {
 
-    $scope.Search = function () {        
+    $scope.Search = function () {
         $uibModalInstance.close();
     };
 
@@ -50,14 +56,22 @@ app.controller('Modal_PopupSearch_Controller', function ($scope, $uibModalInstan
     };
 
 });
-
+//#endregion
+//#region Controller for loading popup dialog box.
 app.controller('Modal_PopupLoading_Controller', function ($uibModalInstance) { });
+//#endregion
+//#region Controller for listing country info.
+app.controller('CountryListingController', function ($scope, $http, $window, $uibModal, countryListingDataFactory) {
 
-app.controller('CountryListingController', function ($scope, $http, $window, $uibModal, countryListingDataFactory) {      
+    //#region Initial declaration
     $scope.IsRecordFound = true;
     $scope.currentPage = 0;
+    // Data to populate grid.
     $scope.items = [];
-    $scope.itemsLength = 0;        
+    $scope.itemsLength = 0;
+    // Data to pupulate pager.
+    $scope.List_tbl_Pager_To_Client_ByBatchIndex = {};
+    // Criteria to search in database.
     $scope.Country_Criteria_Model = {
         // -- Pager --
         "BatchIndex": 1,
@@ -66,7 +80,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         "RecordPerBatch": 100,
 
         // -- Sorting --
-        "OrderByClause": "CreatedDate ASC",
+        "OrderByClause": "Name ASC",
 
         // -- Data --
         "SrNo": "",
@@ -77,39 +91,65 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         "CreatedBy": "",
         "UpdatedDate": "",
         "UpdatedBy": "",
-    };    
-    $scope.List_tbl_Pager_To_Client_ByBatchIndex = "";
+    };
+    // Sorting criteria.
+    $scope.sort = {
+        sortingOrder: 'Name',
+        reverse: false
+    };
+    // Checkbox Control
+    $scope.checkboxControl = {
+        "IsSelectedAll": false,
+        "IsSelectedAllTotally": false,
+        "SelectItemList": {},
+        "currentDisplayedPageRecord": {},
+        "currentDisplayedPageRecord_Total": 0
+    };
+    //#endregion
 
-    $scope.IsSelectedAll = false;    
-    $scope.currentDisplayedPageRecord = {};
-    $scope.currentDisplayedPageRecord_Total = 0;
+    //#region Grid's Checkbox 
+    $scope.ResetCheckBoxControl = function (value) {
+        $scope.checkboxControl.IsSelectedAll = value;
+        $scope.checkboxControl.IsSelectedAllTotally = !value;
+        $scope.checkboxControl.SelectItemList = {};
+        $scope.checkboxControl.currentDisplayedPageRecord = {};
+    };
     $scope.selectAll = function () {
-        console.log("[SelectAll]$scope.currentPage", $scope.currentPage);
-        console.log("[SelectAll]$scope.Country_Criteria_Model.RecordPerPage", $scope.Country_Criteria_Model.RecordPerPage);
-        console.log("[SelectAll]$scope.items", JSON.stringify($scope.items));
-
-        $scope.currentDisplayedPageRecord = $scope.items.slice($scope.currentPage * $scope.Country_Criteria_Model.RecordPerPage, $scope.Country_Criteria_Model.RecordPerPage);        
-        for (var i = 0; i < $scope.currentDisplayedPageRecord.length; i++) {
-            var item = $scope.currentDisplayedPageRecord[i];
-            console.log("[SelectAll] Id", item.Id);
-            $scope.currentDisplayedPageRecord[item.Id] = $scope.IsSelectedAll;
+        $scope.ResetCheckBoxControl($scope.checkboxControl.IsSelectedAll);
+        $scope.checkboxControl.currentDisplayedPageRecord = $scope.items.slice(0);
+        $scope.checkboxControl.currentDisplayedPageRecord = $scope.checkboxControl.currentDisplayedPageRecord.splice($scope.currentPage * $scope.Country_Criteria_Model.RecordPerPage, $scope.Country_Criteria_Model.RecordPerPage);
+        for (var i = 0; i < $scope.checkboxControl.currentDisplayedPageRecord.length; i++) {
+            var item = $scope.checkboxControl.currentDisplayedPageRecord[i];
+            $scope.checkboxControl.SelectItemList[item.Id] = $scope.checkboxControl.IsSelectedAll;
         }
-        currentDisplayedPageRecord_Total = $scope.currentDisplayedPageRecord.length;
-    };    
+        $scope.checkboxControl.currentDisplayedPageRecord_Total = $scope.checkboxControl.currentDisplayedPageRecord.length;
+    };
+    $scope.selectAllTotally = function (value) {        
+        $scope.checkboxControl.IsSelectedAllTotally = value;
+    };
+    $scope.voidSelection = function (){
+        $scope.ResetCheckBoxControl(false);
+        $scope.checkboxControl.IsSelectedAllTotally = false;
+    }
     $scope.checkboxStateChanged = function (id) {
-        if ($scope.currentDisplayedPageRecord[id]) {
+        if ($scope.checkboxControl.SelectItemList[id]) {
             /// Checked  
             console.log("Checked", id);
         } else {
             /// Not checked
-            $scope.IsSelectedAll = false;            
+            $scope.checkboxControl.IsSelectedAll = false;
         }
-        
-        var checkArrayList = $scope.currentDisplayedPageRecord.filter(function (item) { return item[id] === true; });
-        console.log("checked count", checkArrayList.length);
-        console.log("checkArrayList", JSON.stringify(checkArrayList));
+        console.log("$scope.checkboxControl.SelectItemList", JSON.stringify($scope.checkboxControl.SelectItemList));
     }
+    //#endregion
 
+    //#region Delete    
+    $scope.deletePage = function () {
+        console.log("delete...");
+    };
+    //#endregion
+
+    //#region Grid's Searching
     $scope.searchPage = function (size) {
         var modalInstance = $uibModal.open({
             animation: true,
@@ -127,19 +167,16 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
                 $scope.currentPage = 0;
             }).error(function (data, status, headers, config) {
                 $scope.errorHandler(data);
-            });            
+            });
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
 
     };
+    //#endregion
 
-    $scope.sort = {
-        sortingOrder: 'CreatedDate',
-        reverse: false
-    };
-    
-    $scope.firstPage = function () {        
+    //#region Pager
+    $scope.firstPage = function () {
         $scope.Country_Criteria_Model.BatchIndex = 1;
         countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
         .success(function (data, status, headers, config) {
@@ -147,39 +184,39 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             $scope.currentPage = 0;
         }).error(function (data, status, headers, config) {
             $scope.errorHandler(data);
-        });        
+        });
     }
 
     $scope.lastPage = function () {
-        $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);        
+        $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
         countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
-            $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;            
+            $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
         }).error(function (data, status, headers, config) {
             $scope.errorHandler(data);
         });
     };
 
     $scope.prevPage = function () {
-        if ($scope.Country_Criteria_Model.BatchIndex > 1) {            
-            $scope.Country_Criteria_Model.BatchIndex--;            
+        if ($scope.Country_Criteria_Model.BatchIndex > 1) {
+            $scope.Country_Criteria_Model.BatchIndex--;
             countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.dataOptimizer(data);
                 $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
             }).error(function (data, status, headers, config) {
                 $scope.errorHandler(data);
-            });            
+            });
         }
     };
 
-    $scope.prevPageDisabled = function () {        
+    $scope.prevPageDisabled = function () {
         return $scope.Country_Criteria_Model.BatchIndex === 1 ? "disabled" : "";
     };
 
     $scope.nextPage = function () {
-        if ($scope.Country_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {            
+        if ($scope.Country_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {
             $scope.Country_Criteria_Model.BatchIndex++;
             countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
             .success(function (data, status, headers, config) {
@@ -187,18 +224,21 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
                 $scope.currentPage = 0;
             }).error(function (data, status, headers, config) {
                 $scope.errorHandler(data);
-            });                     
+            });
         }
     };
 
-    $scope.nextPageDisabled = function () {        
+    $scope.nextPageDisabled = function () {
         return $scope.Country_Criteria_Model.BatchIndex === Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch) ? "disabled" : "";
     };
 
     $scope.setPage = function (n) {
         $scope.currentPage = n;
+        $scope.ResetCheckBoxControl(false);
     };
-    
+    //#endregion
+
+    //#region Optimize data after Ajax request
     $scope.dataOptimizer = function (data) {
         if (data.success == false) {
             var str = '';
@@ -208,6 +248,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             console.log(str);
         }
         else {
+            $scope.ResetCheckBoxControl(false);
             if (data[0].List_T.length <= 0) {
                 $scope.IsRecordFound = false;
                 return;
@@ -218,7 +259,9 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             countryListingDataFactory.dismissDialog();
         }
     };
+    //#endregion
 
+    //#region Handle error after Ajax request
     $scope.errorHandler = function (data) {
         var ErrorMessageValue = "";
         var ExceptionMessageValue = "";
@@ -243,9 +286,12 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         }
         //$scope.dataLoading = false;
     };
-
+    //#endregion
 });
+//#endregion
+//#endregion
 
+//#region directive
 app.directive("customSort", function () {
     return {
         restrict: 'A',
@@ -256,10 +302,10 @@ app.directive("customSort", function () {
           '    <span ng-transclude></span>' +
           '    <i ng-class="selectedCls(order)"></i>' +
           '</a>',
-        link: function (scope, elem, attrs) {            
-            scope.order = attrs.order;            
+        link: function (scope, elem, attrs) {
+            scope.order = attrs.order;
 
-            scope.sort_by = function (newSortingOrder) {                
+            scope.sort_by = function (newSortingOrder) {
                 var sort = scope.sort;
                 if (sort.sortingOrder == newSortingOrder) {
                     sort.reverse = !sort.reverse;
@@ -267,10 +313,10 @@ app.directive("customSort", function () {
                 }
 
                 sort.sortingOrder = newSortingOrder;
-                scope.Country_Criteria_Model.OrderByClause = sort.sortingOrder + ((scope.sort.reverse) ? ' DESC' : ' ASC');                
+                scope.Country_Criteria_Model.OrderByClause = sort.sortingOrder + ((scope.sort.reverse) ? ' DESC' : ' ASC');
                 scope.firstPage();
             };
-            
+
             scope.selectedCls = function (column) {
                 if (column == scope.sort.sortingOrder) {
                     return ('fa fa-chevron-' + ((scope.sort.reverse) ? 'down' : 'up'));
@@ -283,7 +329,7 @@ app.directive("customSort", function () {
     }
 });
 
-app.directive("ddlRecordFilterCount", ['countryListingDataFactory', function(countryListingDataFactory) {
+app.directive("ddlRecordFilterCount", ['countryListingDataFactory', function (countryListingDataFactory) {
     return {
         restrict: 'A',
         transclude: true,
@@ -312,8 +358,9 @@ app.directive("ddlRecordFilterCount", ['countryListingDataFactory', function(cou
                     scope.currentPage = 0;
                 }).error(function (data, status, headers, config) {
                     scope.errorHandler(data);
-                });                
+                });
             };
         }
     }
 }]);
+//#endregion
