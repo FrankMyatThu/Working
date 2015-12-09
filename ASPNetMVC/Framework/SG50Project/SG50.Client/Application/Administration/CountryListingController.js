@@ -145,7 +145,24 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
 
     //#region Delete    
     $scope.deletePage = function () {
-        console.log("delete...");
+        //console.log("delete...");
+        /*
+         * if(scope.checkboxControl.IsSelectedAllTotally)
+         * {
+         *      ajax.delete(scope.Country_Criteria_Model);
+         * }
+         * else
+         * {
+         *      var list = {};
+         *      for(var i=0; i<$scope.checkboxControl.SelectItemList.length; i++)
+         *      {
+         *          var _item = scope.Country_Criteria_Model.Id = $scope.checkboxControl.SelectItemList[i];
+         *          list.add(_item);
+         *      }
+         *      ajax.delete(list);
+         * }
+         * 
+         */
     };
     //#endregion
 

@@ -50,8 +50,16 @@ namespace SG50.Model.BusinessLogic
             {
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
                 {
-                    foreach (Country_Criteria_Model _Country_Criteria_Model in List_Country_Criteria_Model) { 
-                        _ApplicationDbContext.tbl_Country.RemoveRange(_ApplicationDbContext.tbl_Country.Where(x => x.Id.Equals(new Guid(_Country_Criteria_Model.Id))));
+                    var WhereAableQuery = _ApplicationDbContext.tbl_Country.Select(x => x);
+                    foreach (Country_Criteria_Model _Country_Criteria_Model in List_Country_Criteria_Model)
+                    {
+                        if (!string.IsNullOrEmpty(_Country_Criteria_Model.Id))
+                            WhereAableQuery = WhereAableQuery.Where(x => x.Id.Equals(new Guid(_Country_Criteria_Model.Id)));
+
+                        if (!string.IsNullOrEmpty(_Country_Criteria_Model.Name))
+                            WhereAableQuery = WhereAableQuery.Where(x => x.Name.Contains(_Country_Criteria_Model.Name));
+
+                        _ApplicationDbContext.tbl_Country.RemoveRange(WhereAableQuery);
                     }
                     _ApplicationDbContext.SaveChanges();
                 }
