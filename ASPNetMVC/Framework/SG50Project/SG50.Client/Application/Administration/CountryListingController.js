@@ -151,26 +151,21 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         }
         else {
 
-            console.log("[deletePage]$scope.checkboxControl.SelectItemList", JSON.stringify($scope.checkboxControl.SelectItemList));
-            //if ($scope.checkboxControl.SelectItemList === undefined
-            //    || $scope.checkboxControl.SelectItemList.length <= 0){
-            //    // $scope.Message = "Please select item(s) which you want to delete.";
-            //    console.log("Please select item(s) which you want to delete.");
-            //    return;
-            //}
-            
             var List_Country_Criteria_Model = [];
-            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {
-                /// need to clear all attribute of Country_Criteria_Model before copy
-                /// ....
-                var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
+            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {                
+                var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);                
+                angular.forEach(_Country_Criteria_Model, function (_value, _key) {                    
+                    _Country_Criteria_Model[_key] = "";
+                });                
                 _Country_Criteria_Model.Id = key;
                 List_Country_Criteria_Model.push(_Country_Criteria_Model);
-            });
-           
-            console.log("List_Country_Criteria_Model", JSON.stringify(List_Country_Criteria_Model));
+            });           
+            if (List_Country_Criteria_Model.length <= 0) {
+                // $scope.Message = "Please select item(s) which you want to delete.";
+                console.log("Please select item(s) which you want to delete.");
+            }
+            console.log("List_Country_Criteria_Model", JSON.stringify(List_Country_Criteria_Model));            
             //ajax.delete(List_Country_Criteria_Model);
-
         }
         console.log("[deletePage] end");
     };
