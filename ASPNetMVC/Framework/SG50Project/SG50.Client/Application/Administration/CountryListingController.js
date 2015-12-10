@@ -26,6 +26,7 @@ app.factory('countryListingDataFactory', function ($http, $uibModal, $uibModalSt
     };
 
     countryListingDataFactory.deleteCountry = function (_Country_Criteria_Model) {
+        console.log("_Country_Criteria_Model", JSON.stringify(_Country_Criteria_Model));
         modalInstance_Loading = $uibModal.open({
             animation: true,
             templateUrl: 'ModalContent_PopupLoading.html',
@@ -87,6 +88,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
 
     //#region Initial declaration
     $scope.IsFinishDeleted = false;
+    $scope.DeletedRowCount = 0;
     $scope.IsRecordFound = true;
     $scope.currentPage = 0;
     // Data to populate grid.
@@ -189,7 +191,8 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             List_Country_Criteria_Model.push($scope.Country_Criteria_Model);
             countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
             .success(function (data, status, headers, config) {
-                $scope.Reset_Country_Criteria_Model_Data();                
+                $scope.Reset_Country_Criteria_Model_Data();
+                $scope.DeletedRowCount = $scope.itemsLength;
                 $scope.firstPage();                
                 $scope.IsFinishDeleted = true;                
                 $timeout(function () { $scope.IsFinishDeleted = false; }, 4000);
@@ -202,6 +205,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             var List_Country_Criteria_Model = [];
             $scope.Reset_Country_Criteria_Model_Data();
             angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {
+                console.log("key", key, "value", value);
                 if (value) {
                     var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
                     _Country_Criteria_Model.Id = key;
@@ -214,7 +218,8 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
                 return;
             }
             countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
-            .success(function (data, status, headers, config) {                
+            .success(function (data, status, headers, config) {
+                $scope.DeletedRowCount = List_Country_Criteria_Model.length;
                 $scope.firstPage();
                 $scope.IsFinishDeleted = true;                
                 $timeout(function () { $scope.IsFinishDeleted = false; }, 4000);

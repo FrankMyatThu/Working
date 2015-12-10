@@ -49,10 +49,11 @@ namespace SG50.Model.BusinessLogic
             try
             {
                 using (ApplicationDbContext _ApplicationDbContext = new ApplicationDbContext())
-                {
-                    var WhereAableQuery = _ApplicationDbContext.tbl_Country.Select(x => x);
+                {                    
                     foreach (Country_Criteria_Model _Country_Criteria_Model in List_Country_Criteria_Model)
                     {
+                        var WhereAableQuery = _ApplicationDbContext.tbl_Country.Select(x => x);
+
                         if (!string.IsNullOrEmpty(_Country_Criteria_Model.Id))
                             WhereAableQuery = WhereAableQuery.Where(x => x.Id.Equals(new Guid(_Country_Criteria_Model.Id)));
 
