@@ -1,5 +1,5 @@
 ﻿//#region factory
-app.factory('countryListingDataFactory', function ($http, $uibModal) {
+app.factory('countryListingDataFactory', function ($http, $uibModal, $uibModalStack) {
 
     var countryListingDataFactory = {};
     var modalInstance_Loading = "";
@@ -25,8 +25,30 @@ app.factory('countryListingDataFactory', function ($http, $uibModal) {
         });
     };
 
+    countryListingDataFactory.deleteCountry = function (_Country_Criteria_Model) {
+        modalInstance_Loading = $uibModal.open({
+            animation: true,
+            templateUrl: 'ModalContent_PopupLoading.html',
+            controller: 'Modal_PopupLoading_Controller',
+            backdrop: 'static',
+            keyboard: false,
+            windowClass: 'app-modal-window-loading',
+        });
+        return $http({
+            method: 'POST',
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_DeleteCountryList),
+            headers: {
+                'accept': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            },
+            data: _Country_Criteria_Model
+        });
+    };
+
     countryListingDataFactory.dismissDialog = function () {
-        modalInstance_Loading.dismiss();
+        $uibModalStack.dismissAll();
+        //modalInstance_Loading.dismiss();
     };
 
     return countryListingDataFactory;
@@ -61,9 +83,10 @@ app.controller('Modal_PopupSearch_Controller', function ($scope, $uibModalInstan
 app.controller('Modal_PopupLoading_Controller', function ($uibModalInstance) { });
 //#endregion
 //#region Controller for listing country info.
-app.controller('CountryListingController', function ($scope, $http, $window, $uibModal, countryListingDataFactory) {
+app.controller('CountryListingController', function ($scope, $http, $window, $uibModal, $timeout, countryListingDataFactory) {
 
     //#region Initial declaration
+    $scope.IsFinishDeleted = false;
     $scope.IsRecordFound = true;
     $scope.currentPage = 0;
     // Data to populate grid.
@@ -107,6 +130,19 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     };
     //#endregion
 
+    //#region Reset criteria array
+    $scope.Reset_Country_Criteria_Model_Data = function () {
+        $scope.Country_Criteria_Model.SrNo = "";
+        $scope.Country_Criteria_Model.Id = "";
+        $scope.Country_Criteria_Model.Name = "";
+        $scope.Country_Criteria_Model.IsActive = "";
+        $scope.Country_Criteria_Model.CreatedDate = "";
+        $scope.Country_Criteria_Model.CreatedBy = "";
+        $scope.Country_Criteria_Model.UpdatedDate = "";
+        $scope.Country_Criteria_Model.UpdatedBy = "";
+    }
+    //#endregion
+
     //#region Grid's Checkbox 
     $scope.ResetCheckBoxControl = function (value) {
         $scope.checkboxControl.IsSelectedAll = value;
@@ -143,31 +179,49 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     //#endregion
 
     //#region Delete    
-    $scope.deletePage = function () {
-        console.log("[deletePage] start");
+    $scope.deletePage = function () {        
+        var result = confirm("Are you sure to delete?");
+        if (!result) {            
+            return;
+        }
         if ($scope.checkboxControl.IsSelectedAllTotally) {
-            // ajax.delete(scope.Country_Criteria_Model);
-            console.log("Ajax.delete", JSON.stringify($scope.Country_Criteria_Model));
+            var List_Country_Criteria_Model = [];
+            List_Country_Criteria_Model.push($scope.Country_Criteria_Model);
+            countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
+            .success(function (data, status, headers, config) {
+                $scope.Reset_Country_Criteria_Model_Data();                
+                $scope.firstPage();                
+                $scope.IsFinishDeleted = true;                
+                $timeout(function () { $scope.IsFinishDeleted = false; }, 4000);
+            }).error(function (data, status, headers, config) {
+                $scope.errorHandler(data);                
+            });
+            
         }
         else {
-
             var List_Country_Criteria_Model = [];
-            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {                
-                var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);                
-                angular.forEach(_Country_Criteria_Model, function (_value, _key) {                    
-                    _Country_Criteria_Model[_key] = "";
-                });                
-                _Country_Criteria_Model.Id = key;
-                List_Country_Criteria_Model.push(_Country_Criteria_Model);
+            $scope.Reset_Country_Criteria_Model_Data();
+            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {
+                if (value) {
+                    var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
+                    _Country_Criteria_Model.Id = key;
+                    List_Country_Criteria_Model.push(_Country_Criteria_Model);
+                }
             });           
             if (List_Country_Criteria_Model.length <= 0) {
-                // $scope.Message = "Please select item(s) which you want to delete.";
-                console.log("Please select item(s) which you want to delete.");
+                alert("Please select item(s) which you want to delete.");
+                $scope.firstPage();
+                return;
             }
-            console.log("List_Country_Criteria_Model", JSON.stringify(List_Country_Criteria_Model));            
-            //ajax.delete(List_Country_Criteria_Model);
+            countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
+            .success(function (data, status, headers, config) {                
+                $scope.firstPage();
+                $scope.IsFinishDeleted = true;                
+                $timeout(function () { $scope.IsFinishDeleted = false; }, 4000);
+            }).error(function (data, status, headers, config) {
+                $scope.errorHandler(data);                
+            });            
         }
-        console.log("[deletePage] end");
     };
     //#endregion
 
@@ -273,6 +327,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             $scope.ResetCheckBoxControl(false);
             if (data[0].List_T.length <= 0) {
                 $scope.IsRecordFound = false;
+                countryListingDataFactory.dismissDialog();
                 return;
             }
             $scope.items = data[0].List_T;
@@ -301,12 +356,12 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             });
         }
         if (ExceptionMessageValue != "") {
-            //$scope.error = ExceptionMessageValue;
+            $scope.error = ExceptionMessageValue;
         }
         else {
-            //$scope.error = ErrorMessageValue;
+            $scope.error = ErrorMessageValue;
         }
-        //$scope.dataLoading = false;
+        countryListingDataFactory.dismissDialog();
     };
     //#endregion
 });

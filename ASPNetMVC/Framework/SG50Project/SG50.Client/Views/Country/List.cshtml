@@ -7,9 +7,10 @@
     <h3 class="box-title">Country</h3>
 </div>
 <form name="form" ng-submit="Country()" ng-controller="CountryListingController" role="form" ng-init="firstPage()">
-    <div class="box-body">
-        <div ng-show="error" class="alert alert-danger">{{error}}</div>
-        <div class="form-group">            
+    <div class="box-body">        
+        <div ng-show="error" class="alert alert-danger">{{error}}</div>        
+        <div class="form-group">
+            <div class="alert alert-success" ng-show="IsFinishDeleted">Record(s) has been deleted.</div>
             <div ng-hide="IsRecordFound">No record(s) found.</div>
             <script type="text/ng-template" id="ModalContent_PopupSearch.html">
                 <form name="form">
@@ -37,10 +38,8 @@
             </script>
             <script type="text/ng-template" id="ModalContent_PopupLoading.html">                
                 <form name="form">
-                    <img id="imgLoadingForService" />                    
-                    <script type="text/javascript">
-                        document.getElementById("imgLoadingForService").src = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_ServiceLoading);                        
-                    </script>
+                    @{ string domain_name = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port); }
+                    <img id="imgLoadingForService" src="@domain_name/Content/img/Loading_Gears.gif"/>
                  </form>
             </script>
             <div class="table-responsive" ng-show="IsRecordFound">

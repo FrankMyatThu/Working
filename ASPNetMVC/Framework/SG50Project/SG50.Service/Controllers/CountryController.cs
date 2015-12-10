@@ -91,7 +91,7 @@ namespace SG50.Service.Controllers
             {
                 string messages = string.Join("; ", ModelState.Values
                                         .SelectMany(x => x.Errors)
-                                        .Select(x => x.ErrorMessage));
+                                        .Select(x => x.ErrorMessage + " " + x.Exception));
                 ModelState.AddModelError(Key_ModelStateInvalidError, messages);
                 ApplicationLogger.WriteError(messages, LoggerName);
                 return BadRequest(ModelState);

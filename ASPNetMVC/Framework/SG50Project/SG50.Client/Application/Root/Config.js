@@ -28,7 +28,6 @@ var ApplicationConfig = {
     Service_GetUserList: "/api/test/GetUserList",
     Service_CreateUser: "/api/accounts/CreateUser",
     Service_GetCountryList: "/api/country/GetCountry",
+    Service_DeleteCountryList: "/api/country/Delete",
     
-
-
 };
