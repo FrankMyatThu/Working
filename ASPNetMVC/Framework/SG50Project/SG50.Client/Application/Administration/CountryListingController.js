@@ -25,8 +25,7 @@ app.factory('countryListingDataFactory', function ($http, $uibModal, $uibModalSt
         });
     };
 
-    countryListingDataFactory.deleteCountry = function (_Country_Criteria_Model) {
-        console.log("_Country_Criteria_Model", JSON.stringify(_Country_Criteria_Model));
+    countryListingDataFactory.deleteCountry = function (_Country_Criteria_Model) {        
         modalInstance_Loading = $uibModal.open({
             animation: true,
             templateUrl: 'ModalContent_PopupLoading.html',
@@ -86,9 +85,7 @@ app.controller('Modal_PopupLoading_Controller', function ($uibModalInstance) { }
 //#region Controller for listing country info.
 app.controller('CountryListingController', function ($scope, $http, $window, $uibModal, $timeout, countryListingDataFactory) {
 
-    //#region Initial declaration
-    $scope.IsFinishDeleted = false;
-    $scope.DeletedRowCount = 0;
+    //#region Initial declaration        
     $scope.IsRecordFound = true;
     $scope.currentPage = 0;
     // Data to populate grid.
@@ -129,6 +126,11 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         "SelectItemList": {},
         "currentDisplayedPageRecord": {},
         "currentDisplayedPageRecord_Total": 0
+    };
+    // Delete
+    $scope.Delete = {
+        "IsFinishDeleted": false,
+        "DeletedRowCount": 0
     };
     //#endregion
 
@@ -171,12 +173,11 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     $scope.checkboxStateChanged = function (id) {
         if ($scope.checkboxControl.SelectItemList[id]) {
             /// Checked  
-            console.log("Checked", id);
+            //console.log("Checked", id);
         } else {
             /// Not checked
             $scope.checkboxControl.IsSelectedAll = false;
-        }
-        console.log("$scope.checkboxControl.SelectItemList", JSON.stringify($scope.checkboxControl.SelectItemList));
+        }        
     }
     //#endregion
 
@@ -192,10 +193,10 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.Reset_Country_Criteria_Model_Data();
-                $scope.DeletedRowCount = $scope.itemsLength;
+                $scope.Delete.DeletedRowCount = $scope.itemsLength;
                 $scope.firstPage();                
-                $scope.IsFinishDeleted = true;                
-                $timeout(function () { $scope.IsFinishDeleted = false; }, 4000);
+                $scope.Delete.IsFinishDeleted = true;                
+                $timeout(function () { $scope.Delete.IsFinishDeleted = false; }, 4000);
             }).error(function (data, status, headers, config) {
                 $scope.errorHandler(data);                
             });
@@ -204,8 +205,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         else {
             var List_Country_Criteria_Model = [];
             $scope.Reset_Country_Criteria_Model_Data();
-            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {
-                console.log("key", key, "value", value);
+            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {                
                 if (value) {
                     var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
                     _Country_Criteria_Model.Id = key;
@@ -219,10 +219,10 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
             }
             countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
             .success(function (data, status, headers, config) {
-                $scope.DeletedRowCount = List_Country_Criteria_Model.length;
+                $scope.Delete.DeletedRowCount = List_Country_Criteria_Model.length;
                 $scope.firstPage();
-                $scope.IsFinishDeleted = true;                
-                $timeout(function () { $scope.IsFinishDeleted = false; }, 4000);
+                $scope.Delete.IsFinishDeleted = true;                
+                $timeout(function () { $scope.Delete.IsFinishDeleted = false; }, 4000);
             }).error(function (data, status, headers, config) {
                 $scope.errorHandler(data);                
             });            
@@ -390,8 +390,7 @@ app.directive("customSort", function () {
             scope.sort_by = function (newSortingOrder) {
                 var sort = scope.sort;
                 if (sort.sortingOrder == newSortingOrder) {
-                    sort.reverse = !sort.reverse;
-                    console.log(newSortingOrder + " : " + sort.reverse);
+                    sort.reverse = !sort.reverse;                    
                 }
 
                 sort.sortingOrder = newSortingOrder;
