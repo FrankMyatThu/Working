@@ -1,4 +1,26 @@
 ﻿var app = angular.module('ApplicationRoot', ['ngAnimate', 'ui.bootstrap']);
+app.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push(function ($q) {
+        return {
+            request: function (config) {
+                console.log("[ApplicationRoot.config.interceptorService] request config", config);
+                return config;
+            },
+            requestError: function (rejection) {
+                console.log("[ApplicationRoot.config.interceptorService] requestError rejection", rejection);
+                return rejection;
+            },
+            response: function (response) {
+                console.log("[ApplicationRoot.config.interceptorService] response response", response);                
+                return response;
+            },
+            responseError: function (rejection) {
+                console.log("[ApplicationRoot.config.interceptorService] responseError rejection", rejection);
+                return rejection;
+            }
+        };
+    });
+}]);
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
 
     if (!$window.sessionStorage.getItem("JWTToken")) {

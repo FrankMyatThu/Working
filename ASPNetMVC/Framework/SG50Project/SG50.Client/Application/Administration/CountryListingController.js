@@ -1,41 +1,4 @@
-﻿app.config(['$httpProvider', function ($httpProvider) {
-    var $http,
-        interceptor = ['$q', '$injector', function ($q, $injector) {
-            var error;
-
-            function success(response) {
-                // get $http via $injector because of circular dependency problem
-                $http = $http || $injector.get('$http');
-                if ($http.pendingRequests.length < 1) {
-                    console.log("[config $httpProvider] success $http.pendingRequests.length", $http.pendingRequests.length);
-                    //$('#loadingWidget').hide();
-                }
-                return response;
-            }
-
-            function error(response) {
-                // get $http via $injector because of circular dependency problem
-                $http = $http || $injector.get('$http');
-                if ($http.pendingRequests.length < 1) {
-                    console.log("[config $httpProvider] error $http.pendingRequests.length", $http.pendingRequests.length);
-                    //$('#loadingWidget').hide();
-                }
-                return $q.reject(response);
-            }
-
-            return function (promise) {
-                //$('#loadingWidget').show();
-                alert("***");
-                console.log("[config $httpProvider] return function promise");
-                return promise.then(success, error);
-            }
-        }];
-
-    $httpProvider.interceptors.push(interceptor);
-    //$httpProvider.responseInterceptors.push(interceptor);
-}]);
-
-//#region factory
+﻿//#region factory
 app.factory('countryListingDataFactory', function ($http, $uibModal, $uibModalStack) {
 
     var countryListingDataFactory = {};
