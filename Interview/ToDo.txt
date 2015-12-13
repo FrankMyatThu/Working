@@ -26,7 +26,8 @@ At home tasks
 			///      [4.]http://jsfiddle.net/margusmartsepp/tcfpvc1k/5/ )
 			2.Factorial() [Accept user input value and then generate its factorial number && List out factorial number 1 to 1k]
 			
-			/// (Ref [1.]https://en.wikipedia.org/wiki/Fibonacci_number)
+			/// (Ref [1.]https://en.wikipedia.org/wiki/Fibonacci_number
+			///      [2.]http://programmers.stackexchange.com/a/251108/50746)
 			3.Fibonacci() [Accept user input value and then generate its Fibonacci number && List out fibonacci number 1 to 1k]
 			
 			/// (Ref [1.]http://stackoverflow.com/a/12019115/900284)
