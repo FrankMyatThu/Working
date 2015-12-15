@@ -40,13 +40,7 @@
                     <button class="btn btn-warning" type="button" ng-click="Cancel()">Cancel</button>
                 </div>
             </form>
-        </script>
-        <script type="text/ng-template" id="ModalContent_PopupLoading.html">
-            <form name="form">
-                @{ string domain_name = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port); }
-                <img id="imgLoadingForService" src="@domain_name/Content/img/Loading_Gears.gif" />
-            </form>
-        </script>
+        </script>        
         <!-- [End] Modal Popup -->
 
         <!-- [Start] Gird Binding -->

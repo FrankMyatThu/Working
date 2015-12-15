@@ -1,26 +1,55 @@
 ﻿var app = angular.module('ApplicationRoot', ['ngAnimate', 'ui.bootstrap']);
 app.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.interceptors.push(function ($q) {
+    $httpProvider.interceptors.push(function ($q, $rootScope) {
+        var AjaxLoadingCount = 0;
         return {
             request: function (config) {
-                console.log("[ApplicationRoot.config.interceptorService] request config", config);
-                return config;
+                console.log("[config.interceptorService] request config", config);
+                if (++AjaxLoadingCount === 1) $rootScope.$broadcast('AjaxLoading:Progress');
+                return config || $q.when(config);
             },
             requestError: function (rejection) {
-                console.log("[ApplicationRoot.config.interceptorService] requestError rejection", rejection);
-                return rejection;
+                console.log("[config.interceptorService] requestError rejection", rejection);
+                if (--AjaxLoadingCount === 0) $rootScope.$broadcast('AjaxLoading:Finish');
+                return $q.reject(rejection);
             },
             response: function (response) {
-                console.log("[ApplicationRoot.config.interceptorService] response response", response);                
-                return response;
+                console.log("[config.interceptorService] response response", response);
+                if (--AjaxLoadingCount === 0) $rootScope.$broadcast('AjaxLoading:Finish');
+                return response || $q.when(response);
             },
             responseError: function (rejection) {
-                console.log("[ApplicationRoot.config.interceptorService] responseError rejection", rejection);
-                return rejection;
+                console.log("[config.interceptorService] responseError rejection", rejection);
+                if (--AjaxLoadingCount === 0) $rootScope.$broadcast('AjaxLoading:Finish');
+                return $q.reject(rejection);
             }
         };
     });
 }]);
+app.directive("ajaxLoadingDirective", function ($uibModal) {
+    var modalInstance;
+    return {
+        restrict: 'EA', //E = element, A = attribute, C = class, M = comment   			
+        scope: true,
+        link: function (scope, elem, attrs) {
+            console.log("AjaxLoadingDirective.AjaxLoading:Progress");
+            scope.$on("AjaxLoading:Progress", function () {
+                modalInstance = $uibModal.open({
+                    animation: true,                    
+                    backdrop: 'static',
+                    keyboard: false,
+                    windowClass: 'app-modal-window-loading',
+                    template: '<img id="imgLoadingForService" src="'+ ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_ServiceLoading) +'" />'
+                });
+            });
+            return scope.$on("AjaxLoading:Finish", function () {
+                console.log("AjaxLoadingDirective.AjaxLoading:Finish");
+                if (modalInstance === undefined) return;
+                modalInstance.dismiss();
+            });
+        }
+    }
+});
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
 
     if (!$window.sessionStorage.getItem("JWTToken")) {
