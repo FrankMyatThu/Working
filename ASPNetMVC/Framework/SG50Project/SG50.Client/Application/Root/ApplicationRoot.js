@@ -1,11 +1,16 @@
 ﻿var app = angular.module('ApplicationRoot', ['ngAnimate', 'ui.bootstrap']);
 app.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.interceptors.push(function ($q, $rootScope) {
+    $httpProvider.interceptors.push(function ($q, $rootScope, $templateCache) {
         var AjaxLoadingCount = 0;
         return {
             request: function (config) {
                 console.log("[config.interceptorService] request config", config);
-                if (++AjaxLoadingCount === 1) $rootScope.$broadcast('AjaxLoading:Progress');
+                if (++AjaxLoadingCount === 1)
+                {
+                    if (!$templateCache.get(config.url)) {
+                        $rootScope.$broadcast('AjaxLoading:Progress');
+                    }
+                }   
                 return config || $q.when(config);
             },
             requestError: function (rejection) {
