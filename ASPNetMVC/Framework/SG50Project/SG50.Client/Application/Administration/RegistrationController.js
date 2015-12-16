@@ -91,6 +91,9 @@ app.controller('RegistrationController', function ($scope, $http, $window, $time
             if (status == "-1") {
                 $scope.error = "Service unavailable.";
             }
+            if (status == "401") {
+                $scope.error = "Unauthorized.";
+            }
             $scope.IsShow_error = true;
             $scope.dataLoading = false;
         });

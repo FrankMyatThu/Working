@@ -3,28 +3,23 @@ app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(function ($q, $rootScope, $templateCache) {
         var AjaxLoadingCount = 0;
         return {
-            request: function (config) {
-                console.log("[config.interceptorService] request config", config);
-                if (++AjaxLoadingCount === 1)
-                {
+            request: function (config) {                
+                if (++AjaxLoadingCount === 1){
                     if (!$templateCache.get(config.url)) {
                         $rootScope.$broadcast('AjaxLoading:Progress');
                     }
                 }   
                 return config || $q.when(config);
             },
-            requestError: function (rejection) {
-                console.log("[config.interceptorService] requestError rejection", rejection);
+            requestError: function (rejection) {                
                 if (--AjaxLoadingCount === 0) $rootScope.$broadcast('AjaxLoading:Finish');
                 return $q.reject(rejection);
             },
-            response: function (response) {
-                console.log("[config.interceptorService] response response", response);
+            response: function (response) {               
                 if (--AjaxLoadingCount === 0) $rootScope.$broadcast('AjaxLoading:Finish');
                 return response || $q.when(response);
             },
-            responseError: function (rejection) {
-                console.log("[config.interceptorService] responseError rejection", rejection);
+            responseError: function (rejection) {                
                 if (--AjaxLoadingCount === 0) $rootScope.$broadcast('AjaxLoading:Finish');
                 return $q.reject(rejection);
             }
@@ -56,12 +51,15 @@ app.directive("ajaxLoadingDirective", function ($uibModal) {
     }
 });
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
+    $scope.error;
 
     if (!$window.sessionStorage.getItem("JWTToken")) {
         $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
     }
 
     var TimeOutTimerValue = ApplicationConfig.MaximumAllowedIdelTime;
+
+    console.log("TimeOutTimerValue", TimeOutTimerValue);
 
     // Start a timeout
     var TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
@@ -80,8 +78,38 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
         RemoveActiveUser();
     }
 
-    function LogoutByTimer() {
-        console.log('Logout');
+    $scope.errorHandler = function (data, status, headers, config) {
+        var ErrorMessageValue = "";
+        var ExceptionMessageValue = "";
+        ErrorNotifier(data);
+        function ErrorNotifier(data) {
+            angular.forEach(data, function (value, key) {
+                console.log("key = " + key + " value = " + value);
+                if (key == "ExceptionMessage") {
+                    ExceptionMessageValue = value;
+                }
+                ErrorMessageValue = value;
+                if (typeof value === 'object') {
+                    ErrorNotifier(value);
+                }
+            });
+        }
+        if (ExceptionMessageValue != "") {
+            $scope.error = ExceptionMessageValue;
+        }
+        else {
+            $scope.error = ErrorMessageValue;
+        }
+        console.log("status " + status);
+        if (status == "-1") {
+            $scope.error = "Service unavailable.";
+        }
+        if (status == "401") {
+            $scope.error = "Unauthorized.";
+        }    
+    }
+
+    function LogoutByTimer() {        
         if ($window.sessionStorage.getItem("JWTToken") != "")
             RemoveActiveUser();
     }
@@ -106,40 +134,11 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
                 'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
             }
         }).success(function (data, status, headers, config) {
-            if (data.success == false) {
-                var str = '';
-                for (var error in data.errors) {
-                    str += data.errors[error] + '\n';
-                }
-                console.log(str);
-            }
-            else {
-                console.log('Logout Successfully');
-                $window.sessionStorage.setItem("JWTToken", "");
-                $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
-            }
+            console.log('Logout Successfully');
+            $window.sessionStorage.setItem("JWTToken", "");
+            $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
         }).error(function (data, status, headers, config) {
-            var ErrorMessageValue = "";
-            var ExceptionMessageValue = "";
-            ErrorNotifier(data);
-            function ErrorNotifier(data) {
-                angular.forEach(data, function (value, key) {
-                    console.log("key = " + key + " value = " + value);
-                    if (key == "ExceptionMessage") {
-                        ExceptionMessageValue = value;
-                    }
-                    ErrorMessageValue = value;
-                    if (typeof value === 'object') {
-                        ErrorNotifier(value);
-                    }
-                });
-            }
-            if (ExceptionMessageValue != "") {
-                console.log(ExceptionMessageValue);
-            }
-            else {
-                console.log(ErrorMessageValue);
-            }
+            $scope.errorHandler(data, status, headers, config);
         });
     }
 });
