@@ -16,3 +16,7 @@ D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\b
 D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\obj\Debug\MVCApp.csprojResolveAssemblyReference.cache
 D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\obj\Debug\MVCApp.dll
 D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\obj\Debug\MVCApp.pdb
+D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\bin\EntityFramework.dll
+D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\bin\EntityFramework.SqlServer.dll
+D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\bin\EntityFramework.xml
+D:\01.Project\GitHub\Working\Interview\Practices\01.CRUD\WebApplication\MVCApp\bin\EntityFramework.SqlServer.xml
