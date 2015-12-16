@@ -124,7 +124,7 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
         TimeOut_Thread = $timeout(function () { LogoutByTimer() }, TimeOutTimerValue);
     }
 
-    function RemoveActiveUser() {
+    function RemoveActiveUser() {        
         $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Logout),
@@ -139,6 +139,7 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
             $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
         }).error(function (data, status, headers, config) {
             $scope.errorHandler(data, status, headers, config);
+            $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
         });
     }
 });

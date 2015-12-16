@@ -1,9 +1,14 @@
 ﻿//#region factory
 app.factory('countryListingDataFactory', function ($http) {
+    var countryListingDataFactory = {
+        selectCountry: selectCountry,
+        deleteCountry: deleteCountry
+    };
+    return countryListingDataFactory;
 
-    var countryListingDataFactory = {};
+    //////////////////////////////////
 
-    countryListingDataFactory.selectCountry = function (_Country_Criteria_Model) {       
+    function selectCountry(_Country_Criteria_Model) {
         return $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
@@ -16,7 +21,7 @@ app.factory('countryListingDataFactory', function ($http) {
         });
     };
 
-    countryListingDataFactory.deleteCountry = function (_Country_Criteria_Model) {
+    function deleteCountry(_Country_Criteria_Model) {
         return $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_DeleteCountryList),
@@ -28,8 +33,6 @@ app.factory('countryListingDataFactory', function ($http) {
             data: _Country_Criteria_Model
         });
     };
-    
-    return countryListingDataFactory;
 });
 //#endregion
 
@@ -54,6 +57,7 @@ app.controller('Modal_PopupSearch_Controller', function ($scope, $uibModalInstan
     $scope.Cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
 
 });
 //#endregion
