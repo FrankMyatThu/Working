@@ -1,3 +1,8 @@
+Notes
+=====
+1.How to implement user management.
+2.How to handle user confidential file(s).
+
 On the way tasks
 ================
 1.http://www.codeproject.com/Articles/698018/Top-ASP-NET-Interview-Questions-and-Answers
