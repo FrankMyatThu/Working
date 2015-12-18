@@ -1,7 +1,7 @@
 Notes
 =====
 1.How to implement user management.
-2.How to generate reports which will take longer times without breaking the application.
+2.How to handle user confidential file(s).
 
 On the way tasks
 ================
