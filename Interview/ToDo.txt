@@ -2,6 +2,7 @@ Notes
 =====
 1.How to implement user management.
 2.How to handle user confidential file(s).
+3.How to handle any user input(s).
 
 On the way tasks
 ================
@@ -79,3 +80,6 @@ At home tasks
 			4.http://stackoverflow.com/a/454069/900284 (Encryption vs Signing)
 			5.My own cyber security video at google drive 
 			6.http://crypto.stackexchange.com/questions/2362/what-are-advantages-of-using-a-hmac-over-rsa-with-sha-1-hashes (HMAC vs RSA)
+		7.Security
+			1.http://stackoverflow.com/questions/22890979/how-to-secure-my-angularjs-and-web-api-application/22892104#22892104
+			2.https://auth0.com/blog/2014/01/07/angularjs-authentication-with-cookies-vs-token/

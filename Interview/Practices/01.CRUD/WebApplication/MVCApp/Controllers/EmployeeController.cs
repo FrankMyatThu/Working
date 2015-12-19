@@ -17,12 +17,9 @@ namespace MVCApp.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            List<tbl_EmpDep> List_tbl_EmpDep =  db.tbl_EmpDep.
-                                                        ToList().
-                                                        GroupBy(x => x.DepartmentID).
-                                                        Select(y => y.OrderByDescending(z => z.JoinDate)).
-                                                        SelectMany(a => a).
-                                                        ToList();
+            List<tbl_EmpDep> List_tbl_EmpDep = (from _tbl_EmpDep in db.tbl_EmpDep
+                                                group _tbl_EmpDep by _tbl_EmpDep.DepartmentID into _tbl_EmpDep_group
+                                                select _tbl_EmpDep_group.OrderByDescending(x => x.JoinDate).FirstOrDefault()).ToList<tbl_EmpDep>();
 
             return View(List_tbl_EmpDep);
         }
