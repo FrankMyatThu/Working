@@ -8,7 +8,8 @@ CREATE TABLE tbl_EmpDep
 	EmployeeName VARCHAR(100) NOT NULL,
 	DepartmentID INT NOT NULL,
 	DepartmentName VARCHAR(100) NOT NULL,
-	JoinDate DATETIME
+	JoinDate DATETIME,
+	EmployeePhoto VARCHAR(MAX) NULL
 )
 
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
