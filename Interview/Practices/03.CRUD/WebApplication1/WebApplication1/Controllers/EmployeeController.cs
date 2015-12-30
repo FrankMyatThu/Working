@@ -16,10 +16,13 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(tbl_EmpDep _tbl_EmpDep) 
+        public ActionResult Create(tbl_EmpDep _tbl_EmpDep, HttpPostedFileBase txtFile) 
         {
             using (InterviewDBEntities _InterviewDBEntities = new InterviewDBEntities())
             {
+                txtFile.SaveAs(HttpContext.Server.MapPath("~/Image/") + txtFile.FileName);
+                _tbl_EmpDep.EmployeePhoto = txtFile.FileName;
+
                 _InterviewDBEntities.tbl_EmpDep.Add(_tbl_EmpDep);
                 _InterviewDBEntities.SaveChanges();
             }

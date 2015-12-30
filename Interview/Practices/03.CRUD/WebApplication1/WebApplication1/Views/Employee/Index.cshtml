@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.JoinDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EmployeePhoto)
+            <img src="~/Image/@Html.DisplayFor(modelItem => item.EmployeePhoto)" style="height:150px;width:150px;" />            
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
