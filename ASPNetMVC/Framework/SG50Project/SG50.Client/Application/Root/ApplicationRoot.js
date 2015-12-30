@@ -135,7 +135,8 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
             }
         }).success(function (data, status, headers, config) {
             console.log('Logout Successfully');
-            $window.sessionStorage.setItem("JWTToken", "");
+            //$window.sessionStorage.setItem("JWTToken", "");
+            sessionStorage.clear();
             $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
         }).error(function (data, status, headers, config) {
             $scope.errorHandler(data, status, headers, config);

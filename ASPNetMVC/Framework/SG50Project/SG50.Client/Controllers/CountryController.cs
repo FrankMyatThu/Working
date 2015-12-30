@@ -7,9 +7,13 @@ using System.Web.Mvc;
 namespace SG50.Client.Controllers
 {
     public class CountryController : Controller
-    {
-        // GET: Country
+    {   
         public ActionResult List()
+        {
+            return View();
+        }
+
+        public ActionResult Edit()
         {
             return View();
         }

@@ -160,6 +160,14 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     }
     //#endregion
 
+    //#region Edit
+    $scope.Edit = function (Id) {
+        console.log("Id", Id);
+        sessionStorage.setItem("CountryId", Id);        
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Edit);
+    };
+    //#endregion
+
     //#region Delete    
     $scope.deletePage = function () {        
         var result = confirm("Are you sure to delete?");

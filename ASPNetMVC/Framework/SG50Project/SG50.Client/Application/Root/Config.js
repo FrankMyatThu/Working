@@ -17,6 +17,7 @@ var ApplicationConfig = {
     Client_Home: "/Home/Home",
     Client_Registration: "/Account/Register",
     Client_Country: "/Country/List",
+    Client_Country_Edit: "/Country/Edit",
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// URL Setting Area    
