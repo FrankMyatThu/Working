@@ -20,8 +20,10 @@ namespace WebApplication1.Controllers
         {
             using (InterviewDBEntities _InterviewDBEntities = new InterviewDBEntities())
             {
-                txtFile.SaveAs(HttpContext.Server.MapPath("~/Image/") + txtFile.FileName);
-                _tbl_EmpDep.EmployeePhoto = txtFile.FileName;
+                if (txtFile != null) {
+                    txtFile.SaveAs(HttpContext.Server.MapPath("~/Image/") + txtFile.FileName);
+                    _tbl_EmpDep.EmployeePhoto = txtFile.FileName;
+                }
 
                 _InterviewDBEntities.tbl_EmpDep.Add(_tbl_EmpDep);
                 _InterviewDBEntities.SaveChanges();
@@ -57,11 +59,20 @@ namespace WebApplication1.Controllers
             return View(_tbl_EmpDep);
         }
         [HttpPost]
-        public ActionResult Edit(tbl_EmpDep _tbl_EmpDep)
+        public ActionResult Edit(tbl_EmpDep _tbl_EmpDep, HttpPostedFileBase txtFile)
         {
             using (InterviewDBEntities _InterviewDBEntities = new InterviewDBEntities())
             {
-                _InterviewDBEntities.Entry(_tbl_EmpDep).State = EntityState.Modified;
+                var db_tbl_EmpDep = _InterviewDBEntities.tbl_EmpDep.Where(x => x.EmployeeID.Equals(_tbl_EmpDep.EmployeeID)).FirstOrDefault();
+                db_tbl_EmpDep.EmployeeID = _tbl_EmpDep.EmployeeID;
+                db_tbl_EmpDep.EmployeeName = _tbl_EmpDep.EmployeeName;
+                db_tbl_EmpDep.DepartmentID = _tbl_EmpDep.DepartmentID;
+                db_tbl_EmpDep.DepartmentName = _tbl_EmpDep.DepartmentName;
+                if (txtFile != null)
+                {
+                    txtFile.SaveAs(HttpContext.Server.MapPath("~/Image/") + txtFile.FileName);
+                    db_tbl_EmpDep.EmployeePhoto = txtFile.FileName;
+                }
                 _InterviewDBEntities.SaveChanges();
             }
             return RedirectToAction("Index");
