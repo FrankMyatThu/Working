@@ -28,9 +28,9 @@ var ApplicationConfig = {
     Service_Login: "/api/accounts/UserLogin",
     Service_GetUserList: "/api/test/GetUserList",
     Service_CreateUser: "/api/accounts/CreateUser",
-    Service_GetCountryList: "/api/country/GetCountry",    
+    Service_CreateCountry: "/api/country/Create",
+    Service_GetCountryList: "/api/country/GetCountry",
+    Service_UpdateCountry: "/api/country/Update",
     Service_DeleteCountryList: "/api/country/Delete",
-    Service_UpdateCountry: "/api/country/UpdateCountry",
-    Service_CreateCountry: "/api/country/CreateCountry",
     
 };

@@ -15,45 +15,14 @@ namespace SG50.Service.Controllers
     [RoutePrefix("api/country")]
     public class CountryController : BasedController
     {
-        [HttpPost]
-        [Route("GetCountry")]
-        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
-        [CustomizedAuthorization(LoggerName = LoggerName)]
-        public IHttpActionResult GetCountry(Country_Criteria_Model _Country_Criteria_Model)
-        {
-            ApplicationLogger.WriteTrace("Start CountryController GetCountry", LoggerName);
-            List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();            
-            if (!ModelState.IsValid)
-            {
-                string messages = string.Join("; ", ModelState.Values
-                                        .SelectMany(x => x.Errors)
-                                        .Select(x => x.ErrorMessage));
-                ModelState.AddModelError(Key_ModelStateInvalidError, messages);
-                ApplicationLogger.WriteError(messages, LoggerName);
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                List_tbl_Country = (new Country()).GetCountryList(_Country_Criteria_Model);                
-            }
-            catch (Exception ex)
-            {
-                BaseExceptionLogger.LogError(ex, LoggerName);
-                return InternalServerError(ex);
-            }
-
-            ApplicationLogger.WriteTrace("End CountryController GetCountry", LoggerName);
-            return Ok(List_tbl_Country);              
-        }
-
+        #region Create
         [HttpPost]
         [Route("Create")]
         [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         [CustomizedAuthorization(LoggerName = LoggerName)]
         public IHttpActionResult Create(CountryBindingModel _CountryBindingModel)
         {
-            ApplicationLogger.WriteTrace("Start CountryController Create", LoggerName);            
+            ApplicationLogger.WriteTrace("Start CountryController Create", LoggerName);
             if (!ModelState.IsValid)
             {
                 string messages = string.Join("; ", ModelState.Values
@@ -66,9 +35,7 @@ namespace SG50.Service.Controllers
 
             try
             {
-                //JWTToken = (new UserAccount()).GetJWTToken(_LoginUserBindingModel,
-                //                                        HttpContext.Current.Request.UserHostAddress,
-                //                                        HttpContext.Current.Request.UserAgent);
+                (new Country()).Create(_CountryBindingModel, CurrentUserID);
             }
             catch (Exception ex)
             {
@@ -79,14 +46,83 @@ namespace SG50.Service.Controllers
             ApplicationLogger.WriteTrace("End CountryController Create", LoggerName);
             return Ok();
         }
+        #endregion
 
+        #region Retrieve
+        [HttpPost]
+        [Route("GetCountry")]
+        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
+        [CustomizedAuthorization(LoggerName = LoggerName)]
+        public IHttpActionResult GetCountry(Country_Criteria_Model _Country_Criteria_Model)
+        {
+            ApplicationLogger.WriteTrace("Start CountryController GetCountry", LoggerName);
+            List<tbl_GridListing<CountryBindingModel>> List_tbl_Country = new List<tbl_GridListing<CountryBindingModel>>();
+            if (!ModelState.IsValid)
+            {
+                string messages = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                List_tbl_Country = (new Country()).GetCountryList(_Country_Criteria_Model);
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                return InternalServerError(ex);
+            }
+
+            ApplicationLogger.WriteTrace("End CountryController GetCountry", LoggerName);
+            return Ok(List_tbl_Country);
+        }
+        #endregion
+
+        #region Update
+        [HttpPost]
+        [Route("Update")]
+        [ValidateAntiForgeryToken(LoggerName = LoggerName)]
+        [CustomizedAuthorization(LoggerName = LoggerName)]
+        public IHttpActionResult Update(CountryBindingModel _CountryBindingModel)
+        {
+            ApplicationLogger.WriteTrace("Start CountryController Update", LoggerName);
+            if (!ModelState.IsValid)
+            {
+                string messages = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                (new Country()).Update(_CountryBindingModel, CurrentUserID);
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                return InternalServerError(ex);
+            }
+
+            ApplicationLogger.WriteTrace("End CountryController Update", LoggerName);
+            return Ok();
+        }
+        #endregion
+
+        #region Delete
         [HttpPost]
         [Route("Delete")]
         [ValidateAntiForgeryToken(LoggerName = LoggerName)]
         [CustomizedAuthorization(LoggerName = LoggerName)]
         public IHttpActionResult Delete(List<Country_Criteria_Model> List_Country_Criteria_Model)
         {
-            ApplicationLogger.WriteTrace("Start CountryController Delete", LoggerName);            
+            ApplicationLogger.WriteTrace("Start CountryController Delete", LoggerName);
             if (!ModelState.IsValid)
             {
                 string messages = string.Join("; ", ModelState.Values
@@ -99,7 +135,7 @@ namespace SG50.Service.Controllers
 
             try
             {
-                (new Country()).Delete(List_Country_Criteria_Model);      
+                (new Country()).Delete(List_Country_Criteria_Model);
             }
             catch (Exception ex)
             {
@@ -110,5 +146,7 @@ namespace SG50.Service.Controllers
             ApplicationLogger.WriteTrace("End CountryController Delete", LoggerName);
             return Ok();
         }
+        #endregion
+
     }
 }
