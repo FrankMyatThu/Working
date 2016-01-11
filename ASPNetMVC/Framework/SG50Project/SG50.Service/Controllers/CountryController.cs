@@ -147,6 +147,5 @@ namespace SG50.Service.Controllers
             return Ok();
         }
         #endregion
-
     }
 }
