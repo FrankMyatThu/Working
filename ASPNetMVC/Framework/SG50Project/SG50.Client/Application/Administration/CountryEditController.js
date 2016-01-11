@@ -21,7 +21,7 @@ app.factory('countryEditDataFactory', function ($http) {
         });
     };
 
-    function updateCountry(_CountryBindingModel) {
+    function updateCountry(_CountryBindingModel) {        
         return $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_UpdateCountry),
