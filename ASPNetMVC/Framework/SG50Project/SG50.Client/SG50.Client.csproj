@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Application\Administration\CountryCreateController.js" />
+    <Content Include="Application\Administration\CountryDetailController.js" />
     <Content Include="Application\Administration\CountryEditController.js" />
     <Content Include="Application\Administration\CountryListingController.js" />
     <Content Include="Application\Administration\HomeController.js" />

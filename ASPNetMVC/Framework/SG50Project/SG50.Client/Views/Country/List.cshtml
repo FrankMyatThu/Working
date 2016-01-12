@@ -72,6 +72,7 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
+                                <th>&nbsp;</th>
                                 <th><input id="chkSelectHeader" name="chkSelectHeader" type="checkbox" ng-model="checkboxControl.IsSelectedAll" ng-change="selectAll();" /></th>                                
                                 <th>SrNo</th>
                                 <th>Id</th>
@@ -83,7 +84,7 @@
                                 <th custom-sort order="UpdatedBy">UpdatedBy</th>
                             </tr>
                             <tr ng-show="checkboxControl.IsSelectedAll">
-                                <th colspan="10">
+                                <th colspan="11">
                                     <div ng-hide="checkboxControl.IsSelectedAllTotally">
                                         <strong>
                                             {{ checkboxControl.currentDisplayedPageRecord_Total }} record(s) on this page are selected.
@@ -103,6 +104,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in items | offset: currentPage * Country_Criteria_Model.RecordPerPage | limitTo: Country_Criteria_Model.RecordPerPage">
+                                <td><a href="#" data-toggle="tooltip" data-placement="right" title="Detail!" ng-click="Detail(item.Id);"><div class="glyphicon glyphicon-book"></div></a></td>
                                 <td><a href="#" data-toggle="tooltip" data-placement="right" title="Edit!" ng-click="Edit(item.Id);"><div class="glyphicon glyphicon-edit"></div></a></td>
                                 <td><input id="chkSelectItem" name="chkSelectItem" type="checkbox" ng-model="checkboxControl.SelectItemList[item.Id]" ng-false-value="undefined" ng-change="checkboxStateChanged(item.Id)" /></td>
                                 <td>{{item.SrNo}}</td>
@@ -117,7 +119,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="10">
+                                <td colspan="11">
                                     <div class="navigation-bar">
                                         <span class="pull-left"><strong>Total record(s) = {{ itemsLength }}</strong></span>
                                         <ul class="pagination pull-right">

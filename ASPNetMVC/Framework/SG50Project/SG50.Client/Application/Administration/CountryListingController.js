@@ -168,6 +168,14 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     };
     //#endregion
 
+    //#region Detail
+    $scope.Detail = function (Id) {
+        console.log("Id", Id);
+        sessionStorage.setItem("CountryId", Id);
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Detail);
+    };
+    //#endregion
+
     //#region Create New
     $scope.newPage = function () {
         location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Create);
