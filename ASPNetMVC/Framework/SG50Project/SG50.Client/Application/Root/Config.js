@@ -16,8 +16,10 @@ var ApplicationConfig = {
     Client_Login: "/Account/Login",
     Client_Home: "/Home/Home",
     Client_Registration: "/Account/Register",
+    Client_Country_Create: "/Country/Create",
     Client_Country: "/Country/List",
     Client_Country_Edit: "/Country/Edit",
+    Client_Country_Detail: "/Country/Detail",
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// URL Setting Area    
@@ -28,9 +30,9 @@ var ApplicationConfig = {
     Service_Login: "/api/accounts/UserLogin",
     Service_GetUserList: "/api/test/GetUserList",
     Service_CreateUser: "/api/accounts/CreateUser",
-    Service_GetCountryList: "/api/country/GetCountry",    
+    Service_CreateCountry: "/api/country/Create",
+    Service_GetCountryList: "/api/country/GetCountry",
+    Service_UpdateCountry: "/api/country/Update",
     Service_DeleteCountryList: "/api/country/Delete",
-    Service_UpdateCountry: "/api/country/UpdateCountry",
-    Service_CreateCountry: "/api/country/CreateCountry",
     
 };

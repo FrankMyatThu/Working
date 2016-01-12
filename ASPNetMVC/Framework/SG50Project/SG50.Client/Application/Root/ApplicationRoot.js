@@ -52,6 +52,7 @@ app.directive("ajaxLoadingDirective", function ($uibModal) {
 });
 app.controller('ApplicationRootController', function ($scope, $http, $window, $timeout, $document) {
     $scope.error;
+    $scope.success;
 
     if (!$window.sessionStorage.getItem("JWTToken")) {
         $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Login);
