@@ -9,13 +9,13 @@
 <form name="form" ng-submit="Country()" ng-controller="CountryListingController" role="form" ng-init="firstPage()">
     <div class="box-body">
         <!-- [Start] Message Area -->
-        <div ng-show="error" class="alert alert-danger">{{error}}</div>        
-        <div class="alert alert-success" ng-show="Delete.IsFinishDeleted">
+        <div ng-show="error" class="alert alert-danger">{{error}}</div>
+        <div ng-show="success" class="alert alert-success">{{success}}</div>
+        <div ng-show="Delete.IsFinishDeleted" class="alert alert-success">
             {{ Delete.DeletedRowCount }}
             record(s) has been deleted.
-        </div>        
+        </div>
         <!-- [End] Message Area -->
-
         <!-- [Start] Modal Popup -->
         <script type="text/ng-template" id="ModalContent_PopupSearch.html">
             <form name="form">
@@ -40,9 +40,8 @@
                     <button class="btn btn-warning" type="button" ng-click="Cancel()">Cancel</button>
                 </div>
             </form>
-        </script>        
+        </script>
         <!-- [End] Modal Popup -->
-
         <!-- [Start] Gird Binding -->
         <div class="box-body">
             <div class="row">
@@ -73,7 +72,7 @@
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>&nbsp;</th>
-                                <th><input id="chkSelectHeader" name="chkSelectHeader" type="checkbox" ng-model="checkboxControl.IsSelectedAll" ng-change="selectAll();" /></th>                                
+                                <th><input id="chkSelectHeader" name="chkSelectHeader" type="checkbox" ng-model="checkboxControl.IsSelectedAll" ng-change="selectAll();" /></th>
                                 <th>SrNo</th>
                                 <th>Id</th>
                                 <th custom-sort order="Name">Name</th>
