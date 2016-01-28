@@ -1,0 +1,4 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Model.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Model.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\obj\Debug\TestScript.Model.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\obj\Debug\TestScript.Model.pdb
