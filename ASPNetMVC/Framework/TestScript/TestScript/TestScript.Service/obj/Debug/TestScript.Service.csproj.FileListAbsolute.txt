@@ -12,3 +12,17 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScrip
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\TestScript.Service.dll.config
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\TestScript.Service.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\TestScript.Service.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\Newtonsoft.Json.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Net.Http.Formatting.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Web.Http.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Web.Http.WebHost.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\Newtonsoft.Json.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Net.Http.Formatting.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Web.Http.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Web.Http.WebHost.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.pdb

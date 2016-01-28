@@ -39,6 +39,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,17 +48,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Order.cs">
+      <DependentUpon>TestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderDetail.cs">
+      <DependentUpon>TestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Product.cs">
+      <DependentUpon>TestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TestScript.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestScript.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\TestScript.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestScript.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Entity\TestScript.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestScript.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entity\TestScript.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestScript.edmx</DependentUpon>
+      <LastGenOutput>TestScript.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entity\TestScript.edmx.diagram">
+      <DependentUpon>TestScript.edmx</DependentUpon>
+    </None>
+    <None Include="Entity\TestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestScript.edmx</DependentUpon>
+      <LastGenOutput>TestScript.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
-    <Folder Include="Entity\" />
-    <Folder Include="Migrations\" />
     <Folder Include="ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
