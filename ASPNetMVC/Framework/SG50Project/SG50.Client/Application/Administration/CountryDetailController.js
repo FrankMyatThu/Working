@@ -83,6 +83,11 @@ app.controller('CountryDetailController', function ($scope, $timeout, countryDet
 
     //#region Delete
     $scope.Delete = function () {
+        var result = confirm("Are you sure to delete?");
+        if (!result) {
+            return;
+        }
+
         var List_Country_Criteria_Model = [];
         var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
         List_Country_Criteria_Model.push(_Country_Criteria_Model);
@@ -111,12 +116,10 @@ app.controller('CountryDetailController', function ($scope, $timeout, countryDet
 
         $scope.itemLength = data[0].List_T[0].TotalRecordCount;
     };
-    $scope.MessageNotifier = function () {
-        $scope.success = "Delete successfully.";
+    $scope.MessageNotifier = function () {        
         $scope.item = {};
-        $timeout(function () {
-            $scope.success = "";
-        }, 4000);
+        alert("The record has been deleted.");
+        $scope.CountryByClick();
     };
     //#endregion
 

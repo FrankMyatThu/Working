@@ -1,0 +1,7 @@
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Base\bin\Debug\TestScript.Base.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Base\bin\Debug\TestScript.Base.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Base\obj\Debug\TestScript.Base.csprojResolveAssemblyReference.cache
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Base\obj\Debug\TestScript.Base.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Base\obj\Debug\TestScript.Base.pdb
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Base\bin\Debug\log4net.dll
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Base\bin\Debug\log4net.xml
