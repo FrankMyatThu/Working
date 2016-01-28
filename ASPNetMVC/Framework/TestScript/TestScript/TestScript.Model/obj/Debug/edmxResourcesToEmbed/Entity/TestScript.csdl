@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="TestScriptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TestScriptEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="OrderDetails" EntityType="TestScriptModel.OrderDetail" />
+    <EntitySet Name="Orders" EntityType="TestScriptModel.Order" />
+    <EntitySet Name="Products" EntityType="TestScriptModel.Product" />
+    <AssociationSet Name="FK__OrderDeta__Order__164452B1" Association="TestScriptModel.FK__OrderDeta__Order__164452B1">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Produ__173876EA" Association="TestScriptModel.FK__OrderDeta__Produ__173876EA">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="OrderDetail">
     <Key>
       <PropertyRef Name="OrderDetailId" />
@@ -8,10 +21,10 @@
     <Property Name="OrderId" Type="Int32" />
     <Property Name="ProductID" Type="Int32" />
     <Property Name="Quantity" Type="Int32" />
-    <Property Name="Total" Type="Int32" />
-    <Property Name="TotalGST" Type="Int32" />
-    <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__08EA5793" FromRole="OrderDetails" ToRole="Orders" />
-    <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__Produ__09DE7BCC" FromRole="OrderDetails" ToRole="Products" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="TotalGST" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Order" Relationship="TestScriptModel.FK__OrderDeta__Order__164452B1" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="TestScriptModel.FK__OrderDeta__Produ__173876EA" FromRole="OrderDetail" ToRole="Product" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -20,7 +33,7 @@
     <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="OrderDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__08EA5793" FromRole="Orders" ToRole="OrderDetails" />
+    <NavigationProperty Name="OrderDetails" Relationship="TestScriptModel.FK__OrderDeta__Order__164452B1" FromRole="Order" ToRole="OrderDetail" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -31,43 +44,30 @@
     <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="Active" Type="Boolean" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__09DE7BCC" FromRole="Products" ToRole="OrderDetails" />
+    <NavigationProperty Name="OrderDetails" Relationship="TestScriptModel.FK__OrderDeta__Produ__173876EA" FromRole="Product" ToRole="OrderDetail" />
   </EntityType>
-  <Association Name="FK__OrderDeta__Order__08EA5793">
-    <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
-    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+  <Association Name="FK__OrderDeta__Order__164452B1">
+    <End Type="TestScriptModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="TestScriptModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Orders">
+      <Principal Role="Order">
         <PropertyRef Name="OrderId" />
       </Principal>
-      <Dependent Role="OrderDetails">
+      <Dependent Role="OrderDetail">
         <PropertyRef Name="OrderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Produ__09DE7BCC">
-    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
-    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+  <Association Name="FK__OrderDeta__Produ__173876EA">
+    <End Type="TestScriptModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="TestScriptModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Products">
+      <Principal Role="Product">
         <PropertyRef Name="ProductID" />
       </Principal>
-      <Dependent Role="OrderDetails">
+      <Dependent Role="OrderDetail">
         <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TestScriptEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
-    <EntitySet Name="Orders" EntityType="Self.Order" />
-    <EntitySet Name="Products" EntityType="Self.Product" />
-    <AssociationSet Name="FK__OrderDeta__Order__08EA5793" Association="Self.FK__OrderDeta__Order__08EA5793">
-      <End Role="Orders" EntitySet="Orders" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Produ__09DE7BCC" Association="Self.FK__OrderDeta__Produ__09DE7BCC">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

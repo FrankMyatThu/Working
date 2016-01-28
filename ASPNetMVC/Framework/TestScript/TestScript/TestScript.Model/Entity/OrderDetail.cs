@@ -18,8 +18,8 @@ namespace TestScript.Model.Entity
         public Nullable<int> OrderId { get; set; }
         public Nullable<int> ProductID { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public Nullable<int> Total { get; set; }
-        public Nullable<int> TotalGST { get; set; }
+        public Nullable<decimal> Total { get; set; }
+        public Nullable<decimal> TotalGST { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

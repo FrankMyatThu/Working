@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7768e24806ef4bf28838ebce819a11f0" Name="Diagram1">
-        <EntityTypeShape EntityType="TestScriptModel.OrderDetail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestScriptModel.Order" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestScriptModel.Product" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="TestScriptModel.FK__OrderDeta__Order__08EA5793" ManuallyRouted="false" />
-        <AssociationConnector Association="TestScriptModel.FK__OrderDeta__Produ__09DE7BCC" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TestScriptModel.OrderDetail" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="TestScriptModel.Order" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="TestScriptModel.Product" Width="1.5" PointX="0.75" PointY="5.125" />
+        <AssociationConnector Association="TestScriptModel.FK__OrderDeta__Order__164452B1" />
+        <AssociationConnector Association="TestScriptModel.FK__OrderDeta__Produ__173876EA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

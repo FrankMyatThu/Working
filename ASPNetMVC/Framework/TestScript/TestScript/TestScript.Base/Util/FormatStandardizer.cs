@@ -56,5 +56,11 @@ namespace TestScript.Base.Util
         /// </summary>
         public const string Client_GuidFormat = @"/^[A-Fa-f0-9]{8}(?:-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}$/";
         public const string Server_GuidFormat = "[A-Fa-f0-9]{8}(?:-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}";
+
+        /// <summary>
+        /// [0-9.]*
+        /// </summary>
+        public const string Client_Numeric = @"/^[0-9.]*$/";
+        public const string Server_Numeric = "[0-9.]*";
     }
 }

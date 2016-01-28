@@ -29,11 +29,11 @@ CustomerRequirement{
 		OrderId INT,
 		ProductID INT,
 		Quantity INT,
-		Total INT,
-		TotalGST INT,
+		Total DECIMAL(10,2),
+		TotalGST DECIMAL(10,2),
 		
 		PRIMARY KEY(OrderDetailId),
-	
+
 		FOREIGN KEY(OrderId) REFERENCES Orders(OrderId)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,

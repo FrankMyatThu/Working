@@ -8,8 +8,8 @@
     <Property Name="OrderId" Type="int" />
     <Property Name="ProductID" Type="int" />
     <Property Name="Quantity" Type="int" />
-    <Property Name="Total" Type="int" />
-    <Property Name="TotalGST" Type="int" />
+    <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="TotalGST" Type="decimal" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
@@ -29,7 +29,7 @@
     <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
     <Property Name="Active" Type="bit" />
   </EntityType>
-  <Association Name="FK__OrderDeta__Order__08EA5793">
+  <Association Name="FK__OrderDeta__Order__164452B1">
     <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
     <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
     <ReferentialConstraint>
@@ -41,7 +41,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Produ__09DE7BCC">
+  <Association Name="FK__OrderDeta__Produ__173876EA">
     <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
     <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
     <ReferentialConstraint>
@@ -57,11 +57,11 @@
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__OrderDeta__Order__08EA5793" Association="Self.FK__OrderDeta__Order__08EA5793">
+    <AssociationSet Name="FK__OrderDeta__Order__164452B1" Association="Self.FK__OrderDeta__Order__164452B1">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Produ__09DE7BCC" Association="Self.FK__OrderDeta__Produ__09DE7BCC">
+    <AssociationSet Name="FK__OrderDeta__Produ__173876EA" Association="Self.FK__OrderDeta__Produ__173876EA">
       <End Role="Products" EntitySet="Products" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>

@@ -24,8 +24,8 @@ CREATE TABLE OrderDetails
 	OrderId INT,
 	ProductID INT,
 	Quantity INT,
-	Total INT,
-	TotalGST INT,
+	Total DECIMAL(10,2),
+	TotalGST DECIMAL(10,2),
 	
 	PRIMARY KEY(OrderDetailId),
 
