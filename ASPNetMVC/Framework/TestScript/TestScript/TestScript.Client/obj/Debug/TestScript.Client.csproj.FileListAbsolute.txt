@@ -31,6 +31,6 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScrip
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Client\bin\System.Web.Webpages.Razor.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Client\bin\System.Web.Helpers.xml
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Client\bin\System.Web.Mvc.xml
+D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Client\obj\Debug\TestScript.Client.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Client\obj\Debug\TestScript.Client.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Client\obj\Debug\TestScript.Client.pdb
-D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Client\obj\Debug\TestScript.Client.csprojResolveAssemblyReference.cache
