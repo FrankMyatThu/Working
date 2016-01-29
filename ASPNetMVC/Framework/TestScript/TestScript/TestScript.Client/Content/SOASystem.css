@@ -1,0 +1,35 @@
+﻿/*html, body, .container{
+    height: 100%;
+}
+
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}*/
+
+.navigation-bar .pagination {
+    margin-top: 0;
+}
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 0px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.app-modal-window-loading .modal-dialog {
+  width: 120px;
+}

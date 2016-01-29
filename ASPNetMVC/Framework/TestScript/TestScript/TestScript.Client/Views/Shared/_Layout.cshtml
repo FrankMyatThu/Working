@@ -18,7 +18,7 @@
     <script src="~/Application/Root/themeapp.min.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/AdminLTE.min.css">
-    <link rel="stylesheet" href="~/Content/SG50.css">
+    <link rel="stylesheet" href="~/Content/SOASystem.css">
     <link rel="stylesheet" href="~/Content/skins/_all-skins.min.css">
     <link rel="stylesheet" href="~/Content/skins/skin-blue-light.min.css">
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
@@ -32,7 +32,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>SOA</b>System</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Small Order Application</b>System</span>
+                <span class="logo-lg"><b>Order App</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -57,7 +57,7 @@
                                             <!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                    <!-- <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -237,16 +237,16 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="~/Content/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <!-- <img src="~/Content/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
+                                <span class="hidden-xs">Frank Myat Thu</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <!-- <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
                                     <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        Frank Myat Thu - Software Engineer
+                                        <small>Member since Aug. 2010</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -255,7 +255,7 @@
                                         <a href="#">Followers</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
+                                        <a href="#">Projects</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
                                         <a href="#">Friends</a>
@@ -286,13 +286,15 @@
             <section class="sidebar">
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
+                    <!--
                     <div class="pull-left image">
-                        <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                         <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">                        
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p>Frank Myat Thu</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
+                    </div> 
+                    -->
                 </div>
                 <!-- search form -->
                 <form action="#" method="get" class="sidebar-form">
@@ -491,9 +493,6 @@
             <strong>Copyright &copy; 2015-2016 <a href="http://google.com">Google</a>.</strong> All rights reserved.
         </footer>
     </div>
-    <div ajax-loading-directive></div>
-    <script type="text/javascript">
-        ApplicationConfig.AntiForgeryTokenKey = '@GetAntiForgeryToken()';
-    </script>
+    <div ajax-loading-directive></div>    
 </body>
 </html>
