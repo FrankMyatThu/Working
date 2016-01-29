@@ -10,7 +10,7 @@ using TestScript.Model.ViewModel;
 
 namespace TestScript.Model.BusinessLogic
 {
-    public class Country
+    public class Product_BL
     {
         string LoggerName = "TestScript_Appender_Logger";
 

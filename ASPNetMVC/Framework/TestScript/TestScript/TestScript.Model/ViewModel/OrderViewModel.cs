@@ -30,7 +30,7 @@ namespace TestScript.Model.ViewModel
 
         [Display(Name = "Order Date")]
         [IsDateCorrect(ErrorMessage = "Invalid  {0}")]
-        public DateTime OrderDate { get; set; }
+        public DateTime? OrderDate { get; set; }
 
         public List<OrderDetailBindingModel> List_OrderDetailBindingModel { get; set; }
     }
@@ -59,7 +59,7 @@ namespace TestScript.Model.ViewModel
 
         [Display(Name = "Order Date")]
         [IsDateCorrect(ErrorMessage = "Invalid  {0}")]
-        public DateTime OrderDate { get; set; }
+        public DateTime? OrderDate { get; set; }
 
         public List<OrderDetailBindingModel> List_OrderDetailBindingModel { get; set; }
     }

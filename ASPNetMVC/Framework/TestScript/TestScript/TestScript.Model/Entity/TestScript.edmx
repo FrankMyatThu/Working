@@ -34,7 +34,7 @@
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Active" Type="bit" />
         </EntityType>
-        <Association Name="FK__OrderDeta__Order__164452B1">
+        <Association Name="FK__OrderDeta__Order__08EA5793">
           <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -46,7 +46,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Produ__173876EA">
+        <Association Name="FK__OrderDeta__Produ__09DE7BCC">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -62,11 +62,11 @@
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__OrderDeta__Order__164452B1" Association="Self.FK__OrderDeta__Order__164452B1">
+          <AssociationSet Name="FK__OrderDeta__Order__08EA5793" Association="Self.FK__OrderDeta__Order__08EA5793">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Produ__173876EA" Association="Self.FK__OrderDeta__Produ__173876EA">
+          <AssociationSet Name="FK__OrderDeta__Produ__09DE7BCC" Association="Self.FK__OrderDeta__Produ__09DE7BCC">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
@@ -79,11 +79,11 @@
           <EntitySet Name="OrderDetails" EntityType="TestScriptModel.OrderDetail" />
           <EntitySet Name="Orders" EntityType="TestScriptModel.Order" />
           <EntitySet Name="Products" EntityType="TestScriptModel.Product" />
-          <AssociationSet Name="FK__OrderDeta__Order__164452B1" Association="TestScriptModel.FK__OrderDeta__Order__164452B1">
+          <AssociationSet Name="FK__OrderDeta__Order__08EA5793" Association="TestScriptModel.FK__OrderDeta__Order__08EA5793">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Produ__173876EA" Association="TestScriptModel.FK__OrderDeta__Produ__173876EA">
+          <AssociationSet Name="FK__OrderDeta__Produ__09DE7BCC" Association="TestScriptModel.FK__OrderDeta__Produ__09DE7BCC">
             <End Role="Product" EntitySet="Products" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
@@ -98,8 +98,8 @@
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="TotalGST" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Order" Relationship="TestScriptModel.FK__OrderDeta__Order__164452B1" FromRole="OrderDetail" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="TestScriptModel.FK__OrderDeta__Produ__173876EA" FromRole="OrderDetail" ToRole="Product" />
+          <NavigationProperty Name="Order" Relationship="TestScriptModel.FK__OrderDeta__Order__08EA5793" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="TestScriptModel.FK__OrderDeta__Produ__09DE7BCC" FromRole="OrderDetail" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -108,7 +108,7 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="OrderDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="OrderDetails" Relationship="TestScriptModel.FK__OrderDeta__Order__164452B1" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="OrderDetails" Relationship="TestScriptModel.FK__OrderDeta__Order__08EA5793" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -119,9 +119,9 @@
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="OrderDetails" Relationship="TestScriptModel.FK__OrderDeta__Produ__173876EA" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="OrderDetails" Relationship="TestScriptModel.FK__OrderDeta__Produ__09DE7BCC" FromRole="Product" ToRole="OrderDetail" />
         </EntityType>
-        <Association Name="FK__OrderDeta__Order__164452B1">
+        <Association Name="FK__OrderDeta__Order__08EA5793">
           <End Type="TestScriptModel.Order" Role="Order" Multiplicity="0..1" />
           <End Type="TestScriptModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Produ__173876EA">
+        <Association Name="FK__OrderDeta__Produ__09DE7BCC">
           <End Type="TestScriptModel.Product" Role="Product" Multiplicity="0..1" />
           <End Type="TestScriptModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -145,7 +145,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

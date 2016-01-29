@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\Order.cs" />
     <Compile Include="BusinessLogic\Product.cs" />
     <Compile Include="Entity\Order.cs">
       <DependentUpon>TestScript.tt</DependentUpon>
