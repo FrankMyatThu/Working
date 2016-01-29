@@ -1,8 +1,146 @@
-﻿
+﻿@using TestScript.Base.Util;
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Order List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Application/OrderModule/OrderListingController.js"></script>
+<div class="box-header with-border">
+    <h3 class="box-title">Order</h3>
+</div>
+<form name="form" ng-submit="Order()" ng-controller="OrderListingController" role="form" ng-init="firstPage()">
+    <div class="box-body">
+        <!-- [Start] Message Area -->
+        <div ng-show="error" class="alert alert-danger">{{error}}</div>
+        <div ng-show="success" class="alert alert-success">{{success}}</div>
+        <div ng-show="Delete.IsFinishDeleted" class="alert alert-success">
+            {{ Delete.DeletedRowCount }}
+            record(s) has been deleted.
+        </div>
+        <!-- [End] Message Area -->
+        <!-- [Start] Modal Popup -->
+        <script type="text/ng-template" id="ModalContent_PopupSearch.html">
+            <form name="form">
+                <div class="modal-header">
+                    <h3 class="modal-title">Search</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" ng-class="{ 'has-error': form.txtDescription.$dirty && (form.txtDescription.$error.pattern || form.txtDescription.$error.maxlength) }">
+                        <label for="txtDescription">Description</label>
+                        <input type="text" name="txtDescription" id="txtDescription" class="form-control" ng-model="Order_Criteria_Model.Description" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" ng-maxlength="250" />
+                        <span ng-show="form.txtDescription.$error.pattern" class="help-block">Invalid Description.</span>
+                        <span ng-show="form.txtDescription.$error.maxlength" class="help-block">Maximum length is 250.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtOrderDate">Order Date</label>
+                        <input type="date" name="txtOrderDate" id="txtOrderDate" class="form-control" ng-model="Order_Criteria_Model.OrderDate" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="Search()" ng-disabled="form.$invalid">Search</button>
+                    <button class="btn btn-warning" type="button" ng-click="Cancel()">Cancel</button>
+                </div>
+            </form>
+        </script>
+        <!-- [End] Modal Popup -->
+        <!-- [Start] Gird Binding -->
+        <div class="box-body">
+            <div class="row">
+                <div class="navigation-bar">
+                    <ul class="pagination pull-left">
+                        <li ng-show="IsRecordFound">
+                            <a href="#" ng-click="searchPage()"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="newPage()"><span class="glyphicon glyphicon-new-window"></span>&nbsp;New</a>
+                        </li>
+                        <li ng-show="IsRecordFound">
+                            <a href="#" ng-click="deletePage()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</a>
+                        </li>
+                        <li ng-show="IsRecordFound">
+                            <a style="padding: 5px;"><div ddl-record-filter-count></div></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-hide="IsRecordFound">
+                    No record(s) found.
+                </div>
+                <div class="table-responsive" ng-show="IsRecordFound">
+                    <table class="table table-striped table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th><input id="chkSelectHeader" name="chkSelectHeader" type="checkbox" ng-model="checkboxControl.IsSelectedAll" ng-change="selectAll();" /></th>
+                                <th>SrNo</th>
+                                <th>Order Id</th>
+                                <th custom-sort order="Description">Description</th>
+                                <th custom-sort order="OrderDate">Order Date</th>                                
+                            </tr>
+                            <tr ng-show="checkboxControl.IsSelectedAll">
+                                <th colspan="7">
+                                    <div ng-hide="checkboxControl.IsSelectedAllTotally">
+                                        <strong>
+                                            {{ checkboxControl.currentDisplayedPageRecord_Total }} record(s) on this page are selected.
+                                            <div ng-show="checkboxControl.currentDisplayedPageRecord_Total < itemsLength">
+                                                <a href="#" ng-click="selectAllTotally(true);">Select all {{ itemsLength }} record(s)</a>
+                                            </div>
+                                        </strong>
+                                    </div>
+                                    <div ng-show="checkboxControl.IsSelectedAllTotally">
+                                        <strong>
+                                            All {{ itemsLength }} record(s) are selected.
+                                            <a href="#" ng-click="voidSelection();">Clear selection</a>
+                                        </strong>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items | offset: currentPage * Order_Criteria_Model.RecordPerPage | limitTo: Order_Criteria_Model.RecordPerPage">
+                                <td><a href="#" data-toggle="tooltip" data-placement="right" title="Detail!" ng-click="Detail(item.OrderId);"><div class="glyphicon glyphicon-book"></div></a></td>
+                                <td><a href="#" data-toggle="tooltip" data-placement="right" title="Edit!" ng-click="Edit(item.OrderId);"><div class="glyphicon glyphicon-edit"></div></a></td>
+                                <td><input id="chkSelectItem" name="chkSelectItem" type="checkbox" ng-model="checkboxControl.SelectItemList[item.OrderId]" ng-false-value="undefined" ng-change="checkboxStateChanged(item.OrderId)" /></td>
+                                <td>{{item.SrNo}}</td>
+                                <td>{{item.OrderId}}</td>
+                                <td>{{item.Description}}</td>
+                                <td>{{item.OrderDate}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="navigation-bar">
+                                        <span class="pull-left"><strong>Total record(s) = {{ itemsLength }}</strong></span>
+                                        <ul class="pagination pull-right">
+                                            <li>
+                                                <a href="#" ng-click="firstPage()"><span class="glyphicon glyphicon-fast-backward"></span>&nbsp;First</a>
+                                            </li>
+                                            <li ng-class="prevPageDisabled()">
+                                                <a href="#" ng-click="prevPage()"><span class="glyphicon glyphicon-backward"></span>&nbsp;Previous</a>
+                                            </li>
+                                            <li ng-repeat="tbl_Pager_To_Client in List_tbl_Pager_To_Client_ByBatchIndex" ng-class="{active: (tbl_Pager_To_Client.BehindTheScenesIndex - 1) == currentPage}" ng-click="setPage(tbl_Pager_To_Client.BehindTheScenesIndex - 1)">
+                                                <a href="#">{{tbl_Pager_To_Client.DisplayPageIndex}}</a>
+                                            </li>
+                                            <li ng-class="nextPageDisabled()">
+                                                <a href="#" ng-click="nextPage()"><span class="glyphicon glyphicon-forward"></span>&nbsp;Next</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ng-click="lastPage()"><span class="glyphicon glyphicon-fast-forward"></span>&nbsp;Last</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- [End] Gird Binding -->
 
-<h2>List</h2>
-
+    </div>
+    <div class="box-footer">
+    </div>
+</form>

@@ -38,3 +38,15 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScrip
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\obj\Debug\TestScript.Service.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Web.Cors.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Web.Http.Cors.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\TestScript.Base.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\TestScript.Model.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\log4net.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\EntityFramework.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Linq.Dynamic.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\TestScript.Base.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\TestScript.Model.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\System.Web.Http.Cors.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\log4net.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Service\bin\EntityFramework.xml
