@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using TestScript.Base.Util;
 
 namespace TestScript.Service
 {
@@ -19,6 +21,19 @@ namespace TestScript.Service
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            AccessToCors(config);
+        }
+
+        public static void AccessToCors(HttpConfiguration config)
+        {
+            var corsPolicy = new EnableCorsAttribute(
+                                    origins: AppConfiger.CorsOrigins,
+                                    headers: AppConfiger.CorsHeaders,
+                                    methods: AppConfiger.CorsMethods);
+
+            //// Enable CORS for Web API
+            config.EnableCors(corsPolicy);
         }
     }
 }
