@@ -80,10 +80,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Application\OrderModule\CountryCreateController.js" />
-    <Content Include="Application\OrderModule\CountryDetailController.js" />
-    <Content Include="Application\OrderModule\CountryEditController.js" />
-    <Content Include="Application\OrderModule\CountryListingController.js" />
+    <Content Include="Application\OrderModule\OrderCreateController.js" />
+    <Content Include="Application\OrderModule\OrderDetailController.js" />
+    <Content Include="Application\OrderModule\OrderEditController.js" />
+    <Content Include="Application\OrderModule\OrdertListingController.js" />
+    <Content Include="Application\OrderModule\ProductCreateController.js" />
+    <Content Include="Application\OrderModule\ProductDetailController.js" />
+    <Content Include="Application\OrderModule\ProductEditController.js" />
+    <Content Include="Application\OrderModule\ProductListingController.js" />
     <Content Include="Application\Helper\Util.js" />
     <Content Include="Application\Root\ApplicationRoot.js" />
     <Content Include="Application\Root\Config.js" />
@@ -1000,6 +1004,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestScript.Base\TestScript.Base.csproj">
+      <Project>{68d5c8c0-eccb-4a18-a7d2-5e1973297b34}</Project>
+      <Name>TestScript.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
