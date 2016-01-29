@@ -80,13 +80,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Application\Administration\CountryCreateController.js" />
-    <Content Include="Application\Administration\CountryDetailController.js" />
-    <Content Include="Application\Administration\CountryEditController.js" />
-    <Content Include="Application\Administration\CountryListingController.js" />
-    <Content Include="Application\Administration\HomeController.js" />
-    <Content Include="Application\Administration\LoginController.js" />
-    <Content Include="Application\Administration\RegistrationController.js" />
+    <Content Include="Application\OrderModule\CountryCreateController.js" />
+    <Content Include="Application\OrderModule\CountryDetailController.js" />
+    <Content Include="Application\OrderModule\CountryEditController.js" />
+    <Content Include="Application\OrderModule\CountryListingController.js" />
     <Content Include="Application\Helper\Util.js" />
     <Content Include="Application\Root\ApplicationRoot.js" />
     <Content Include="Application\Root\Config.js" />
@@ -986,6 +983,13 @@
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -996,7 +1000,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
