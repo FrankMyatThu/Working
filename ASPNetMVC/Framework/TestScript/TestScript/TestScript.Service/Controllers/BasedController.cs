@@ -10,7 +10,7 @@ namespace TestScript.Service.Controllers
 {
     public class BasedController : ApiController
     {
-        public const string LoggerName = "SG50Project_Appender_Logger";
+        public const string LoggerName = "TestScript_Appender_Logger";
         public const string Key_ModelStateInvalidError = "Key_ModelStateInvalidError";
 
         public string CurrentUserID

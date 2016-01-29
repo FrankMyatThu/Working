@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TestScript.Base.Logging;
+using TestScript.Model.BusinessLogic;
 using TestScript.Model.ViewModel;
 
 namespace TestScript.Service.Controllers
@@ -30,7 +31,7 @@ namespace TestScript.Service.Controllers
 
             try
             {
-                (new Product_BL()).Create(_OrderBindingModel);
+                (new Order_BL()).Create(_OrderBindingModel);
             }
             catch (Exception ex)
             {
@@ -45,10 +46,10 @@ namespace TestScript.Service.Controllers
 
         #region Retrieve
         [HttpPost]
-        [Route("GetProduct")]
-        public IHttpActionResult GetProduct(Product_Criteria_Model _Product_Criteria_Model)
+        [Route("GetOrder")]
+        public IHttpActionResult GetOrder(Order_Criteria_Model _Order_Criteria_Model)
         {
-            ApplicationLogger.WriteTrace("Start OrderController GetProduct", LoggerName);
+            ApplicationLogger.WriteTrace("Start OrderController GetOrder", LoggerName);
             List<tbl_GridListing<OrderBindingModel>> List_Product = new List<tbl_GridListing<OrderBindingModel>>();
             if (!ModelState.IsValid)
             {
@@ -62,7 +63,7 @@ namespace TestScript.Service.Controllers
 
             try
             {
-                List_Product = (new Product_BL()).GetProductList(_Product_Criteria_Model);
+                List_Product = (new Order_BL()).GetOrderList(_Order_Criteria_Model);
             }
             catch (Exception ex)
             {
@@ -70,7 +71,36 @@ namespace TestScript.Service.Controllers
                 return InternalServerError(ex);
             }
 
-            ApplicationLogger.WriteTrace("End OrderController GetProduct", LoggerName);
+            ApplicationLogger.WriteTrace("End OrderController GetOrder", LoggerName);
+            return Ok(List_Product);
+        }
+        [HttpPost]
+        [Route("GetOrderDetail")]
+        public IHttpActionResult GetOrderDetail(Order_Criteria_Model _Order_Criteria_Model)
+        {
+            ApplicationLogger.WriteTrace("Start OrderController GetOrderDetail", LoggerName);
+            List<tbl_GridListing<OrderBindingModel>> List_Product = new List<tbl_GridListing<OrderBindingModel>>();
+            if (!ModelState.IsValid)
+            {
+                string messages = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                List_Product = (new Order_BL()).GetOrderList_OrderDetailList(_Order_Criteria_Model);
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                return InternalServerError(ex);
+            }
+
+            ApplicationLogger.WriteTrace("End OrderController GetOrderDetail", LoggerName);
             return Ok(List_Product);
         }
         #endregion
@@ -93,7 +123,7 @@ namespace TestScript.Service.Controllers
 
             try
             {
-                (new Product_BL()).Update(_OrderBindingModel);
+                (new Order_BL()).Update(_OrderBindingModel);
             }
             catch (Exception ex)
             {
@@ -109,7 +139,7 @@ namespace TestScript.Service.Controllers
         #region Delete
         [HttpPost]
         [Route("Delete")]
-        public IHttpActionResult Delete(List<Product_Criteria_Model> List_Product_Criteria_Model)
+        public IHttpActionResult Delete(List<Order_Criteria_Model> List_Order_Criteria_Model)
         {
             ApplicationLogger.WriteTrace("Start OrderController Delete", LoggerName);
             if (!ModelState.IsValid)
@@ -124,7 +154,7 @@ namespace TestScript.Service.Controllers
 
             try
             {
-                (new Product_BL()).Delete(List_Product_Criteria_Model);
+                (new Order_BL()).Delete(List_Order_Criteria_Model);
             }
             catch (Exception ex)
             {
