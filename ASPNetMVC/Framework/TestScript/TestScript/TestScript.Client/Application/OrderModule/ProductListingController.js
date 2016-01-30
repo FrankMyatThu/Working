@@ -2,7 +2,7 @@
 app.factory('productListingDataFactory', function ($http) {
     var productListingDataFactory = {
         selectProduct: selectProduct,
-        deleteCountry: deleteCountry
+        deleteProduct: deleteProduct
     };
     return productListingDataFactory;
 
@@ -21,10 +21,10 @@ app.factory('productListingDataFactory', function ($http) {
         });
     };
 
-    function deleteCountry(_Product_Criteria_Model) {
+    function deleteProduct(_Product_Criteria_Model) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_DeleteCountryList),
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Product_Delete),
             //headers: {
             //    'accept': 'application/json; charset=utf-8',
             //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
@@ -61,7 +61,7 @@ app.controller('Modal_PopupSearch_Controller', function ($scope, $uibModalInstan
 
 });
 //#endregion
-//#region Controller for listing country info.
+//#region Controller for listing product info.
 app.controller('ProductListingController', function ($scope, $http, $window, $uibModal, $timeout, productListingDataFactory) {
 
     //#region Initial declaration        
@@ -158,7 +158,7 @@ app.controller('ProductListingController', function ($scope, $http, $window, $ui
     $scope.Edit = function (ProductID) {
         console.log("ProductID", ProductID);
         sessionStorage.setItem("ProductID", ProductID);        
-        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Edit);
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Product_Edit);
     };
     //#endregion
 
@@ -166,13 +166,13 @@ app.controller('ProductListingController', function ($scope, $http, $window, $ui
     $scope.Detail = function (ProductID) {
         console.log("ProductID", ProductID);
         sessionStorage.setItem("ProductID", ProductID);
-        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Detail);
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Product_Detail);
     };
     //#endregion
 
     //#region Create New
     $scope.newPage = function () {
-        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Create);
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Product_Create);
     }
     //#endregion
 
@@ -185,7 +185,7 @@ app.controller('ProductListingController', function ($scope, $http, $window, $ui
         if ($scope.checkboxControl.IsSelectedAllTotally) {
             var List_Product_Criteria_Model = [];
             List_Product_Criteria_Model.push($scope.Product_Criteria_Model);
-            productListingDataFactory.deleteCountry(List_Product_Criteria_Model)
+            productListingDataFactory.deleteProduct(List_Product_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.Reset_Product_Criteria_Model_Data();
                 $scope.Delete.DeletedRowCount = $scope.itemsLength;
@@ -212,7 +212,7 @@ app.controller('ProductListingController', function ($scope, $http, $window, $ui
                 $scope.firstPage();
                 return;
             }
-            productListingDataFactory.deleteCountry(List_Product_Criteria_Model)
+            productListingDataFactory.deleteProduct(List_Product_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.Delete.DeletedRowCount = List_Product_Criteria_Model.length;
                 $scope.firstPage();
@@ -375,27 +375,27 @@ app.directive("ddlRecordFilterCount", ['productListingDataFactory', function (pr
         scope: false,
         template:
             ' Filter By&nbsp;<span class="glyphicon glyphicon-filter"></span> ' +
-            ' <select ProductID="ddlRecordFilterCount" name="ddlRecordFilterCount"  ' +
-            ' ng-options="option.name for option in data.availableOptions track by option.ProductID" ng-model="data.selectedOption" ' +
+            ' <select id="ddlRecordFilterCount" name="ddlRecordFilterCount"  ' +
+            ' ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption" ' +
             ' ng-change="ddlRecordFilterCount_Change(data.selectedOption)" ></select> ',
         link: function (scope, elem, attrs) {
             scope.data = {
                 availableOptions: [
-                    { ProductID: '10', name: '10' },
-                    { ProductID: '20', name: '20' },
-                    { ProductID: '50', name: '50' }
+                    { id: '10', name: '10' },
+                    { id: '20', name: '20' },
+                    { id: '50', name: '50' }
                 ],
-                selectedOption: { ProductID: '10', name: '10' }
+                selectedOption: { id: '10', name: '10' }
             };
             scope.ddlRecordFilterCount_Change = function (SelectedValue) {
                 scope.Product_Criteria_Model.BatchIndex = 1;
-                scope.Product_Criteria_Model.RecordPerPage = SelectedValue.ProductID;
+                scope.Product_Criteria_Model.RecordPerPage = SelectedValue.id;
                 scope.Product_Criteria_Model.RecordPerBatch = scope.Product_Criteria_Model.RecordPerPage * scope.Product_Criteria_Model.PagerShowIndexOneUpToX;
                 productListingDataFactory.selectProduct(scope.Product_Criteria_Model)
                 .success(function (data, status, headers, config) {
                     scope.dataOptimizer(data);
                     scope.currentPage = 0;
-                }).error(function (data, status, headers, config) {                    
+                }).error(function (data, status, headers, config) {
                     scope.errorHandler(data, status, headers, config);
                 });
             };

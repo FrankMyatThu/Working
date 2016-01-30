@@ -1,44 +1,44 @@
 ﻿//#region factory
-app.factory('countryEditDataFactory', function ($http) {
-    var countryEditDataFactory = {
-        selectCountry: selectCountry,
-        updateCountry: updateCountry
+app.factory('productEditDataFactory', function ($http) {
+    var productEditDataFactory = {
+        selectProduct: selectProduct,
+        updateProduct: updateProduct
     };
-    return countryEditDataFactory;
+    return productEditDataFactory;
 
     //////////////////////////////////
 
-    function selectCountry(_Country_Criteria_Model) {
+    function selectProduct(_Product_Criteria_Model) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
-            },
-            data: _Country_Criteria_Model
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Product_GetProduct),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _Product_Criteria_Model
         });
     };
 
-    function updateCountry(_CountryBindingModel) {        
+    function updateProduct(_ProductBindingModel) {        
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_UpdateCountry),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
-            },
-            data: _CountryBindingModel
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Product_Update),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _ProductBindingModel
         });
     };
 });
 //#endregion
 
 //#region controller
-//#region Controller for Edit country info.
-app.controller('CountryEditController', function ($scope, $timeout, countryEditDataFactory) {
+//#region Controller for Edit product info.
+app.controller('ProductEditController', function ($scope, $timeout, productEditDataFactory) {
 
     //#region Initial declaration       
     $scope.IsRecordFound = true;    
@@ -46,7 +46,7 @@ app.controller('CountryEditController', function ($scope, $timeout, countryEditD
     $scope.item = {};
     $scope.itemLength = 0;   
     // Criteria to search in database.
-    $scope.Country_Criteria_Model = {
+    $scope.Product_Criteria_Model = {
         // -- Pager --
         "BatchIndex": 1,
         "PagerShowIndexOneUpToX": 10,
@@ -54,23 +54,21 @@ app.controller('CountryEditController', function ($scope, $timeout, countryEditD
         "RecordPerBatch": 100,
 
         // -- Sorting --
-        "OrderByClause": "Name ASC",
+        "OrderByClause": "ProductName ASC",
 
         // -- Data --
         "SrNo": "",
-        "Id": sessionStorage.getItem("CountryId"),
-        "Name": "",
-        "IsActive": "",
-        "CreatedDate": "",
-        "CreatedBy": "",
-        "UpdatedDate": "",
-        "UpdatedBy": "",
+        "ProductID": sessionStorage.getItem("ProductID"),
+        "ProductName": "",
+        "Description": "",
+        "Price": "",
+        
     };    
     //#endregion
 
     //#region Retrieve
     $scope.InitialLoad = function () {
-        countryEditDataFactory.selectCountry($scope.Country_Criteria_Model)
+        productEditDataFactory.selectProduct($scope.Product_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
             $scope.currentPage = 0;
@@ -83,7 +81,7 @@ app.controller('CountryEditController', function ($scope, $timeout, countryEditD
 
     //#region Update
     $scope.Update = function () {
-        countryEditDataFactory.updateCountry($scope.item)
+        productEditDataFactory.updateProduct($scope.item)
         .success(function (data, status, headers, config) {
             $scope.MessageNotifier();            
         }).error(function (data, status, headers, config) {
@@ -103,7 +101,7 @@ app.controller('CountryEditController', function ($scope, $timeout, countryEditD
         $scope.item = data[0].List_T[0];
 
         console.log("$scope.item", $scope.item);
-        console.log("$scope.item.Name", $scope.item.Name);
+        console.log("$scope.item.ProductName", $scope.item.ProductName);
 
         $scope.itemLength = data[0].List_T[0].TotalRecordCount;        
     };

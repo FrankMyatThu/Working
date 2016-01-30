@@ -1,44 +1,44 @@
 ﻿//#region factory
-app.factory('countryDetailDataFactory', function ($http) {
-    var countryDetailDataFactory = {
-        selectCountry: selectCountry,
-        deleteCountry: deleteCountry
+app.factory('productDetailDataFactory', function ($http) {
+    var productDetailDataFactory = {
+        selectProduct: selectProduct,
+        deleteProduct: deleteProduct
     };
-    return countryDetailDataFactory;
+    return productDetailDataFactory;
 
     //////////////////////////////////
 
-    function selectCountry(_Country_Criteria_Model) {
+    function selectProduct(_Product_Criteria_Model) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
-            },
-            data: _Country_Criteria_Model
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Product_GetProduct),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _Product_Criteria_Model
         });
     };
 
-    function deleteCountry(_CountryBindingModel) {
+    function deleteProduct(_ProductBindingModel) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_DeleteCountryList),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
-            },
-            data: _CountryBindingModel
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Product_Delete),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _ProductBindingModel
         });
     };
 });
 //#endregion
 
 //#region controller
-//#region Controller for Detail country info.
-app.controller('CountryDetailController', function ($scope, $timeout, countryDetailDataFactory) {
+//#region Controller for Detail product info.
+app.controller('ProductDetailController', function ($scope, $timeout, productDetailDataFactory) {
 
     //#region Initial declaration       
     $scope.IsRecordFound = true;
@@ -46,7 +46,7 @@ app.controller('CountryDetailController', function ($scope, $timeout, countryDet
     $scope.item = {};
     $scope.itemLength = 0;
     // Criteria to search in database.
-    $scope.Country_Criteria_Model = {
+    $scope.Product_Criteria_Model = {
         // -- Pager --
         "BatchIndex": 1,
         "PagerShowIndexOneUpToX": 10,
@@ -54,23 +54,20 @@ app.controller('CountryDetailController', function ($scope, $timeout, countryDet
         "RecordPerBatch": 100,
 
         // -- Sorting --
-        "OrderByClause": "Name ASC",
+        "OrderByClause": "ProductName ASC",
 
         // -- Data --
         "SrNo": "",
-        "Id": sessionStorage.getItem("CountryId"),
-        "Name": "",
-        "IsActive": "",
-        "CreatedDate": "",
-        "CreatedBy": "",
-        "UpdatedDate": "",
-        "UpdatedBy": "",
+        "ProductID": sessionStorage.getItem("ProductID"),
+        "ProductName": "",
+        "Description": "",
+        "Price": "",
     };
     //#endregion
 
     //#region Retrieve
     $scope.InitialLoad = function () {
-        countryDetailDataFactory.selectCountry($scope.Country_Criteria_Model)
+        productDetailDataFactory.selectProduct($scope.Product_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
             $scope.currentPage = 0;
@@ -88,11 +85,11 @@ app.controller('CountryDetailController', function ($scope, $timeout, countryDet
             return;
         }
 
-        var List_Country_Criteria_Model = [];
-        var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
-        List_Country_Criteria_Model.push(_Country_Criteria_Model);
+        var List_Product_Criteria_Model = [];
+        var _Product_Criteria_Model = angular.copy($scope.Product_Criteria_Model);
+        List_Product_Criteria_Model.push(_Product_Criteria_Model);
 
-        countryDetailDataFactory.deleteCountry(List_Country_Criteria_Model)
+        productDetailDataFactory.deleteProduct(List_Product_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.MessageNotifier();
         }).error(function (data, status, headers, config) {
@@ -112,14 +109,14 @@ app.controller('CountryDetailController', function ($scope, $timeout, countryDet
         $scope.item = data[0].List_T[0];
 
         console.log("$scope.item", $scope.item);
-        console.log("$scope.item.Name", $scope.item.Name);
+        console.log("$scope.item.ProductName", $scope.item.ProductName);
 
         $scope.itemLength = data[0].List_T[0].TotalRecordCount;
     };
     $scope.MessageNotifier = function () {        
         $scope.item = {};
         alert("The record has been deleted.");
-        $scope.CountryByClick();
+        $scope.ProductByClick();
     };
     //#endregion
 

@@ -72,8 +72,13 @@ app.controller('ApplicationRootController', function ($scope, $http, $window, $t
         bodyElement.bind(EventName, function (e) { TimeOut_Resetter(e) });
     });
 
-    $scope.CountryByClick = function () {
-        $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country);
+
+    $scope.ProductByClick = function () {
+        $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Product_List);
+    }
+
+    $scope.OrderByClick = function () {
+        $window.location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Order_List);
     }
 
     $scope.LogoutByClick = function () {

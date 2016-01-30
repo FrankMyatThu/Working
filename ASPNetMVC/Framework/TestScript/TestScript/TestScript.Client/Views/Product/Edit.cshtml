@@ -1,8 +1,54 @@
-﻿
+﻿@using TestScript.Base.Util;
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Application/OrderModule/ProductEditController.js"></script>
+<div class="box-header with-border">
+    <h3 class="box-title">Edit Product</h3>
+</div>
+<form name="form" ng-submit="Update()" ng-controller="ProductEditController" role="form">
+    <div class="box-body">
+        <div ng-show="error" class="alert alert-danger">{{error}}</div>
+        <div ng-show="success" class="alert alert-success">{{success}}</div>
 
-<h2>Edit</h2>
+        <!-- ProductID -->
+        <div class="form-group">
+            <label for="ProductID">ProductID</label>
+            <input type="text" name="ProductID" id="ProductID" class="form-control" ng-model="item.ProductID" readonly />
+        </div>
 
+        <!-- ProductName -->
+        <div class="form-group" ng-class="{ 'has-error': form.ProductName.$dirty && (form.ProductName.$error.required || form.ProductName.$error.pattern || form.ProductName.$error.maxlength) }">
+            <label for="ProductName">Product ProductName</label>
+            <input type="text" name="ProductName" id="ProductName" class="form-control" ng-model="item.ProductName" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" required />
+            <span ng-show="form.ProductName.$dirty && form.ProductName.$error.required" class="help-block">Product ProductName is required</span>
+            <span ng-show="form.ProductName.$dirty && form.ProductName.$error.pattern" class="help-block">Invalid Product ProductName.</span>
+            <span ng-show="form.ProductName.$dirty && form.ProductName.$error.maxlength" class="help-block">Maximum length is 250</span>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group" ng-class="{ 'has-error': form.Description.$dirty && (form.Description.$error.required || form.Description.$error.pattern || form.Description.$error.maxlength) }">
+            <label for="Description">Description</label>
+            <input type="text" name="Description" id="Description" class="form-control" ng-model="item.Description" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" required />
+            <span ng-show="form.Description.$dirty && form.Description.$error.required" class="help-block">Description is required</span>
+            <span ng-show="form.Description.$dirty && form.Description.$error.pattern" class="help-block">Invalid Description.</span>
+            <span ng-show="form.Description.$dirty && form.Description.$error.maxlength" class="help-block">Maximum length is 250</span>
+        </div>
+
+        <!-- Price -->
+        <div class="form-group" ng-class="{ 'has-error': form.Price.$dirty && (form.Price.$error.required || form.Price.$error.pattern || form.Price.$error.maxlength) }">
+            <label for="Price">Price</label>
+            <input type="text" name="Price" id="Price" class="form-control" ng-model="item.Price" ng-minlength="1" ng-maxlength="50" ng-pattern="@FormatStandardizer.Client_Numeric" required />
+            <span ng-show="form.Price.$dirty && form.Price.$error.required" class="help-block">Price is required</span>
+            <span ng-show="form.Price.$dirty && form.Price.$error.pattern" class="help-block">Invalid Price.</span>
+            <span ng-show="form.Price.$dirty && form.Price.$error.maxlength" class="help-block">Maximum length is 50</span>
+        </div>
+
+    </div>
+    <div class="box-footer">
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Update</button>
+        &nbsp;
+        <button class="btn btn-primary" ng-click="ProductByClick();">List</button>
+    </div>
+</form>

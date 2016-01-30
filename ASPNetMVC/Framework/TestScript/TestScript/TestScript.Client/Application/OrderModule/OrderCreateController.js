@@ -1,37 +1,37 @@
 ﻿//#region factory
-app.factory('countryCreateDataFactory', function ($http) {
-    var countryCreateDataFactory = {        
-        createCountry: createCountry
+app.factory('orderCreateDataFactory', function ($http) {
+    var orderCreateDataFactory = {
+        createOrder: createOrder
     };
-    return countryCreateDataFactory;
+    return orderCreateDataFactory;
 
     //////////////////////////////////
 
-    function createCountry(_CountryBindingModel) {
+    function createOrder(_OrderBindingModel) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_CreateCountry),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
-            },
-            data: _CountryBindingModel
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Order_Create),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _OrderBindingModel
         });
     };
 });
 //#endregion
 
 //#region controller
-//#region Controller for Create country info.
-app.controller('CountryCreateController', function ($scope, $timeout, countryCreateDataFactory) {
+//#region Controller for Create order info.
+app.controller('OrderCreateController', function ($scope, $timeout, orderCreateDataFactory) {
 
     //#region Initial declaration
     //#endregion
 
     //#region Update
     $scope.Create = function () {
-        countryCreateDataFactory.createCountry($scope.item)
+        orderCreateDataFactory.createOrder($scope.item)
         .success(function (data, status, headers, config) {
             $scope.MessageNotifier();
         }).error(function (data, status, headers, config) {

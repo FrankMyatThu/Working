@@ -1,36 +1,36 @@
 ﻿//#region factory
-app.factory('countryListingDataFactory', function ($http) {
-    var countryListingDataFactory = {
-        selectCountry: selectCountry,
-        deleteCountry: deleteCountry
+app.factory('orderListingDataFactory', function ($http) {
+    var orderListingDataFactory = {
+        selectOrder: selectOrder,
+        deleteOrder: deleteOrder
     };
-    return countryListingDataFactory;
+    return orderListingDataFactory;
 
     //////////////////////////////////
 
-    function selectCountry(_Country_Criteria_Model) {
+    function selectOrder(_Order_Criteria_Model) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_GetCountryList),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
-            },
-            data: _Country_Criteria_Model
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Order_GetOrder),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _Order_Criteria_Model
         });
     };
 
-    function deleteCountry(_Country_Criteria_Model) {
+    function deleteOrder(_Order_Criteria_Model) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_DeleteCountryList),
-            headers: {
-                'accept': 'application/json; charset=utf-8',
-                'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
-                'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
-            },
-            data: _Country_Criteria_Model
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Order_Delete),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _Order_Criteria_Model
         });
     };
 });
@@ -40,7 +40,7 @@ app.factory('countryListingDataFactory', function ($http) {
 app.filter('offset', function () {
     return function (input, start) {
         if (!input || !input.length) { return; }
-        start = parseInt(start, 10);        
+        start = parseInt(start, 10);
         return input.slice(start);
     };
 });
@@ -62,7 +62,7 @@ app.controller('Modal_PopupSearch_Controller', function ($scope, $uibModalInstan
 });
 //#endregion
 //#region Controller for listing country info.
-app.controller('CountryListingController', function ($scope, $http, $window, $uibModal, $timeout, countryListingDataFactory) {
+app.controller('OrderListingController', function ($scope, $http, $window, $uibModal, $timeout, orderListingDataFactory) {
 
     //#region Initial declaration        
     $scope.IsRecordFound = true;
@@ -73,7 +73,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     // Data to pupulate pager.
     $scope.List_tbl_Pager_To_Client_ByBatchIndex = {};
     // Criteria to search in database.
-    $scope.Country_Criteria_Model = {
+    $scope.Order_Criteria_Model = {
         // -- Pager --
         "BatchIndex": 1,
         "PagerShowIndexOneUpToX": 10,
@@ -81,21 +81,17 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         "RecordPerBatch": 100,
 
         // -- Sorting --
-        "OrderByClause": "Name ASC",
+        "OrderByClause": "Description ASC",
 
         // -- Data --
         "SrNo": "",
-        "Id": "",
-        "Name": "",
-        "IsActive": "",
-        "CreatedDate": "",
-        "CreatedBy": "",
-        "UpdatedDate": "",
-        "UpdatedBy": "",
+        "OrderId": "",
+        "Description": "",
+        "OrderDate": ""
     };
     // Sorting criteria.
     $scope.sort = {
-        sortingOrder: 'Name',
+        sortingOrder: 'Description',
         reverse: false
     };
     // Checkbox Control
@@ -114,15 +110,11 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     //#endregion
 
     //#region Reset criteria array
-    $scope.Reset_Country_Criteria_Model_Data = function () {
-        $scope.Country_Criteria_Model.SrNo = "";
-        $scope.Country_Criteria_Model.Id = "";
-        $scope.Country_Criteria_Model.Name = "";
-        $scope.Country_Criteria_Model.IsActive = "";
-        $scope.Country_Criteria_Model.CreatedDate = "";
-        $scope.Country_Criteria_Model.CreatedBy = "";
-        $scope.Country_Criteria_Model.UpdatedDate = "";
-        $scope.Country_Criteria_Model.UpdatedBy = "";
+    $scope.Reset_Order_Criteria_Model_Data = function () {
+        $scope.Order_Criteria_Model.SrNo = "";
+        $scope.Order_Criteria_Model.OrderId = "";
+        $scope.Order_Criteria_Model.Description = "";        
+        $scope.Order_Criteria_Model.OrderDate = "";
     }
     //#endregion
 
@@ -136,103 +128,103 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     $scope.selectAll = function () {
         $scope.ResetCheckBoxControl($scope.checkboxControl.IsSelectedAll);
         $scope.checkboxControl.currentDisplayedPageRecord = $scope.items.slice(0);
-        $scope.checkboxControl.currentDisplayedPageRecord = $scope.checkboxControl.currentDisplayedPageRecord.splice($scope.currentPage * $scope.Country_Criteria_Model.RecordPerPage, $scope.Country_Criteria_Model.RecordPerPage);
+        $scope.checkboxControl.currentDisplayedPageRecord = $scope.checkboxControl.currentDisplayedPageRecord.splice($scope.currentPage * $scope.Order_Criteria_Model.RecordPerPage, $scope.Order_Criteria_Model.RecordPerPage);
         for (var i = 0; i < $scope.checkboxControl.currentDisplayedPageRecord.length; i++) {
             var item = $scope.checkboxControl.currentDisplayedPageRecord[i];
-            $scope.checkboxControl.SelectItemList[item.Id] = $scope.checkboxControl.IsSelectedAll;
+            $scope.checkboxControl.SelectItemList[item.OrderId] = $scope.checkboxControl.IsSelectedAll;
         }
         $scope.checkboxControl.currentDisplayedPageRecord_Total = $scope.checkboxControl.currentDisplayedPageRecord.length;
     };
-    $scope.selectAllTotally = function (value) {        
+    $scope.selectAllTotally = function (value) {
         $scope.checkboxControl.IsSelectedAllTotally = value;
     };
-    $scope.voidSelection = function (){
+    $scope.voidSelection = function () {
         $scope.ResetCheckBoxControl(false);
     }
-    $scope.checkboxStateChanged = function (id) {
-        if ($scope.checkboxControl.SelectItemList[id]) {
+    $scope.checkboxStateChanged = function (OrderId) {
+        if ($scope.checkboxControl.SelectItemList[OrderId]) {
             /// Checked  
-            //console.log("Checked", id);
+            //console.log("Checked", OrderId);
         } else {
             /// Not checked
             $scope.checkboxControl.IsSelectedAll = false;
-        }        
+        }
     }
     //#endregion
 
     //#region Edit
-    $scope.Edit = function (Id) {
-        console.log("Id", Id);
-        sessionStorage.setItem("CountryId", Id);        
-        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Edit);
+    $scope.Edit = function (OrderId) {
+        console.log("OrderId", OrderId);
+        sessionStorage.setItem("OrderId", OrderId);
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Order_Edit);
     };
     //#endregion
 
     //#region Detail
-    $scope.Detail = function (Id) {
-        console.log("Id", Id);
-        sessionStorage.setItem("CountryId", Id);
-        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Detail);
+    $scope.Detail = function (OrderId) {
+        console.log("OrderId", OrderId);
+        sessionStorage.setItem("OrderId", OrderId);
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Order_Detail);
     };
     //#endregion
 
     //#region Create New
     $scope.newPage = function () {
-        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Country_Create);
+        location.href = ApplicationConfig.Client_Domain.concat(ApplicationConfig.Client_Order_Create);
     }
     //#endregion
 
     //#region Delete    
-    $scope.deletePage = function () {        
+    $scope.deletePage = function () {
         var result = confirm("Are you sure to delete?");
-        if (!result) {            
+        if (!result) {
             return;
         }
         if ($scope.checkboxControl.IsSelectedAllTotally) {
-            var List_Country_Criteria_Model = [];
-            List_Country_Criteria_Model.push($scope.Country_Criteria_Model);
-            countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
+            var List_Order_Criteria_Model = [];
+            List_Order_Criteria_Model.push($scope.Order_Criteria_Model);
+            orderListingDataFactory.deleteOrder(List_Order_Criteria_Model)
             .success(function (data, status, headers, config) {
-                $scope.Reset_Country_Criteria_Model_Data();
+                $scope.Reset_Order_Criteria_Model_Data();
                 $scope.Delete.DeletedRowCount = $scope.itemsLength;
-                $scope.firstPage();                
-                $scope.Delete.IsFinishDeleted = true;                
+                $scope.firstPage();
+                $scope.Delete.IsFinishDeleted = true;
                 $timeout(function () { $scope.Delete.IsFinishDeleted = false; }, 4000);
             }).error(function (data, status, headers, config) {
-                $scope.errorHandler(data, status, headers, config);               
+                $scope.errorHandler(data, status, headers, config);
             });
-            
+
         }
         else {
-            var List_Country_Criteria_Model = [];
-            $scope.Reset_Country_Criteria_Model_Data();
-            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {                
+            var List_Order_Criteria_Model = [];
+            $scope.Reset_Order_Criteria_Model_Data();
+            angular.forEach($scope.checkboxControl.SelectItemList, function (value, key) {
                 if (value) {
-                    var _Country_Criteria_Model = angular.copy($scope.Country_Criteria_Model);
-                    _Country_Criteria_Model.Id = key;
-                    List_Country_Criteria_Model.push(_Country_Criteria_Model);
+                    var _Order_Criteria_Model = angular.copy($scope.Order_Criteria_Model);
+                    _Order_Criteria_Model.OrderId = key;
+                    List_Order_Criteria_Model.push(_Order_Criteria_Model);
                 }
-            });           
-            if (List_Country_Criteria_Model.length <= 0) {
+            });
+            if (List_Order_Criteria_Model.length <= 0) {
                 alert("Please select item(s) which you want to delete.");
                 $scope.firstPage();
                 return;
             }
-            countryListingDataFactory.deleteCountry(List_Country_Criteria_Model)
+            orderListingDataFactory.deleteOrder(List_Order_Criteria_Model)
             .success(function (data, status, headers, config) {
-                $scope.Delete.DeletedRowCount = List_Country_Criteria_Model.length;
+                $scope.Delete.DeletedRowCount = List_Order_Criteria_Model.length;
                 $scope.firstPage();
-                $scope.Delete.IsFinishDeleted = true;                
+                $scope.Delete.IsFinishDeleted = true;
                 $timeout(function () { $scope.Delete.IsFinishDeleted = false; }, 4000);
             }).error(function (data, status, headers, config) {
-                $scope.errorHandler(data, status, headers, config);               
-            });            
+                $scope.errorHandler(data, status, headers, config);
+            });
         }
     };
     //#endregion
 
     //#region Grid's Searching
-    $scope.searchPage = function (size) {        
+    $scope.searchPage = function (size) {
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'ModalContent_PopupSearch.html',
@@ -242,8 +234,8 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         });
 
         modalInstance.result.then(function () {
-            $scope.Country_Criteria_Model.BatchIndex = 1;
-            countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
+            $scope.Order_Criteria_Model.BatchIndex = 1;
+            orderListingDataFactory.selectOrder($scope.Order_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.dataOptimizer(data);
                 $scope.currentPage = 0;
@@ -259,8 +251,8 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
 
     //#region Pager
     $scope.firstPage = function () {
-        $scope.Country_Criteria_Model.BatchIndex = 1;
-        countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
+        $scope.Order_Criteria_Model.BatchIndex = 1;
+        orderListingDataFactory.selectOrder($scope.Order_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
             $scope.currentPage = 0;
@@ -270,8 +262,8 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     }
 
     $scope.lastPage = function () {
-        $scope.Country_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch);
-        countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
+        $scope.Order_Criteria_Model.BatchIndex = Math.ceil($scope.itemsLength / $scope.Order_Criteria_Model.RecordPerBatch);
+        orderListingDataFactory.selectOrder($scope.Order_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
             $scope.currentPage = $scope.List_tbl_Pager_To_Client_ByBatchIndex.length - 1;
@@ -281,12 +273,12 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     };
 
     $scope.prevPage = function () {
-        if ($scope.Country_Criteria_Model.BatchIndex > 1) {
-            $scope.Country_Criteria_Model.BatchIndex--;
-            countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
+        if ($scope.Order_Criteria_Model.BatchIndex > 1) {
+            $scope.Order_Criteria_Model.BatchIndex--;
+            orderListingDataFactory.selectOrder($scope.Order_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.dataOptimizer(data);
-                $scope.currentPage = $scope.Country_Criteria_Model.PagerShowIndexOneUpToX - 1;
+                $scope.currentPage = $scope.Order_Criteria_Model.PagerShowIndexOneUpToX - 1;
             }).error(function (data, status, headers, config) {
                 $scope.errorHandler(data, status, headers, config);
             });
@@ -294,13 +286,13 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     };
 
     $scope.prevPageDisabled = function () {
-        return $scope.Country_Criteria_Model.BatchIndex === 1 ? "disabled" : "";
+        return $scope.Order_Criteria_Model.BatchIndex === 1 ? "disabled" : "";
     };
 
     $scope.nextPage = function () {
-        if ($scope.Country_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch)) {
-            $scope.Country_Criteria_Model.BatchIndex++;
-            countryListingDataFactory.selectCountry($scope.Country_Criteria_Model)
+        if ($scope.Order_Criteria_Model.BatchIndex < Math.ceil($scope.itemsLength / $scope.Order_Criteria_Model.RecordPerBatch)) {
+            $scope.Order_Criteria_Model.BatchIndex++;
+            orderListingDataFactory.selectOrder($scope.Order_Criteria_Model)
             .success(function (data, status, headers, config) {
                 $scope.dataOptimizer(data);
                 $scope.currentPage = 0;
@@ -311,7 +303,7 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
     };
 
     $scope.nextPageDisabled = function () {
-        return $scope.Country_Criteria_Model.BatchIndex === Math.ceil($scope.itemsLength / $scope.Country_Criteria_Model.RecordPerBatch) ? "disabled" : "";
+        return $scope.Order_Criteria_Model.BatchIndex === Math.ceil($scope.itemsLength / $scope.Order_Criteria_Model.RecordPerBatch) ? "disabled" : "";
     };
 
     $scope.setPage = function (n) {
@@ -329,10 +321,10 @@ app.controller('CountryListingController', function ($scope, $http, $window, $ui
         }
         $scope.items = data[0].List_T;
         $scope.itemsLength = data[0].List_T[0].TotalRecordCount;
-        $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Country_Criteria_Model.BatchIndex; });
+        $scope.List_tbl_Pager_To_Client_ByBatchIndex = data[0].List_tbl_Pager_To_Client.filter(function (item) { return item.BatchIndex === $scope.Order_Criteria_Model.BatchIndex; });
     };
     //#endregion
-    
+
 });
 //#endregion
 //#endregion
@@ -354,11 +346,11 @@ app.directive("customSort", function () {
             scope.sort_by = function (newSortingOrder) {
                 var sort = scope.sort;
                 if (sort.sortingOrder == newSortingOrder) {
-                    sort.reverse = !sort.reverse;                    
+                    sort.reverse = !sort.reverse;
                 }
 
                 sort.sortingOrder = newSortingOrder;
-                scope.Country_Criteria_Model.OrderByClause = sort.sortingOrder + ((scope.sort.reverse) ? ' DESC' : ' ASC');
+                scope.Order_Criteria_Model.OrderByClause = sort.sortingOrder + ((scope.sort.reverse) ? ' DESC' : ' ASC');
                 scope.firstPage();
             };
 
@@ -374,7 +366,7 @@ app.directive("customSort", function () {
     }
 });
 
-app.directive("ddlRecordFilterCount", ['countryListingDataFactory', function (countryListingDataFactory) {
+app.directive("ddlRecordFilterCount", ['orderListingDataFactory', function (orderListingDataFactory) {
     return {
         restrict: 'A',
         transclude: true,
@@ -394,14 +386,14 @@ app.directive("ddlRecordFilterCount", ['countryListingDataFactory', function (co
                 selectedOption: { id: '10', name: '10' }
             };
             scope.ddlRecordFilterCount_Change = function (SelectedValue) {
-                scope.Country_Criteria_Model.BatchIndex = 1;
-                scope.Country_Criteria_Model.RecordPerPage = SelectedValue.id;
-                scope.Country_Criteria_Model.RecordPerBatch = scope.Country_Criteria_Model.RecordPerPage * scope.Country_Criteria_Model.PagerShowIndexOneUpToX;
-                countryListingDataFactory.selectCountry(scope.Country_Criteria_Model)
+                scope.Order_Criteria_Model.BatchIndex = 1;
+                scope.Order_Criteria_Model.RecordPerPage = SelectedValue.id;
+                scope.Order_Criteria_Model.RecordPerBatch = scope.Order_Criteria_Model.RecordPerPage * scope.Order_Criteria_Model.PagerShowIndexOneUpToX;
+                orderListingDataFactory.selectOrder(scope.Order_Criteria_Model)
                 .success(function (data, status, headers, config) {
                     scope.dataOptimizer(data);
                     scope.currentPage = 0;
-                }).error(function (data, status, headers, config) {                    
+                }).error(function (data, status, headers, config) {
                     scope.errorHandler(data, status, headers, config);
                 });
             };
