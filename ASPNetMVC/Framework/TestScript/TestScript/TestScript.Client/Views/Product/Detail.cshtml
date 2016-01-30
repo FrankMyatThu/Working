@@ -21,7 +21,7 @@
         <!-- ProductName -->
         <div class="form-group" ng-class="{ 'has-error': form.ProductName.$dirty && (form.ProductName.$error.required || form.ProductName.$error.pattern || form.ProductName.$error.maxlength) }">
             <label for="ProductName">Product ProductName</label>
-            <input type="text" name="ProductName" id="ProductName" class="form-control" ng-model="item.ProductName" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" required />
+            <input type="text" name="ProductName" id="ProductName" class="form-control" ng-model="item.ProductName" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" readonly />
             <span ng-show="form.ProductName.$dirty && form.ProductName.$error.required" class="help-block">Product ProductName is required</span>
             <span ng-show="form.ProductName.$dirty && form.ProductName.$error.pattern" class="help-block">Invalid Product ProductName.</span>
             <span ng-show="form.ProductName.$dirty && form.ProductName.$error.maxlength" class="help-block">Maximum length is 250</span>
@@ -30,7 +30,7 @@
         <!-- Description -->
         <div class="form-group" ng-class="{ 'has-error': form.Description.$dirty && (form.Description.$error.required || form.Description.$error.pattern || form.Description.$error.maxlength) }">
             <label for="Description">Description</label>
-            <input type="text" name="Description" id="Description" class="form-control" ng-model="item.Description" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" required />
+            <input type="text" name="Description" id="Description" class="form-control" ng-model="item.Description" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" readonly />
             <span ng-show="form.Description.$dirty && form.Description.$error.required" class="help-block">Description is required</span>
             <span ng-show="form.Description.$dirty && form.Description.$error.pattern" class="help-block">Invalid Description.</span>
             <span ng-show="form.Description.$dirty && form.Description.$error.maxlength" class="help-block">Maximum length is 250</span>
@@ -39,7 +39,7 @@
         <!-- Price -->
         <div class="form-group" ng-class="{ 'has-error': form.Price.$dirty && (form.Price.$error.required || form.Price.$error.pattern || form.Price.$error.maxlength) }">
             <label for="Price">Price</label>
-            <input type="text" name="Price" id="Price" class="form-control" ng-model="item.Price" ng-minlength="1" ng-maxlength="50" ng-pattern="@FormatStandardizer.Client_Numeric" required />
+            <input type="text" name="Price" id="Price" class="form-control" ng-model="item.Price" ng-minlength="1" ng-maxlength="50" ng-pattern="@FormatStandardizer.Client_Numeric" readonly />
             <span ng-show="form.Price.$dirty && form.Price.$error.required" class="help-block">Price is required</span>
             <span ng-show="form.Price.$dirty && form.Price.$error.pattern" class="help-block">Invalid Price.</span>
             <span ng-show="form.Price.$dirty && form.Price.$error.maxlength" class="help-block">Maximum length is 50</span>

@@ -21,7 +21,7 @@
         <!-- Description -->
         <div class="form-group" ng-class="{ 'has-error': form.Description.$dirty && (form.Description.$error.required || form.Description.$error.pattern || form.Description.$error.maxlength) }">
             <label for="Description">Description</label>
-            <input type="text" name="Description" id="Description" class="form-control" ng-model="item.Description" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" required />
+            <input type="text" name="Description" id="Description" class="form-control" ng-model="item.Description" ng-minlength="1" ng-maxlength="250" ng-pattern="@FormatStandardizer.Client_Name_MultiWord" readonly />
             <span ng-show="form.Description.$dirty && form.Description.$error.required" class="help-block">Description is required</span>
             <span ng-show="form.Description.$dirty && form.Description.$error.pattern" class="help-block">Invalid Description.</span>
             <span ng-show="form.Description.$dirty && form.Description.$error.maxlength" class="help-block">Maximum length is 250</span>
@@ -30,11 +30,37 @@
         <!-- OrderDate -->
         <div class="form-group" ng-class="{ 'has-error': form.OrderDate.$dirty && (form.OrderDate.$error.required || form.OrderDate.$error.maxlength) }">
             <label for="OrderDate">Order Date</label>
-            <input type="date" name="OrderDate" id="OrderDate" class="form-control" ng-model="item.OrderDate" ng-minlength="1" ng-maxlength="50" required />
+            <input type="date" name="OrderDate" id="OrderDate" class="form-control" ng-model="item.OrderDate" ng-minlength="1" ng-maxlength="50" readonly />
             <span ng-show="form.OrderDate.$dirty && form.OrderDate.$error.required" class="help-block">OrderDate is required</span>
             <span ng-show="form.OrderDate.$dirty && form.OrderDate.$error.maxlength" class="help-block">Maximum length is 50</span>
         </div>
 
+    </div>
+    <div class="box-footer">
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>OrderDetailID</th>
+                        <th>ProductID</th>
+                        <th>ProductName</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>TotalGST</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="childItemLine in childItem">
+                        <td>{{childItemLine.OrderDetailID}}</td>
+                        <td>{{childItemLine.ProductID}}</td>
+                        <td>{{childItemLine.ProductName}}</td>
+                        <td>{{childItemLine.Quantity}}</td>
+                        <td>{{childItemLine.Total}}</td>
+                        <td>{{childItemLine.TotalGST}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="box-footer">
         <button ng-disabled="form.$invalid" class="btn btn-primary" ng-click="Delete();">Delete</button>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Text;
@@ -79,9 +80,6 @@ namespace TestScript.Model.BusinessLogic
                     if (!string.IsNullOrEmpty(_Order_Criteria_Model.Description))
                         WhereAableQuery = WhereAableQuery.Where(x => x.Description.Contains(_Order_Criteria_Model.Description));
 
-                    if (_Order_Criteria_Model.OrderDate != null)
-                        WhereAableQuery = WhereAableQuery.Where(x => x.OrderDate.Equals(_Order_Criteria_Model.OrderDate));
-
                     int TotalRecordCount = WhereAableQuery.Count();
 
                     #region Preparing tbl_Pager_To_Client
@@ -158,10 +156,7 @@ namespace TestScript.Model.BusinessLogic
 
                     if (!string.IsNullOrEmpty(_Order_Criteria_Model.Description))
                         WhereAableQuery = WhereAableQuery.Where(x => x.Description.Contains(_Order_Criteria_Model.Description));
-
-                    if (_Order_Criteria_Model.OrderDate != null)
-                        WhereAableQuery = WhereAableQuery.Where(x => x.OrderDate.Equals(_Order_Criteria_Model.OrderDate));
-
+                                        
                     int TotalRecordCount = WhereAableQuery.Count();
 
                     #region Preparing tbl_Pager_To_Client
@@ -245,6 +240,7 @@ namespace TestScript.Model.BusinessLogic
                                                                                                                                 OrderDetailID = _OrderDetail.OrderDetailId,
                                                                                                                                 OrderId = _OrderDetail.OrderId,
                                                                                                                                 ProductID = _OrderDetail.ProductID.Value,
+                                                                                                                                ProductName = _OrderDetail.Product.ProductName,
                                                                                                                                 Quantity = _OrderDetail.Quantity.Value,
                                                                                                                                 Total = _OrderDetail.Total.Value,
                                                                                                                                 TotalGST = _OrderDetail.TotalGST.Value
@@ -335,13 +331,10 @@ namespace TestScript.Model.BusinessLogic
                             if (!string.IsNullOrEmpty(_Order_Criteria_Model.Description))
                                 WhereAableQuery = WhereAableQuery.Where(x => x.Description.Contains(_Order_Criteria_Model.Description));
 
-                            if (_Order_Criteria_Model.OrderDate != null)
-                                WhereAableQuery = WhereAableQuery.Where(x => x.OrderDate.Equals(_Order_Criteria_Model.OrderDate));
-
                             List<Order> List_Order = WhereAableQuery.Select(x => x).ToList();
                             foreach(Order _Order in List_Order)
                             {
-                                _TestScriptEntities.OrderDetails.RemoveRange(_TestScriptEntities.OrderDetails.Where(x => x.OrderId.Equals(_Order.OrderId)));
+                                _TestScriptEntities.OrderDetails.RemoveRange(_TestScriptEntities.OrderDetails.Where(x => x.OrderId.Value.Equals(_Order.OrderId)));
                                 _TestScriptEntities.SaveChanges();
                             }
 

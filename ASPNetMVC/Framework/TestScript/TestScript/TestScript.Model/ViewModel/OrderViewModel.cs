@@ -83,6 +83,10 @@ namespace TestScript.Model.ViewModel
         [RegularExpression(FormatStandardizer.Server_Numeric, ErrorMessage = "Invalid {0}")]
         public int ProductID { get; set; }
 
+        [Display(Name = "Product Name")]        
+        [RegularExpression(FormatStandardizer.Server_Name_MultiWord, ErrorMessage = "Invalid {0}")]
+        public string ProductName { get; set; }
+
         [Display(Name = "Quantity")]
         [Required(ErrorMessage = "{0} is required.")]
         [RegularExpression(FormatStandardizer.Server_Numeric, ErrorMessage = "Invalid {0}")]

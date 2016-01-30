@@ -11,7 +11,7 @@ app.factory('orderDetailDataFactory', function ($http) {
     function selectOrder(_Order_Criteria_Model) {
         return $http({
             method: 'POST',
-            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Order_GetOrder),
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Order_GetOrderDetail),
             //headers: {
             //    'accept': 'application/json; charset=utf-8',
             //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
@@ -44,6 +44,7 @@ app.controller('OrderDetailController', function ($scope, $timeout, orderDetailD
     $scope.IsRecordFound = true;
     // Data to populate grid.
     $scope.item = {};
+    $scope.childItem = {};
     $scope.itemLength = 0;
     // Criteria to search in database.
     $scope.Order_Criteria_Model = {
@@ -107,6 +108,7 @@ app.controller('OrderDetailController', function ($scope, $timeout, orderDetailD
         }
         $scope.item = data[0].List_T[0];
         $scope.item.OrderDate = new Date(data[0].List_T[0].OrderDate);
+        $scope.childItem = data[0].List_T[0].List_OrderDetailBindingModel;
 
         console.log("$scope.item", $scope.item);
         console.log("$scope.item.Description", $scope.item.Description);
@@ -116,7 +118,7 @@ app.controller('OrderDetailController', function ($scope, $timeout, orderDetailD
     $scope.MessageNotifier = function () {
         $scope.item = {};
         alert("The record has been deleted.");
-        $scope.ProductByClick();
+        $scope.OrderByClick();
     };
     //#endregion
 

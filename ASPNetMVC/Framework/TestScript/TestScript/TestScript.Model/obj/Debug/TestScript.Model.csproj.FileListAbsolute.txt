@@ -13,6 +13,7 @@ D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScrip
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\obj\Debug\TestScript.Model.csprojResolveAssemblyReference.cache
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\obj\Debug\TestScript.Model.dll
 D:\05.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\obj\Debug\TestScript.Model.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Base.pdb
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Model.dll.config
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Model.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Model.pdb
@@ -21,7 +22,6 @@ D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScrip
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\System.Linq.Dynamic.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Base.dll
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\log4net.dll
-D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\TestScript.Base.pdb
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\EntityFramework.xml
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\01.Project\GitHub\Working\ASPNetMVC\Framework\TestScript\TestScript\TestScript.Model\bin\Debug\log4net.xml
