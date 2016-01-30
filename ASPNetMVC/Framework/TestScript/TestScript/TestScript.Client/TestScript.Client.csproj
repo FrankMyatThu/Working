@@ -83,7 +83,7 @@
     <Content Include="Application\OrderModule\OrderCreateController.js" />
     <Content Include="Application\OrderModule\OrderDetailController.js" />
     <Content Include="Application\OrderModule\OrderEditController.js" />
-    <Content Include="Application\OrderModule\OrdertListingController.js" />
+    <Content Include="Application\OrderModule\OrderListingController.js" />
     <Content Include="Application\OrderModule\ProductCreateController.js" />
     <Content Include="Application\OrderModule\ProductDetailController.js" />
     <Content Include="Application\OrderModule\ProductEditController.js" />

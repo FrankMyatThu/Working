@@ -52,6 +52,9 @@ namespace TestScript.Model.BusinessLogic
 
                     var WhereAableQuery = _TestScriptEntities.Products.OrderBy(_Product_Criteria_Model.OrderByClause);
 
+                    if(_Product_Criteria_Model.ProductID != null)
+                        WhereAableQuery = WhereAableQuery.Where(x => x.ProductID.Equals(_Product_Criteria_Model.ProductID.Value));
+
                     if (!string.IsNullOrEmpty(_Product_Criteria_Model.ProductName))
                         WhereAableQuery = WhereAableQuery.Where(x => x.ProductName.Contains(_Product_Criteria_Model.ProductName));
 

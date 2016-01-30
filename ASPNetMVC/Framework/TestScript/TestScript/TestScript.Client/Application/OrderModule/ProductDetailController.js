@@ -9,6 +9,7 @@ app.factory('productDetailDataFactory', function ($http) {
     //////////////////////////////////
 
     function selectProduct(_Product_Criteria_Model) {
+        console.log("selectProduct _Product_Criteria_Model", JSON.stringify(_Product_Criteria_Model));
         return $http({
             method: 'POST',
             url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Product_GetProduct),
@@ -67,6 +68,7 @@ app.controller('ProductDetailController', function ($scope, $timeout, productDet
 
     //#region Retrieve
     $scope.InitialLoad = function () {
+        console.log("InitialLoad $scope.Product_Criteria_Model", JSON.stringify($scope.Product_Criteria_Model));
         productDetailDataFactory.selectProduct($scope.Product_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);
@@ -100,7 +102,7 @@ app.controller('ProductDetailController', function ($scope, $timeout, productDet
 
     //#region Optimize data after Ajax request
     $scope.dataOptimizer = function (data) {
-        console.log("JSON.stringify(data)", JSON.stringify(data));
+        //console.log("JSON.stringify(data)", JSON.stringify(data));
 
         if (data[0].List_T.length <= 0) {
             $scope.IsRecordFound = false;

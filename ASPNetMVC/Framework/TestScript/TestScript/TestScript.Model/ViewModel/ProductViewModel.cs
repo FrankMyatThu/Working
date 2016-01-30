@@ -21,22 +21,19 @@ namespace TestScript.Model.ViewModel
         [RegularExpression(FormatStandardizer.Server_Numeric, ErrorMessage = "Invalid {0}")]
         public int? ProductID { get; set; }
 
-        [Display(Name = "Product name")]
-        [Required(ErrorMessage = "{0} is required.")]
-        [StringLength(250, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [Display(Name = "Product name")]        
+        [StringLength(250, MinimumLength = 0, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
         [RegularExpression(FormatStandardizer.Server_Name_MultiWord, ErrorMessage = "Invalid {0}")]
         public string ProductName { get; set; }
 
-        [Display(Name = "Description")]
-        [Required(ErrorMessage = "{0} is required.")]
-        [StringLength(250, MinimumLength = 1, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
+        [Display(Name = "Description")]        
+        [StringLength(250, MinimumLength = 0, ErrorMessage = "{0}'s length should be between {2} and {1}.")]
         [RegularExpression(FormatStandardizer.Server_Name_MultiWord, ErrorMessage = "Invalid {0}")]
         public string Description { get; set; }
 
-        [Display(Name = "Price")]
-        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = "Price")]        
         [RegularExpression(FormatStandardizer.Server_Numeric, ErrorMessage = "Invalid {0}")]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
     }
     /// <summary>
     /// To bind data

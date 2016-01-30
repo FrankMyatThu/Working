@@ -42,6 +42,7 @@ namespace TestScript.Model.ViewModel
             try
             {
                 String dts = value as string;
+                if (string.IsNullOrEmpty(dts)) return true;
                 DateTime.ParseExact(dts, "dd/MM/YYYY", CultureInfo.InvariantCulture);
                 return true;
             }

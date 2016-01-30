@@ -73,6 +73,9 @@ namespace TestScript.Model.BusinessLogic
 
                     var WhereAableQuery = _TestScriptEntities.Orders.OrderBy(_Order_Criteria_Model.OrderByClause);
 
+                    if(_Order_Criteria_Model.OrderId !=null)
+                        WhereAableQuery = WhereAableQuery.Where(x => x.OrderId.Equals(_Order_Criteria_Model.OrderId.Value));
+
                     if (!string.IsNullOrEmpty(_Order_Criteria_Model.Description))
                         WhereAableQuery = WhereAableQuery.Where(x => x.Description.Contains(_Order_Criteria_Model.Description));
 
@@ -149,6 +152,9 @@ namespace TestScript.Model.BusinessLogic
                     tbl_GridListing<OrderBindingModel> List_tbl_GridListing = new tbl_GridListing<OrderBindingModel>();
 
                     var WhereAableQuery = _TestScriptEntities.Orders.OrderBy(_Order_Criteria_Model.OrderByClause);
+
+                    if (_Order_Criteria_Model.OrderId != null)
+                        WhereAableQuery = WhereAableQuery.Where(x => x.OrderId.Equals(_Order_Criteria_Model.OrderId.Value));
 
                     if (!string.IsNullOrEmpty(_Order_Criteria_Model.Description))
                         WhereAableQuery = WhereAableQuery.Where(x => x.Description.Contains(_Order_Criteria_Model.Description));
