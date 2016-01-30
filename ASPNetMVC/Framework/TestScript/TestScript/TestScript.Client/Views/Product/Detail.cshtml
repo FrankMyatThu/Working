@@ -7,7 +7,7 @@
 <div class="box-header with-border">
     <h3 class="box-title">Detail Product</h3>
 </div>
-<form name="form" ng-submit="Delete()" ng-controller="ProductDetailController" role="form">
+<form name="form" ng-controller="ProductDetailController" role="form">
     <div class="box-body">
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <div ng-show="success" class="alert alert-success">{{success}}</div>
@@ -47,7 +47,7 @@
 
     </div>
     <div class="box-footer">
-        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Delete</button>
+        <button ng-disabled="form.$invalid" class="btn btn-primary" ng-click="Delete();">Delete</button>
         &nbsp;
         <button class="btn btn-primary" ng-click="ProductByClick();">List</button>
     </div>
