@@ -7,7 +7,7 @@
 <div class="box-header with-border">
     <h3 class="box-title">Edit Product</h3>
 </div>
-<form name="form" ng-submit="Update()" ng-controller="ProductEditController" role="form">
+<form name="form" ng-controller="ProductEditController" role="form">
     <div class="box-body">
         <div ng-show="error" class="alert alert-danger">{{error}}</div>
         <div ng-show="success" class="alert alert-success">{{success}}</div>
@@ -47,7 +47,7 @@
 
     </div>
     <div class="box-footer">
-        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Update</button>
+        <button ng-disabled="form.$invalid" class="btn btn-primary" ng-click="Update();">Update</button>
         &nbsp;
         <button class="btn btn-primary" ng-click="ProductByClick();">List</button>
     </div>

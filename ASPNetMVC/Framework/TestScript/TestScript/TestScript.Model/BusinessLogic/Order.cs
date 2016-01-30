@@ -123,7 +123,7 @@ namespace TestScript.Model.BusinessLogic
                                                                     TotalRecordCount = TotalRecordCount,
                                                                     OrderId = x.OrderId,
                                                                     Description = x.Description,
-                                                                    OrderDate = x.OrderDate                                                                    
+                                                                    OrderDate = new DateTime(x.OrderDate.Value.Year, x.OrderDate.Value.Month, x.OrderDate.Value.Day)
                                                                 })
                                                                 .ToList();
 
@@ -204,7 +204,7 @@ namespace TestScript.Model.BusinessLogic
                     //                                                TotalRecordCount = TotalRecordCount,
                     //                                                OrderId = x.OrderId,
                     //                                                Description = x.Description,
-                    //                                                OrderDate = x.OrderDate                                                                    
+                    //                                                OrderDate = new DateTime(x.OrderDate.Value.Year, x.OrderDate.Value.Month, x.OrderDate.Value.Day)                                                                    
                     //                                            })
                     //                                            .ToList();
 
@@ -239,7 +239,7 @@ namespace TestScript.Model.BusinessLogic
                                                                     TotalRecordCount = TotalRecordCount,
                                                                     OrderId = x.OrderId,
                                                                     Description = x.Description,
-                                                                    OrderDate = x.OrderDate,
+                                                                    OrderDate = new DateTime(x.OrderDate.Value.Year, x.OrderDate.Value.Month, x.OrderDate.Value.Day),
                                                                     List_OrderDetailBindingModel = (from _OrderDetail in x.OrderDetails
                                                                                                                             select new OrderDetailBindingModel { 
                                                                                                                                 OrderDetailID = _OrderDetail.OrderDetailId,

@@ -40,7 +40,7 @@ app.factory('orderEditDataFactory', function ($http) {
 //#region Controller for Edit order info.
 app.controller('OrderEditController', function ($scope, $timeout, orderEditDataFactory) {
 
-    //#region Initial declaration       
+    //#region Initial declaration    
     $scope.IsRecordFound = true;
     // Data to populate grid.
     $scope.item = {};
@@ -97,6 +97,7 @@ app.controller('OrderEditController', function ($scope, $timeout, orderEditDataF
             return;
         }
         $scope.item = data[0].List_T[0];
+        $scope.item.OrderDate = new Date(data[0].List_T[0].OrderDate);
 
         console.log("$scope.item", $scope.item);
         console.log("$scope.item.Description", $scope.item.Description);

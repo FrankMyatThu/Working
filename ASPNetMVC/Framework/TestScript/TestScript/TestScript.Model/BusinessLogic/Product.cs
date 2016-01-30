@@ -130,7 +130,7 @@ namespace TestScript.Model.BusinessLogic
             {
                 using (TestScriptEntities _TestScriptEntities = new TestScriptEntities())
                 {   
-                    Product db_Product = _TestScriptEntities.Products.Where(x => x.ProductID.Equals(_ProductBindingModel.ProductID)).FirstOrDefault();
+                    Product db_Product = _TestScriptEntities.Products.Where(x => x.ProductID.Equals(_ProductBindingModel.ProductID.Value)).FirstOrDefault();
                     db_Product.ProductName = _ProductBindingModel.ProductName;
                     db_Product.Description = _ProductBindingModel.Description;
                     db_Product.Price = _ProductBindingModel.Price;
