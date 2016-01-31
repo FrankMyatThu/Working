@@ -1,7 +1,8 @@
 ﻿//#region factory
 app.factory('orderCreateDataFactory', function ($http) {
     var orderCreateDataFactory = {
-        createOrder: createOrder
+        createOrder: createOrder,
+        selectProduct: selectProduct,
     };
     return orderCreateDataFactory;
 
@@ -19,6 +20,19 @@ app.factory('orderCreateDataFactory', function ($http) {
             data: _OrderBindingModel
         });
     };
+
+    function selectProduct(_Product_Criteria_Model) {
+        return $http({
+            method: 'POST',
+            url: ApplicationConfig.Service_Domain.concat(ApplicationConfig.Service_Product_GetProduct),
+            //headers: {
+            //    'accept': 'application/json; charset=utf-8',
+            //    'Authorization': 'Bearer ' + sessionStorage.getItem("JWTToken"),
+            //    'RequestVerificationToken': ApplicationConfig.AntiForgeryTokenKey
+            //},
+            data: _Product_Criteria_Model
+        });
+    };
 });
 //#endregion
 
@@ -27,6 +41,23 @@ app.factory('orderCreateDataFactory', function ($http) {
 app.controller('OrderCreateController', function ($scope, $timeout, orderCreateDataFactory) {
 
     //#region Initial declaration
+    $scope.Product_Criteria_Model = {
+        // -- Pager --
+        "BatchIndex": 1,
+        "PagerShowIndexOneUpToX": 10,
+        "RecordPerPage": 10,
+        "RecordPerBatch": 100,
+
+        // -- Sorting --
+        "OrderByClause": "ProductName ASC",
+
+        // -- Data --
+        "SrNo": "",
+        "ProductID": "",
+        "ProductName": "",
+        "Description": "",
+        "Price": ""
+    };
     //#endregion
 
     //#region Update
