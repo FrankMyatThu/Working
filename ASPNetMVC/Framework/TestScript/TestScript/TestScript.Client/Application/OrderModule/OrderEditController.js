@@ -232,8 +232,7 @@ app.controller('OrderEditController', function ($scope, $timeout, orderEditDataF
         $scope.form.$setPristine();
     }
 
-    $scope.RemoveRow = function (_OrderDetailId) {
-        alert(_OrderDetailId);
+    $scope.RemoveRow = function (_OrderDetailId) {        
         var index = $scope.childItem.map(function (x) { return x['OrderDetailID']; }).indexOf(_OrderDetailId)
         console.log("index", index);
         $scope.childItem.splice(index, 1);
