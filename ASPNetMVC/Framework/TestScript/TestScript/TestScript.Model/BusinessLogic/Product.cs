@@ -145,7 +145,7 @@ namespace TestScript.Model.BusinessLogic
 
                     #region Preparing data table
                     List<ProductBindingModel> List_ProductBindingModel = WhereAableQuery
-                                                                .AsEnumerable()
+                                                                .AsEnumerable()                                                                
                                                                 .Select((x, i) => new ProductBindingModel
                                                                 {   
                                                                     ProductID = x.ProductID,
