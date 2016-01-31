@@ -274,11 +274,11 @@ namespace TestScript.Model.BusinessLogic
                     {
                         Order db_Order = _TestScriptEntities.Orders.Where(x => x.OrderId.Equals(_OrderBindingModel.OrderId.Value)).FirstOrDefault();
                         db_Order.Description = _OrderBindingModel.Description;
-                        db_Order.OrderDate = _OrderBindingModel.OrderDate;
+                        db_Order.OrderDate = _OrderBindingModel.OrderDate.Value;
                         _TestScriptEntities.SaveChanges();
 
                         _TestScriptEntities.OrderDetails.RemoveRange(
-                                _TestScriptEntities.OrderDetails.Where(x => x.OrderId.Equals(_OrderBindingModel.OrderId.Value))
+                                _TestScriptEntities.OrderDetails.Where(x => x.OrderId.Value.Equals(_OrderBindingModel.OrderId.Value))
                             );
                         _TestScriptEntities.SaveChanges();
 

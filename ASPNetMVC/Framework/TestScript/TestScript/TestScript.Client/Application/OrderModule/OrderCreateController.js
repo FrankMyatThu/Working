@@ -90,8 +90,7 @@ app.controller('OrderCreateController', function ($scope, $timeout, orderCreateD
     //#endregion
 
     //#region Retrieve
-    $scope.InitialLoad = function () {
-        console.log("InitialLoad $scope.Product_Criteria_Model", JSON.stringify($scope.Product_Criteria_Model));
+    $scope.InitialLoad = function () {        
         orderCreateDataFactory.selectProduct($scope.Product_Criteria_Model)
         .success(function (data, status, headers, config) {
             $scope.dataOptimizer(data);            
