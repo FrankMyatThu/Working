@@ -1,0 +1,39 @@
+USE testscript
+
+CREATE TABLE Products
+(
+	ProductID INT IDENTITY(1,1) NOT NULL,
+	ProductName NVARCHAR(250),
+	Description NVARCHAR(250),
+	Price DECIMAL(10,2),
+	Active BIT,
+	PRIMARY KEY (ProductID)
+)
+
+CREATE TABLE Orders
+(
+	OrderId INT IDENTITY(1,1) NOT NULL,
+	Description NVARCHAR(250),
+	OrderDate DATETIME,
+	PRIMARY KEY (OrderId)
+)
+
+CREATE TABLE OrderDetails
+(
+	OrderDetailId INT IDENTITY(1,1) NOT NULL,
+	OrderId INT,
+	ProductID INT,
+	Quantity INT,
+	Total DECIMAL(10,2),
+	TotalGST DECIMAL(10,2),
+	
+	PRIMARY KEY(OrderDetailId),
+
+	FOREIGN KEY(OrderId) REFERENCES Orders(OrderId)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION,
+
+	FOREIGN KEY(ProductID) REFERENCES Products(ProductID)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+)
