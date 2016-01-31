@@ -34,6 +34,7 @@ var ApplicationConfig = {
     Service_CreateUser: "/api/accounts/CreateUser",
     Service_Product_Create: "/api/Product/Create",
     Service_Product_GetProduct: "/api/Product/GetProduct",
+    Service_Product_GetProductWithoutPager: "/api/Product/GetProductWithoutPager",    
     Service_Product_Update: "/api/Product/Update",
     Service_Product_Delete: "/api/Product/Delete",
     Service_Order_Create: "/api/Order/Create",

@@ -121,6 +121,54 @@ namespace TestScript.Model.BusinessLogic
             }
             return List_Product;
         }
+        public List<tbl_GridListing<ProductBindingModel>> GetProductList_WithoutPager(Product_Criteria_Model _Product_Criteria_Model)
+        {
+            List<tbl_GridListing<ProductBindingModel>> List_Product = new List<tbl_GridListing<ProductBindingModel>>();
+            try
+            {
+                using (TestScriptEntities _TestScriptEntities = new TestScriptEntities())
+                {
+                    tbl_GridListing<ProductBindingModel> List_tbl_GridListing = new tbl_GridListing<ProductBindingModel>();
+
+                    var WhereAableQuery = _TestScriptEntities.Products.OrderBy(_Product_Criteria_Model.OrderByClause);
+
+                    if (_Product_Criteria_Model.ProductID != null)
+                        WhereAableQuery = WhereAableQuery.Where(x => x.ProductID.Equals(_Product_Criteria_Model.ProductID.Value));
+
+                    if (!string.IsNullOrEmpty(_Product_Criteria_Model.ProductName))
+                        WhereAableQuery = WhereAableQuery.Where(x => x.ProductName.Contains(_Product_Criteria_Model.ProductName));
+
+                    if (!string.IsNullOrEmpty(_Product_Criteria_Model.Description))
+                        WhereAableQuery = WhereAableQuery.Where(x => x.Description.Contains(_Product_Criteria_Model.Description));
+
+                    int TotalRecordCount = WhereAableQuery.Count();
+
+                    #region Preparing data table
+                    List<ProductBindingModel> List_ProductBindingModel = WhereAableQuery
+                                                                .AsEnumerable()
+                                                                .Select((x, i) => new ProductBindingModel
+                                                                {   
+                                                                    ProductID = x.ProductID,
+                                                                    ProductName = x.ProductName,
+                                                                    Description = x.Description,
+                                                                    Price = x.Price.Value
+                                                                })
+                                                                .ToList();
+
+                    List_tbl_GridListing.List_T = List_ProductBindingModel;
+                    #endregion
+
+                    List_Product.Add(List_tbl_GridListing);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                throw ex;
+            }
+            return List_Product;
+        }
         #endregion
 
         #region Update

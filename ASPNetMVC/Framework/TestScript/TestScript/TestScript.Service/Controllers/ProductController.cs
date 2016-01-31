@@ -74,6 +74,36 @@ namespace TestScript.Service.Controllers
             ApplicationLogger.WriteTrace("End ProductController GetProduct", LoggerName);
             return Ok(List_Product);
         }
+        
+        [HttpPost]
+        [Route("GetProductWithoutPager")]
+        public IHttpActionResult GetProductWithoutPager(Product_Criteria_Model _Product_Criteria_Model)
+        {
+            ApplicationLogger.WriteTrace("Start ProductController GetProductWithoutPager", LoggerName);
+            List<tbl_GridListing<ProductBindingModel>> List_Product = new List<tbl_GridListing<ProductBindingModel>>();
+            if (!ModelState.IsValid)
+            {
+                string messages = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                ModelState.AddModelError(Key_ModelStateInvalidError, messages);
+                ApplicationLogger.WriteError(messages, LoggerName);
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                List_Product = (new Product_BL()).GetProductList_WithoutPager(_Product_Criteria_Model);
+            }
+            catch (Exception ex)
+            {
+                BaseExceptionLogger.LogError(ex, LoggerName);
+                return InternalServerError(ex);
+            }
+
+            ApplicationLogger.WriteTrace("End ProductController GetProductWithoutPager", LoggerName);
+            return Ok(List_Product);
+        }
         #endregion
 
         #region Update

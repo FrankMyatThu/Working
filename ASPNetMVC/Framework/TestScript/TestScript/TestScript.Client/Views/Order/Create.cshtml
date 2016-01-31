@@ -33,13 +33,11 @@
         <!-- ProductID (Product) -->
         <div class="form-group">
             <label for="ddlProduct">Product</label>
-            <select 
-                    id="ddlProduct"
+            <select id="ddlProduct"
                     name="ddlProduct"
-                    ng-options="option.ProductName for option in product_data.availableOptions track by option.ProductID"
+                    ng-options="option.name for option in product_data.availableOptions track by option.id"
                     ng-model="product_data.selectedOption"
-                    ng-change="ddlProduct_Change(product_data.selectedOption)">
-            </select>
+                    ng-change="ddlProduct_Change(product_data.selectedOption)"></select>
         </div>
 
         <!-- Quantity -->
@@ -88,14 +86,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="childItemLine in childItem">
+                    @*<tr ng-repeat="childItemLine in childItem">
                         <td>{{childItemLine.OrderDetailID}}</td>
                         <td>{{childItemLine.ProductID}}</td>
                         <td>{{childItemLine.ProductName}}</td>
                         <td>{{childItemLine.Quantity}}</td>
                         <td>{{childItemLine.Total}}</td>
                         <td>{{childItemLine.TotalGST}}</td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
         </div>

@@ -29,7 +29,7 @@ app.controller('ProductCreateController', function ($scope, $timeout, productCre
     //#region Initial declaration
     //#endregion
 
-    //#region Update
+    //#region Create
     $scope.Create = function () {
         productCreateDataFactory.createProduct($scope.item)
         .success(function (data, status, headers, config) {
