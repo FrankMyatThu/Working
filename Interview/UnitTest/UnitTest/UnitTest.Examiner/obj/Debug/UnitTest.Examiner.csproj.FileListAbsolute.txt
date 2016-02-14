@@ -1,0 +1,9 @@
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\bin\Debug\UnitTest.Examiner.dll
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\bin\Debug\UnitTest.Examiner.pdb
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\bin\Debug\nunit.framework.dll
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\bin\Debug\UnitTest.Candidate.dll
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\bin\Debug\UnitTest.Candidate.pdb
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\bin\Debug\nunit.framework.xml
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\obj\Debug\UnitTest.Examiner.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\obj\Debug\UnitTest.Examiner.dll
+D:\01.Project\GitHub\Working\Interview\UnitTest\UnitTest\UnitTest.Examiner\obj\Debug\UnitTest.Examiner.pdb
