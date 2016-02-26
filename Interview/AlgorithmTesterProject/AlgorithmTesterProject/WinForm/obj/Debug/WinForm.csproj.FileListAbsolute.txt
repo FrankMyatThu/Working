@@ -1,0 +1,9 @@
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\bin\Debug\WinForm.exe.config
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\bin\Debug\WinForm.exe
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\bin\Debug\WinForm.pdb
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.csprojResolveAssemblyReference.cache
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.Form1.resources
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.Properties.Resources.resources
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.csproj.GenerateResource.Cache
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.exe
+D:\05.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.pdb
