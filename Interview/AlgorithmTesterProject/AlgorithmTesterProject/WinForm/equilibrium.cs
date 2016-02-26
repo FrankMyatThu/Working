@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WinForm
 {
-    public partial class Form1 : Form
+    public partial class equilibrium : Form
     {
-        public Form1()
+        public equilibrium()
         {
             InitializeComponent();
         }
@@ -20,7 +20,7 @@ namespace WinForm
         private void Form1_Load(object sender, EventArgs e)
         {
             int[] A = new int[] { -1, 3, -4, 5, 1, -6, 2, 1 };
-            solution(A);
+            int Result = solution(A);
         }
 
         public int solution(int[] A)

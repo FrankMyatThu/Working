@@ -1,6 +1,6 @@
 ﻿namespace WinForm
 {
-    partial class Form1
+    partial class equilibrium
     {
         /// <summary>
         /// Required designer variable.

@@ -44,16 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AdjacentPointsMinDistance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AdjacentPointsMinDistance.Designer.cs">
+      <DependentUpon>AdjacentPointsMinDistance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="equilibrium.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="equilibrium.Designer.cs">
+      <DependentUpon>equilibrium.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AdjacentPointsMinDistance.resx">
+      <DependentUpon>AdjacentPointsMinDistance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="equilibrium.resx">
+      <DependentUpon>equilibrium.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
