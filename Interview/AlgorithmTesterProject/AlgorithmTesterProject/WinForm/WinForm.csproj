@@ -44,11 +44,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1_Question.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1_Question.Designer.cs">
+      <DependentUpon>1_Question.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2_Question.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2_Question.Designer.cs">
+      <DependentUpon>2_Question.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3_Question.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3_Question.Designer.cs">
+      <DependentUpon>3_Question.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjacentPointsMinDistance.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdjacentPointsMinDistance.Designer.cs">
       <DependentUpon>AdjacentPointsMinDistance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BitwiseOperators.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BitwiseOperators.Designer.cs">
+      <DependentUpon>BitwiseOperators.cs</DependentUpon>
     </Compile>
     <Compile Include="equilibrium.cs">
       <SubType>Form</SubType>
@@ -58,8 +82,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="1_Question.resx">
+      <DependentUpon>1_Question.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2_Question.resx">
+      <DependentUpon>2_Question.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3_Question.resx">
+      <DependentUpon>3_Question.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjacentPointsMinDistance.resx">
       <DependentUpon>AdjacentPointsMinDistance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BitwiseOperators.resx">
+      <DependentUpon>BitwiseOperators.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="equilibrium.resx">
       <DependentUpon>equilibrium.cs</DependentUpon>

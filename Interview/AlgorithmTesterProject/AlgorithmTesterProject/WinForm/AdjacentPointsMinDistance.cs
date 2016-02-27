@@ -47,7 +47,7 @@ namespace WinForm
                 return -1;
             }
 
-            return unchecked((int)MinDistance); ;
+            return unchecked((int)MinDistance);
         }
     }
 }
