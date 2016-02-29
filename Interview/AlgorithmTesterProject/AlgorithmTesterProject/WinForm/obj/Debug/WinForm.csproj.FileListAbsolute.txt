@@ -16,8 +16,10 @@ D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterPro
 D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.pdb
 D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.equilibrium.resources
 D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.AdjacentPointsMinDistance.resources
-D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.csprojResolveAssemblyReference.cache
 D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm._1_Question.resources
 D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm._2_Question.resources
 D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm._3_Question.resources
 D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.BitwiseOperators.resources
+D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.AreaOfSum.resources
+D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Working\Interview\AlgorithmTesterProject\AlgorithmTesterProject\WinForm\obj\Debug\WinForm.ArithSliceCount.resources

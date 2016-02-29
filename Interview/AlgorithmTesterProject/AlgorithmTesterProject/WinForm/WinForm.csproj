@@ -68,6 +68,18 @@
     <Compile Include="AdjacentPointsMinDistance.Designer.cs">
       <DependentUpon>AdjacentPointsMinDistance.cs</DependentUpon>
     </Compile>
+    <Compile Include="AreaOfSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaOfSum.Designer.cs">
+      <DependentUpon>AreaOfSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArithSliceCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArithSliceCount.Designer.cs">
+      <DependentUpon>ArithSliceCount.cs</DependentUpon>
+    </Compile>
     <Compile Include="BitwiseOperators.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +105,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjacentPointsMinDistance.resx">
       <DependentUpon>AdjacentPointsMinDistance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaOfSum.resx">
+      <DependentUpon>AreaOfSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ArithSliceCount.resx">
+      <DependentUpon>ArithSliceCount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BitwiseOperators.resx">
       <DependentUpon>BitwiseOperators.cs</DependentUpon>
