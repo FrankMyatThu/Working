@@ -19,45 +19,53 @@ namespace WinForm
 
         private void ArithSliceCount_Load(object sender, EventArgs e)
         {
-            int[] A = new int[] { -1, 1, 3, 3, 3, 2, 1, 0 };
+            //int[] A = new int[] { -1, 1, 3, 3, 3, 2, 1, 0 };
+            int[] A = new int[] { 3, 2, 1, 0 };
             int result = solution(A);
         }
 
-        //  returns the number of arithmetic slices in A
         public int solution(int[] A)
         {
-            long ReturnValue = 0;
-
-            long DifferentValue = 0;
-            long ArithmeticSequenceCount = 0;
-            long ArithmeticSliceCount = 0;
-            for (long i = 0; i < A.Length - 1; i++) 
+            long DifferentValue = 0;            
+            List<PairClass> ListPairArray = new List<PairClass>();
+            for (long i = 0; i < A.Length - 1; i++)
             {
-                if (Math.Abs(A[i] - A[i + 1]) == DifferentValue)
-                {
-                    ArithmeticSequenceCount++;
+                long ValueA = A[i];
+                long InnerLoopCount = 1;
+                for (long j = i + 1; j < A.Length; j++ ) {
+                    long ValueB = A[j];
+                    if (InnerLoopCount >= 2)
+                    {
+                        if (Math.Abs(ValueA - ValueB) == DifferentValue)
+                        {   
+                            PairClass _PairClass = new PairClass();
+                            _PairClass.StartIndex = i;
+                            _PairClass.EndIndex = j;
+                            ListPairArray.Add(_PairClass);                            
+                        }
+                        else
+                        {
+                            i = j - 1;
+                        }
+                    }
+                    DifferentValue = Math.Abs(ValueA - ValueB);
+                    ValueA = ValueB;
+                    InnerLoopCount++;
                 }
-                else
-                {
-                    ArithmeticSequenceCount = 0;
-                }
-                DifferentValue = Math.Abs(A[i] - A[i + 1]);
-
-                if (ArithmeticSequenceCount >= 1) {
-                    ArithmeticSliceCount++;
-                }
-
-                
             }
 
-            ReturnValue = ArithmeticSliceCount;
-
             // The function should return −1 if the result exceeds 1,000,000,000            
-            if (ReturnValue > 1000000000)
+            if (ListPairArray.Count > 1000000000)
             {
                 return -1;
             }
-            return unchecked((int)ReturnValue);
+            return unchecked((int)ListPairArray.Count);
+        }
+
+        class PairClass 
+        {
+            public long StartIndex { get; set; }
+            public long EndIndex { get; set; }
         }
     }
 }
