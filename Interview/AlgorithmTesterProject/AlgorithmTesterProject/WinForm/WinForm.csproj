@@ -80,6 +80,12 @@
     <Compile Include="ArithSliceCount.Designer.cs">
       <DependentUpon>ArithSliceCount.cs</DependentUpon>
     </Compile>
+    <Compile Include="ArrayListLength.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArrayListLength.Designer.cs">
+      <DependentUpon>ArrayListLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="BitwiseOperators.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ArithSliceCount.resx">
       <DependentUpon>ArithSliceCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ArrayListLength.resx">
+      <DependentUpon>ArrayListLength.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BitwiseOperators.resx">
       <DependentUpon>BitwiseOperators.cs</DependentUpon>

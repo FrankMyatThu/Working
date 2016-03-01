@@ -19,8 +19,8 @@ namespace WinForm
 
         private void ArithSliceCount_Load(object sender, EventArgs e)
         {
-            //int[] A = new int[] { -1, 1, 3, 3, 3, 2, 1, 0 };
-            int[] A = new int[] { 3, 2, 1, 0 };
+            int[] A = new int[] { -1, 1, 3, 3, 3, 2, 1, 0 };
+            //int[] A = new int[] { 3, 2, 1, 0 };
             int result = solution(A);
         }
 
