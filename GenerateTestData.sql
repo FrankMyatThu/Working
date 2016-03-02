@@ -1,6 +1,6 @@
 -- generate test data 100 thousand
 DECLARE @i INT
-SET @i = 1
+SET @i = 1 
 WHILE (@i <= 100000)
 BEGIN
 	--INSERT INTO tbl_Array (Id, ColumnA) VALUES (@i, SUBSTRING(@Value, @i, 1));
