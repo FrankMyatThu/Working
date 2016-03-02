@@ -16,7 +16,7 @@ namespace WinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ArrayListLength());
+            Application.Run(new AsymmetryIndex());
         }
     }
 }

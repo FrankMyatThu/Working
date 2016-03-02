@@ -86,6 +86,12 @@
     <Compile Include="ArrayListLength.Designer.cs">
       <DependentUpon>ArrayListLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="AsymmetryIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsymmetryIndex.Designer.cs">
+      <DependentUpon>AsymmetryIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="BitwiseOperators.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ArrayListLength.resx">
       <DependentUpon>ArrayListLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsymmetryIndex.resx">
+      <DependentUpon>AsymmetryIndex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BitwiseOperators.resx">
       <DependentUpon>BitwiseOperators.cs</DependentUpon>
