@@ -92,11 +92,23 @@
     <Compile Include="AsymmetryIndex.Designer.cs">
       <DependentUpon>AsymmetryIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="BitcountInProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BitcountInProduct.Designer.cs">
+      <DependentUpon>BitcountInProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="BitwiseOperators.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BitwiseOperators.Designer.cs">
       <DependentUpon>BitwiseOperators.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BreakTheChain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BreakTheChain.Designer.cs">
+      <DependentUpon>BreakTheChain.cs</DependentUpon>
     </Compile>
     <Compile Include="equilibrium.cs">
       <SubType>Form</SubType>
@@ -130,8 +142,14 @@
     <EmbeddedResource Include="AsymmetryIndex.resx">
       <DependentUpon>AsymmetryIndex.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BitcountInProduct.resx">
+      <DependentUpon>BitcountInProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BitwiseOperators.resx">
       <DependentUpon>BitwiseOperators.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BreakTheChain.resx">
+      <DependentUpon>BreakTheChain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="equilibrium.resx">
       <DependentUpon>equilibrium.cs</DependentUpon>
