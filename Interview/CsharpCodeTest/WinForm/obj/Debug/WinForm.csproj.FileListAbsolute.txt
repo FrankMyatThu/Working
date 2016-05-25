@@ -9,3 +9,8 @@ D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\CsharpCodeTest\WinForm\obj
 D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\bin\Debug\WinForm.exe.config
 D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\obj\Debug\WinForm.exe
 D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\obj\Debug\WinForm.pdb
+D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\bin\Debug\WinForm.exe
+D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\bin\Debug\WinForm.pdb
+D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\obj\Debug\WinForm.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\obj\Debug\WinForm.Properties.Resources.resources
+D:\01.Project\GitHub\Working\Interview\CsharpCodeTest\WinForm\obj\Debug\WinForm.csproj.GenerateResource.Cache
