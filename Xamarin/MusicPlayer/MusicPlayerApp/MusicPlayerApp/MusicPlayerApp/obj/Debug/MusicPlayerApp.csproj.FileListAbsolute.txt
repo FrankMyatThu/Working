@@ -1,0 +1,5 @@
+D:\05.Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\MusicPlayerApp\MusicPlayerApp\bin\Debug\MusicPlayerApp.dll
+D:\05.Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\MusicPlayerApp\MusicPlayerApp\bin\Debug\MusicPlayerApp.pdb
+D:\05.Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\MusicPlayerApp\MusicPlayerApp\obj\Debug\MusicPlayerApp.csprojResolveAssemblyReference.cache
+D:\05.Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\MusicPlayerApp\MusicPlayerApp\obj\Debug\MusicPlayerApp.dll
+D:\05.Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\MusicPlayerApp\MusicPlayerApp\obj\Debug\MusicPlayerApp.pdb
