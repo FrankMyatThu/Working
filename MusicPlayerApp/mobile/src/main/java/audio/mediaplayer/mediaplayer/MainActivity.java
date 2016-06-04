@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,11 +14,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private MediaPlayer mediaPlayer;
+    private ImageButton btnForward;
+    private ImageButton btnPause;
+    private ImageButton btnPlay;
+    private ImageButton btnBackward;
+    private TextView txtMessage;
+    private String TagName = "LogMusicApp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +35,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //mediaPlayer = MediaPlayer.create(this, R.raw.nay_par_say_chit_lo);
-        //mediaPlayer.start();
+        mediaPlayer = MediaPlayer.create(this, R.raw.nay_par_say_chit_lo);
 
-
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +46,48 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
+
+        btnForward = (ImageButton) findViewById(R.id.btnForward);
+        btnPause = (ImageButton) findViewById(R.id.btnPause);
+        btnPlay = (ImageButton) findViewById(R.id.btnPlay);
+        btnBackward = (ImageButton) findViewById(R.id.btnBackward);
+        txtMessage = (TextView) findViewById(R.id.txtMessage);
+
+        btnForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.e(TagName, "btnForward");
+                txtMessage.setText("btnForward");
+            }
+        });
+
+        btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.e(TagName, "btnPause");
+                txtMessage.setText("btnPause");
+                mediaPlayer.pause();
+            }
+        });
+
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.e(TagName, "btnPlay");
+                txtMessage.setText("btnPlay");
+                mediaPlayer.start();
+            }
+        });
+
+        btnBackward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.e(TagName, "btnBackward");
+                txtMessage.setText("btnBackward");
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
