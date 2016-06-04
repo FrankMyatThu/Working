@@ -18,11 +18,19 @@
         android:layout_height="wrap_content"
         android:text="Hello World Music!" />
 
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SeekBar"
+        android:orientation="horizontal"
+        android:layout_above="@+id/LinearLayoutButton" />
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/LinearLayoutButton"
         android:weightSum="4"
         android:layout_alignParentBottom="true">
 

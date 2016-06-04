@@ -2,6 +2,7 @@ package audio.mediaplayer.mediaplayer;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -15,18 +16,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private String TagName = "LogMusicApp";
     private MediaPlayer mediaPlayer;
     private ImageButton btnForward;
     private ImageButton btnPause;
     private ImageButton btnPlay;
     private ImageButton btnBackward;
     private TextView txtMessage;
-    private String TagName = "LogMusicApp";
+    private SeekBar Seekbar;
+    private double startTime = 0;
+    private double finalTime = 0;
+    private Handler Handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +42,36 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.nay_par_say_chit_lo);
-
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer _MediaPlayer) {
+                Log.e(TagName, "Finish");
+                txtMessage.setText("Finish");
             }
         });
-        */
+        finalTime = mediaPlayer.getDuration();
+        Log.e(TagName, "finalTime = " + finalTime);
+        startTime = mediaPlayer.getCurrentPosition();
+        Log.e(TagName, "startTime = " + startTime);
+        //mediaPlayer.seekTo((int) startTime);
+
+        Seekbar = (SeekBar)findViewById(R.id.SeekBar);
+        Seekbar.setMax((int) finalTime);
+        Seekbar.setProgress((int) startTime);
+        Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Log.e(TagName, "onProgressChanged()");
+                if (mediaPlayer != null && fromUser) {
+                    Log.e(TagName, "onProgressChanged() progress = "+progress);
+                    mediaPlayer.seekTo(progress);
+                }
+            }
+        });
+
 
         btnForward = (ImageButton) findViewById(R.id.btnForward);
         btnPause = (ImageButton) findViewById(R.id.btnPause);
@@ -58,7 +83,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View _View) {
                 Log.e(TagName, "btnForward");
-                txtMessage.setText("btnForward");
+                txtMessage.setText("Forward");
             }
         });
 
@@ -66,7 +91,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View _View) {
                 Log.e(TagName, "btnPause");
-                txtMessage.setText("btnPause");
+                txtMessage.setText("Pause");
                 mediaPlayer.pause();
             }
         });
@@ -75,8 +100,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View _View) {
                 Log.e(TagName, "btnPlay");
-                txtMessage.setText("btnPlay");
+                txtMessage.setText("Play");
                 mediaPlayer.start();
+                Handler.postDelayed(UpdateSongTime, 100);
             }
         });
 
@@ -84,7 +110,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View _View) {
                 Log.e(TagName, "btnBackward");
-                txtMessage.setText("btnBackward");
+                txtMessage.setText("Backward");
             }
         });
 
@@ -98,6 +124,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    private Runnable UpdateSongTime = new Runnable() {
+        public void run() {
+            startTime = mediaPlayer.getCurrentPosition();
+            Seekbar.setProgress((int)startTime);
+            Handler.postDelayed(this, 100);
+        }
+    };
 
     @Override
     public void onBackPressed() {
