@@ -1,6 +1,8 @@
 package audio.mediaplayer.mediaplayer;
 
+import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +20,14 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,7 +62,6 @@ public class MainActivity extends AppCompatActivity
         Log.e(TagName, "finalTime = " + finalTime);
         startTime = mediaPlayer.getCurrentPosition();
         Log.e(TagName, "startTime = " + startTime);
-        //mediaPlayer.seekTo((int) startTime);
 
         Seekbar = (SeekBar)findViewById(R.id.SeekBar);
         Seekbar.setMax((int) finalTime);
@@ -72,7 +81,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         btnForward = (ImageButton) findViewById(R.id.btnForward);
         btnPause = (ImageButton) findViewById(R.id.btnPause);
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
@@ -84,6 +92,25 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.e(TagName, "btnForward");
                 txtMessage.setText("Forward");
+
+                InputStream ins = getResources().openRawResource(R.raw.min);
+
+                /*
+                AssetFileDescriptor _AssetFileDescriptor = getResources().openRawResourceFd(R.raw.min);
+                if (_AssetFileDescriptor == null) return;
+                try {
+                    mediaPlayer.reset();
+                    mediaPlayer.setDataSource(
+                            _AssetFileDescriptor.getFileDescriptor(),
+                            _AssetFileDescriptor.getStartOffset(),
+                            _AssetFileDescriptor.getLength());
+                    _AssetFileDescriptor.close();
+                    mediaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                */
+
             }
         });
 
@@ -100,7 +127,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View _View) {
                 Log.e(TagName, "btnPlay");
-                txtMessage.setText("Play");
+                txtMessage.setText("Playing");
                 mediaPlayer.start();
                 Handler.postDelayed(UpdateSongTime, 100);
             }
@@ -123,6 +150,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private FileDescriptor openFile(String path)
+            throws FileNotFoundException, IOException {
+        Log.e(TagName, "openFile() path = "+path);
+        File file = new File(path);
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write((" Beginning of process...").getBytes());
+        return fos.getFD();
     }
 
     private Runnable UpdateSongTime = new Runnable() {
