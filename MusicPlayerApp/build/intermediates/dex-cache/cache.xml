@@ -1,3 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\exploded-aar\com.android.support\design\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1aa5b025efe97f5006f5be16d6ca67c6c3c0c0d8">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\com.android.support-design-23.2.0_8c6431e63751fa61852d2e390420e05d9e913082.jar" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\internal_impl-23.2.0_f4a8cc46bbba6fd50d3dfd4de07da3bb233fd337.jar" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d4c936aa8c7d2522c82e3f1829c791d9e367f009">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\com.android.support-recyclerview-v7-23.2.0_f89d54b0a8fa76f095429b8dab7d1e107fa49d51.jar" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\com.android.support-support-vector-drawable-23.2.0_425bca4f12bb024ec2078727d7e18531568d94f2.jar" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e3578f92f7462d1a935a1d36173e3bdd1234976">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\com.android.support-appcompat-v7-23.2.0_35a0259c673ef8840800bd6896a161bb8802b559.jar" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8c108c22c99e794eff255bb34d2a461200c4cbb0">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\com.android.support-animated-vector-drawable-23.2.0_c9d5039cd32264b9e23cee591080a43eb6cc1db6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\support-annotations-23.2.0_9c0f5810d981b3d6ea1d4d17ff3403fa1d230941.jar" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayerApp\mobile\build\intermediates\pre-dexed\release\com.android.support-support-v4-23.2.0_eb49346ffd80a7d44b25fbe5fdc4a03986cec759.jar" />
+    </item>
+
+</items>

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String TagName = "LogMusicApp";
+    private int CurrentPlayingLength = 0;
     private MediaPlayer mediaPlayer;
     private ImageButton btnForward;
     private ImageButton btnPause;
@@ -47,59 +48,20 @@ public class MainActivity extends AppCompatActivity
             Log.i(TagName, "Raw Asset: "+ fields[count].getName());
         }
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.nay_par_say_chit_lo);
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            public void onCompletion(MediaPlayer _MediaPlayer) {
-                Log.i(TagName, "Finish");
-                txtMessage.setText("Finish");
-            }
-        });
-        finalTime = mediaPlayer.getDuration();
-        Log.i(TagName, "finalTime = " + finalTime);
-        startTime = mediaPlayer.getCurrentPosition();
-        Log.i(TagName, "startTime = " + startTime);
-
-        Seekbar = (SeekBar)findViewById(R.id.SeekBar);
-        Seekbar.setMax((int) finalTime);
-        Seekbar.setProgress((int) startTime);
-        Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Log.i(TagName, "onProgressChanged()");
-                if (mediaPlayer != null && fromUser) {
-                    //Log.i(TagName, "onProgressChanged() progress = "+progress);
-                    mediaPlayer.seekTo(progress);
-                }
-            }
-        });
-
+        /// Button(s)
         btnForward = (ImageButton) findViewById(R.id.btnForward);
         btnPause = (ImageButton) findViewById(R.id.btnPause);
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
         btnBackward = (ImageButton) findViewById(R.id.btnBackward);
         txtMessage = (TextView) findViewById(R.id.txtMessage);
+        btnPause.setEnabled(false);
 
         btnForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View _View) {
                 Log.i(TagName, "btnForward");
                 txtMessage.setText("Forward");
-
-                String path = "android.resource://"+getPackageName()+"/raw/min";
-                Log.i(TagName, "path = "+ path);
-                try {
-                    mediaPlayer.reset();
-                    mediaPlayer.setDataSource(getApplicationContext(), Uri.parse(path));
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+                PlaySong("nay_par_say_chit_lo");
             }
         });
 
@@ -109,6 +71,8 @@ public class MainActivity extends AppCompatActivity
                 Log.i(TagName, "btnPause");
                 txtMessage.setText("Pause");
                 mediaPlayer.pause();
+                CurrentPlayingLength = mediaPlayer.getCurrentPosition();
+                ButtonEnableDisable("Pause");
             }
         });
 
@@ -117,8 +81,10 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.i(TagName, "btnPlay");
                 txtMessage.setText("Playing");
-                mediaPlayer.start();
+                PlaySong("min");
                 Handler.postDelayed(UpdateSongTime, 100);
+                ButtonEnableDisable("Play");
+
             }
         });
 
@@ -127,6 +93,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.i(TagName, "btnBackward");
                 txtMessage.setText("Backward");
+                PlaySong("min");
             }
         });
 
@@ -139,6 +106,82 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void ButtonEnableDisable(String State){
+        if(State.equalsIgnoreCase("Play")){
+            btnPause.setEnabled(true);
+            btnPlay.setEnabled(false);
+        }else if(State.equalsIgnoreCase("Pause")){
+            btnPause.setEnabled(false);
+            btnPlay.setEnabled(true);
+        }
+    }
+
+    private void PlaySong(String Name){
+        String path = "android.resource://"+getPackageName()+"/raw/"+Name;
+        Log.i(TagName, "path = "+ path);
+        try {
+
+            if(CurrentPlayingLength > 0){
+                /// Play song after pause
+                mediaPlayer.seekTo(CurrentPlayingLength);
+                mediaPlayer.start();
+                CurrentPlayingLength = 0;
+                txtMessage.setText(Name);
+            }else
+            {
+                /// Just playing song from start of the length
+                /// MediaPlayer initialization
+                if(mediaPlayer != null)
+                    mediaPlayer.reset();
+                else
+                    mediaPlayer = new MediaPlayer();
+                mediaPlayer.setDataSource(this, Uri.parse(path));
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+                txtMessage.setText(Name);
+            }
+
+            /// MediaPlayer
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer _MediaPlayer) {
+                    Log.i(TagName, "Finish");
+                    txtMessage.setText("Finish");
+                    PlaySong("nay_par_say_chit_lo");
+                }
+            });
+            finalTime = mediaPlayer.getDuration();
+            Log.i(TagName, "finalTime = " + finalTime);
+            startTime = mediaPlayer.getCurrentPosition();
+            Log.i(TagName, "startTime = " + startTime);
+
+            /// SeekBar
+            Seekbar = (SeekBar)findViewById(R.id.SeekBar);
+            Seekbar.setMax((int) finalTime);
+            Seekbar.setProgress((int) startTime);
+            Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                }
+
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    //Log.i(TagName, "onProgressChanged()");
+                    if (mediaPlayer != null && fromUser) {
+                        //Log.i(TagName, "onProgressChanged() progress = "+progress);
+                        mediaPlayer.seekTo(progress);
+                    }
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private Runnable UpdateSongTime = new Runnable() {
