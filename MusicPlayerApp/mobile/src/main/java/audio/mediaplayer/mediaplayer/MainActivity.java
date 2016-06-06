@@ -19,6 +19,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +37,13 @@ public class MainActivity extends AppCompatActivity
     private double startTime = 0;
     private double finalTime = 0;
     private Handler Handler = new Handler();
+    private List<MusicDictionary> List_MusicDictionary = null;
+
+    public class MusicDictionary{
+        public int Srno;
+        public String Name;
+        public String Status;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +53,14 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         Field[] fields=R.raw.class.getFields();
+        List_MusicDictionary = new ArrayList<MusicDictionary>();
         for(int count=0; count < fields.length; count++){
-            Log.i(TagName, "Raw Asset: "+ fields[count].getName());
+            Log.i(TagName, "Raw Asset: " + fields[count].getName());
+            MusicDictionary _MusicDictionary = new MusicDictionary();
+            _MusicDictionary.Srno = count + 1 ;
+            _MusicDictionary.Name = fields[count].getName();
+            _MusicDictionary.Status = "New";
+            List_MusicDictionary.add(_MusicDictionary);
         }
 
         /// Button(s)
@@ -61,7 +76,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.i(TagName, "btnForward");
                 txtMessage.setText("Forward");
-                PlaySong("nay_par_say_chit_lo");
+                PlaySong(List_MusicDictionary.get(3).Name);
             }
         });
 
@@ -81,7 +96,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.i(TagName, "btnPlay");
                 txtMessage.setText("Playing");
-                PlaySong("min");
+                PlaySong(List_MusicDictionary.get(0).Name);
                 Handler.postDelayed(UpdateSongTime, 100);
                 ButtonEnableDisable("Play");
 
@@ -93,7 +108,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.i(TagName, "btnBackward");
                 txtMessage.setText("Backward");
-                PlaySong("min");
+                PlaySong(List_MusicDictionary.get(0).Name);
             }
         });
 
@@ -117,6 +132,7 @@ public class MainActivity extends AppCompatActivity
             btnPlay.setEnabled(true);
         }
     }
+
 
     private void PlaySong(String Name){
         String path = "android.resource://"+getPackageName()+"/raw/"+Name;
