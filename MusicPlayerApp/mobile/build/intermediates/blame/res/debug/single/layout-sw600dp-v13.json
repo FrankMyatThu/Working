@@ -2,5 +2,9 @@
     {
         "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
         "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.0\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.0\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
     }
 ]
