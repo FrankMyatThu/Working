@@ -20,12 +20,15 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String TagName = "LogMusicApp";
+    private String PausedSongName = "";
     private int CurrentPlayingLength = 0;
     private MediaPlayer mediaPlayer;
     private ImageButton btnForward;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private SeekBar Seekbar;
     private double startTime = 0;
     private double finalTime = 0;
+    private boolean IsRepeatAlbum = true;
     private Handler Handler = new Handler();
     private List<MusicDictionary> List_MusicDictionary = null;
 
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /// Get Music List
         Field[] fields=R.raw.class.getFields();
         List_MusicDictionary = new ArrayList<MusicDictionary>();
         for(int count=0; count < fields.length; count++){
@@ -62,6 +67,14 @@ public class MainActivity extends AppCompatActivity
             _MusicDictionary.Status = "New";
             List_MusicDictionary.add(_MusicDictionary);
         }
+        // Sorting List_MusicDictionary
+        Collections.sort(List_MusicDictionary, new Comparator<MusicDictionary>() {
+            @Override
+            public int compare(MusicDictionary MusicDictionary_2, MusicDictionary MusicDictionary_1) {
+                Log.i(TagName, "Sort MusicDictionary_2.Srno = " + MusicDictionary_2.Srno + " | MusicDictionary_1.Srno = " +MusicDictionary_1.Srno );
+                return Integer.compare(MusicDictionary_2.Srno, MusicDictionary_1.Srno);
+            }
+        });
 
         /// Button(s)
         btnForward = (ImageButton) findViewById(R.id.btnForward);
@@ -76,7 +89,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.i(TagName, "btnForward");
                 txtMessage.setText("Forward");
-                PlaySong(List_MusicDictionary.get(3).Name);
+                PlaySong(GetToPlaySong(false, IsRepeatAlbum));
             }
         });
 
@@ -96,10 +109,16 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View _View) {
                 Log.i(TagName, "btnPlay");
                 txtMessage.setText("Playing");
-                PlaySong(List_MusicDictionary.get(0).Name);
+                if(CurrentPlayingLength > 0){
+                    /// Play after pause.
+                    PlaySong("");
+                }else
+                {
+                    /// Play from the start of the each song(s).
+                    PlaySong(GetToPlaySong(true, IsRepeatAlbum));
+                }
                 Handler.postDelayed(UpdateSongTime, 100);
                 ButtonEnableDisable("Play");
-
             }
         });
 
@@ -139,7 +158,7 @@ public class MainActivity extends AppCompatActivity
         Log.i(TagName, "path = "+ path);
         try {
 
-            if(CurrentPlayingLength > 0){
+            if(Name == ""){
                 /// Play song after pause
                 mediaPlayer.seekTo(CurrentPlayingLength);
                 mediaPlayer.start();
@@ -164,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                 public void onCompletion(MediaPlayer _MediaPlayer) {
                     Log.i(TagName, "Finish");
                     txtMessage.setText("Finish");
-                    PlaySong("nay_par_say_chit_lo");
+                    PlaySong(GetToPlaySong(false, IsRepeatAlbum));
                 }
             });
             finalTime = mediaPlayer.getDuration();
@@ -198,6 +217,53 @@ public class MainActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String GetToPlaySong(Boolean IsFirstSong, Boolean IsRepeatAlbum)
+    {
+        String ToReturn_Song = "";
+        if(IsFirstSong){
+           for(int i=0; i<List_MusicDictionary.size(); i++){
+                if(List_MusicDictionary.get(i).Srno == 1){
+                    ToReturn_Song = List_MusicDictionary.get(i).Name;
+                    List_MusicDictionary.get(i).Status = "Playing";
+                    Log.i(TagName, "ToReturn_Song = " + ToReturn_Song);
+                    return ToReturn_Song;
+                }
+           }
+        }else
+        {
+            // Play next song(s)
+            for(int i=0; i<List_MusicDictionary.size(); i++)
+            {
+                if(List_MusicDictionary.get(i).Status.equalsIgnoreCase("Playing")){
+                    List_MusicDictionary.get(i).Status = "Played";
+
+                    // Checking if current index is last index
+                    if((i+1) >= List_MusicDictionary.size())
+                    {
+                        if(IsRepeatAlbum)
+                        {
+                            ToReturn_Song = List_MusicDictionary.get(0).Name;
+                            List_MusicDictionary.get(0).Status = "Playing";
+                        }
+                        else
+                        {
+                            ToReturn_Song = "End__Of__The__Song";
+                        }
+                        return ToReturn_Song;
+                    }else
+                    {
+                        /// Next song
+                        ToReturn_Song = List_MusicDictionary.get(i+1).Name;
+                        List_MusicDictionary.get(i+1).Status = "Playing";
+                        return ToReturn_Song;
+                    }
+                }
+            }
+        }
+        Log.i(TagName, "ToReturn_Song = " + ToReturn_Song);
+        return ToReturn_Song;
     }
 
     private Runnable UpdateSongTime = new Runnable() {

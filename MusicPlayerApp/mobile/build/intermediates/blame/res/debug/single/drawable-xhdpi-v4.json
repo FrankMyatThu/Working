@@ -28,12 +28,12 @@
         "source": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-xhdpi-v4\\abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png",
-        "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png"
-    },
-    {
         "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png",
         "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-xhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png",
+        "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png"
     },
     {
         "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayerApp\\mobile\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png",

@@ -1,0 +1,15 @@
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\bin\Release\App2.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\bin\Release\App2.pdb
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\bin\Release\App2.App2.apk
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\bin\Release\App2.App2-Signed.apk
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\App2.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\App2.pdb
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\android\bin\App2.App2.apk
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\res\layout\main.xml
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\res\values\strings.xml
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\res\drawable\icon.png
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\R.cs.flag
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\uploadflags.txt
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\App2.csprojResolveAssemblyReference.cache
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\obj\Release\App2.dll.mdb
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App2\App2\bin\Release\App2.dll.mdb

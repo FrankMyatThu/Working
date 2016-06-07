@@ -1,0 +1,9 @@
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\App1.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\Mono.Android.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\mscorlib.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\System.Core.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\System.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\System.Xml.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\System.Xml.Linq.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\System.Runtime.Serialization.dll
+C:\MT\Project\GitHub\Working\Xamarin\MusicPlayer\MusicPlayerApp\App1\App1\obj\Debug\assemblies\System.ServiceModel.Internals.dll
