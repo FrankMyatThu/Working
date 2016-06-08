@@ -20,75 +20,173 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/LinearLayoutButton"
-        android:weightSum="5"
+        android:orientation="vertical"
+        android:id="@+id/LinearLayoutFooter"
+        android:weightSum="2"
         android:layout_alignParentBottom="true"
         android:background="@color/transparentBlack">
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Shuffle"
-            android:id="@+id/btnShuffle"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@null"
+            android:orientation="horizontal"
+            android:id="@+id/LinearLayoutFooterFirstRow"
             android:layout_weight="1"
-            android:textColor="@color/lightgray"
-            style="?android:attr/buttonStyleSmall"/>
+            android:weightSum="5">
 
-        <Button
-            android:layout_width="wrap_content"
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Shuffle"
+                android:id="@+id/btnShuffle"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@null"
+                android:layout_weight="1"
+                android:textColor="@color/lightgray"
+                style="?android:attr/buttonStyleSmall"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Previous"
+                android:id="@+id/btnBackward"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/btnPlay"
+                android:background="@null"
+                android:layout_weight="1"
+                android:textColor="@color/lightgray"
+                style="?android:attr/buttonStyleSmall"/>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Play"
+                android:id="@+id/btnPlay"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/btnPause"
+                android:background="@null"
+                android:layout_weight="1"
+                android:textColor="@color/lightgray"
+                style="?android:attr/buttonStyleSmall" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Next"
+                android:id="@+id/btnForward"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@null"
+                android:layout_weight="1"
+                android:textColor="@color/lightgray"
+                style="?android:attr/buttonStyleSmall"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/RepeatOne"
+                android:id="@+id/btnRepeat"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@null"
+                android:layout_weight="1"
+                android:textColor="@color/lightgray"
+                style="?android:attr/buttonStyleSmall"/>
+
+        </LinearLayout>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Previous"
-            android:id="@+id/btnBackward"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/btnPlay"
-            android:background="@null"
+            android:orientation="horizontal"
+            android:id="@+id/LinearLayoutFooterSecondRow"
             android:layout_weight="1"
-            android:textColor="@color/lightgray"
-            style="?android:attr/buttonStyleSmall"/>
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Lyrics"
+                android:id="@+id/btnLyric"
+                android:layout_alignParentBottom="true"
+                android:background="@null"
+                android:layout_weight="0.2"
+                android:textColor="@color/lightgray"
+                style="?android:attr/buttonStyleSmall"/>
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Play"
-            android:id="@+id/btnPlay"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/btnPause"
-            android:background="@null"
-            android:layout_weight="1"
-            android:textColor="@color/lightgray"
-            style="?android:attr/buttonStyleSmall" />
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/LinearLayoutFooterSecondRow_SeekControl"
+                android:layout_weight="0.6"
+                android:weightSum="2">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Next"
-            android:id="@+id/btnForward"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@null"
-            android:layout_weight="1"
-            android:textColor="@color/lightgray"
-            style="?android:attr/buttonStyleSmall"/>
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_FirstRow"
+                    android:layout_weight="1"
+                    android:weightSum="1">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/RepeatOne"
-            android:id="@+id/btnRepeat"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@null"
-            android:layout_weight="1"
-            android:textColor="@color/lightgray"
-            style="?android:attr/buttonStyleSmall"/>
+                    <SeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/SeekBar"
+                        android:orientation="horizontal" />
 
+                </LinearLayout>
+
+                <RelativeLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_SecondRow"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/txtStartPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/lightgray"
+                        android:text="00:11" />
+
+                    <TextView
+                        android:id="@+id/txtEndPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/lightgray"
+                        android:text="33:14" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/FavoriteOn"
+                android:id="@+id/btnFavorite"
+                android:layout_alignParentBottom="true"
+                android:background="@null"
+                android:layout_weight="0.2"
+                android:textColor="@color/lightgray"
+                style="?android:attr/buttonStyleSmall"/>
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

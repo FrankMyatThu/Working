@@ -11,6 +11,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -21,11 +22,15 @@ public class MainActivity extends Activity {
         Button btnPlay = (Button)findViewById( R.id.btnPlay );
         Button btnForward = (Button)findViewById( R.id.btnForward );
         Button btnRepeat = (Button)findViewById( R.id.btnRepeat );
+        Button btnLyric = (Button)findViewById( R.id.btnLyric );
+        Button btnFavorite = (Button)findViewById( R.id.btnFavorite );
         btnShuffle.setTypeface(font);
         btnBackward.setTypeface(font);
         btnPlay.setTypeface(font);
         btnForward.setTypeface(font);
         btnRepeat.setTypeface(font);
+        btnLyric.setTypeface(font);
+        btnFavorite.setTypeface(font);
 
     }
 }
