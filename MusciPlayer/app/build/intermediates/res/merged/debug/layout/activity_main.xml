@@ -18,15 +18,38 @@
         android:src="@drawable/background_1" />
     <!-- Background image end. -->
 
+    <!-- Listing area start. -->
+
+    <!-- Listing area end. -->
+
+    <!-- Footer area start. -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/LinearLayoutFooter"
-        android:weightSum="2"
+        android:weightSum="4"
         android:layout_alignParentBottom="true"
         android:background="@color/transparentBlack">
+
+        <!-- Footer initial blank row start. -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:id="@+id/LinearLayoutFooterInitialRow"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="15dip"
+                android:layout_weight="1">
+            </RelativeLayout>
+
+        </LinearLayout>
+        <!-- Footer initial blank row end. -->
 
         <!-- Footer first row start. -->
         <LinearLayout
@@ -104,13 +127,31 @@
         </LinearLayout>
         <!-- Footer first row end. -->
 
-        <!-- Footer second row start. -->
+        <!-- Footer middle blank row start. -->
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:id="@+id/LinearLayoutFooterSecondRow"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="10dip"
+                android:layout_weight="1">
+            </RelativeLayout>
+
+        </LinearLayout>
+        <!-- Footer middle blank row end. -->
+
+        <!-- Footer last row start. -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:id="@+id/LinearLayoutFooterThirdRow"
             android:layout_weight="1"
             android:weightSum="1">
 
@@ -198,7 +239,9 @@
             </RelativeLayout>
 
         </LinearLayout>
-        <!-- Footer second row end. -->
+        <!-- Footer last row end. -->
 
     </LinearLayout>
+    <!-- Footer area end. -->
+
 </RelativeLayout>
