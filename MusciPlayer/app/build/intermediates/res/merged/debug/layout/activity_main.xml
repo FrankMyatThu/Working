@@ -46,7 +46,7 @@
                 android:background="@null"
                 android:layout_weight="1"
                 android:textColor="@color/lightgray"
-                style="?android:attr/buttonStyleSmall"/>
+                android:textSize="@dimen/PlayerButtonfont_size"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                 android:background="@null"
                 android:layout_weight="1"
                 android:textColor="@color/lightgray"
-                style="?android:attr/buttonStyleSmall"/>
+                android:textSize="@dimen/PlayerButtonfont_size"/>
 
 
             <Button
@@ -71,7 +71,7 @@
                 android:background="@null"
                 android:layout_weight="1"
                 android:textColor="@color/lightgray"
-                style="?android:attr/buttonStyleSmall" />
+                android:textSize="@dimen/PlayerButtonfont_size" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                 android:background="@null"
                 android:layout_weight="1"
                 android:textColor="@color/lightgray"
-                style="?android:attr/buttonStyleSmall"/>
+                android:textSize="@dimen/PlayerButtonfont_size"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                 android:background="@null"
                 android:layout_weight="1"
                 android:textColor="@color/lightgray"
-                style="?android:attr/buttonStyleSmall"/>
+                android:textSize="@dimen/PlayerButtonfont_size"/>
 
         </LinearLayout>
         <LinearLayout
@@ -125,7 +125,7 @@
                     android:id="@+id/btnLyric"
                     android:background="@null"
                     android:textColor="@color/lightgray"
-                    style="?android:attr/buttonStyleSmall"/>
+                    android:textSize="@dimen/PlayerButtonfont_size"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dip"
@@ -198,7 +198,7 @@
                     android:background="@null"
                     android:layout_weight="0.2"
                     android:textColor="@color/lightgray"
-                    style="?android:attr/buttonStyleSmall"/>
+                    android:textSize="@dimen/PlayerButtonfont_size"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dip"
