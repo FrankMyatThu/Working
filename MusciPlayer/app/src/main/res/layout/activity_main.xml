@@ -102,90 +102,109 @@
         </LinearLayout>
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:id="@+id/LinearLayoutFooterSecondRow"
             android:layout_weight="1"
             android:weightSum="1">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Lyrics"
-                android:id="@+id/btnLyric"
-                android:layout_alignParentBottom="true"
-                android:background="@null"
-                android:layout_weight="0.2"
-                android:textColor="@color/lightgray"
-                style="?android:attr/buttonStyleSmall"/>
-
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/LinearLayoutFooterSecondRow_SeekControl"
-                android:layout_weight="0.6"
-                android:weightSum="2">
-
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.15">
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Lyrics"
+                    android:id="@+id/btnLyric"
+                    android:background="@null"
+                    android:textColor="@color/lightgray"
+                    style="?android:attr/buttonStyleSmall"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5">
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_FirstRow"
-                    android:layout_weight="1"
-                    android:weightSum="1">
-
-                    <SeekBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/SeekBar"
-                        android:orientation="horizontal" />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="horizontal"
-                    android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_SecondRow"
-                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:id="@+id/LinearLayoutFooterSecondRow_SeekControl"
+                    android:layout_weight="0.6"
                     android:weightSum="2">
 
-                    <TextView
-                        android:id="@+id/txtStartPoint"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:textColor="@color/lightgray"
-                        android:text="00:11" />
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_FirstRow"
+                        android:layout_weight="1"
+                        android:weightSum="1">
 
-                    <TextView
-                        android:id="@+id/txtEndPoint"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:textColor="@color/lightgray"
-                        android:text="33:14" />
+                        <SeekBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/SeekBar"
+                            android:orientation="horizontal" />
 
-                </RelativeLayout>
+                    </LinearLayout>
 
-            </LinearLayout>
+                    <RelativeLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_SecondRow"
+                        android:layout_weight="1"
+                        android:weightSum="2">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/FavoriteOn"
-                android:id="@+id/btnFavorite"
-                android:layout_alignParentBottom="true"
-                android:background="@null"
-                android:layout_weight="0.2"
-                android:textColor="@color/lightgray"
-                style="?android:attr/buttonStyleSmall"/>
+                        <TextView
+                            android:id="@+id/txtStartPoint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:textColor="@color/lightgray"
+                            android:text="00:11" />
+
+                        <TextView
+                            android:id="@+id/txtEndPoint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:textColor="@color/lightgray"
+                            android:text="33:14" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/FavoriteOn"
+                    android:id="@+id/btnFavorite"
+                    android:background="@null"
+                    android:layout_weight="0.2"
+                    android:textColor="@color/lightgray"
+                    style="?android:attr/buttonStyleSmall"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.15">
+            </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>
