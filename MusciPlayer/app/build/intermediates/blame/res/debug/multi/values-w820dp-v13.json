@@ -31,27 +31,94 @@
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endColumn": 52,
-                    "endOffset": 103
+                    "endColumn": 57,
+                    "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 353,
-                        "endColumn": 52,
-                        "endOffset": 401
-                    }
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 108,
+                    "startOffset": 113,
+                    "endColumn": 58,
+                    "endOffset": 167
+                },
+                "from": {
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 172,
+                    "endColumn": 57,
+                    "endOffset": 225
+                },
+                "from": {
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 230,
+                    "endColumn": 59,
+                    "endOffset": 285
+                },
+                "from": {
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 290,
+                    "endColumn": 54,
+                    "endOffset": 340
+                },
+                "from": {
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 659,
+                        "endColumn": 54,
+                        "endOffset": 709
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 345,
+                    "endColumn": 65,
+                    "endOffset": 406
+                },
+                "from": {
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 592,
+                        "endColumn": 65,
+                        "endOffset": 653
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 411,
                     "endColumn": 56,
-                    "endOffset": 160
+                    "endOffset": 463
                 },
                 "from": {
                     "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"

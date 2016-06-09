@@ -104,7 +104,12 @@
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/></declare-styleable>
     <declare-styleable name="ViewBackgroundHelper"><attr name="android:background"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
-    <dimen name="PlayerButtonfont_size">20sp</dimen>
+    <dimen name="PlayerButtonfont_sizeLarge">24sp</dimen>
+    <dimen name="PlayerButtonfont_sizeMedian">20sp</dimen>
+    <dimen name="PlayerButtonfont_sizeSmall">10sp</dimen>
+    <dimen name="PlayerButtonfont_sizeSmalldp">10dp</dimen>
+    <dimen name="PlayerButtontop_Seekbar">8dip</dimen>
+    <dimen name="PlayerButtontop_StartEndPointText">15dip</dimen>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
     <dimen name="abc_action_bar_default_padding_end_material">0dp</dimen>

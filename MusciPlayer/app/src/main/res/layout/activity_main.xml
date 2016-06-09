@@ -9,12 +9,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ninzimay.mediaplayer.ninzimay.MainActivity">
 
+    <!-- Background image start. -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/background_1" />
+    <!-- Background image end. -->
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,80 +28,109 @@
         android:layout_alignParentBottom="true"
         android:background="@color/transparentBlack">
 
+        <!-- Footer first row start. -->
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:id="@+id/LinearLayoutFooterFirstRow"
             android:layout_weight="1"
-            android:weightSum="5">
+            android:weightSum="1">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Shuffle"
-                android:id="@+id/btnShuffle"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:background="@null"
-                android:layout_weight="1"
-                android:textColor="@color/lightgray"
-                android:textSize="@dimen/PlayerButtonfont_size"/>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.05">
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Shuffle"
+                        android:id="@+id/btnShuffle"
+                        android:background="@null"
+                        android:layout_weight="1"
+                        android:textColor="@color/lightgray"
+                        android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+            </RelativeLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Previous"
-                android:id="@+id/btnBackward"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/btnPlay"
-                android:background="@null"
-                android:layout_weight="1"
-                android:textColor="@color/lightgray"
-                android:textSize="@dimen/PlayerButtonfont_size"/>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5">
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Previous"
+                    android:id="@+id/btnBackward"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:textColor="@color/lightgray"
+                    android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Play"
-                android:id="@+id/btnPlay"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/btnPause"
-                android:background="@null"
-                android:layout_weight="1"
-                android:textColor="@color/lightgray"
-                android:textSize="@dimen/PlayerButtonfont_size" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Play"
+                    android:id="@+id/btnPlay"
+                    android:layout_toRightOf="@+id/btnBackward"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:textColor="@color/lightgray"
+                    android:textSize="@dimen/PlayerButtonfont_sizeLarge" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Next"
-                android:id="@+id/btnForward"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:background="@null"
-                android:layout_weight="1"
-                android:textColor="@color/lightgray"
-                android:textSize="@dimen/PlayerButtonfont_size"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Next"
+                    android:id="@+id/btnForward"
+                    android:layout_toRightOf="@+id/btnPlay"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:textColor="@color/lightgray"
+                    android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/RepeatOne"
-                android:id="@+id/btnRepeat"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:background="@null"
-                android:layout_weight="1"
-                android:textColor="@color/lightgray"
-                android:textSize="@dimen/PlayerButtonfont_size"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/RepeatOne"
+                        android:id="@+id/btnRepeat"
+                        android:background="@null"
+                        android:layout_weight="1"
+                        android:textColor="@color/lightgray"
+                        android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.05">
+            </RelativeLayout>
 
         </LinearLayout>
+        <!-- Footer first row end. -->
+
+        <!-- Footer second row start. -->
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
@@ -112,100 +143,82 @@
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.15">
+                android:layout_weight="0.05">
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.1">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Lyrics"
-                    android:id="@+id/btnLyric"
-                    android:background="@null"
-                    android:textColor="@color/lightgray"
-                    android:textSize="@dimen/PlayerButtonfont_size"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Lyrics"
+                        android:id="@+id/btnLyric"
+                        android:background="@null"
+                        android:textColor="@color/lightgray"
+                        android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+                    <TextView
+                        android:id="@+id/txtStartPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/lightgray"
+                        android:text="00:11"
+                        android:layout_marginTop="@dimen/PlayerButtontop_StartEndPointText"
+                        android:textSize="@dimen/PlayerButtonfont_sizeSmall"/>
+            </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.5">
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/LinearLayoutFooterSecondRow_SeekControl"
-                    android:layout_weight="0.6"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
+                    <SeekBar
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_FirstRow"
-                        android:layout_weight="1"
-                        android:weightSum="1">
+                        android:id="@+id/SeekBar"
+                        android:layout_marginTop="@dimen/PlayerButtontop_Seekbar"
+                        android:orientation="horizontal" />
+            </RelativeLayout>
 
-                        <SeekBar
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/SeekBar"
-                            android:orientation="horizontal" />
-
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:orientation="horizontal"
-                        android:id="@+id/LinearLayoutFooterSecondRow_SeekControl_SecondRow"
-                        android:layout_weight="1"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:id="@+id/txtStartPoint"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:textColor="@color/lightgray"
-                            android:text="00:11" />
-
-                        <TextView
-                            android:id="@+id/txtEndPoint"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@color/lightgray"
-                            android:text="33:14" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.1">
+                    <TextView
+                        android:id="@+id/txtEndPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/lightgray"
+                        android:text="33:14"
+                        android:layout_marginTop="@dimen/PlayerButtontop_StartEndPointText"
+                        android:textSize="@dimen/PlayerButtonfont_sizeSmall"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.1">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/FavoriteOn"
-                    android:id="@+id/btnFavorite"
-                    android:background="@null"
-                    android:layout_weight="0.2"
-                    android:textColor="@color/lightgray"
-                    android:textSize="@dimen/PlayerButtonfont_size"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/FavoriteOn"
+                        android:id="@+id/btnFavorite"
+                        android:background="@null"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/lightgray"
+                        android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.15">
+                android:layout_weight="0.05">
             </RelativeLayout>
 
         </LinearLayout>
+        <!-- Footer second row end. -->
+
     </LinearLayout>
 </RelativeLayout>
