@@ -36,7 +36,6 @@ public class MainActivity extends Activity {
         btnLyric.setTypeface(font);
         btnFavorite.setTypeface(font);
 
-
         String[] SongList = {"a_chit_lo_khaw_ta_lar", "min", "nay_par_say_chit_lo", "twae_lat_myar"};
         ListAdapter _ListAdapter = new SongListingRowControl(this, SongList);
         ListView _ListView = (ListView) findViewById(R.id.listView);
@@ -47,7 +46,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String songInfo = String.valueOf(parent.getItemAtPosition(position));
-                        Log.i("", "songInfo = " + songInfo);
+                        //Log.i("", "songInfo = " + songInfo);
                     }
                 }
         );
