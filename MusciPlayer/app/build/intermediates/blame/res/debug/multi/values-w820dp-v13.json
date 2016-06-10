@@ -168,7 +168,14 @@
                     "endOffset": 122
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 659,
+                        "endColumn": 71,
+                        "endOffset": 726
+                    }
                 }
             },
             {
@@ -180,7 +187,14 @@
                     "endOffset": 180
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 533,
+                        "endColumn": 57,
+                        "endOffset": 586
+                    }
                 }
             },
             {
@@ -192,7 +206,14 @@
                     "endOffset": 239
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 473,
+                        "endColumn": 58,
+                        "endOffset": 527
+                    }
                 }
             },
             {
@@ -204,7 +225,14 @@
                     "endOffset": 297
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 353,
+                        "endColumn": 57,
+                        "endOffset": 406
+                    }
                 }
             },
             {
@@ -216,7 +244,14 @@
                     "endOffset": 357
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 412,
+                        "endColumn": 59,
+                        "endOffset": 467
+                    }
                 }
             },
             {
@@ -228,7 +263,14 @@
                     "endOffset": 412
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 732,
+                        "endColumn": 54,
+                        "endOffset": 782
+                    }
                 }
             },
             {
@@ -259,7 +301,14 @@
                     "endOffset": 535
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 295,
+                        "endColumn": 56,
+                        "endOffset": 347
+                    }
                 }
             }
         ]

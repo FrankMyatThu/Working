@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Row start. -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:id="@+id/LinearRow"
+        android:layout_weight="1"
+        android:weightSum="1">
+
+        <!--Blank area start. -->
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.05">
+        </RelativeLayout>
+        <!--Blank area end. -->
+
+        <!--Photo area start. -->
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3">
+            <ImageView
+                android:id="@+id/imgSongImage"
+                android:src="@drawable/album_art"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"></ImageView>
+        </RelativeLayout>
+        <!--Photo area end. -->
+
+        <!--Info area start. -->
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.4">
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/LinearLayoutInfo"
+                android:weightSum="2">
+
+                <!-- Song info in myanmar start. -->
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/LinearLayoutMyanmar"
+                    android:layout_weight="1"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/txtMyanmarInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/lightgray"
+                        android:layout_marginTop="22dp"
+                        android:text="Myanmar text" />
+
+                </LinearLayout>
+                <!-- Song info in myanmar end. -->
+
+                <!-- Song info in english start. -->
+                <RelativeLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/LinearLayoutEnglish"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/txtEnglishInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/lightgray"
+                        android:text="English text" />
+
+                </RelativeLayout>
+                <!-- Song info in english end. -->
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <!--Info area end. -->
+
+        <!--Favorite area start. -->
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/FavoriteOn"
+                android:id="@+id/btnFavorite"
+                android:background="@null"
+                android:layout_weight="0.2"
+                android:layout_marginTop="60dp"
+                android:textColor="@color/lightgray"
+                android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
+        </RelativeLayout>
+        <!--Favorite area end. -->
+
+        <!--Running Indicator start. -->
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1">
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/LinearLayoutSongIndicator"
+                    android:weightSum="2">
+
+                    <!-- Song length start. -->
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearLayoutSongLength"
+                        android:layout_weight="1"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/txtSongLength"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:textColor="@color/lightgray"
+                            android:layout_marginTop="22dp"
+                            android:text="88:88" />
+
+                    </LinearLayout>
+                    <!-- Song length end. -->
+
+                    <!-- Song running icon start. -->
+                    <RelativeLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:id="@+id/LinearLayoutSongRunningIcon"
+                        android:layout_weight="1"
+                        android:weightSum="1">
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/FavoriteOn"
+                            android:id="@+id/btnRunningSong"
+                            android:background="@null"
+                            android:textColor="@color/lightgray"
+                            android:layout_marginTop="22dp"
+                            android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
+
+                    </RelativeLayout>
+                    <!-- Song running icon end. -->
+
+                </LinearLayout>
+        </RelativeLayout>
+        <!--Running Indicator end. -->
+
+        <!--Blank area start. -->
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.05">
+        </RelativeLayout>
+        <!--Blank area end. -->
+
+    </LinearLayout>
+    <!-- Row end. -->
+
+</LinearLayout>
