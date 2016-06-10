@@ -6,6 +6,6 @@
     <dimen name="PlayerButtonfont_sizeSmall">10sp</dimen>
     <dimen name="PlayerButtonfont_sizeSmalldp">10dp</dimen>
     <dimen name="PlayerButtontop_Seekbar">8dip</dimen>
-    <dimen name="PlayerButtontop_StartEndPointText">16dip</dimen>
+    <dimen name="PlayerButtontop_StartEndPointText">18dip</dimen>
     <dimen name="activity_horizontal_margin">0dp</dimen>
 </resources>

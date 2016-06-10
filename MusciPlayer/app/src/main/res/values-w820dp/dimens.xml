@@ -7,7 +7,7 @@
     <dimen name="PlayerButtonfont_sizeSmalldp">10dp</dimen>
     <dimen name="PlayerButtonfont_sizeMedian">20sp</dimen>
     <dimen name="PlayerButtonfont_sizeLarge">24sp</dimen>
-    <dimen name="PlayerButtontop_StartEndPointText">16dip</dimen>
+    <dimen name="PlayerButtontop_StartEndPointText">18dip</dimen>
     <dimen name="PlayerButtonLeftRight_StartEndPointText">17dip</dimen>
     <dimen name="PlayerButtontop_Seekbar">8dip</dimen>
 </resources>

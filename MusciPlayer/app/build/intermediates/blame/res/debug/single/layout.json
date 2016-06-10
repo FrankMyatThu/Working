@@ -16,12 +16,12 @@
         "source": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
-        "merged": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
-        "source": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\layout\\abc_screen_toolbar.xml"
-    },
-    {
         "merged": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
         "source": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
         "merged": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
