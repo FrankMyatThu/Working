@@ -2,6 +2,7 @@ package ninzimay.mediaplayer.ninzimay;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,27 +19,50 @@ public class SongListingRowControl extends ArrayAdapter<String> {
         super(context, R.layout.song_listing_row_control, _List);
     }
 
+    class ViewHolder{
+        ImageView imgSongImage;
+        TextView txtMyanmarInfo;
+        TextView txtEnglishInfo;
+        Button btnFavorite;
+        Button btnRunningSong;
+        ViewHolder(View _View){
+            imgSongImage = (ImageView) _View.findViewById(R.id.imgSongImage);
+            txtMyanmarInfo = (TextView) _View.findViewById(R.id.txtMyanmarInfo);
+            txtEnglishInfo = (TextView) _View.findViewById(R.id.txtEnglishInfo);
+            btnFavorite = (Button) _View.findViewById(R.id.btnFavorite);
+            btnRunningSong = (Button) _View.findViewById(R.id.btnRunningSong);
+        }
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        LayoutInflater _LayoutInflater = LayoutInflater.from(getContext());
-        View _SongLisingRowControl = _LayoutInflater.inflate(R.layout.song_listing_row_control, parent, false);
+
+        View _View_Row = convertView;
+        ViewHolder _ViewHolder = null;
+
+        if(_View_Row == null)
+        {
+            LayoutInflater _LayoutInflater = LayoutInflater.from(getContext());
+            _View_Row = _LayoutInflater.inflate(R.layout.song_listing_row_control, parent, false);
+            _ViewHolder = new ViewHolder(_View_Row);
+            _View_Row.setTag(_ViewHolder);
+            Log.d("NinZiMay", "SetTag");
+        }
+        else
+        {
+            _ViewHolder = (ViewHolder) _View_Row.getTag();
+            Log.d("NinZiMay", "GetTag");
+        }
+
         Typeface font = Typeface.createFromAsset(this.getContext().getAssets(), "fontawesome-webfont.ttf");
-
         String singleRow = getItem(position);
-        ImageView imgSongImage = (ImageView) _SongLisingRowControl.findViewById(R.id.imgSongImage);
 
-        TextView txtMyanmarInfo = (TextView) _SongLisingRowControl.findViewById(R.id.txtMyanmarInfo);
-        TextView txtEnglishInfo = (TextView) _SongLisingRowControl.findViewById(R.id.txtEnglishInfo);
+        _ViewHolder.btnFavorite.setTypeface(font);
+        _ViewHolder.btnRunningSong.setTypeface(font);
+        _ViewHolder.txtEnglishInfo.setText(singleRow);
+        //_ViewHolder.txtMyanmarInfo.setText(singleRow);
+        _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
 
-        Button btnFavorite = (Button) _SongLisingRowControl.findViewById(R.id.btnFavorite);
-        Button btnRunningSong = (Button) _SongLisingRowControl.findViewById(R.id.btnRunningSong);
-
-        btnFavorite.setTypeface(font);
-        btnRunningSong.setTypeface(font);
-
-        txtEnglishInfo.setText(singleRow);
-        imgSongImage.setImageResource(R.drawable.album_art);
-
-        return _SongLisingRowControl;
+        return _View_Row;
     }
 }

@@ -75,7 +75,7 @@
 
                 <RelativeLayout
                     android:layout_width="0dip"
-                    android:layout_height="300dip"
+                    android:layout_height="260dip"
                     android:layout_weight="1">
 
                     <ListView

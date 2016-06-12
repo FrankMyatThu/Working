@@ -63,9 +63,9 @@
                         android:id="@+id/txtMyanmarInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
                         android:textColor="@color/lightgray"
                         android:layout_marginTop="15dp"
+                        android:layout_marginLeft="2dp"
                         android:text="Myanmar text" />
 
                 </LinearLayout>
@@ -86,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2dp"
                         android:textColor="@color/lightgray"
                         android:text="English text" />
 
