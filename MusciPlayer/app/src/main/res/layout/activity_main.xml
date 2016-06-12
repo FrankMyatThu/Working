@@ -18,13 +18,38 @@
         android:src="@drawable/background_1"/>
     <!-- Background image end. -->
 
+    <!-- Heading area start. -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/LinearLayoutHeading_Vertical"
+        android:weightSum="1"
+        android:layout_alignParentTop ="true"
+        android:layout_above="@+id/LinearLayoutBodyFooter"
+        android:background="@color/transparentBlackListing">
 
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:id="@+id/LinearLayoutHeading_Vertical_Horizontal"
+            android:layout_weight="1">
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- Heading area end. -->
+
+    <!-- Body and footer area start. -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/LinearLayout"
+        android:id="@+id/LinearLayoutBodyFooter"
         android:weightSum="2"
         android:layout_alignParentBottom="true">
 
@@ -293,6 +318,6 @@
 
 
     </LinearLayout>
-
+    <!-- Body and footer area end. -->
 
 </RelativeLayout>
