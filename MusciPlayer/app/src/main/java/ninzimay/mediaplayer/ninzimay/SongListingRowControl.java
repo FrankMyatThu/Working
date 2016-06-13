@@ -15,8 +15,10 @@ import android.widget.TextView;
  * Created by myat on 10/6/2016.
  */
 public class SongListingRowControl extends ArrayAdapter<String> {
+    Typeface _Font = null;
     SongListingRowControl(Context context, String[] _List){
         super(context, R.layout.song_listing_row_control, _List);
+        _Font = Typeface.createFromAsset(this.getContext().getAssets(), "fontawesome-webfont.ttf");
     }
 
     class ViewHolder{
@@ -54,14 +56,13 @@ public class SongListingRowControl extends ArrayAdapter<String> {
             Log.d("NinZiMay", "GetTag");
         }
 
-        Typeface font = Typeface.createFromAsset(this.getContext().getAssets(), "fontawesome-webfont.ttf");
-        String singleRow = getItem(position);
 
-        _ViewHolder.btnFavorite.setTypeface(font);
-        _ViewHolder.btnRunningSong.setTypeface(font);
+        String singleRow = getItem(position);
+        _ViewHolder.btnFavorite.setTypeface(_Font);
+        _ViewHolder.btnRunningSong.setTypeface(_Font);
         _ViewHolder.txtEnglishInfo.setText(singleRow);
         //_ViewHolder.txtMyanmarInfo.setText(singleRow);
-        _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
+        //_ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
 
         return _View_Row;
     }

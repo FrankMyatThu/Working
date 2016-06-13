@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
         ListAdapter _ListAdapter = new SongListingRowControl(this, SongList);
         ListView _ListView = (ListView) findViewById(R.id.listView);
         _ListView.setAdapter(_ListAdapter);
+        _ListView.setScrollingCacheEnabled(false);
 
         _ListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
