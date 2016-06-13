@@ -1,185 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="82dp"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearRow"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
     android:layout_weight="1"
+    android:orientation="horizontal"
     android:weightSum="1">
 
     <!-- Row start. -->
-        <!--Blank area start. -->
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.05">
-        </RelativeLayout>
-        <!--Blank area end. -->
 
-        <!--Photo area start. -->
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.2">
-            <ImageView
-                android:id="@+id/imgSongImage"
-                android:src="@drawable/album_art"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:scaleType="fitXY"></ImageView>
-        </RelativeLayout>
-        <!--Photo area end. -->
+    <!--Blank area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.025">
+    </RelativeLayout>
+    <!--Blank area end. -->
 
-        <!--Info area start. -->
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.5">
+    <!--Photo area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/imgSongImage"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/album_art"></ImageView>
+    </RelativeLayout>
+    <!--Photo area end. -->
 
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:orientation="vertical"
-                android:id="@+id/LinearLayoutInfo"
-                android:weightSum="2">
+    <!--Info area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.55"
+        android:orientation="vertical"
+        android:weightSum="2">
 
-                <!-- Song info in myanmar start. -->
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:id="@+id/LinearLayoutMyanmar"
-                    android:layout_weight="1"
-                    android:weightSum="1">
+        <!-- Song info in myanmar start. -->
+        <TextView
+            android:id="@+id/txtMyanmarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/lightgray"
+            android:text="Myanmar text"
+            android:layout_marginTop="10dp" />
+        <!-- Song info in myanmar end. -->
 
-                    <TextView
-                        android:id="@+id/txtMyanmarInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/lightgray"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="2dp"
-                        android:text="Myanmar text" />
+        <!-- Song info in english start. -->
+        <TextView
+            android:id="@+id/txtEnglishInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            android:layout_below="@+id/txtMyanmarInfo"
+            android:textColor="@color/lightgray"
+            android:text="English text"
+            android:gravity="center_vertical" />
+        <!-- Song info in english end. -->
 
-                </LinearLayout>
-                <!-- Song info in myanmar end. -->
+    </RelativeLayout>
+    <!--Info area end. -->
 
-                <!-- Song info in english start. -->
-                <RelativeLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:id="@+id/LinearLayoutEnglish"
-                    android:layout_weight="1"
-                    android:weightSum="2">
+    <!--Favorite area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1">
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_marginTop="50dp"
+            android:background="@null"
+            android:textColor="@color/lightgray"
+            android:textSize="@dimen/PlayerButtonfont_sizeMedian"
+            android:text="@string/FavoriteOn"/>
+    </RelativeLayout>
+    <!--Favorite area end. -->
 
-                    <TextView
-                        android:id="@+id/txtEnglishInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="2dp"
-                        android:textColor="@color/lightgray"
-                        android:text="English text" />
+    <!--Running Indicator start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:orientation="vertical"
+        android:weightSum="2">
 
-                </RelativeLayout>
-                <!-- Song info in english end. -->
+        <!-- Song length start. -->
+        <TextView
+            android:id="@+id/txtSongLength"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/lightgray"
+            android:textSize="@dimen/PlayerButtonfont_sizeSmall"
+            android:text="88:88"
+            android:layout_marginTop="10dp" />
+        <!-- Song length end. -->
 
-            </LinearLayout>
+        <!-- Song running icon start. -->
+        <Button
+            android:id="@+id/btnRunningSong"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_below="@+id/txtSongLength"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="@color/lightgray"
+            android:textSize="@dimen/PlayerButtonfont_sizeMedian"
+            android:text="@string/FavoriteOn"/>
+        <!-- Song running icon end. -->
 
-        </RelativeLayout>
-        <!--Info area end. -->
+    </RelativeLayout>
+    <!--Running Indicator end. -->
 
-        <!--Favorite area start. -->
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="80dp"
-            android:layout_weight="0.1">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/FavoriteOn"
-                android:id="@+id/btnFavorite"
-                android:background="@null"
-                android:layout_weight="0.2"
-                android:layout_marginTop="60dp"
-                android:textColor="@color/lightgray"
-                android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
-        </RelativeLayout>
-        <!--Favorite area end. -->
+    <!--Blank area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.025">
+    </RelativeLayout>
+    <!--Blank area end. -->
 
-        <!--Running Indicator start. -->
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.1">
-
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    android:orientation="vertical"
-                    android:id="@+id/LinearLayoutSongIndicator"
-                    android:weightSum="2">
-
-                    <!-- Song length start. -->
-                    <LinearLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:orientation="horizontal"
-                        android:id="@+id/LinearLayoutSongLength"
-                        android:layout_weight="1"
-                        android:weightSum="1">
-
-                        <TextView
-                            android:id="@+id/txtSongLength"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:textColor="@color/lightgray"
-                            android:layout_marginTop="15dp"
-                            android:text="88:88" />
-
-                    </LinearLayout>
-                    <!-- Song length end. -->
-
-                    <!-- Song running icon start. -->
-                    <RelativeLayout
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40dp"
-                        android:orientation="horizontal"
-                        android:id="@+id/LinearLayoutSongRunningIcon"
-                        android:layout_weight="1"
-                        android:weightSum="1">
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/FavoriteOn"
-                            android:id="@+id/btnRunningSong"
-                            android:background="@null"
-                            android:textColor="@color/lightgray"
-                            android:layout_marginTop="20dp"
-                            android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
-
-                    </RelativeLayout>
-                    <!-- Song running icon end. -->
-
-                </LinearLayout>
-        </RelativeLayout>
-        <!--Running Indicator end. -->
-
-        <!--Blank area start. -->
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.05">
-        </RelativeLayout>
-        <!--Blank area end. -->
     <!-- Row end. -->
 </LinearLayout>

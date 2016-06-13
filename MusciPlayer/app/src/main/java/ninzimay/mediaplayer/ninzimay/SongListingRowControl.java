@@ -61,8 +61,8 @@ public class SongListingRowControl extends ArrayAdapter<String> {
         _ViewHolder.btnFavorite.setTypeface(_Font);
         _ViewHolder.btnRunningSong.setTypeface(_Font);
         _ViewHolder.txtEnglishInfo.setText(singleRow);
-        //_ViewHolder.txtMyanmarInfo.setText(singleRow);
-        //_ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
+        _ViewHolder.txtMyanmarInfo.setText(singleRow);
+        _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
 
         return _View_Row;
     }
