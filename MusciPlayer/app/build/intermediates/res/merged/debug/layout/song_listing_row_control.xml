@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="82dp"
+    android:id="@+id/LinearRow"
+    android:layout_weight="1"
+    android:weightSum="1">
 
     <!-- Row start. -->
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="82dp"
-        android:orientation="horizontal"
-        android:id="@+id/LinearRow"
-        android:layout_weight="1"
-        android:weightSum="1">
-
         <!--Blank area start. -->
         <RelativeLayout
             android:layout_width="0dip"
@@ -186,8 +181,5 @@
             android:layout_weight="0.05">
         </RelativeLayout>
         <!--Blank area end. -->
-
-    </LinearLayout>
     <!-- Row end. -->
-
 </LinearLayout>
