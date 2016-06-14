@@ -10,11 +10,11 @@
     tools:context="ninzimay.mediaplayer.ninzimay.MainActivity">
 
     <!-- Background image start. -->
-    <!--<ImageView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_1" />-->
+        android:src="@drawable/background_1" />
     <!-- Background image end. -->
 
     <!-- Heading area start. -->
