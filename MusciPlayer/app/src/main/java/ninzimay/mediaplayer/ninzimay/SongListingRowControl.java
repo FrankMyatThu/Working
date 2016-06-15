@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 /**
  * Created by myat on 10/6/2016.
@@ -26,13 +28,15 @@ public class SongListingRowControl extends ArrayAdapter<String> {
         TextView txtMyanmarInfo;
         TextView txtEnglishInfo;
         Button btnFavorite;
-        Button btnRunningSong;
+        //Button btnRunningSong;
+        //ImageView imgRunningSong;
         ViewHolder(View _View){
             imgSongImage = (ImageView) _View.findViewById(R.id.imgSongImage);
             txtMyanmarInfo = (TextView) _View.findViewById(R.id.txtMyanmarInfo);
             txtEnglishInfo = (TextView) _View.findViewById(R.id.txtEnglishInfo);
             btnFavorite = (Button) _View.findViewById(R.id.btnFavorite);
-            btnRunningSong = (Button) _View.findViewById(R.id.btnRunningSong);
+            //btnRunningSong = (Button) _View.findViewById(R.id.btnRunningSong);
+            //imgRunningSong = (ImageView) _View.findViewById(R.id.imgRunningSong);
         }
     }
 
@@ -59,7 +63,7 @@ public class SongListingRowControl extends ArrayAdapter<String> {
 
         String singleRow = getItem(position);
         _ViewHolder.btnFavorite.setTypeface(_Font);
-        _ViewHolder.btnRunningSong.setTypeface(_Font);
+        //_ViewHolder.btnRunningSong.setTypeface(_Font);
         _ViewHolder.txtEnglishInfo.setText(singleRow);
         _ViewHolder.txtMyanmarInfo.setText(singleRow);
         _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);

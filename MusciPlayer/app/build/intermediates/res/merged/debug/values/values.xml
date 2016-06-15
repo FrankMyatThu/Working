@@ -43,6 +43,7 @@
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
+    <color name="lightOrange">#DCB274</color>
     <color name="lightgray">#CCCCCC</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
@@ -112,6 +113,9 @@
     <dimen name="PlayerButtonfont_sizeSmalldp">8dp</dimen>
     <dimen name="PlayerButtontop_Seekbar">8dip</dimen>
     <dimen name="PlayerButtontop_StartEndPointText">18dip</dimen>
+    <dimen name="Title_FirstLine">36sp</dimen>
+    <dimen name="Title_SecondLine">30sp</dimen>
+    <dimen name="Title_ThirdLine">28sp</dimen>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
     <dimen name="abc_action_bar_default_padding_end_material">0dp</dimen>

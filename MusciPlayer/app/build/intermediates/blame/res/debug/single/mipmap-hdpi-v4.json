@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\background_1.jpg",
-        "source": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\mipmap-hdpi\\background_1.jpg"
-    },
-    {
         "merged": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
         "source": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },

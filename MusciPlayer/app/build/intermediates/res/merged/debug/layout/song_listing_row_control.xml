@@ -112,17 +112,25 @@
         <!-- Song length end. -->
 
         <!-- Song running icon start. -->
-        <Button
-            android:id="@+id/btnRunningSong"
+        <!--<VideoView
+            android:id="@+id/vdoRunningSong"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="0dp"
-            android:layout_below="@+id/txtSongLength"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:textColor="@color/lightgray"
-            android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-            android:text="@string/FavoriteOn"/>
+            android:layout_marginTop="50dp"
+            android:gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/play">
+        </VideoView>-->
+
+        <ninzimay.mediaplayer.ninzimay.CustomGifView
+            android:id="@+id/gifRunningSong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="50dp"
+            android:gravity="center_vertical"
+            android:scaleType="centerCrop"/>
         <!-- Song running icon end. -->
 
     </RelativeLayout>

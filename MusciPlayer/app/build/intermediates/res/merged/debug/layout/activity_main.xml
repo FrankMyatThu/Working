@@ -29,6 +29,60 @@
         android:orientation="vertical"
         android:weightSum="1"
         android:background="@color/transparentBlackListing" >
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/LinearLayoutHeader_Inner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <!-- Font changer button start. -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:gravity="center_horizontal|right">
+                <!--<Button
+                    android:id="@+id/btnFontChanger"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/logo"
+                    android:textColor="@color/lightgray" />-->
+            </RelativeLayout>
+            <!-- Font changer button end. -->
+
+            <!-- Text area start. -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/PlayerButtontop_StartEndPointText"
+                    android:textColor="@color/lightOrange"
+                    android:textSize="@dimen/Title_FirstLine"
+                    android:gravity="top|center_horizontal"
+                    android:text="NINZI MAY"/>
+
+            </RelativeLayout>
+            <!-- Text area start. -->
+
+            <!-- Certificate area start. -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1">
+            </RelativeLayout>
+            <!-- Certificate area end. -->
+
+        </LinearLayout>
     </LinearLayout>
     <!-- Heading area end. -->
 
