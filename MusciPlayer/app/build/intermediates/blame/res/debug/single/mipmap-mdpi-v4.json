@@ -4,6 +4,10 @@
         "source": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\mipmap-mdpi\\background_1.jpg"
     },
     {
+        "merged": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\background_1.jpg",
+        "source": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\mipmap-mdpi\\background_1.jpg"
+    },
+    {
         "merged": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
         "source": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },

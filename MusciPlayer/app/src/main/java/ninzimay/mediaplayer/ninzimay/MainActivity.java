@@ -1,6 +1,8 @@
 package ninzimay.mediaplayer.ninzimay;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -19,6 +22,9 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageView imgBackgroundImage = (ImageView)findViewById(R.id.imgBackgroundImage);
+        loadBitmap(R.drawable.background_1, imgBackgroundImage, this);
 
         Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
         Button btnShuffle = (Button)findViewById( R.id.btnShuffle );
@@ -51,5 +57,10 @@ public class MainActivity extends Activity {
                     }
                 }
         );
+    }
+
+    public void loadBitmap(int resId, ImageView imageView, Context _Context) {
+        BitmapWorkerTask task = new BitmapWorkerTask(imageView, _Context);
+        task.execute(resId);
     }
 }
