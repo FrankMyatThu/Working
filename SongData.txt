@@ -1,0 +1,50 @@
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+		private List<MusicDictionary> List_MusicDictionary = null;
+		public class MusicDictionary{
+			public int Srno;
+			public String EnglishTitle;
+			public String MyanmarTitle;
+			public String AlbumName;
+			public String AlbumArt;
+			public String Length;
+			public String Genre;
+			public String Lyric;
+			public Boolean IsFavorite;
+		}
+		
+		public List<MusicDictionary> getList_MusicDictionary(){
+			List_MusicDictionary = new ArrayList<MusicDictionary>();
+			MusicDictionary _MusicDictionary_1 = new MusicDictionary();
+            _MusicDictionary_1.Srno =  1;
+            _MusicDictionary_1.EnglishTitle = "";
+            _MusicDictionary_1.MyanmarTitle = "";
+			_MusicDictionary_1.AlbumName = "";
+			_MusicDictionary_1.AlbumArt = "";
+			_MusicDictionary_1.Length = "";
+			_MusicDictionary_1.Genre = "";
+			_MusicDictionary_1.Lyric = "";
+			_MusicDictionary_1.IsFavorite = false;
+            List_MusicDictionary.add(_MusicDictionary_1);
+			
+			MusicDictionary _MusicDictionary_2 = new MusicDictionary();
+            _MusicDictionary_2.Srno =  1;
+            _MusicDictionary_2.EnglishTitle = "";
+            _MusicDictionary_2.MyanmarTitle = "";
+			_MusicDictionary_2.AlbumName = "";
+			_MusicDictionary_2.AlbumArt = "";
+			_MusicDictionary_2.Length = "";
+			_MusicDictionary_2.Genre = "";
+			_MusicDictionary_2.Lyric = "";
+			_MusicDictionary_2.IsFavorite = false;
+            List_MusicDictionary.add(_MusicDictionary_1);
+			
+			//....
+			//......
+			//.........			
+			
+			return List_MusicDictionary;
+		}
+
+}
