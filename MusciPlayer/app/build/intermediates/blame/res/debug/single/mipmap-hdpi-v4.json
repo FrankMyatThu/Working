@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\play.gif",
+        "source": "C:\\MT\\Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\mipmap-hdpi\\play.gif"
+    },
+    {
         "merged": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\play.gif",
         "source": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\src\\main\\res\\mipmap-hdpi\\play.gif"
     },

@@ -17,6 +17,8 @@
     <string name="RegistrationSeal">&#xf0a3;</string>
     <string name="HeadphoneIndicator">&#xf025;</string>
 
+    <string name="RunningIndicator">&#xf012;</string>
+
     <string name="Speaker">&#xf027;</string>
     <string name="Volume">&#xf027;</string>
 </resources>

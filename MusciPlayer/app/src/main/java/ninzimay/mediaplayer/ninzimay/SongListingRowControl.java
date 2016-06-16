@@ -13,12 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by myat on 10/6/2016.
  */
-public class SongListingRowControl extends ArrayAdapter<String> {
+public class SongListingRowControl extends ArrayAdapter<MusicDictionary> {
     Typeface _Font = null;
-    SongListingRowControl(Context context, String[] _List){
+    SongListingRowControl(Context context, List<MusicDictionary> _List){
         super(context, R.layout.song_listing_row_control, _List);
         _Font = Typeface.createFromAsset(this.getContext().getAssets(), "fontawesome-webfont.ttf");
     }
@@ -28,14 +31,16 @@ public class SongListingRowControl extends ArrayAdapter<String> {
         TextView txtMyanmarInfo;
         TextView txtEnglishInfo;
         Button btnFavorite;
-        //Button btnRunningSong;
+        Button btnRunningSong;
+        TextView txtSongLength;
         //ImageView imgRunningSong;
         ViewHolder(View _View){
             imgSongImage = (ImageView) _View.findViewById(R.id.imgSongImage);
             txtMyanmarInfo = (TextView) _View.findViewById(R.id.txtMyanmarInfo);
             txtEnglishInfo = (TextView) _View.findViewById(R.id.txtEnglishInfo);
+            txtSongLength =  (TextView) _View.findViewById(R.id.txtSongLength);
             btnFavorite = (Button) _View.findViewById(R.id.btnFavorite);
-            //btnRunningSong = (Button) _View.findViewById(R.id.btnRunningSong);
+            btnRunningSong = (Button) _View.findViewById(R.id.btnRunningSong);
             //imgRunningSong = (ImageView) _View.findViewById(R.id.imgRunningSong);
         }
     }
@@ -61,11 +66,12 @@ public class SongListingRowControl extends ArrayAdapter<String> {
         }
 
 
-        String singleRow = getItem(position);
+        MusicDictionary _MusicDictionary = getItem(position);
         _ViewHolder.btnFavorite.setTypeface(_Font);
-        //_ViewHolder.btnRunningSong.setTypeface(_Font);
-        _ViewHolder.txtEnglishInfo.setText(singleRow);
-        _ViewHolder.txtMyanmarInfo.setText(singleRow);
+        _ViewHolder.btnRunningSong.setTypeface(_Font);
+        _ViewHolder.txtEnglishInfo.setText(_MusicDictionary.EnglishTitle);
+        _ViewHolder.txtMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
+        _ViewHolder.txtSongLength.setText(_MusicDictionary.Length);
         _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
 
         return _View_Row;

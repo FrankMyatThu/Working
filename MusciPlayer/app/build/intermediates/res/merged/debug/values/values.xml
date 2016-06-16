@@ -219,6 +219,7 @@
     <string name="Previous"></string>
     <string name="RegistrationSeal"></string>
     <string name="RepeatOne"></string>
+    <string name="RunningIndicator"></string>
     <string name="Shuffle"></string>
     <string name="Speaker"></string>
     <string name="Stop"></string>

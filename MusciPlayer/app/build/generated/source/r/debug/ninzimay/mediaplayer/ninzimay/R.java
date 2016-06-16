@@ -1666,6 +1666,7 @@ containing a value of this type.
         public static final int btnPause=0x7f0d005b;
         public static final int btnPlay=0x7f0d005a;
         public static final int btnRepeat=0x7f0d005d;
+        public static final int btnRunningSong=0x7f0d0076;
         public static final int btnShuffle=0x7f0d0058;
         public static final int buttonPanel=0x7f0d002b;
         public static final int cancel_action=0x7f0d0065;
@@ -1683,7 +1684,6 @@ containing a value of this type.
         public static final int end_padder=0x7f0d0070;
         public static final int expand_activities_button=0x7f0d0025;
         public static final int expanded_menu=0x7f0d0038;
-        public static final int gifRunningSong=0x7f0d0076;
         public static final int home=0x7f0d0004;
         public static final int homeAsUp=0x7f0d000d;
         public static final int icon=0x7f0d0029;
@@ -1805,13 +1805,17 @@ containing a value of this type.
         public static final int play=0x7f030001;
     }
     public static final class raw {
-        public static final int a_chit_htet_ma_ka=0x7f060000;
-        public static final int bae_si_ko_yout_nay_pi_lae=0x7f060001;
-        public static final int bae_thu_koe_lout_chit_ma_lae=0x7f060002;
-        public static final int chitt_thu_lat_saung=0x7f060003;
-        public static final int min_thi_naing_ma_lar=0x7f060004;
-        public static final int myol_lint_chin_twae_bae_si_mhar=0x7f060005;
-        public static final int myol_nay_mi=0x7f060006;
+        public static final int a0171721=0x7f060000;
+        public static final int b0271721=0x7f060001;
+        public static final int c0371721=0x7f060002;
+        public static final int d0471721=0x7f060003;
+        public static final int e0571721=0x7f060004;
+        public static final int f0671721=0x7f060005;
+        public static final int g0771721=0x7f060006;
+        public static final int h0871721=0x7f060007;
+        public static final int i0971721=0x7f060008;
+        public static final int j1071721=0x7f060009;
+        public static final int k1171721=0x7f06000a;
     }
     public static final class string {
         public static final int FavoriteOff=0x7f070014;
@@ -1825,10 +1829,11 @@ containing a value of this type.
         public static final int Previous=0x7f07001c;
         public static final int RegistrationSeal=0x7f07001d;
         public static final int RepeatOne=0x7f07001e;
-        public static final int Shuffle=0x7f07001f;
-        public static final int Speaker=0x7f070020;
-        public static final int Stop=0x7f070021;
-        public static final int Volume=0x7f070022;
+        public static final int RunningIndicator=0x7f07001f;
+        public static final int Shuffle=0x7f070020;
+        public static final int Speaker=0x7f070021;
+        public static final int Stop=0x7f070022;
+        public static final int Volume=0x7f070023;
         public static final int abc_action_bar_home_description=0x7f070000;
         public static final int abc_action_bar_home_description_format=0x7f070001;
         public static final int abc_action_bar_home_subtitle_description_format=0x7f070002;
@@ -1848,7 +1853,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f070010;
         public static final int abc_shareactionprovider_share_with_application=0x7f070011;
         public static final int abc_toolbar_collapse_description=0x7f070012;
-        public static final int app_name=0x7f070023;
+        public static final int app_name=0x7f070024;
         public static final int status_bar_notification_info_overflow=0x7f070013;
     }
     public static final class style {
