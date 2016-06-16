@@ -18,7 +18,7 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="NinZiMay" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
@@ -49,7 +49,34 @@
     <favorites_list name="MusciPlayer" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="8.887719">
+              <caret line="298" column="49" selection-start-line="298" selection-start-column="49" selection-end-line="298" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#11550#11833#0" expanded="true" />
+                <element signature="e#11832#11833#0" expanded="true" />
+                <element signature="e#12282#12877#0" expanded="true" />
+                <element signature="e#12876#12877#0" expanded="true" />
+                <element signature="e#12920#13202#0" expanded="true" />
+                <element signature="e#13201#13202#0" expanded="true" />
+                <element signature="e#13660#14071#0" expanded="true" />
+                <element signature="e#14070#14071#0" expanded="true" />
+                <element signature="e#14175#14386#0" expanded="true" />
+                <element signature="e#14385#14386#0" expanded="true" />
+                <element signature="method#PlaySong#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#16038#16430#0" expanded="true" />
+                <element signature="e#16429#16430#0" expanded="true" />
+                <element signature="method#GetToPlaySong#0;class#MainActivity#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1258,7 +1285,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\MT\Project\GitHub\Working\MusciPlayer" value="4396291132264" />
+        <entry key="C:\MT\Project\GitHub\Working\MusciPlayer" value="4396813360323" />
         <entry key="D:\01.Project\GitHub\Working\MusciPlayer" value="4396186516603" />
       </map>
     </option>
@@ -1624,14 +1651,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/CustomGifView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicDictionary.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/SongListingRowControl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicDictionary.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1784,78 +1811,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusciPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="raw" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusciPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusciPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusciPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2098,7 +2053,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2549168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2549168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2175,9 +2130,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="125" column="52" selection-start-line="125" selection-start-column="39" selection-end-line="125" selection-end-column="52" />
           <folding>
-            <element signature="e#375#532#0" expanded="false" />
-            <element signature="e#596#1084#0" expanded="false" />
-            <element signature="e#1147#2501#0" expanded="false" />
+            <element signature="e#430#587#0" expanded="false" />
+            <element signature="e#651#1139#0" expanded="false" />
+            <element signature="e#1202#2556#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2190,9 +2145,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2205,9 +2160,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="39" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
           <folding>
-            <element signature="e#375#532#0" expanded="false" />
-            <element signature="e#596#1084#0" expanded="false" />
-            <element signature="e#1147#2501#0" expanded="false" />
+            <element signature="e#430#587#0" expanded="false" />
+            <element signature="e#651#1139#0" expanded="false" />
+            <element signature="e#1202#2556#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2220,9 +2175,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2235,9 +2190,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="39" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
           <folding>
-            <element signature="e#375#532#0" expanded="false" />
-            <element signature="e#596#1084#0" expanded="false" />
-            <element signature="e#1147#2501#0" expanded="false" />
+            <element signature="e#430#587#0" expanded="false" />
+            <element signature="e#651#1139#0" expanded="false" />
+            <element signature="e#1202#2556#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2264,9 +2219,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2279,9 +2234,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2294,9 +2249,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2309,9 +2264,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="159" column="49" selection-start-line="159" selection-start-column="49" selection-end-line="159" selection-end-column="49" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2340,9 +2295,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="200" column="67" selection-start-line="200" selection-start-column="67" selection-end-line="200" selection-end-column="67" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2386,9 +2341,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
           <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#10078#10293#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2445,21 +2400,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.15777262">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
-          <folding>
-            <element signature="e#4829#5043#0" expanded="false" />
-            <element signature="e#5141#8374#0" expanded="false" />
-            <element signature="e#8471#8686#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/BitmapWorkerTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.92608696">
@@ -2482,14 +2422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="208" column="50" selection-start-line="208" selection-start-column="50" selection-end-line="208" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.185185">
@@ -2500,32 +2432,98 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/SongListingRowControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7298245">
-          <caret line="72" column="63" selection-start-line="72" selection-start-column="63" selection-end-line="72" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.4935484">
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicDictionary.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1491228">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5027726">
-          <caret line="114" column="33" selection-start-line="114" selection-start-column="33" selection-end-line="114" selection-end-column="33" />
+        <state vertical-scroll-proportion="2.0055454">
+          <caret line="100" column="56" selection-start-line="100" selection-start-column="56" selection-end-line="100" selection-end-column="56" />
           <folding>
-            <element signature="e#375#532#0" expanded="false" />
-            <element signature="e#596#1084#0" expanded="false" />
+            <element signature="e#272#305#0" expanded="true" />
+            <element signature="e#330#365#0" expanded="true" />
+            <element signature="e#391#426#0" expanded="true" />
+            <element signature="e#450#483#0" expanded="true" />
+            <element signature="e#2876#2918#0" expanded="true" />
+            <element signature="e#3015#3039#0" expanded="true" />
+            <element signature="e#5218#5917#0" expanded="false" />
+            <element signature="e#5986#14401#0" expanded="false" />
+            <element signature="e#6436#6650#0" expanded="false" />
+            <element signature="e#6748#9981#0" expanded="false" />
+            <element signature="e#7258#7275#0" expanded="true" />
+            <element signature="e#7657#7693#0" expanded="true" />
+            <element signature="e#7851#7869#0" expanded="true" />
+            <element signature="e#8199#8235#0" expanded="true" />
+            <element signature="e#8393#8407#0" expanded="true" />
+            <element signature="e#8734#8769#0" expanded="true" />
+            <element signature="e#8928#8942#0" expanded="true" />
+            <element signature="e#9324#9360#0" expanded="true" />
+            <element signature="e#9518#9537#0" expanded="true" />
+            <element signature="e#9918#9954#0" expanded="true" />
+            <element signature="e#10078#10293#0" expanded="false" />
+            <element signature="e#11443#11479#0" expanded="true" />
+            <element signature="e#11513#11529#0" expanded="true" />
+            <element signature="e#12026#12068#0" expanded="true" />
+            <element signature="e#12163#12198#0" expanded="true" />
+            <element signature="e#12671#12703#0" expanded="true" />
+            <element signature="e#13252#13294#0" expanded="true" />
+            <element signature="e#13389#13424#0" expanded="true" />
+            <element signature="e#13995#14031#0" expanded="true" />
+            <element signature="e#14065#14085#0" expanded="true" />
           </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31423292">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#430#587#0" expanded="false" />
+            <element signature="e#651#1139#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicDictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3877193">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.887719">
+          <caret line="298" column="49" selection-start-line="298" selection-start-column="49" selection-end-line="298" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#11550#11833#0" expanded="true" />
+            <element signature="e#11832#11833#0" expanded="true" />
+            <element signature="e#12282#12877#0" expanded="true" />
+            <element signature="e#12876#12877#0" expanded="true" />
+            <element signature="e#12920#13202#0" expanded="true" />
+            <element signature="e#13201#13202#0" expanded="true" />
+            <element signature="e#13660#14071#0" expanded="true" />
+            <element signature="e#14070#14071#0" expanded="true" />
+            <element signature="e#14175#14386#0" expanded="true" />
+            <element signature="e#14385#14386#0" expanded="true" />
+            <element signature="method#PlaySong#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#16038#16430#0" expanded="true" />
+            <element signature="e#16429#16430#0" expanded="true" />
+            <element signature="method#GetToPlaySong#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class SongListingRowControl extends ArrayAdapter<MusicDictionary> {
     Typeface _Font = null;
+    String LoggerName = "NinZiMay";
+    
     SongListingRowControl(Context context, List<MusicDictionary> _List){
         super(context, R.layout.song_listing_row_control, _List);
         _Font = Typeface.createFromAsset(this.getContext().getAssets(), "fontawesome-webfont.ttf");
