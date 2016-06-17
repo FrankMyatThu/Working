@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends Activity {
 
@@ -52,6 +54,7 @@ public class MainActivity extends Activity {
     double finalTime = 0;
     boolean IsRepeatAlbum = true;
     boolean IsShuffle = false;
+    boolean IsUserSeekingSliderBar = false;
     Handler Handler = new Handler();
     /// <!-- Declaration area end. -->
 
@@ -284,6 +287,23 @@ public class MainActivity extends Activity {
             public void onClick(View _View) {
                 Log.i(LoggerName, "btnPlay");
 
+                //<string name="Play">&#xf04b;</string>
+                //<string name="Pause">&#xf04c;</string>
+                /*if(btnPlay.getText().equals("&#xf04b;"))  /// Play
+                {
+                    /// Play from the start of the each song(s).
+                    PlaySong(GetToPlaySong(true, IsRepeatAlbum, IsShuffle));
+                    //btnPlay.setText("&#xf04c;"); /// Pause
+                }
+                else
+                {
+                    /// Play after pause.
+                    //mediaPlayer.pause();
+                    //CurrentPlayingLength = mediaPlayer.getCurrentPosition();
+                    //PlaySong(_MusicDictionary);
+                    //btnPlay.setText("&#xf04b;"); /// Play
+                }*/
+
                 if (CurrentPlayingLength > 0) {
                     /// Play after pause.
                     PlaySong(_MusicDictionary);
@@ -291,6 +311,7 @@ public class MainActivity extends Activity {
                     /// Play from the start of the each song(s).
                     PlaySong(GetToPlaySong(true, IsRepeatAlbum, IsShuffle));
                 }
+
                 Handler.postDelayed(UpdateSongTime, 100);
                 //ButtonEnableDisable("Play");
             }
@@ -329,10 +350,12 @@ public class MainActivity extends Activity {
     /// <!-- Update song and its info handler start. -->
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
-            startTime = mediaPlayer.getCurrentPosition();
-            Seekbar.setProgress((int)startTime);
+            if(!IsUserSeekingSliderBar){
+                startTime = mediaPlayer.getCurrentPosition();
+                Seekbar.setProgress((int) startTime);
+                setProgressText();
+            }
             Handler.postDelayed(this, 100);
-            setProgressText();
         }
     };
     /// <!-- Update song and its info handler end. -->
@@ -370,68 +393,86 @@ public class MainActivity extends Activity {
     /// <!-- Play song start. -->
     private void PlaySong(MusicDictionary _MusicDictionary){
         String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
-        Log.i(LoggerName, "path = "+ path);
+        Log.i(LoggerName, "path = " + path);
         try {
 
-            if(CurrentPlayingLength > 0){
+            if (CurrentPlayingLength > 0) {
                 /// Play song after pause
                 mediaPlayer.seekTo(CurrentPlayingLength);
                 mediaPlayer.start();
                 CurrentPlayingLength = 0;
-                txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
-                txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
-            }else
-            {
+                //txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
+                //txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
+            } else {
                 /// Just playing song from start of the length
                 /// MediaPlayer initialization
-                if(mediaPlayer != null)
+                if (mediaPlayer != null)
                     mediaPlayer.reset();
                 else
                     mediaPlayer = new MediaPlayer();
+
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mediaPlayer.setDataSource(this, Uri.parse(path));
-                mediaPlayer.prepare();
-                mediaPlayer.start();
+                mediaPlayer.prepareAsync();
+                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        /// MediaPlayer
+                        mediaPlayer.start();
+                        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            public void onCompletion(MediaPlayer _MediaPlayer) {
+                                txtCurrentPlayingMyanmarInfo.setText("");
+                                txtCurrentPlayingEnglishInfo.setText("");
+                                mediaPlayer.release();
+                                mediaPlayer = null;
+                                Log.i(LoggerName, "Finish and Released object.");
+                                PlaySong(GetToPlaySong(false, IsRepeatAlbum, IsShuffle));
+                            }
+                        });
+                        finalTime = mediaPlayer.getDuration();
+                        Log.i(LoggerName, "finalTime = " + finalTime);
+                        startTime = mediaPlayer.getCurrentPosition();
+                        Log.i(LoggerName, "startTime = " + startTime);
+
+                        /// SeekBar
+                        Seekbar = (SeekBar) findViewById(R.id.SeekBar);
+                        Seekbar.setMax((int) finalTime);
+                        Seekbar.setProgress((int) startTime);
+                        Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+                            @Override
+                            public void onStopTrackingTouch(SeekBar seekBar) {
+                                IsUserSeekingSliderBar = false;
+                                mediaPlayer.seekTo(seekBar.getProgress());
+                                CurrentPlayingLength = 0;
+                            }
+
+                            @Override
+                            public void onStartTrackingTouch(SeekBar seekBar) {
+                                IsUserSeekingSliderBar = true;
+                            }
+
+                            @Override
+                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                                if (mediaPlayer != null && fromUser && IsUserSeekingSliderBar) {
+                                    String _Progress = String.format("%d:%d",
+                                            TimeUnit.MILLISECONDS.toMinutes(progress),
+                                            TimeUnit.MILLISECONDS.toSeconds(progress) -
+                                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
+                                    );
+                                    Log.i(LoggerName, "progress = "+_Progress);
+                                    txtStartPoint.setText(_Progress);
+                                }
+                            }
+                        });
+                    }
+                });
                 txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
                 txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
             }
 
-            /// MediaPlayer
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                public void onCompletion(MediaPlayer _MediaPlayer) {
-                    Log.i(LoggerName, "Finish");
-                    txtCurrentPlayingMyanmarInfo.setText("");
-                    txtCurrentPlayingEnglishInfo.setText("");
-                    PlaySong(GetToPlaySong(false, IsRepeatAlbum, IsShuffle));
-                }
-            });
-            finalTime = mediaPlayer.getDuration();
-            Log.i(LoggerName, "finalTime = " + finalTime);
-            startTime = mediaPlayer.getCurrentPosition();
-            Log.i(LoggerName, "startTime = " + startTime);
-
-            /// SeekBar
-            Seekbar = (SeekBar)findViewById(R.id.SeekBar);
-            Seekbar.setMax((int) finalTime);
-            Seekbar.setProgress((int) startTime);
-            Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                }
-
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    //Log.i(TagName, "onProgressChanged()");
-                    if (mediaPlayer != null && fromUser) {
-                        //Log.i(TagName, "onProgressChanged() progress = "+progress);
-                        mediaPlayer.seekTo(progress);
-                    }
-                }
-            });
-
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
