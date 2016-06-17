@@ -36,6 +36,8 @@ public class MainActivity extends Activity {
     TextView txtTitle = null;
     TextView txtCurrentPlayingMyanmarInfo = null;
     TextView txtCurrentPlayingEnglishInfo = null;
+    TextView txtStartPoint = null;
+    TextView txtEndPoint = null;
     int CurrentPlayingLength = 0;
     MediaPlayer mediaPlayer = null;
     Button btnShuffle = null;
@@ -234,6 +236,8 @@ public class MainActivity extends Activity {
 
         /// <!-- Bind basic controls start. -->
         txtTitle = (TextView)findViewById(R.id.txtTitle);
+        txtStartPoint = (TextView)findViewById(R.id.txtStartPoint);
+        txtEndPoint = (TextView)findViewById(R.id.txtEndPoint);
         txtCurrentPlayingMyanmarInfo = (TextView)findViewById(R.id.txtCurrentPlayingMyanmarInfo);
         txtCurrentPlayingEnglishInfo = (TextView)findViewById(R.id.txtCurrentPlayingEnglishInfo);
         Seekbar = (SeekBar)findViewById(R.id.SeekBar);
@@ -322,13 +326,39 @@ public class MainActivity extends Activity {
 
     }
 
+    /// <!-- Update song and its info handler start. -->
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
             startTime = mediaPlayer.getCurrentPosition();
             Seekbar.setProgress((int)startTime);
             Handler.postDelayed(this, 100);
+            setProgressText();
         }
     };
+    /// <!-- Update song and its info handler end. -->
+
+    /// <!-- Get current playing length start. -->
+    protected void setProgressText() {
+
+        final int HOUR = 60*60*1000;
+        final int MINUTE = 60*1000;
+        final int SECOND = 1000;
+
+        int durationInMillis = mediaPlayer.getDuration();
+        int curVolume = mediaPlayer.getCurrentPosition();
+
+        int durationHour = durationInMillis/HOUR;
+        int durationMint = (durationInMillis%HOUR)/MINUTE;
+        int durationSec = (durationInMillis%MINUTE)/SECOND;
+
+        int currentHour = curVolume/HOUR;
+        int currentMint = (curVolume%HOUR)/MINUTE;
+        int currentSec = (curVolume%MINUTE)/SECOND;
+
+        txtStartPoint.setText(currentMint +":"+ currentSec);
+        txtEndPoint.setText(durationMint +":"+ durationSec);
+    }
+    /// <!-- Get current playing length end. -->
 
     /// <!-- Loading bitmap in background thread start. -->
     public void loadBitmap(int resId, ImageView imageView, Context _Context) {
