@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
     boolean IsRepeatAlbum = true;
     boolean IsShuffle = false;
     boolean IsUserSeekingSliderBar = false;
-    Handler Handler = new Handler();
+    Handler Handler = null;
     /// <!-- Declaration area end. -->
 
     /// <!-- Get music list start. -->
@@ -264,7 +264,7 @@ public class MainActivity extends Activity {
         btnForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View _View) {
-                Log.i(LoggerName, "btnForward");
+                Log.d(LoggerName, "btnForward");
                 //txtMessage.setText("Forward");
                 //PlaySong(GetToPlaySong(false, IsRepeatAlbum));
             }
@@ -273,7 +273,7 @@ public class MainActivity extends Activity {
         /*btnPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View _View) {
-                Log.i(TagName, "btnPause");
+                Log.d(TagName, "btnPause");
                 txtMessage.setText("Pause");
                 mediaPlayer.pause();
                 CurrentPlayingLength = mediaPlayer.getCurrentPosition();
@@ -285,7 +285,7 @@ public class MainActivity extends Activity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View _View) {
-                Log.i(LoggerName, "btnPlay");
+                Log.d(LoggerName, "btnPlay");
 
                 //<string name="Play">&#xf04b;</string>
                 //<string name="Pause">&#xf04c;</string>
@@ -312,7 +312,12 @@ public class MainActivity extends Activity {
                     PlaySong(GetToPlaySong(true, IsRepeatAlbum, IsShuffle));
                 }
 
-                Handler.postDelayed(UpdateSongTime, 100);
+                if(mediaPlayer != null)
+                {
+                    Handler = new Handler();
+                    Handler.postDelayed(UpdateSongTime, 100);
+                }
+
                 //ButtonEnableDisable("Play");
             }
         });
@@ -320,7 +325,7 @@ public class MainActivity extends Activity {
         btnBackward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View _View) {
-                Log.i(LoggerName, "btnBackward");
+                Log.d(LoggerName, "btnBackward");
                 //txtMessage.setText("Backward");
                 //PlaySong(List_MusicDictionary.get(0).Name);
             }
@@ -338,19 +343,77 @@ public class MainActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String Clicked_FileName = ((MusicDictionary)parent.getItemAtPosition(position)).FileName;
-                        Log.i(LoggerName, "Clicked_FileName = " + Clicked_FileName);
+                        Log.d(LoggerName, "Clicked_FileName = " + Clicked_FileName);
                     }
                 }
         );
         /// <!-- Bind List controls end. -->
 
+    }
 
+    public void onStart()
+    {
+        super.onStart();
+        Log.d(LoggerName, "In the onStart() event");
+    }
+    public void onRestart()
+    {
+        super.onRestart();
+        Log.d(LoggerName, "In the onRestart() event");
+    }
+    public void onResume()
+    {
+        super.onResume();
+        Log.d(LoggerName, "In the onResume() event");
+
+        if(mediaPlayer != null)
+        {
+            Log.d(LoggerName, "mediaPlayer is not null");
+            Handler = new Handler();
+            Handler.postDelayed(UpdateSongTime, 100);
+        }
+    }
+    public void onPause()
+    {
+        super.onPause();
+        Log.d(LoggerName, "In the onPause() event");
+    }
+    public void onStop()
+    {
+        super.onStop();
+        Log.d(LoggerName, "In the onStop() event");
+    }
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Log.d(LoggerName, "In the onDestroy() event");
+
+        try{
+            if(mediaPlayer !=null && mediaPlayer.isPlaying()){
+                Log.d(LoggerName, "player is running");
+                mediaPlayer.stop();
+                Log.d(LoggerName, "player is stopped");
+                mediaPlayer.release();
+                Log.d(LoggerName, "player is released");
+                mediaPlayer = null;
+                Log.d(LoggerName, "player is null");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        /*int SavedPlayingIndex = mediaPlayer.getCurrentPosition();
+        savedInstanceState.putInt("SavedPlayingIndex", SavedPlayingIndex);
+        Log.d(LoggerName, "SavedPlayingIndex = " + SavedPlayingIndex);
+        super.onSaveInstanceState(savedInstanceState);*/
     }
 
     /// <!-- Update song and its info handler start. -->
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
-            if(!IsUserSeekingSliderBar){
+            if(!IsUserSeekingSliderBar && mediaPlayer != null){
                 startTime = mediaPlayer.getCurrentPosition();
                 Seekbar.setProgress((int) startTime);
                 setProgressText();
@@ -393,7 +456,7 @@ public class MainActivity extends Activity {
     /// <!-- Play song start. -->
     private void PlaySong(MusicDictionary _MusicDictionary){
         String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
-        Log.i(LoggerName, "path = " + path);
+        Log.d(LoggerName, "path = " + path);
         try {
 
             if (CurrentPlayingLength > 0) {
@@ -425,14 +488,14 @@ public class MainActivity extends Activity {
                                 txtCurrentPlayingEnglishInfo.setText("");
                                 mediaPlayer.release();
                                 mediaPlayer = null;
-                                Log.i(LoggerName, "Finish and Released object.");
+                                Log.d(LoggerName, "Finish and Released object.");
                                 PlaySong(GetToPlaySong(false, IsRepeatAlbum, IsShuffle));
                             }
                         });
                         finalTime = mediaPlayer.getDuration();
-                        Log.i(LoggerName, "finalTime = " + finalTime);
+                        Log.d(LoggerName, "finalTime = " + finalTime);
                         startTime = mediaPlayer.getCurrentPosition();
-                        Log.i(LoggerName, "startTime = " + startTime);
+                        Log.d(LoggerName, "startTime = " + startTime);
 
                         /// SeekBar
                         Seekbar = (SeekBar) findViewById(R.id.SeekBar);
@@ -460,7 +523,7 @@ public class MainActivity extends Activity {
                                             TimeUnit.MILLISECONDS.toSeconds(progress) -
                                                     TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
                                     );
-                                    Log.i(LoggerName, "progress = "+_Progress);
+                                    Log.d(LoggerName, "progress = "+_Progress);
                                     txtStartPoint.setText(_Progress);
                                 }
                             }
