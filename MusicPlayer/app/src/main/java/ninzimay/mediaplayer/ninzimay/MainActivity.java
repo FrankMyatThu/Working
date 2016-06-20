@@ -32,7 +32,9 @@ import java.util.concurrent.TimeUnit;
 
 import ninzimay.mediaplayer.ninzimay.MusicService.MusicBinder;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+implements SeekBar.OnSeekBarChangeListener
+{
 
     //service
     private MusicService musicService;
@@ -62,12 +64,13 @@ public class MainActivity extends Activity {
     Button btnLyric = null;
     Button btnFavorite = null;
     SeekBar Seekbar = null;
-    double startTime = 0;
-    double finalTime = 0;
+    int MusicTime_CurrentPlaying = 0;
+    int MusicTime_TotalLength = 0;
     boolean IsRepeatAlbum = true;
     boolean IsShuffle = false;
     boolean IsUserSeekingSliderBar = false;
-    Handler Handler = null;
+    Handler Handler_Music = null;
+    Runnable Runnable_Music = null;
     /// <!-- Declaration area end. -->
 
     /// <!-- Get music list start. -->
@@ -267,6 +270,7 @@ public class MainActivity extends Activity {
         txtCurrentPlayingMyanmarInfo = (TextView)findViewById(R.id.txtCurrentPlayingMyanmarInfo);
         txtCurrentPlayingEnglishInfo = (TextView)findViewById(R.id.txtCurrentPlayingEnglishInfo);
         Seekbar = (SeekBar)findViewById(R.id.SeekBar);
+        Seekbar.setOnSeekBarChangeListener(this);
         btnShuffle = (Button)findViewById( R.id.btnShuffle );
         btnBackward = (Button)findViewById( R.id.btnBackward );
         btnPlay = (Button)findViewById( R.id.btnPlay );
@@ -310,22 +314,6 @@ public class MainActivity extends Activity {
             public void onClick(View _View) {
                 Log.d(LoggerName, "btnPlay");
 
-                //<string name="Play">&#xf04b;</string>
-                //<string name="Pause">&#xf04c;</string>
-                /*if(btnPlay.getText().equals("&#xf04b;"))  /// Play
-                {
-                    /// Play from the start of the each song(s).
-                    PlaySong(GetToPlaySong(true, IsRepeatAlbum, IsShuffle));
-                    //btnPlay.setText("&#xf04c;"); /// Pause
-                }
-                else
-                {
-                    /// Play after pause.
-                    //mediaPlayer.pause();
-                    //CurrentPlayingLength = mediaPlayer.getCurrentPosition();
-                    //PlaySong(_MusicDictionary);
-                    //btnPlay.setText("&#xf04b;"); /// Play
-                }*/
 
                 if (CurrentPlayingLength > 0) {
                     /// Play after pause.
@@ -336,11 +324,7 @@ public class MainActivity extends Activity {
                     musicService.playSong(musicService.GetSongToPlay(true, true, true));
                 }
 
-                if(mediaPlayer != null)
-                {
-                    Handler = new Handler();
-                    Handler.postDelayed(UpdateSongTime, 100);
-                }
+                Handler_Music.postDelayed(Runnable_Music, 1000);
 
                 //ButtonEnableDisable("Play");
             }
@@ -375,6 +359,36 @@ public class MainActivity extends Activity {
 
     }
 
+    /// <!-- Loading bitmap in background thread start. -->
+    public void loadBitmap(int resId, ImageView imageView, Context _Context) {
+        BitmapWorkerTask task = new BitmapWorkerTask(imageView, _Context);
+        task.execute(resId);
+    }
+    /// <!-- Loading bitmap in background thread end. -->
+
+    /// <!-- Get current playing length start. -->
+    protected void setProgressText() {
+
+        final int HOUR = 60*60*1000;
+        final int MINUTE = 60*1000;
+        final int SECOND = 1000;
+
+        int durationInMillis = musicService.getMusicDuration();
+        int curVolume = musicService.getMusicCurrrentPosition();
+
+        int durationHour = durationInMillis/HOUR;
+        int durationMint = (durationInMillis%HOUR)/MINUTE;
+        int durationSec = (durationInMillis%MINUTE)/SECOND;
+
+        int currentHour = curVolume/HOUR;
+        int currentMint = (curVolume%HOUR)/MINUTE;
+        int currentSec = (curVolume%MINUTE)/SECOND;
+
+        txtStartPoint.setText(currentMint +":"+ currentSec);
+        txtEndPoint.setText(durationMint +":"+ durationSec);
+    }
+    /// <!-- Get current playing length end. -->
+
     //connect to the service
     private ServiceConnection Music_ServiceConnection = new ServiceConnection() {
 
@@ -401,14 +415,47 @@ public class MainActivity extends Activity {
         super.onStart();
         Log.d(LoggerName, "In the onStart() event");
 
-        if(playIntent==null){
+        if(playIntent == null){
             playIntent = new Intent(this, MusicService.class);
             bindService(playIntent, Music_ServiceConnection, Context.BIND_AUTO_CREATE);
             startService(playIntent);
+
+            //Music Handler for methods
+            Handler_Music = new Handler();
+            Runnable_Music = new Runnable() {
+                @Override
+                public void run() {
+                    if (IsMusicServiceConnected){ // Check if service bounded
+
+                        if(!musicService.IsMediaPlayerObjectAvailable()) return;
+
+                        if (MusicTime_TotalLength == 0){ // Put data in it one time
+                            MusicTime_TotalLength = musicService.getMusicDuration();
+                            MusicDictionary _MusicDictionary = musicService.getCurrent_MusicDictionary();
+                            txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
+                            txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
+                            Seekbar.setMax(MusicTime_TotalLength);
+                        }
+
+                        if(!IsUserSeekingSliderBar){
+                            MusicTime_CurrentPlaying = musicService.getMusicCurrrentPosition();
+                            Seekbar.setProgress(MusicTime_CurrentPlaying);
+                            setProgressText();
+                        }
+
+                        if(MusicTime_CurrentPlaying == MusicTime_TotalLength){
+                            MusicTime_TotalLength = 0;
+                        }
+
+                    }else if(!IsMusicServiceConnected){ // if service is not bounded log it
+                        Log.d(LoggerName, "Waiting to get connection from service...");
+                    }
+                    Handler_Music.postDelayed(this, 1000);
+                }
+            };
         }
     }
-    public void onRestart()
-    {
+    public void onRestart() {
         super.onRestart();
         Log.d(LoggerName, "In the onRestart() event");
     }
@@ -416,14 +463,8 @@ public class MainActivity extends Activity {
     {
         super.onResume();
         Log.d(LoggerName, "In the onResume() event");
-
-        if(mediaPlayer != null)
-        {
-            Log.d(LoggerName, "mediaPlayer is not null");
-            Handler = new Handler();
-            Handler.postDelayed(UpdateSongTime, 100);
-        }
     }
+
     public void onPause()
     {
         super.onPause();
@@ -436,205 +477,40 @@ public class MainActivity extends Activity {
     }
     public void onDestroy()
     {
-        super.onDestroy();
         Log.d(LoggerName, "In the onDestroy() event");
+        super.onDestroy();
+        /*if(musicService.IsPlayingSong())
+           return;*/
 
-        try{
-            if(mediaPlayer !=null && mediaPlayer.isPlaying()){
-                Log.d(LoggerName, "player is running");
-                mediaPlayer.stop();
-                Log.d(LoggerName, "player is stopped");
-                mediaPlayer.release();
-                Log.d(LoggerName, "player is released");
-                mediaPlayer = null;
-                Log.d(LoggerName, "player is null");
-            }
-        }catch(Exception e){
-            e.printStackTrace();
+        if (Music_ServiceConnection != null) {
+            unbindService(Music_ServiceConnection);
         }
     }
 
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        /*int SavedPlayingIndex = mediaPlayer.getCurrentPosition();
-        savedInstanceState.putInt("SavedPlayingIndex", SavedPlayingIndex);
-        Log.d(LoggerName, "SavedPlayingIndex = " + SavedPlayingIndex);
-        super.onSaveInstanceState(savedInstanceState);*/
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        IsUserSeekingSliderBar = false;
+        Log.d(LoggerName, "seekBar.getProgress() ="+seekBar.getProgress());
+        musicService.seekToMusic(seekBar.getProgress());
+        CurrentPlayingLength = 0;
     }
 
-    /// <!-- Update song and its info handler start. -->
-    private Runnable UpdateSongTime = new Runnable() {
-        public void run() {
-            if(!IsUserSeekingSliderBar && mediaPlayer != null){
-                startTime = mediaPlayer.getCurrentPosition();
-                Seekbar.setProgress((int) startTime);
-                setProgressText();
-            }
-            Handler.postDelayed(this, 100);
-        }
-    };
-    /// <!-- Update song and its info handler end. -->
-
-    /// <!-- Get current playing length start. -->
-    protected void setProgressText() {
-
-        final int HOUR = 60*60*1000;
-        final int MINUTE = 60*1000;
-        final int SECOND = 1000;
-
-        int durationInMillis = mediaPlayer.getDuration();
-        int curVolume = mediaPlayer.getCurrentPosition();
-
-        int durationHour = durationInMillis/HOUR;
-        int durationMint = (durationInMillis%HOUR)/MINUTE;
-        int durationSec = (durationInMillis%MINUTE)/SECOND;
-
-        int currentHour = curVolume/HOUR;
-        int currentMint = (curVolume%HOUR)/MINUTE;
-        int currentSec = (curVolume%MINUTE)/SECOND;
-
-        txtStartPoint.setText(currentMint +":"+ currentSec);
-        txtEndPoint.setText(durationMint +":"+ durationSec);
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+        Log.d(LoggerName, "onStartTrackingTouch");
+        IsUserSeekingSliderBar = true;
     }
-    /// <!-- Get current playing length end. -->
 
-    /// <!-- Loading bitmap in background thread start. -->
-    public void loadBitmap(int resId, ImageView imageView, Context _Context) {
-        BitmapWorkerTask task = new BitmapWorkerTask(imageView, _Context);
-        task.execute(resId);
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (IsMusicServiceConnected && fromUser && IsUserSeekingSliderBar) {
+            String _Progress = String.format("%d:%d",
+                    TimeUnit.MILLISECONDS.toMinutes(progress),
+                    TimeUnit.MILLISECONDS.toSeconds(progress) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
+            );
+            Log.d(LoggerName, "progress = "+_Progress);
+            txtStartPoint.setText(_Progress);
+        }
     }
-    /// <!-- Loading bitmap in background thread end. -->
-
-    /// <!-- Play song start. -->
-    /*private void PlaySong(MusicDictionary _MusicDictionary){
-        String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
-        Log.d(LoggerName, "path = " + path);
-        try {
-
-            if (CurrentPlayingLength > 0) {
-                /// Play song after pause
-                mediaPlayer.seekTo(CurrentPlayingLength);
-                mediaPlayer.start();
-                CurrentPlayingLength = 0;
-                //txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
-                //txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
-            } else {
-                /// Just playing song from start of the length
-                /// MediaPlayer initialization
-                if (mediaPlayer != null)
-                    mediaPlayer.reset();
-                else
-                    mediaPlayer = new MediaPlayer();
-
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mediaPlayer.setDataSource(this, Uri.parse(path));
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        /// MediaPlayer
-                        mediaPlayer.start();
-                        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            public void onCompletion(MediaPlayer _MediaPlayer) {
-                                txtCurrentPlayingMyanmarInfo.setText("");
-                                txtCurrentPlayingEnglishInfo.setText("");
-                                mediaPlayer.release();
-                                mediaPlayer = null;
-                                Log.d(LoggerName, "Finish and Released object.");
-                                PlaySong(GetToPlaySong(false, IsRepeatAlbum, IsShuffle));
-                            }
-                        });
-                        finalTime = mediaPlayer.getDuration();
-                        Log.d(LoggerName, "finalTime = " + finalTime);
-                        startTime = mediaPlayer.getCurrentPosition();
-                        Log.d(LoggerName, "startTime = " + startTime);
-
-                        /// SeekBar
-                        Seekbar = (SeekBar) findViewById(R.id.SeekBar);
-                        Seekbar.setMax((int) finalTime);
-                        Seekbar.setProgress((int) startTime);
-                        Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-                                IsUserSeekingSliderBar = false;
-                                mediaPlayer.seekTo(seekBar.getProgress());
-                                CurrentPlayingLength = 0;
-                            }
-
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-                                IsUserSeekingSliderBar = true;
-                            }
-
-                            @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                                if (mediaPlayer != null && fromUser && IsUserSeekingSliderBar) {
-                                    String _Progress = String.format("%d:%d",
-                                            TimeUnit.MILLISECONDS.toMinutes(progress),
-                                            TimeUnit.MILLISECONDS.toSeconds(progress) -
-                                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
-                                    );
-                                    Log.d(LoggerName, "progress = "+_Progress);
-                                    txtStartPoint.setText(_Progress);
-                                }
-                            }
-                        });
-                    }
-                });
-                txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
-                txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
-            }
-
-        } catch (IllegalArgumentException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-    /// <!-- Play song end. -->
-
-    /// <!-- Get song start. -->
-    /*private MusicDictionary GetToPlaySong(Boolean IsFirstSong, Boolean IsRepeatAlbum, Boolean IsShuffle)
-    {
-        MusicDictionary ToReturn_MusicDictionary = null;
-        if(IsFirstSong){
-            for(int i=0; i<List_MusicDictionary.size(); i++){
-                if(List_MusicDictionary.get(i).Srno == 1){
-                    List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Playing;
-                    ToReturn_MusicDictionary = List_MusicDictionary.get(i);
-                    return ToReturn_MusicDictionary;
-                }
-            }
-        }else
-        {
-            // Play next song(s)
-            for(int i=0; i<List_MusicDictionary.size(); i++)
-            {
-                if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
-                    List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
-
-                    // Checking if current index is last index
-                    if((i+1) >= List_MusicDictionary.size())
-                    {
-                        if(IsRepeatAlbum)
-                        {
-                            List_MusicDictionary.get(0).PlayingStatus = PlayingStatus_Playing;
-                            ToReturn_MusicDictionary = List_MusicDictionary.get(0);
-                        }
-                        return ToReturn_MusicDictionary;
-
-                    }else
-                    {
-                        /// Next song
-                        List_MusicDictionary.get(i+1).PlayingStatus = PlayingStatus_Playing;
-                        ToReturn_MusicDictionary = List_MusicDictionary.get(i+1);
-                        return ToReturn_MusicDictionary;
-                    }
-                }
-            }
-        }
-        return ToReturn_MusicDictionary;
-    }*/
-    /// <!-- Get song end. -->
-
 }
