@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="false"
         android:theme="@style/Theme.FullScreen">
-        <service android:name="ninzimay.mediaplayer.ninzimay.MusicService" android:enabled="true"></service>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".MusicService" android:enabled="true" ></service>
     </application>
 
 </manifest>
