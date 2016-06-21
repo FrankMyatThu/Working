@@ -35,14 +35,10 @@ import ninzimay.mediaplayer.ninzimay.MusicService.MusicBinder;
 public class MainActivity extends Activity
 implements SeekBar.OnSeekBarChangeListener
 {
-
-    //service
+    //<!-- Start declaration area.  -->
     private MusicService musicService;
     private Intent playIntent;
-    //binding
     private boolean IsMusicServiceConnected = false;
-
-    /// <!-- Declaration area start. -->
     List<MusicDictionary> List_MusicDictionary = null;
     MusicDictionary _MusicDictionary = null;
     String LoggerName = "NinZiMay";
@@ -71,9 +67,258 @@ implements SeekBar.OnSeekBarChangeListener
     boolean IsUserSeekingSliderBar = false;
     Handler Handler_Music = null;
     Runnable Runnable_Music = null;
-    /// <!-- Declaration area end. -->
+    //<!-- End declaration area.  -->
 
-    /// <!-- Get music list start. -->
+    //<!-- Start dependency object(s).  -->
+    private ServiceConnection Music_ServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MusicBinder binder = (MusicBinder)service;
+            //get service
+            musicService = binder.getService();
+            //pass list
+            musicService.setList(getList_MusicDictionary());
+            IsMusicServiceConnected = true;
+            Log.d(LoggerName, "[onServiceConnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            IsMusicServiceConnected = false;
+            Log.d(LoggerName, "[onServiceDisconnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
+        }
+    };
+    //<!-- End dependency object(s).  -->
+
+    //<!-- Start system defined function(s).  -->
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        /// <!-- Invoking background image loader start. -->
+        ImageView imgBackgroundImage = (ImageView)findViewById(R.id.imgBackgroundImage);
+        loadBitmap(R.drawable.background_1, imgBackgroundImage, this);
+        /// <!-- Invoking background image loader end. -->
+
+        /// <!-- Get customized font start. -->
+        Typeface font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+        Typeface font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
+        /// <!-- Get customized font end. -->
+
+        /// <!-- Bind basic controls start. -->
+        txtTitle = (TextView)findViewById(R.id.txtTitle);
+        txtStartPoint = (TextView)findViewById(R.id.txtStartPoint);
+        txtEndPoint = (TextView)findViewById(R.id.txtEndPoint);
+        txtCurrentPlayingMyanmarInfo = (TextView)findViewById(R.id.txtCurrentPlayingMyanmarInfo);
+        txtCurrentPlayingEnglishInfo = (TextView)findViewById(R.id.txtCurrentPlayingEnglishInfo);
+        Seekbar = (SeekBar)findViewById(R.id.SeekBar);
+        Seekbar.setOnSeekBarChangeListener(this);
+        btnShuffle = (Button)findViewById( R.id.btnShuffle );
+        btnBackward = (Button)findViewById( R.id.btnBackward );
+        btnPlay = (Button)findViewById( R.id.btnPlay );
+        btnForward = (Button)findViewById( R.id.btnForward );
+        btnRepeat = (Button)findViewById( R.id.btnRepeat );
+        btnLyric = (Button)findViewById( R.id.btnLyric );
+        btnFavorite = (Button)findViewById( R.id.btnFavorite );
+        btnShuffle.setTypeface(font_fontawesome);
+        btnBackward.setTypeface(font_fontawesome);
+        btnPlay.setTypeface(font_fontawesome);
+        btnForward.setTypeface(font_fontawesome);
+        btnRepeat.setTypeface(font_fontawesome);
+        btnLyric.setTypeface(font_fontawesome);
+        btnFavorite.setTypeface(font_fontawesome);
+        txtTitle.setTypeface(font_ailerons);
+
+
+        btnForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.d(LoggerName, "btnForward");
+                //txtMessage.setText("Forward");
+                //PlaySong(GetToPlaySong(false, IsRepeatAlbum));
+            }
+        });
+
+        /*btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.d(TagName, "btnPause");
+                txtMessage.setText("Pause");
+                mediaPlayer.pause();
+                CurrentPlayingLength = mediaPlayer.getCurrentPosition();
+                ButtonEnableDisable("Pause");
+            }
+        });*/
+
+
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.d(LoggerName, "btnPlay");
+
+
+                if (CurrentPlayingLength > 0) {
+                    /// Play after pause.
+                    //PlaySong(_MusicDictionary);
+                } else {
+                    /// Play from the start of the each song(s).
+                    //PlaySong(GetToPlaySong(true, IsRepeatAlbum, IsShuffle));
+                    musicService.playSong(musicService.GetSongToPlay(true, true, true));
+                }
+
+                Handler_Music.postDelayed(Runnable_Music, 1000);
+
+                //ButtonEnableDisable("Play");
+            }
+        });
+
+        btnBackward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _View) {
+                Log.d(LoggerName, "btnBackward");
+                //txtMessage.setText("Backward");
+                //PlaySong(List_MusicDictionary.get(0).Name);
+            }
+        });
+
+
+        ListAdapter _ListAdapter = new SongListingRowControl(this, getList_MusicDictionary());
+        ListView _ListView = (ListView) findViewById(R.id.listView);
+        _ListView.setAdapter(_ListAdapter);
+        _ListView.setScrollingCacheEnabled(false);
+        _ListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String Clicked_FileName = ((MusicDictionary)parent.getItemAtPosition(position)).FileName;
+                        //Log.d(LoggerName, "Clicked_FileName = " + Clicked_FileName);
+                    }
+                }
+        );
+    }
+    public void onStart(){
+        super.onStart();
+        Log.d(LoggerName, "In the onStart() event");
+
+        if(playIntent == null){
+            playIntent = new Intent(this, MusicService.class);
+            bindService(playIntent, Music_ServiceConnection, Context.BIND_AUTO_CREATE);
+            startService(playIntent);
+
+            //Music Handler for methods
+            Handler_Music = new Handler();
+            Runnable_Music = new Runnable() {
+                @Override
+                public void run() {
+                    if (IsMusicServiceConnected){ // Check if service bounded
+
+                        if(!musicService.IsMediaPlayerObjectAvailable()) return;
+
+                        if (MusicTime_TotalLength == 0){ // Put data in it one time
+                            MusicTime_TotalLength = musicService.getMusicDuration();
+                            MusicDictionary _MusicDictionary = musicService.getCurrent_MusicDictionary();
+                            txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
+                            txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
+                            Seekbar.setMax(MusicTime_TotalLength);
+                        }
+
+                        if(!IsUserSeekingSliderBar){
+                            MusicTime_CurrentPlaying = musicService.getMusicCurrrentPosition();
+                            Seekbar.setProgress(MusicTime_CurrentPlaying);
+                            setProgressText();
+                        }
+
+                        if(MusicTime_CurrentPlaying == MusicTime_TotalLength){
+                            MusicTime_TotalLength = 0;
+                        }
+
+                    }else if(!IsMusicServiceConnected){ // if service is not bounded log it
+                        Log.d(LoggerName, "Waiting to get connection from service...");
+                    }
+                    Handler_Music.postDelayed(this, 1000);
+                }
+            };
+        }
+    }
+    public void onResume(){
+        super.onResume();
+        Log.d(LoggerName, "In the onResume() event");
+    }
+    public void onRestart() {
+        super.onRestart();
+        Log.d(LoggerName, "In the onRestart() event");
+    }
+    public void onPause(){
+        super.onPause();
+        Log.d(LoggerName, "In the onPause() event");
+    }
+    public void onStop(){
+        super.onStop();
+        Log.d(LoggerName, "In the onStop() event");
+    }
+    public void onDestroy(){
+        Log.d(LoggerName, "In the onDestroy() event");
+        super.onDestroy();
+        /*if(musicService.IsPlayingSong())
+           return;*/
+
+        if (Music_ServiceConnection != null) {
+            unbindService(Music_ServiceConnection);
+        }
+    }
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        IsUserSeekingSliderBar = false;
+        Log.d(LoggerName, "seekBar.getProgress() ="+seekBar.getProgress());
+        musicService.seekToMusic(seekBar.getProgress());
+        CurrentPlayingLength = 0;
+    }
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+        Log.d(LoggerName, "onStartTrackingTouch");
+        IsUserSeekingSliderBar = true;
+    }
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (IsMusicServiceConnected && fromUser && IsUserSeekingSliderBar) {
+            String _Progress = String.format("%d:%d",
+                    TimeUnit.MILLISECONDS.toMinutes(progress),
+                    TimeUnit.MILLISECONDS.toSeconds(progress) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
+            );
+            Log.d(LoggerName, "progress = "+_Progress);
+            txtStartPoint.setText(_Progress);
+        }
+    }
+    //<!-- End system defined function(s).  -->
+
+    //<!-- Start developer defined function(s).  -->
+    protected void setProgressText() {
+
+        final int HOUR = 60*60*1000;
+        final int MINUTE = 60*1000;
+        final int SECOND = 1000;
+
+        int durationInMillis = musicService.getMusicDuration();
+        int curVolume = musicService.getMusicCurrrentPosition();
+
+        int durationHour = durationInMillis/HOUR;
+        int durationMint = (durationInMillis%HOUR)/MINUTE;
+        int durationSec = (durationInMillis%MINUTE)/SECOND;
+
+        int currentHour = curVolume/HOUR;
+        int currentMint = (curVolume%HOUR)/MINUTE;
+        int currentSec = (curVolume%MINUTE)/SECOND;
+
+        txtStartPoint.setText(currentMint + ":" + currentSec);
+        txtEndPoint.setText(durationMint +":"+ durationSec);
+    }
+    public void loadBitmap(int resId, ImageView imageView, Context _Context) {
+        BitmapWorkerTask task = new BitmapWorkerTask(imageView, _Context);
+        task.execute(resId);
+    }
     public List<MusicDictionary> getList_MusicDictionary(){
 
         List_MusicDictionary = new ArrayList<MusicDictionary>();
@@ -245,272 +490,5 @@ implements SeekBar.OnSeekBarChangeListener
 
         return List_MusicDictionary;
     }
-    /// <!-- Get music list end. -->
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        /// <!-- Invoking background image loader start. -->
-        ImageView imgBackgroundImage = (ImageView)findViewById(R.id.imgBackgroundImage);
-        loadBitmap(R.drawable.background_1, imgBackgroundImage, this);
-        /// <!-- Invoking background image loader end. -->
-
-        /// <!-- Get customized font start. -->
-        Typeface font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
-        Typeface font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
-        /// <!-- Get customized font end. -->
-
-        /// <!-- Bind basic controls start. -->
-        txtTitle = (TextView)findViewById(R.id.txtTitle);
-        txtStartPoint = (TextView)findViewById(R.id.txtStartPoint);
-        txtEndPoint = (TextView)findViewById(R.id.txtEndPoint);
-        txtCurrentPlayingMyanmarInfo = (TextView)findViewById(R.id.txtCurrentPlayingMyanmarInfo);
-        txtCurrentPlayingEnglishInfo = (TextView)findViewById(R.id.txtCurrentPlayingEnglishInfo);
-        Seekbar = (SeekBar)findViewById(R.id.SeekBar);
-        Seekbar.setOnSeekBarChangeListener(this);
-        btnShuffle = (Button)findViewById( R.id.btnShuffle );
-        btnBackward = (Button)findViewById( R.id.btnBackward );
-        btnPlay = (Button)findViewById( R.id.btnPlay );
-        btnForward = (Button)findViewById( R.id.btnForward );
-        btnRepeat = (Button)findViewById( R.id.btnRepeat );
-        btnLyric = (Button)findViewById( R.id.btnLyric );
-        btnFavorite = (Button)findViewById( R.id.btnFavorite );
-        btnShuffle.setTypeface(font_fontawesome);
-        btnBackward.setTypeface(font_fontawesome);
-        btnPlay.setTypeface(font_fontawesome);
-        btnForward.setTypeface(font_fontawesome);
-        btnRepeat.setTypeface(font_fontawesome);
-        btnLyric.setTypeface(font_fontawesome);
-        btnFavorite.setTypeface(font_fontawesome);
-        txtTitle.setTypeface(font_ailerons);
-
-        /// <!-- Bind button event start. -->
-        btnForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View _View) {
-                Log.d(LoggerName, "btnForward");
-                //txtMessage.setText("Forward");
-                //PlaySong(GetToPlaySong(false, IsRepeatAlbum));
-            }
-        });
-
-        /*btnPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View _View) {
-                Log.d(TagName, "btnPause");
-                txtMessage.setText("Pause");
-                mediaPlayer.pause();
-                CurrentPlayingLength = mediaPlayer.getCurrentPosition();
-                ButtonEnableDisable("Pause");
-            }
-        });*/
-
-
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View _View) {
-                Log.d(LoggerName, "btnPlay");
-
-
-                if (CurrentPlayingLength > 0) {
-                    /// Play after pause.
-                    //PlaySong(_MusicDictionary);
-                } else {
-                    /// Play from the start of the each song(s).
-                    //PlaySong(GetToPlaySong(true, IsRepeatAlbum, IsShuffle));
-                    musicService.playSong(musicService.GetSongToPlay(true, true, true));
-                }
-
-                Handler_Music.postDelayed(Runnable_Music, 1000);
-
-                //ButtonEnableDisable("Play");
-            }
-        });
-
-        btnBackward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View _View) {
-                Log.d(LoggerName, "btnBackward");
-                //txtMessage.setText("Backward");
-                //PlaySong(List_MusicDictionary.get(0).Name);
-            }
-        });
-        /// <!-- Bind button event end. -->
-        /// <!-- Bind basic controls end. -->
-
-        /// <!-- Bind List controls start. -->
-        ListAdapter _ListAdapter = new SongListingRowControl(this, getList_MusicDictionary());
-        ListView _ListView = (ListView) findViewById(R.id.listView);
-        _ListView.setAdapter(_ListAdapter);
-        _ListView.setScrollingCacheEnabled(false);
-        _ListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String Clicked_FileName = ((MusicDictionary)parent.getItemAtPosition(position)).FileName;
-                        //Log.d(LoggerName, "Clicked_FileName = " + Clicked_FileName);
-                    }
-                }
-        );
-        /// <!-- Bind List controls end. -->
-
-    }
-
-    /// <!-- Loading bitmap in background thread start. -->
-    public void loadBitmap(int resId, ImageView imageView, Context _Context) {
-        BitmapWorkerTask task = new BitmapWorkerTask(imageView, _Context);
-        task.execute(resId);
-    }
-    /// <!-- Loading bitmap in background thread end. -->
-
-    /// <!-- Get current playing length start. -->
-    protected void setProgressText() {
-
-        final int HOUR = 60*60*1000;
-        final int MINUTE = 60*1000;
-        final int SECOND = 1000;
-
-        int durationInMillis = musicService.getMusicDuration();
-        int curVolume = musicService.getMusicCurrrentPosition();
-
-        int durationHour = durationInMillis/HOUR;
-        int durationMint = (durationInMillis%HOUR)/MINUTE;
-        int durationSec = (durationInMillis%MINUTE)/SECOND;
-
-        int currentHour = curVolume/HOUR;
-        int currentMint = (curVolume%HOUR)/MINUTE;
-        int currentSec = (curVolume%MINUTE)/SECOND;
-
-        txtStartPoint.setText(currentMint +":"+ currentSec);
-        txtEndPoint.setText(durationMint +":"+ durationSec);
-    }
-    /// <!-- Get current playing length end. -->
-
-    //connect to the service
-    private ServiceConnection Music_ServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicBinder binder = (MusicBinder)service;
-            //get service
-            musicService = binder.getService();
-            //pass list
-            musicService.setList(getList_MusicDictionary());
-            IsMusicServiceConnected = true;
-            Log.d(LoggerName, "[onServiceConnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            IsMusicServiceConnected = false;
-            Log.d(LoggerName, "[onServiceDisconnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
-        }
-    };
-
-    public void onStart()
-    {
-        super.onStart();
-        Log.d(LoggerName, "In the onStart() event");
-
-        if(playIntent == null){
-            playIntent = new Intent(this, MusicService.class);
-            bindService(playIntent, Music_ServiceConnection, Context.BIND_AUTO_CREATE);
-            startService(playIntent);
-
-            //Music Handler for methods
-            Handler_Music = new Handler();
-            Runnable_Music = new Runnable() {
-                @Override
-                public void run() {
-                    if (IsMusicServiceConnected){ // Check if service bounded
-
-                        if(!musicService.IsMediaPlayerObjectAvailable()) return;
-
-                        if (MusicTime_TotalLength == 0){ // Put data in it one time
-                            MusicTime_TotalLength = musicService.getMusicDuration();
-                            MusicDictionary _MusicDictionary = musicService.getCurrent_MusicDictionary();
-                            txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
-                            txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
-                            Seekbar.setMax(MusicTime_TotalLength);
-                        }
-
-                        if(!IsUserSeekingSliderBar){
-                            MusicTime_CurrentPlaying = musicService.getMusicCurrrentPosition();
-                            Seekbar.setProgress(MusicTime_CurrentPlaying);
-                            setProgressText();
-                        }
-
-                        if(MusicTime_CurrentPlaying == MusicTime_TotalLength){
-                            MusicTime_TotalLength = 0;
-                        }
-
-                    }else if(!IsMusicServiceConnected){ // if service is not bounded log it
-                        Log.d(LoggerName, "Waiting to get connection from service...");
-                    }
-                    Handler_Music.postDelayed(this, 1000);
-                }
-            };
-        }
-    }
-    public void onRestart() {
-        super.onRestart();
-        Log.d(LoggerName, "In the onRestart() event");
-    }
-    public void onResume()
-    {
-        super.onResume();
-        Log.d(LoggerName, "In the onResume() event");
-    }
-
-    public void onPause()
-    {
-        super.onPause();
-        Log.d(LoggerName, "In the onPause() event");
-    }
-    public void onStop()
-    {
-        super.onStop();
-        Log.d(LoggerName, "In the onStop() event");
-    }
-    public void onDestroy()
-    {
-        Log.d(LoggerName, "In the onDestroy() event");
-        super.onDestroy();
-        /*if(musicService.IsPlayingSong())
-           return;*/
-
-        if (Music_ServiceConnection != null) {
-            unbindService(Music_ServiceConnection);
-        }
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        IsUserSeekingSliderBar = false;
-        Log.d(LoggerName, "seekBar.getProgress() ="+seekBar.getProgress());
-        musicService.seekToMusic(seekBar.getProgress());
-        CurrentPlayingLength = 0;
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-        Log.d(LoggerName, "onStartTrackingTouch");
-        IsUserSeekingSliderBar = true;
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (IsMusicServiceConnected && fromUser && IsUserSeekingSliderBar) {
-            String _Progress = String.format("%d:%d",
-                    TimeUnit.MILLISECONDS.toMinutes(progress),
-                    TimeUnit.MILLISECONDS.toSeconds(progress) -
-                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
-            );
-            Log.d(LoggerName, "progress = "+_Progress);
-            txtStartPoint.setText(_Progress);
-        }
-    }
+    //<!-- End developer defined function(s).  -->
 }

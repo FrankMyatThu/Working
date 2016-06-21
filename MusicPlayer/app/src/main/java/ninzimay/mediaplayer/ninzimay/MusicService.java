@@ -119,8 +119,7 @@ MediaPlayer.OnErrorListener
     private void setCurrent_MusicDictionary(MusicDictionary _MusicDictionary){
         Current_MusicDictionary = _MusicDictionary;
     }
-    public MusicDictionary GetSongToPlay(Boolean IsFirstSong, Boolean IsRepeatAlbum, Boolean IsShuffle)
-    {
+    public MusicDictionary GetSongToPlay(Boolean IsFirstSong, Boolean IsRepeatAlbum, Boolean IsShuffle){
         MusicDictionary ToReturn_MusicDictionary = null;
         if(IsFirstSong){
             for(int i=0; i<List_MusicDictionary.size(); i++){
