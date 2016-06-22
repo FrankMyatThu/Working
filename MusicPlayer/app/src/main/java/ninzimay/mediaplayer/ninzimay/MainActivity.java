@@ -59,6 +59,7 @@ AdapterView.OnItemClickListener
     SeekBar Seekbar = null;
     int MusicTime_CurrentPlaying = 0;
     int MusicTime_TotalLength = 0;
+    int CurrentSongID = 0;
     boolean IsRepeatAlbum = true;
     boolean IsShuffle = false;
     boolean IsUserSeekingSliderBar = false;
@@ -76,7 +77,9 @@ AdapterView.OnItemClickListener
             //get service
             musicService = binder.getService();
             //pass list
-            musicService.setList(getList_MusicDictionary());
+            if(!IsComingBack){
+                musicService.setList(getList_MusicDictionary());
+            }
             IsMusicServiceConnected = true;
             Log.d(LoggerName, "[onServiceConnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
         }
@@ -96,12 +99,12 @@ AdapterView.OnItemClickListener
         super.onCreate(savedInstanceState);
         if( savedInstanceState != null ) {
             IsComingBack = savedInstanceState.getBoolean("IsComingBack");
-            Log.d(LoggerName, "IsComingBack " + IsComingBack);
+            Log.d(LoggerName, "IsComingBack after orientation changed = " + IsComingBack);
         }
 
         if(isMyServiceRunning(MusicService.class)){
-            Log.d(LoggerName, "isMyServiceRunning IsComingBack " + IsComingBack);
             IsComingBack = true;
+            Log.d(LoggerName, "IsComingBack after back button pressed = " + IsComingBack);
         }
         setContentView(R.layout.activity_main);
         initializer();
@@ -125,16 +128,14 @@ AdapterView.OnItemClickListener
                 public void run() {
                     if (IsMusicServiceConnected){ // Check if service bounded
 
-                        if(!musicService.IsMediaPlayerObjectAvailable()) return;
-
-                        if(IsComingBack) MusicTime_TotalLength = musicService.getMusicDuration();
+                        if(!musicService.IsMediaPlayerObjectAvailable()){ MusicTime_TotalLength = 0; return; }
 
                         if (MusicTime_TotalLength == 0){ // Put data in it one time
                             MusicTime_TotalLength = musicService.getMusicDuration();
+                            Seekbar.setMax(MusicTime_TotalLength);
                             MusicDictionary _MusicDictionary = musicService.getCurrent_MusicDictionary();
                             txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
                             txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
-                            Seekbar.setMax(MusicTime_TotalLength);
                         }
 
                         if(!IsUserSeekingSliderBar){
@@ -143,14 +144,15 @@ AdapterView.OnItemClickListener
                             setProgressText();
                         }
 
-                        if(MusicTime_CurrentPlaying == MusicTime_TotalLength){
+                        if(CurrentSongID != musicService.getCurrent_MusicDictionary().ID){
+                            CurrentSongID = musicService.getCurrent_MusicDictionary().ID;
                             MusicTime_TotalLength = 0;
                         }
 
                     }else if(!IsMusicServiceConnected){ // if service is not bounded log it
                         Log.d(LoggerName, "Waiting to get connection from service...");
                     }
-                    Handler_Music.postDelayed(this, 1000);
+                    Handler_Music.postDelayed(this, 100);
                 }
             };
         }
@@ -159,7 +161,7 @@ AdapterView.OnItemClickListener
         super.onResume();
         Log.d(LoggerName, "In the onResume() event");
         if(IsComingBack) {
-            Handler_Music.postDelayed(Runnable_Music, 1000);
+            Handler_Music.postDelayed(Runnable_Music, 100);
         }
     }
     public void onRestart() {
@@ -180,8 +182,12 @@ AdapterView.OnItemClickListener
         if (Music_ServiceConnection != null) {
             unbindService(Music_ServiceConnection);
         }
-        //this.finish();
-        //Log.d(LoggerName, "In the onDestroy() event finish");
+    }
+    @Override
+    public void onBackPressed(){
+        Log.d(LoggerName, "In the onBackPressed() event");
+        // code here to show dialog
+        super.onBackPressed();  // optional depending on your needs
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -227,7 +233,7 @@ AdapterView.OnItemClickListener
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (IsMusicServiceConnected && fromUser && IsUserSeekingSliderBar) {
-            String _Progress = String.format("%d:%d",
+            String _Progress = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(progress),
                     TimeUnit.MILLISECONDS.toSeconds(progress) -
                             TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
@@ -322,8 +328,8 @@ AdapterView.OnItemClickListener
         int currentMint = (curVolume%HOUR)/MINUTE;
         int currentSec = (curVolume%MINUTE)/SECOND;
 
-        txtStartPoint.setText(currentMint + ":" + currentSec);
-        txtEndPoint.setText(durationMint +":"+ durationSec);
+        txtStartPoint.setText(String.format("%02d:%02d", currentMint, currentSec));
+        txtEndPoint.setText(String.format("%02d:%02d", durationMint, durationSec));
     }
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
