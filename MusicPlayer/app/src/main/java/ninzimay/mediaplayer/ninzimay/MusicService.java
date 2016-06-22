@@ -53,7 +53,6 @@ MediaPlayer.OnErrorListener
     public void onCreate(){
         Log.d(LoggerName, "[MusicService].[onCreate]");
         super.onCreate();
-        initializeMusicPlayer();
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -101,12 +100,14 @@ MediaPlayer.OnErrorListener
     @Override
     public void onPrepared(MediaPlayer _MediaPlayer) {
         //start playback
-        _MediaPlayer.start();
+        player.start();
+        player.setOnCompletionListener(this);
     }
     @Override
     public void onCompletion(MediaPlayer _MediaPlayer) {
-        _MediaPlayer.release();
-        _MediaPlayer = null;
+        player.stop();
+        player.release();
+        player = null;
         Log.d(LoggerName, "[MusicService].[onCompletion] Finish and Released object.");
         playSong(GetSongToPlay(false, IsRepeatAlbum, IsShuffle));
     }
@@ -119,22 +120,16 @@ MediaPlayer.OnErrorListener
     //<!-- Start developer defined function(s).  -->
     public void playbackCurrentSong(){
         Log.d(LoggerName, "playbackCurrentSong()");
-        playSong(GetSongToPlay(true, true, true));
+        //playSong(GetSongToPlay(true, true, true));
+        /// Play song after pause
+        player.seekTo(CurrentPlayingLength);
+        player.start();
+        CurrentPlayingLength = 0;
     }
     public void pauseCurrentSong(){
         Log.d(LoggerName, "pauseCurrentSong()");
         player.pause();
         CurrentPlayingLength = player.getCurrentPosition();
-    }
-    public void initializeMusicPlayer(){
-        player = new MediaPlayer();
-        //set player properties
-        player.setWakeMode(getApplicationContext(),
-                PowerManager.PARTIAL_WAKE_LOCK);
-        //set listeners
-        player.setOnPreparedListener(this);
-        player.setOnCompletionListener(this);
-        player.setOnErrorListener(this);
     }
     public void setList(List<MusicDictionary> _List_MusicDictionary){
         List_MusicDictionary = _List_MusicDictionary;
@@ -145,19 +140,14 @@ MediaPlayer.OnErrorListener
     public boolean IsPlayingSong(){
         return player.isPlaying();
     }
+    public boolean IsPauseSong(){
+        if(player == null) return  false;
+        Boolean isPaused = !player.isPlaying() && player.getCurrentPosition() > 1;
+        return isPaused;
+    }
     public int getMusicDuration(){
         /// Get total length using mediaplayer object.
         return player.getDuration();
-
-        /// Get total length using MediaMetadataRetriever object.
-        /*String path = "android.resource://"+getPackageName()+"/raw/"+ getCurrent_MusicDictionary().FileName;
-        Uri uri = Uri.parse(path);
-        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        mmr.setDataSource(getApplicationContext(),uri);
-        String durationString = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-        int Duration_millSecond = Integer.parseInt(durationString);
-        return  Duration_millSecond;*/
-
     }
     public int getMusicCurrrentPosition(){
         return player.getCurrentPosition();
@@ -224,7 +214,7 @@ MediaPlayer.OnErrorListener
         Log.d(LoggerName, "[MusicService].[playSong] path = " + path);
         try {
             Log.d(LoggerName, "[MusicService].[playSong] CurrentPlayingLength = " + CurrentPlayingLength);
-            if (CurrentPlayingLength > 0) {
+            /*if (CurrentPlayingLength > 0) {
                 /// Play song after pause
                 player.seekTo(CurrentPlayingLength);
                 player.start();
@@ -233,13 +223,36 @@ MediaPlayer.OnErrorListener
                 Log.d(LoggerName, "[MusicService].[playSong] player = " + player);
                 /// Just playing song from start of the length
                 /// MediaPlayer initialization
-                initializeMusicPlayer();
+                if (player != null){
+                    player.reset();
+                }
+                else{
+                    player = new MediaPlayer();
+                    player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                }
+                player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                 player.setDataSource(getApplicationContext(), Uri.parse(path));
-                player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                setCurrent_MusicDictionary(_MusicDictionary);
                 player.prepareAsync();
+                player.setOnPreparedListener(this);
+                player.setOnErrorListener(this);
+                setCurrent_MusicDictionary(_MusicDictionary);
+            }*/
+            Log.d(LoggerName, "[MusicService].[playSong] player = " + player);
+            /// Just playing song from start of the length
+            /// MediaPlayer initialization
+            if (player != null){
+                player.reset();
             }
-
+            else{
+                player = new MediaPlayer();
+                player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            }
+            player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+            player.setDataSource(getApplicationContext(), Uri.parse(path));
+            player.prepareAsync();
+            player.setOnPreparedListener(this);
+            player.setOnErrorListener(this);
+            setCurrent_MusicDictionary(_MusicDictionary);
         } catch (IllegalArgumentException e){
             Log.e(LoggerName, "[MusicService].[playSong] Error = "+ e.getMessage());
             e.printStackTrace();

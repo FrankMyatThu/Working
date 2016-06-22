@@ -64,7 +64,6 @@ AdapterView.OnItemClickListener
     boolean IsShuffle = false;
     boolean IsUserSeekingSliderBar = false;
     boolean IsComingBack = false;
-    boolean IsPlayButtonPressedFirstTime = true;
     Handler Handler_Music = null;
     Runnable Runnable_Music = null;
     Typeface font_fontawesome = null;
@@ -102,11 +101,8 @@ AdapterView.OnItemClickListener
         super.onCreate(savedInstanceState);
         if( savedInstanceState != null ) {
             IsComingBack = savedInstanceState.getBoolean("IsComingBack");
-            IsPlayButtonPressedFirstTime = savedInstanceState.getBoolean("IsPlayButtonPressedFirstTime");
             Log.d(LoggerName, "IsComingBack after orientation changed = " + IsComingBack);
-            Log.d(LoggerName, "IsPlayButtonPressedFirstTime after orientation changed = " + IsPlayButtonPressedFirstTime);
         }
-
         if(isMyServiceRunning(MusicService.class)){
             IsComingBack = true;
             Log.d(LoggerName, "IsComingBack after back button pressed = " + IsComingBack);
@@ -203,7 +199,6 @@ AdapterView.OnItemClickListener
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(LoggerName, "onSaveInstanceState");
         outState.putBoolean("IsComingBack", true);
-        outState.putBoolean("IsPlayButtonPressedFirstTime", IsPlayButtonPressedFirstTime);
         super.onSaveInstanceState(outState);
     }
     @Override
@@ -274,14 +269,13 @@ AdapterView.OnItemClickListener
         }
     }
     private  void btnPlay_Click(){
-        if(IsPlayButtonPressedFirstTime){
+        if(musicService.IsPauseSong()){
+            Log.d(LoggerName, "[btnPlay_Click] Playback event");
+            musicService.playbackCurrentSong();
+        }else{
             Log.d(LoggerName, "[btnPlay_Click] play event");
             playIntent.setAction(Constants.ACTION.STARTFOREGROUND_ACTION);
             startService(playIntent);
-            IsPlayButtonPressedFirstTime = false;
-        }else{
-            Log.d(LoggerName, "[btnPlay_Click] Playback event");
-            musicService.playbackCurrentSong();
         }
         Handler_Music.postDelayed(Runnable_Music, 100);
         btnPlayPause.setText(getString(R.string.Pause));
