@@ -1665,8 +1665,8 @@ containing a value of this type.
         public static final int btnFavorite=0x7f0d0067;
         public static final int btnForward=0x7f0d0060;
         public static final int btnLyric=0x7f0d0063;
-        public static final int btnPause=0x7f0d005f;
         public static final int btnPlay=0x7f0d005e;
+        public static final int btnPlayPause=0x7f0d005f;
         public static final int btnRepeat=0x7f0d0061;
         public static final int btnRunningSong=0x7f0d007a;
         public static final int btnShuffle=0x7f0d005c;

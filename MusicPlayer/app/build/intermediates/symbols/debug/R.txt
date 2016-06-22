@@ -502,8 +502,8 @@ int id btnBackward 0x7f0d005d
 int id btnFavorite 0x7f0d0067
 int id btnForward 0x7f0d0060
 int id btnLyric 0x7f0d0063
-int id btnPause 0x7f0d005f
 int id btnPlay 0x7f0d005e
+int id btnPlayPause 0x7f0d005f
 int id btnRepeat 0x7f0d0061
 int id btnRunningSong 0x7f0d007a
 int id btnShuffle 0x7f0d005c

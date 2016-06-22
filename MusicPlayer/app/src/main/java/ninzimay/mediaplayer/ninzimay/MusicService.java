@@ -70,8 +70,10 @@ MediaPlayer.OnErrorListener
             Log.d(LoggerName, "Coming Back");
         } else if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
             Log.d(LoggerName, "Clicked Previous");
-        } else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
-            Log.d(LoggerName, "Clicked Play");
+        } else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
+            Log.d(LoggerName, "Clicked Pause");
+            player.pause();
+            CurrentPlayingLength = player.getCurrentPosition();
         } else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
             Log.d(LoggerName, "Clicked Next");
         } else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
@@ -115,6 +117,15 @@ MediaPlayer.OnErrorListener
     //<!-- End system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
+    public void playbackCurrentSong(){
+        Log.d(LoggerName, "playbackCurrentSong()");
+        playSong(GetSongToPlay(true, true, true));
+    }
+    public void pauseCurrentSong(){
+        Log.d(LoggerName, "pauseCurrentSong()");
+        player.pause();
+        CurrentPlayingLength = player.getCurrentPosition();
+    }
     public void initializeMusicPlayer(){
         player = new MediaPlayer();
         //set player properties
@@ -212,18 +223,14 @@ MediaPlayer.OnErrorListener
         String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
         Log.d(LoggerName, "[MusicService].[playSong] path = " + path);
         try {
-
             Log.d(LoggerName, "[MusicService].[playSong] CurrentPlayingLength = " + CurrentPlayingLength);
-
             if (CurrentPlayingLength > 0) {
                 /// Play song after pause
                 player.seekTo(CurrentPlayingLength);
                 player.start();
                 CurrentPlayingLength = 0;
             } else {
-
                 Log.d(LoggerName, "[MusicService].[playSong] player = " + player);
-
                 /// Just playing song from start of the length
                 /// MediaPlayer initialization
                 initializeMusicPlayer();

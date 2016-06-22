@@ -8,6 +8,7 @@ public class Constants {
         public static String MAIN_ACTION = "ninzimay.mediaplayer.ninzimay.action.main";
         public static String PREV_ACTION = "ninzimay.mediaplayer.ninzimay.action.prev";
         public static String PLAY_ACTION = "ninzimay.mediaplayer.ninzimay.action.play";
+        public static String PAUSE_ACTION = "ninzimay.mediaplayer.ninzimay.action.pause";
         public static String NEXT_ACTION = "ninzimay.mediaplayer.ninzimay.action.next";
         public static String COMING_BACK = "ninzimay.mediaplayer.ninzimay.action.comingback";
         public static String STARTFOREGROUND_ACTION = "ninzimay.mediaplayer.ninzimay.action.startforeground";

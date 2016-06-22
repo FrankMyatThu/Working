@@ -51,7 +51,7 @@ AdapterView.OnItemClickListener
     MediaPlayer mediaPlayer = null;
     Button btnShuffle = null;
     Button btnBackward = null;
-    Button btnPlay = null;
+    Button btnPlayPause = null;
     Button btnForward = null;
     Button btnRepeat = null;
     Button btnLyric = null;
@@ -64,8 +64,11 @@ AdapterView.OnItemClickListener
     boolean IsShuffle = false;
     boolean IsUserSeekingSliderBar = false;
     boolean IsComingBack = false;
+    boolean IsPlayButtonPressedFirstTime = true;
     Handler Handler_Music = null;
     Runnable Runnable_Music = null;
+    Typeface font_fontawesome = null;
+    Typeface font_ailerons = null;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
@@ -99,7 +102,9 @@ AdapterView.OnItemClickListener
         super.onCreate(savedInstanceState);
         if( savedInstanceState != null ) {
             IsComingBack = savedInstanceState.getBoolean("IsComingBack");
+            IsPlayButtonPressedFirstTime = savedInstanceState.getBoolean("IsPlayButtonPressedFirstTime");
             Log.d(LoggerName, "IsComingBack after orientation changed = " + IsComingBack);
+            Log.d(LoggerName, "IsPlayButtonPressedFirstTime after orientation changed = " + IsPlayButtonPressedFirstTime);
         }
 
         if(isMyServiceRunning(MusicService.class)){
@@ -129,6 +134,11 @@ AdapterView.OnItemClickListener
                     if (IsMusicServiceConnected){ // Check if service bounded
 
                         if(!musicService.IsMediaPlayerObjectAvailable()){ MusicTime_TotalLength = 0; return; }
+                        if(musicService.IsPlayingSong()){
+                            btnPlayPause.setText(getString(R.string.Pause));
+                        }else{
+                            btnPlayPause.setText(getString(R.string.Play));
+                        }
 
                         if (MusicTime_TotalLength == 0){ // Put data in it one time
                             MusicTime_TotalLength = musicService.getMusicDuration();
@@ -193,6 +203,7 @@ AdapterView.OnItemClickListener
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(LoggerName, "onSaveInstanceState");
         outState.putBoolean("IsComingBack", true);
+        outState.putBoolean("IsPlayButtonPressedFirstTime", IsPlayButtonPressedFirstTime);
         super.onSaveInstanceState(outState);
     }
     @Override
@@ -202,8 +213,8 @@ AdapterView.OnItemClickListener
                 break;
             case R.id.btnBackward:
                 break;
-            case R.id.btnPlay:
-                btnPlay_Click();
+            case R.id.btnPlayPause:
+                btnPlayPause_Click();
                 break;
             case R.id.btnForward:
                 break;
@@ -221,6 +232,7 @@ AdapterView.OnItemClickListener
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         IsUserSeekingSliderBar = false;
+        if(!musicService.IsPlayingSong()) return;
         Log.d(LoggerName, "seekBar.getProgress() ="+seekBar.getProgress());
         musicService.seekToMusic(seekBar.getProgress());
         CurrentPlayingLength = 0;
@@ -250,11 +262,34 @@ AdapterView.OnItemClickListener
     //<!-- End system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
-    private void btnPlay_Click(){
-        Log.d(LoggerName, "Play Clicked.");
-        playIntent.setAction(Constants.ACTION.STARTFOREGROUND_ACTION);
-        startService(playIntent);
-        Handler_Music.postDelayed(Runnable_Music, 1000);
+    private void btnPlayPause_Click(){
+        if(getString(R.string.Play).equalsIgnoreCase(btnPlayPause.getText().toString())){
+            Log.d(LoggerName, "Play is clicked");
+            /// Play
+            btnPlay_Click();
+        }else{
+            Log.d(LoggerName, "Pause is clicked");
+            /// Pause
+            btnPause_Click();
+        }
+    }
+    private  void btnPlay_Click(){
+        if(IsPlayButtonPressedFirstTime){
+            Log.d(LoggerName, "[btnPlay_Click] play event");
+            playIntent.setAction(Constants.ACTION.STARTFOREGROUND_ACTION);
+            startService(playIntent);
+            IsPlayButtonPressedFirstTime = false;
+        }else{
+            Log.d(LoggerName, "[btnPlay_Click] Playback event");
+            musicService.playbackCurrentSong();
+        }
+        Handler_Music.postDelayed(Runnable_Music, 100);
+        btnPlayPause.setText(getString(R.string.Pause));
+    }
+    private  void btnPause_Click(){
+        musicService.pauseCurrentSong();
+        Handler_Music.postDelayed(Runnable_Music, 100);
+        btnPlayPause.setText(getString(R.string.Play));
     }
     private  void initializer(){
 
@@ -264,8 +299,8 @@ AdapterView.OnItemClickListener
         /// End Invoking background image loader.
 
         /// Start setting customized font(s).
-        Typeface font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
-        Typeface font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
+        font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+        font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
         /// End setting customized font(s).
 
         /// Start binding basic control(s)
@@ -279,21 +314,21 @@ AdapterView.OnItemClickListener
         /// Button control(s)
         btnShuffle = (Button)findViewById( R.id.btnShuffle );
         btnBackward = (Button)findViewById( R.id.btnBackward );
-        btnPlay = (Button)findViewById( R.id.btnPlay );
+        btnPlayPause = (Button)findViewById( R.id.btnPlayPause );
         btnForward = (Button)findViewById( R.id.btnForward );
         btnRepeat = (Button)findViewById( R.id.btnRepeat );
         btnLyric = (Button)findViewById( R.id.btnLyric );
         btnFavorite = (Button)findViewById( R.id.btnFavorite );
         btnShuffle.setOnClickListener(this);
         btnBackward.setOnClickListener(this);
-        btnPlay.setOnClickListener(this);
+        btnPlayPause.setOnClickListener(this);
         btnForward.setOnClickListener(this);
         btnRepeat.setOnClickListener(this);
         btnLyric.setOnClickListener(this);
         btnFavorite.setOnClickListener(this);
         btnShuffle.setTypeface(font_fontawesome);
         btnBackward.setTypeface(font_fontawesome);
-        btnPlay.setTypeface(font_fontawesome);
+        btnPlayPause.setTypeface(font_fontawesome);
         btnForward.setTypeface(font_fontawesome);
         btnRepeat.setTypeface(font_fontawesome);
         btnLyric.setTypeface(font_fontawesome);
