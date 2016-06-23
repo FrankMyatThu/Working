@@ -203,10 +203,11 @@
                 android:id="@+id/btnPlayPause"
                 android:layout_alignParentBottom="true"
                 android:layout_toRightOf="@+id/btnForward"
+                android:layout_gravity="bottom"
                 android:background="@null"
                 android:layout_weight="1"
                 android:textColor="@color/lightgray"
-                android:textSize="@dimen/PlayerButtonfont_sizeLarge" />
+                android:textSize="40sp" />
 
             <Button
                 android:layout_width="wrap_content"

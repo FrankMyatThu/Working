@@ -1820,6 +1820,7 @@ containing a value of this type.
         public static final int i0971721=0x7f060008;
         public static final int j1071721=0x7f060009;
         public static final int k1171721=0x7f06000a;
+        public static final int l1271721=0x7f06000b;
     }
     public static final class string {
         public static final int FavoriteOff=0x7f070014;

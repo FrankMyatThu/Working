@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Ninzi May</string>
 
-    <string name="Play">&#xf04b;</string>
+    <!--<string name="Play">&#xf04b;</string>-->
+    <string name="Play">a</string>
     <string name="Stop">&#xf04d;</string>
     <string name="Next">&#xf051;</string>
     <string name="Previous">&#xf048;</string>
-    <string name="Pause">&#xf04c;</string>
+    <!--<string name="Pause">&#xf04c;</string>-->
+    <string name="Pause">b</string>
 
     <string name="RepeatOne">&#xf01e;</string>
     <string name="LoopAll">&#xf021;</string>
@@ -17,7 +19,8 @@
     <string name="RegistrationSeal">&#xf0a3;</string>
     <string name="HeadphoneIndicator">&#xf025;</string>
 
-    <string name="RunningIndicator">&#xf012;</string>
+    <!--<string name="RunningIndicator">&#xf012;</string>-->
+    <string name="RunningIndicator">&#xf001;</string>
 
     <string name="Speaker">&#xf027;</string>
     <string name="Volume">&#xf027;</string>

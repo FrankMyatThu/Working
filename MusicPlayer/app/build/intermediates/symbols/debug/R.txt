@@ -649,6 +649,7 @@ int raw h0871721 0x7f060007
 int raw i0971721 0x7f060008
 int raw j1071721 0x7f060009
 int raw k1171721 0x7f06000a
+int raw l1271721 0x7f06000b
 int string FavoriteOff 0x7f070014
 int string FavoriteOn 0x7f070015
 int string HeadphoneIndicator 0x7f070016

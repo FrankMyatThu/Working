@@ -34,6 +34,7 @@ public class MusicService extends Service
     private int CurrentPlayingLength = 0;
     private boolean IsRepeatAlbum = true;
     private boolean IsShuffle = false;
+    private boolean IsMediaPlayerReady = false;
     private final IBinder _MusicBinder = new MusicBinder();
     //<!-- End declaration area.  -->
 
@@ -47,32 +48,22 @@ public class MusicService extends Service
 
     //<!-- Start system defined function(s).  -->
     public void onCreate(){
-        Log.d(LoggerName, "[MusicService].[onCreate]");
         super.onCreate();
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(LoggerName, "[MusicService].[onStartCommand]");
         if(intent == null) {
             stopForeground(true);
             stopSelf();
             return START_STICKY;
         }
         if (intent.getAction().equals(Constants.ACTION.STARTFOREGROUND_ACTION)) {
-            Log.d(LoggerName, "Received Start Foreground Intent ");
-            playSong(GetSongToPlay(true, true, true));
+            playSong(GetSongToPlay(true, false, false, true, false));
         }else if (intent.getAction().equals(Constants.ACTION.COMING_BACK)) {
-            Log.d(LoggerName, "Coming Back");
         } else if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
-            Log.d(LoggerName, "Clicked Previous");
         } else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
-            Log.d(LoggerName, "Clicked Pause");
-            player.pause();
-            CurrentPlayingLength = player.getCurrentPosition();
         } else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
-            Log.d(LoggerName, "Clicked Next");
         } else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
-            Log.d(LoggerName, "Received Stop Foreground Intent");
             stopForeground(true);
             stopSelf();
         }
@@ -80,7 +71,6 @@ public class MusicService extends Service
     }
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(LoggerName, "[MusicService].[onBind] _MusicBinder" + _MusicBinder);
         return _MusicBinder;
     }
     @Override
@@ -97,31 +87,36 @@ public class MusicService extends Service
 
     //<!-- Start developer defined function(s).  -->
     public void playbackCurrentSong(){
-        Log.d(LoggerName, "playbackCurrentSong()");
         //playSong(GetSongToPlay(true, true, true));
         /// Play song after pause
-        player.seekTo(CurrentPlayingLength);
-        player.start();
-        CurrentPlayingLength = 0;
+        if(player!=null){
+            player.stop();
+            player.release();
+            player = null;
+        }
+        playSong(GetSongToPlay(false, false, true, true, false));
     }
     public void pauseCurrentSong(){
-        Log.d(LoggerName, "pauseCurrentSong()");
         player.pause();
         CurrentPlayingLength = player.getCurrentPosition();
+        IsMediaPlayerReady = false;
+        player.stop();
+        player.release();
+        player = null;
     }
     public void setList(List<MusicDictionary> _List_MusicDictionary){
         List_MusicDictionary = _List_MusicDictionary;
     }
     public boolean IsMediaPlayerObjectAvailable(){
-        return (player != null);
+        return IsMediaPlayerReady;
     }
     public boolean IsPlayingSong(){
+        if(player == null) return  false;
+        if(!IsMediaPlayerReady) return false;
         return player.isPlaying();
     }
     public boolean IsPauseSong(){
-        if(player == null) return  false;
-        Boolean isPaused = !player.isPlaying() && player.getCurrentPosition() > 1;
-        return isPaused;
+        return CurrentPlayingLength > 0;
     }
     public int getMusicDuration(){
         /// Get total length using mediaplayer object.
@@ -138,10 +133,13 @@ public class MusicService extends Service
     }
     private void setCurrent_MusicDictionary(MusicDictionary _MusicDictionary){
         Current_MusicDictionary = _MusicDictionary;
-        Log.d(LoggerName, "Current_MusicDictionary.EnglishTitle = " + Current_MusicDictionary.EnglishTitle);
     }
-    public MusicDictionary GetSongToPlay(Boolean IsFirstSong, Boolean IsRepeatAlbum, Boolean IsShuffle){
-        Log.d(LoggerName, "GetSongToPlay List_MusicDictionary.size() ="+List_MusicDictionary.size());
+    public MusicDictionary GetSongToPlay(
+                                        Boolean IsFirstSong,
+                                        Boolean IsNextSong,
+                                        Boolean IsCurrentPlayingSong,
+                                        Boolean IsRepeatAlbum,
+                                        Boolean IsShuffle){
         MusicDictionary ToReturn_MusicDictionary = null;
         if(IsFirstSong){
             for(int i=0; i<List_MusicDictionary.size(); i++){
@@ -151,8 +149,7 @@ public class MusicService extends Service
                     return ToReturn_MusicDictionary;
                 }
             }
-        }else
-        {
+        }else if(IsNextSong){
             // Play next song(s)
             for(int i=0; i<List_MusicDictionary.size(); i++)
             {
@@ -164,10 +161,8 @@ public class MusicService extends Service
                     {
                         if(IsRepeatAlbum)
                         {
-                            Log.d(LoggerName, "Get first song of the album because of repeated flag is on.");
                             List_MusicDictionary.get(0).PlayingStatus = PlayingStatus_Playing;
                             ToReturn_MusicDictionary = List_MusicDictionary.get(0);
-                            Log.d(LoggerName, "Get first song of the album because of repeated flag is on. ToReturn_MusicDictionary.EnglishTitle = "+ToReturn_MusicDictionary.EnglishTitle);
                             return ToReturn_MusicDictionary;
                         }
                         return  ToReturn_MusicDictionary; // Null value will be returned because of it arrives to end of the album.
@@ -176,12 +171,19 @@ public class MusicService extends Service
                         /// Next song
                         List_MusicDictionary.get(i+1).PlayingStatus = PlayingStatus_Playing;
                         ToReturn_MusicDictionary = List_MusicDictionary.get(i+1);
-                        Log.d(LoggerName, "Next Song is "+ ToReturn_MusicDictionary.EnglishTitle);
                         return ToReturn_MusicDictionary;
                     }
                 }else
                 {
-                    Log.d(LoggerName , "Title = "+ List_MusicDictionary.get(i).EnglishTitle +" : Status = "+ List_MusicDictionary.get(i).PlayingStatus);
+                    //Log.d(LoggerName , "Title = "+ List_MusicDictionary.get(i).EnglishTitle +" : Status = "+ List_MusicDictionary.get(i).PlayingStatus);
+                }
+            }
+        }else if(IsCurrentPlayingSong){
+            for(int i=0; i<List_MusicDictionary.size(); i++)
+            {
+                if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
+                    ToReturn_MusicDictionary = List_MusicDictionary.get(i);
+                    return ToReturn_MusicDictionary;
                 }
             }
         }
@@ -189,10 +191,7 @@ public class MusicService extends Service
     }
     public void playSong(MusicDictionary _MusicDictionary){
         String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
-        Log.d(LoggerName, "[MusicService].[playSong] path = " + path);
         try {
-            Log.d(LoggerName, "[MusicService].[playSong] CurrentPlayingLength = " + CurrentPlayingLength);
-            Log.d(LoggerName, "[MusicService].[playSong] player = " + player);
             /// Just playing song from start of the length
             /// MediaPlayer initialization
             if (player != null){
@@ -200,38 +199,54 @@ public class MusicService extends Service
             }
             else{
                 player = new MediaPlayer();
+                player.reset();
                 player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             }
             player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
             player.setDataSource(getApplicationContext(), Uri.parse(path));
-            player.prepareAsync();
-            player.setOnErrorListener(new MediaPlayer.OnErrorListener(){
-                  public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
-                      return false;
-                  }
+            setCurrent_MusicDictionary(_MusicDictionary);
+            player.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
+                    Log.e(LoggerName, String.format("[player.setOnErrorListener] Error(%s%s)", what, extra));
+                    return true;
+                }
             });
             player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer MediaPlayer_onPrepared) {
                     /// MediaPlayer
+                    if (CurrentPlayingLength > 0) {
+                        player.seekTo(CurrentPlayingLength);
+                        CurrentPlayingLength = 0;
+                    }
+
                     player.start();
+                    IsMediaPlayerReady = true;
                     player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         public void onCompletion(MediaPlayer MediaPlayer_onCompletion) {
                             player.stop();
                             player.release();
                             player = null;
-                            Log.d(LoggerName, "[MusicService].[onCompletion] Finish and Released object.");
-                            playSong(GetSongToPlay(false, IsRepeatAlbum, IsShuffle));
+
+                            IsMediaPlayerReady = false;
+                            playSong(GetSongToPlay(false, true, false, IsRepeatAlbum, IsShuffle));
                         }
                     });
                 }
             });
-            setCurrent_MusicDictionary(_MusicDictionary);
+            player.prepareAsync();
+
         } catch (IllegalArgumentException e){
-            Log.e(LoggerName, "[MusicService].[playSong] Error = "+ e.getMessage());
+            Log.e(LoggerName, "[MusicService].[playSong] IllegalArgumentException Error = "+ e.getMessage());
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            Log.e(LoggerName, "[MusicService].[playSong] SecurityException Error = "+ e.getMessage());
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            Log.e(LoggerName, "[MusicService].[playSong] IllegalStateException Error = "+ e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
-            Log.e(LoggerName, "[MusicService].[playSong] Error = "+ e.getMessage());
+            Log.e(LoggerName, "[MusicService].[playSong] IOException Error = "+ e.getMessage());
             e.printStackTrace();
         }
     }

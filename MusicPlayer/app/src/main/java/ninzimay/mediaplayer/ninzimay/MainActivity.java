@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -48,7 +47,6 @@ AdapterView.OnItemClickListener
     TextView txtStartPoint = null;
     TextView txtEndPoint = null;
     int CurrentPlayingLength = 0;
-    MediaPlayer mediaPlayer = null;
     Button btnShuffle = null;
     Button btnBackward = null;
     Button btnPlayPause = null;
@@ -68,6 +66,7 @@ AdapterView.OnItemClickListener
     Runnable Runnable_Music = null;
     Typeface font_fontawesome = null;
     Typeface font_ailerons = null;
+    Typeface font_ninzimay = null;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
@@ -83,13 +82,13 @@ AdapterView.OnItemClickListener
                 musicService.setList(getList_MusicDictionary());
             }
             IsMusicServiceConnected = true;
-            Log.d(LoggerName, "[onServiceConnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
+            //Log.d(LoggerName, "[onServiceConnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
             IsMusicServiceConnected = false;
-            Log.d(LoggerName, "[onServiceDisconnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
+            //Log.d(LoggerName, "[onServiceDisconnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
         }
     };
     //<!-- End dependency object(s).  -->
@@ -97,23 +96,22 @@ AdapterView.OnItemClickListener
     //<!-- Start system defined function(s).  -->
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(LoggerName, "In the onCreate() event");
+        //Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
         if( savedInstanceState != null ) {
             IsComingBack = savedInstanceState.getBoolean("IsComingBack");
-            Log.d(LoggerName, "IsComingBack after orientation changed = " + IsComingBack);
+            //Log.d(LoggerName, "IsComingBack after orientation changed = " + IsComingBack);
         }
         if(isMyServiceRunning(MusicService.class)){
             IsComingBack = true;
-            Log.d(LoggerName, "IsComingBack after back button pressed = " + IsComingBack);
+            //Log.d(LoggerName, "IsComingBack after back button pressed = " + IsComingBack);
         }
         setContentView(R.layout.activity_main);
         initializer();
     }
     public void onStart(){
     super.onStart();
-    Log.d(LoggerName, "In the onStart() event");
-
+    //Log.d(LoggerName, "In the onStart() event");
         if(playIntent == null){
             playIntent = new Intent(this, MusicService.class);
             bindService(playIntent, Music_ServiceConnection, Context.BIND_AUTO_CREATE);
@@ -129,11 +127,17 @@ AdapterView.OnItemClickListener
                 public void run() {
                     if (IsMusicServiceConnected){ // Check if service bounded
 
-                        if(!musicService.IsMediaPlayerObjectAvailable()){ MusicTime_TotalLength = 0; return; }
-                        if(musicService.IsPlayingSong()){
-                            btnPlayPause.setText(getString(R.string.Pause));
-                        }else{
+                        if(!musicService.IsMediaPlayerObjectAvailable()){
+                            MusicTime_TotalLength = 0;
+                            Handler_Music.postDelayed(Runnable_Music, 100);
+                            return;
+                        }
+
+                        if(musicService.IsPauseSong()){
                             btnPlayPause.setText(getString(R.string.Play));
+                        }else{
+                            btnPlayPause.setText(getString(R.string.Pause));
+
                         }
 
                         if (MusicTime_TotalLength == 0){ // Put data in it one time
@@ -156,7 +160,7 @@ AdapterView.OnItemClickListener
                         }
 
                     }else if(!IsMusicServiceConnected){ // if service is not bounded log it
-                        Log.d(LoggerName, "Waiting to get connection from service...");
+                        //Log.d(LoggerName, "Waiting to get connection from service...");
                     }
                     Handler_Music.postDelayed(this, 100);
                 }
@@ -165,25 +169,26 @@ AdapterView.OnItemClickListener
     }
     public void onResume(){
         super.onResume();
-        Log.d(LoggerName, "In the onResume() event");
+        //Log.d(LoggerName, "In the onResume() event");
         if(IsComingBack) {
             Handler_Music.postDelayed(Runnable_Music, 100);
         }
     }
     public void onRestart() {
         super.onRestart();
-        Log.d(LoggerName, "In the onRestart() event");
+        //Log.d(LoggerName, "In the onRestart() event");
     }
     public void onPause(){
         super.onPause();
-        Log.d(LoggerName, "In the onPause() event");
+        //Log.d(LoggerName, "In the onPause() event");
     }
+
     public void onStop(){
         super.onStop();
-        Log.d(LoggerName, "In the onStop() event");
+        //Log.d(LoggerName, "In the onStop() event");
     }
     public void onDestroy() {
-        Log.d(LoggerName, "In the onDestroy() event");
+        //Log.d(LoggerName, "In the onDestroy() event");
         super.onDestroy();
         if (Music_ServiceConnection != null) {
             unbindService(Music_ServiceConnection);
@@ -191,13 +196,13 @@ AdapterView.OnItemClickListener
     }
     @Override
     public void onBackPressed(){
-        Log.d(LoggerName, "In the onBackPressed() event");
+        //Log.d(LoggerName, "In the onBackPressed() event");
         // code here to show dialog
         super.onBackPressed();  // optional depending on your needs
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(LoggerName, "onSaveInstanceState");
+        //Log.d(LoggerName, "onSaveInstanceState");
         outState.putBoolean("IsComingBack", true);
         super.onSaveInstanceState(outState);
     }
@@ -228,13 +233,13 @@ AdapterView.OnItemClickListener
     public void onStopTrackingTouch(SeekBar seekBar) {
         IsUserSeekingSliderBar = false;
         if(!musicService.IsPlayingSong()) return;
-        Log.d(LoggerName, "seekBar.getProgress() ="+seekBar.getProgress());
+        //Log.d(LoggerName, "seekBar.getProgress() ="+seekBar.getProgress());
         musicService.seekToMusic(seekBar.getProgress());
         CurrentPlayingLength = 0;
     }
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        Log.d(LoggerName, "onStartTrackingTouch");
+        //Log.d(LoggerName, "onStartTrackingTouch");
         IsUserSeekingSliderBar = true;
     }
     @Override
@@ -245,7 +250,7 @@ AdapterView.OnItemClickListener
                     TimeUnit.MILLISECONDS.toSeconds(progress) -
                             TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(progress))
             );
-            Log.d(LoggerName, "progress = "+_Progress);
+            //Log.d(LoggerName, "progress = "+_Progress);
             txtStartPoint.setText(_Progress);
         }
     }
@@ -259,11 +264,11 @@ AdapterView.OnItemClickListener
     //<!-- Start developer defined function(s).  -->
     private void btnPlayPause_Click(){
         if(getString(R.string.Play).equalsIgnoreCase(btnPlayPause.getText().toString())){
-            Log.d(LoggerName, "Play is clicked");
+            //Log.d(LoggerName, "Play is clicked");
             /// Play
             btnPlay_Click();
         }else{
-            Log.d(LoggerName, "Pause is clicked");
+            //Log.d(LoggerName, "Pause is clicked");
             /// Pause
             btnPause_Click();
         }
@@ -295,6 +300,7 @@ AdapterView.OnItemClickListener
         /// Start setting customized font(s).
         font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
         font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
+        font_ninzimay = Typeface.createFromAsset( getAssets(), "ninzimay.ttf" );
         /// End setting customized font(s).
 
         /// Start binding basic control(s)
@@ -322,7 +328,7 @@ AdapterView.OnItemClickListener
         btnFavorite.setOnClickListener(this);
         btnShuffle.setTypeface(font_fontawesome);
         btnBackward.setTypeface(font_fontawesome);
-        btnPlayPause.setTypeface(font_fontawesome);
+        btnPlayPause.setTypeface(font_ninzimay);
         btnForward.setTypeface(font_fontawesome);
         btnRepeat.setTypeface(font_fontawesome);
         btnLyric.setTypeface(font_fontawesome);
