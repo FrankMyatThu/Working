@@ -83,6 +83,17 @@ public class MusicService extends Service
         player = null;
         return false;
     }
+    @Override
+    public void onDestroy() {
+        Log.d(LoggerName, "Service onDestroyed");
+        if(player == null) return;
+        if(player.isPlaying()) return;
+
+        player.stop();
+        player.release();
+        player = null;
+        return;
+    }
     //<!-- End system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
@@ -208,6 +219,26 @@ public class MusicService extends Service
             player.setOnErrorListener(new MediaPlayer.OnErrorListener() {
                 public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
                     Log.e(LoggerName, String.format("[player.setOnErrorListener] Error(%s%s)", what, extra));
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("Media Player Error: ");
+                    switch (what) {
+                        case MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK:
+                            sb.append("Not Valid for Progressive Playback");
+                            break;
+                        case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
+                            sb.append("Server Died");
+                            break;
+                        case MediaPlayer.MEDIA_ERROR_UNKNOWN:
+                            sb.append("Unknown");
+                            break;
+                        default:
+                            sb.append(" Non standard (");
+                            sb.append(what);
+                            sb.append(")");
+                    }
+                    sb.append(" (" + what + ") ");
+                    sb.append(extra);
+                    Log.e(LoggerName, sb.toString());
                     return true;
                 }
             });
@@ -215,13 +246,6 @@ public class MusicService extends Service
                 @Override
                 public void onPrepared(MediaPlayer MediaPlayer_onPrepared) {
                     /// MediaPlayer
-                    if (CurrentPlayingLength > 0) {
-                        player.seekTo(CurrentPlayingLength);
-                        CurrentPlayingLength = 0;
-                    }
-
-                    player.start();
-                    IsMediaPlayerReady = true;
                     player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         public void onCompletion(MediaPlayer MediaPlayer_onCompletion) {
                             player.stop();
@@ -232,6 +256,22 @@ public class MusicService extends Service
                             playSong(GetSongToPlay(false, true, false, IsRepeatAlbum, IsShuffle));
                         }
                     });
+                    if (CurrentPlayingLength > 0) {
+                        player.seekTo(CurrentPlayingLength);
+                        player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                            @Override
+                            public void onSeekComplete(MediaPlayer MediaPlayer_onSeekComplete) {
+                                Log.d(LoggerName, "onSeekComplete = " + CurrentPlayingLength);
+                                CurrentPlayingLength = 0;
+                                player.start();
+                                IsMediaPlayerReady = true;
+                            }
+                        });
+                    }else
+                    {
+                        player.start();
+                        IsMediaPlayerReady = true;
+                    }
                 }
             });
             player.prepareAsync();

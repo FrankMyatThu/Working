@@ -196,6 +196,7 @@
                 android:textColor="@color/lightgray"
                 android:textSize="@dimen/PlayerButtonfont_sizeMedian"/>
 
+            <!--android:background="@drawable/button_pressed"-->
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -286,6 +286,11 @@ AdapterView.OnItemClickListener
         btnPlayPause.setText(getString(R.string.Pause));
     }
     private  void btnPause_Click(){
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         musicService.pauseCurrentSong();
         Handler_Music.postDelayed(Runnable_Music, 100);
         btnPlayPause.setText(getString(R.string.Play));

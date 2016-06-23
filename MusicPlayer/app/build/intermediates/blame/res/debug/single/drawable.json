@@ -84,6 +84,10 @@
         "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
+        "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\button_pressed.xml",
+        "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\drawable\\button_pressed.xml"
+    },
+    {
         "merged": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
         "source": "D:\\01.Project\\GitHub\\Working\\MusciPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable\\abc_switch_thumb_material.xml"
     },

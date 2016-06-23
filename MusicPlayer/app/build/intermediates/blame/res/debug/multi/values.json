@@ -30371,11 +30371,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 15,
+                        "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 525,
+                        "startOffset": 612,
                         "endColumn": 48,
-                        "endOffset": 569
+                        "endOffset": 656
                     }
                 }
             },
@@ -30390,11 +30390,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 14,
+                        "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 476,
+                        "startOffset": 563,
                         "endColumn": 47,
-                        "endOffset": 519
+                        "endOffset": 606
                     }
                 }
             },
@@ -30409,11 +30409,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 17,
+                        "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 630,
+                        "startOffset": 717,
                         "endColumn": 55,
-                        "endOffset": 681
+                        "endOffset": 768
                     }
                 }
             },
@@ -30428,11 +30428,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 10,
+                        "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 337,
+                        "startOffset": 424,
                         "endColumn": 44,
-                        "endOffset": 377
+                        "endOffset": 464
                     }
                 }
             },
@@ -30447,11 +30447,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 12,
+                        "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 429,
+                        "startOffset": 516,
                         "endColumn": 43,
-                        "endOffset": 468
+                        "endOffset": 555
                     }
                 }
             },
@@ -30466,11 +30466,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 5,
+                        "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 153,
+                        "startOffset": 196,
                         "endColumn": 41,
-                        "endOffset": 190
+                        "endOffset": 233
                     }
                 }
             },
@@ -30485,11 +30485,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 7,
+                        "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 243,
-                        "endColumn": 42,
-                        "endOffset": 281
+                        "startOffset": 337,
+                        "endColumn": 35,
+                        "endOffset": 368
                     }
                 }
             },
@@ -30504,11 +30504,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 3,
+                        "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 67,
-                        "endColumn": 41,
-                        "endOffset": 104
+                        "startOffset": 117,
+                        "endColumn": 34,
+                        "endOffset": 147
                     }
                 }
             },
@@ -30523,11 +30523,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 6,
+                        "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 196,
+                        "startOffset": 239,
                         "endColumn": 45,
-                        "endOffset": 237
+                        "endOffset": 280
                     }
                 }
             },
@@ -30542,11 +30542,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 16,
+                        "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 575,
+                        "startOffset": 662,
                         "endColumn": 53,
-                        "endOffset": 624
+                        "endOffset": 711
                     }
                 }
             },
@@ -30561,11 +30561,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 9,
+                        "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 289,
+                        "startOffset": 376,
                         "endColumn": 46,
-                        "endOffset": 331
+                        "endOffset": 418
                     }
                 }
             },
@@ -30580,11 +30580,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 19,
+                        "startLine": 22,
                         "startColumn": 4,
-                        "startOffset": 689,
+                        "startOffset": 838,
                         "endColumn": 53,
-                        "endOffset": 738
+                        "endOffset": 887
                     }
                 }
             },
@@ -30599,11 +30599,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 11,
+                        "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 383,
+                        "startOffset": 470,
                         "endColumn": 44,
-                        "endOffset": 423
+                        "endOffset": 510
                     }
                 }
             },
@@ -30618,11 +30618,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 21,
+                        "startLine": 24,
                         "startColumn": 4,
-                        "startOffset": 746,
+                        "startOffset": 895,
                         "endColumn": 44,
-                        "endOffset": 786
+                        "endOffset": 935
                     }
                 }
             },
@@ -30637,11 +30637,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 110,
+                        "startOffset": 153,
                         "endColumn": 41,
-                        "endOffset": 147
+                        "endOffset": 190
                     }
                 }
             },
@@ -30656,11 +30656,11 @@
                 "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
-                        "startLine": 22,
+                        "startLine": 25,
                         "startColumn": 4,
-                        "startOffset": 792,
+                        "startOffset": 941,
                         "endColumn": 43,
-                        "endOffset": 831
+                        "endOffset": 980
                     }
                 }
             },
