@@ -21,10 +21,6 @@ import java.util.concurrent.TimeUnit;
  * Created by Administrator on 2016/06/19.
  */
 public class MusicService extends Service
-implements
-MediaPlayer.OnPreparedListener,
-MediaPlayer.OnCompletionListener,
-MediaPlayer.OnErrorListener
 {
     //<!-- Start declaration area.  -->
     private String LoggerName = "NinZiMay";
@@ -89,30 +85,12 @@ MediaPlayer.OnErrorListener
     }
     @Override
     public boolean onUnbind(Intent intent){
-        if(player.isPlaying())
-            return false;
+        if(player == null) return false;
+        if(player.isPlaying()) return false;
 
         player.stop();
         player.release();
         player = null;
-        return false;
-    }
-    @Override
-    public void onPrepared(MediaPlayer _MediaPlayer) {
-        //start playback
-        player.start();
-        player.setOnCompletionListener(this);
-    }
-    @Override
-    public void onCompletion(MediaPlayer _MediaPlayer) {
-        player.stop();
-        player.release();
-        player = null;
-        Log.d(LoggerName, "[MusicService].[onCompletion] Finish and Released object.");
-        playSong(GetSongToPlay(false, IsRepeatAlbum, IsShuffle));
-    }
-    @Override
-    public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
         return false;
     }
     //<!-- End system defined function(s).  -->
@@ -214,29 +192,6 @@ MediaPlayer.OnErrorListener
         Log.d(LoggerName, "[MusicService].[playSong] path = " + path);
         try {
             Log.d(LoggerName, "[MusicService].[playSong] CurrentPlayingLength = " + CurrentPlayingLength);
-            /*if (CurrentPlayingLength > 0) {
-                /// Play song after pause
-                player.seekTo(CurrentPlayingLength);
-                player.start();
-                CurrentPlayingLength = 0;
-            } else {
-                Log.d(LoggerName, "[MusicService].[playSong] player = " + player);
-                /// Just playing song from start of the length
-                /// MediaPlayer initialization
-                if (player != null){
-                    player.reset();
-                }
-                else{
-                    player = new MediaPlayer();
-                    player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                }
-                player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
-                player.setDataSource(getApplicationContext(), Uri.parse(path));
-                player.prepareAsync();
-                player.setOnPreparedListener(this);
-                player.setOnErrorListener(this);
-                setCurrent_MusicDictionary(_MusicDictionary);
-            }*/
             Log.d(LoggerName, "[MusicService].[playSong] player = " + player);
             /// Just playing song from start of the length
             /// MediaPlayer initialization
@@ -250,8 +205,27 @@ MediaPlayer.OnErrorListener
             player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
             player.setDataSource(getApplicationContext(), Uri.parse(path));
             player.prepareAsync();
-            player.setOnPreparedListener(this);
-            player.setOnErrorListener(this);
+            player.setOnErrorListener(new MediaPlayer.OnErrorListener(){
+                  public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
+                      return false;
+                  }
+            });
+            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer MediaPlayer_onPrepared) {
+                    /// MediaPlayer
+                    player.start();
+                    player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        public void onCompletion(MediaPlayer MediaPlayer_onCompletion) {
+                            player.stop();
+                            player.release();
+                            player = null;
+                            Log.d(LoggerName, "[MusicService].[onCompletion] Finish and Released object.");
+                            playSong(GetSongToPlay(false, IsRepeatAlbum, IsShuffle));
+                        }
+                    });
+                }
+            });
             setCurrent_MusicDictionary(_MusicDictionary);
         } catch (IllegalArgumentException e){
             Log.e(LoggerName, "[MusicService].[playSong] Error = "+ e.getMessage());
