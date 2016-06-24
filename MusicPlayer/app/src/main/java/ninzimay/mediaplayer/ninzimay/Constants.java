@@ -11,6 +11,7 @@ public class Constants {
         public static String PAUSE_ACTION = "ninzimay.mediaplayer.ninzimay.action.pause";
         public static String NEXT_ACTION = "ninzimay.mediaplayer.ninzimay.action.next";
         public static String COMING_BACK = "ninzimay.mediaplayer.ninzimay.action.comingback";
+        public static String INDEXED_ACTION = "ninzimay.mediaplayer.ninzimay.action.indexed";
         public static String STARTFOREGROUND_ACTION = "ninzimay.mediaplayer.ninzimay.action.startforeground";
         public static String STOPFOREGROUND_ACTION = "ninzimay.mediaplayer.ninzimay.action.stopforeground";
     }

@@ -116,24 +116,6 @@
         <!-- Song length end. -->
 
         <!-- Song running icon start. -->
-        <!--<VideoView
-            android:id="@+id/vdoRunningSong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="50dp"
-            android:gravity="center_vertical"
-            android:scaleType="centerCrop"
-            android:src="@drawable/play">
-        </VideoView>-->
-        <!--<ninzimay.mediaplayer.ninzimay.CustomGifView
-            android:id="@+id/gifRunningSong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="50dp"
-            android:gravity="center_vertical"
-            android:scaleType="centerCrop"/>-->
         <Button
             android:id="@+id/btnRunningSong"
             android:layout_width="wrap_content"

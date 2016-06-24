@@ -2,6 +2,7 @@ package ninzimay.mediaplayer.ninzimay;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,9 @@ import java.util.List;
 public class SongListingRowControl extends ArrayAdapter<MusicDictionary> {
     Typeface _Font = null;
     String LoggerName = "NinZiMay";
+    private String PlayingStatus_New = "PlayingStatus_New";
+    private String PlayingStatus_Playing = "PlayingStatus_Playing";
+    private String PlayingStatus_Played = "PlayingStatus_Played";
     
     SongListingRowControl(Context context, List<MusicDictionary> _List){
         super(context, R.layout.song_listing_row_control, _List);
@@ -76,6 +80,16 @@ public class SongListingRowControl extends ArrayAdapter<MusicDictionary> {
         _ViewHolder.txtMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
         _ViewHolder.txtSongLength.setText(_MusicDictionary.Length);
         _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
+
+        if(_MusicDictionary.PlayingStatus == PlayingStatus_Playing){
+            _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightOrange));
+            _ViewHolder.txtMyanmarInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightOrange));
+        }else{
+            _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightgray));
+            _ViewHolder.txtMyanmarInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightgray));
+        }
+
+        //Log.d(LoggerName , "Title = "+ _MusicDictionary.EnglishTitle +" : Status = "+ _MusicDictionary.PlayingStatus);
 
         return _View_Row;
     }
