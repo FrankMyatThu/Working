@@ -212,11 +212,13 @@ AdapterView.OnItemClickListener
             case R.id.btnShuffle:
                 break;
             case R.id.btnBackward:
+                btnBackward_Click();
                 break;
             case R.id.btnPlayPause:
                 btnPlayPause_Click();
                 break;
             case R.id.btnForward:
+                btnForward_Click();
                 break;
             case R.id.btnRepeat:
                 break;
@@ -273,7 +275,7 @@ AdapterView.OnItemClickListener
             btnPause_Click();
         }
     }
-    private  void btnPlay_Click(){
+    private void btnPlay_Click(){
         if(musicService.IsPauseSong()){
             Log.d(LoggerName, "[btnPlay_Click] Playback event");
             musicService.playbackCurrentSong();
@@ -285,15 +287,20 @@ AdapterView.OnItemClickListener
         Handler_Music.postDelayed(Runnable_Music, 100);
         btnPlayPause.setText(getString(R.string.Pause));
     }
-    private  void btnPause_Click(){
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void btnPause_Click(){
         musicService.pauseCurrentSong();
         Handler_Music.postDelayed(Runnable_Music, 100);
         btnPlayPause.setText(getString(R.string.Play));
+    }
+    private void btnForward_Click(){
+        if(!musicService.IsPlayingSong()) return;
+        musicService.playNextSong();
+        Handler_Music.postDelayed(Runnable_Music, 100);
+    }
+    private void btnBackward_Click(){
+        if(!musicService.IsPlayingSong()) return;
+        musicService.playPreviousSong();
+        Handler_Music.postDelayed(Runnable_Music, 100);
     }
     private  void initializer(){
 
@@ -411,7 +418,7 @@ AdapterView.OnItemClickListener
         _MusicDictionary_2.MyanmarTitle = "မူရာမာယာမိုး";
         _MusicDictionary_2.AlbumName = "Ninzi May";
         _MusicDictionary_2.AlbumArt = "AlbumArt.jpg";
-        _MusicDictionary_2.Length = "1:45";
+        _MusicDictionary_2.Length = "1:46";
         _MusicDictionary_2.Genre = "Pop";
         _MusicDictionary_2.Lyric = "မူရာမာယာမိုး";
         _MusicDictionary_2.IsFavorite = false;
@@ -441,7 +448,7 @@ AdapterView.OnItemClickListener
         _MusicDictionary_4.MyanmarTitle = "စိမ္းရက္ေလအား";
         _MusicDictionary_4.AlbumName = "Ninzi May";
         _MusicDictionary_4.AlbumArt = "AlbumArt.jpg";
-        _MusicDictionary_4.Length = "2:03";
+        _MusicDictionary_4.Length = "2:00";
         _MusicDictionary_4.Genre = "Pop";
         _MusicDictionary_4.Lyric = "စိမ္းရက္ေလအား";
         _MusicDictionary_4.IsFavorite = false;
@@ -471,7 +478,7 @@ AdapterView.OnItemClickListener
         _MusicDictionary_6.MyanmarTitle = "ေႏြဦးပံုျပင္";
         _MusicDictionary_6.AlbumName = "Ninzi May";
         _MusicDictionary_6.AlbumArt = "AlbumArt.jpg";
-        _MusicDictionary_6.Length = "3:24";
+        _MusicDictionary_6.Length = "5:22";
         _MusicDictionary_6.Genre = "Pop";
         _MusicDictionary_6.Lyric = "ေႏြဦးပံုျပင္";
         _MusicDictionary_6.IsFavorite = false;
@@ -498,10 +505,10 @@ AdapterView.OnItemClickListener
         _MusicDictionary_8.Srno = 8;
         _MusicDictionary_8.FileName = "h0871721";
         _MusicDictionary_8.EnglishTitle = "Ta Khar Ka Lat Saung";
-        _MusicDictionary_8.MyanmarTitle = "တခါကလက္ေဆာင္";
+        _MusicDictionary_8.MyanmarTitle = "တစ္ခါကလက္ေဆာင္";
         _MusicDictionary_8.AlbumName = "Ninzi May";
         _MusicDictionary_8.AlbumArt = "AlbumArt.jpg";
-        _MusicDictionary_8.Length = "3:50";
+        _MusicDictionary_8.Length = "3:55";
         _MusicDictionary_8.Genre = "Pop";
         _MusicDictionary_8.Lyric = "တခါကလက္ေဆာင္";
         _MusicDictionary_8.IsFavorite = false;
@@ -516,7 +523,7 @@ AdapterView.OnItemClickListener
         _MusicDictionary_9.MyanmarTitle = "ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ";
         _MusicDictionary_9.AlbumName = "Ninzi May";
         _MusicDictionary_9.AlbumArt = "AlbumArt.jpg";
-        _MusicDictionary_9.Length = "5:10";
+        _MusicDictionary_9.Length = "5:01";
         _MusicDictionary_9.Genre = "Pop";
         _MusicDictionary_9.Lyric = "ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ";
         _MusicDictionary_9.IsFavorite = false;
@@ -531,7 +538,7 @@ AdapterView.OnItemClickListener
         _MusicDictionary_10.MyanmarTitle = "မင္းသိႏိုင္မလား";
         _MusicDictionary_10.AlbumName = "Ninzi May";
         _MusicDictionary_10.AlbumArt = "AlbumArt.jpg";
-        _MusicDictionary_10.Length = "5:00";
+        _MusicDictionary_10.Length = "4:51";
         _MusicDictionary_10.Genre = "Pop";
         _MusicDictionary_10.Lyric = "မင္းသိႏိုင္မလား";
         _MusicDictionary_10.IsFavorite = false;
@@ -546,7 +553,7 @@ AdapterView.OnItemClickListener
         _MusicDictionary_11.MyanmarTitle = "အခ်စ္ထက္မက";
         _MusicDictionary_11.AlbumName = "Ninzi May";
         _MusicDictionary_11.AlbumArt = "AlbumArt.jpg";
-        _MusicDictionary_11.Length = "5:10";
+        _MusicDictionary_11.Length = "5:01";
         _MusicDictionary_11.Genre = "Pop";
         _MusicDictionary_11.Lyric = "အခ်စ္ထက္မက";
         _MusicDictionary_11.IsFavorite = false;

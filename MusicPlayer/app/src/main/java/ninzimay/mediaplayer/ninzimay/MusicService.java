@@ -27,6 +27,10 @@ public class MusicService extends Service
     private String PlayingStatus_New = "PlayingStatus_New";
     private String PlayingStatus_Playing = "PlayingStatus_Playing";
     private String PlayingStatus_Played = "PlayingStatus_Played";
+    private String EventName_FirstPlaying = "EventName_FirstPlaying";
+    private String EventName_NextSong = "EventName_NextSong";
+    private String EventName_CurrentPlayingSong = "EventName_CurrentPlayingSong";
+    private String EventName_PreviousSong = "EventName_PreviousSong";
     private MediaPlayer player;
     private List<MusicDictionary> List_MusicDictionary;
     private MusicDictionary Current_MusicDictionary;
@@ -58,7 +62,7 @@ public class MusicService extends Service
             return START_STICKY;
         }
         if (intent.getAction().equals(Constants.ACTION.STARTFOREGROUND_ACTION)) {
-            playSong(GetSongToPlay(true, false, false, true, false));
+            playSong(GetSongToPlay(true, false, false, false, true, false));
         }else if (intent.getAction().equals(Constants.ACTION.COMING_BACK)) {
         } else if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
         } else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
@@ -98,22 +102,52 @@ public class MusicService extends Service
 
     //<!-- Start developer defined function(s).  -->
     public void playbackCurrentSong(){
-        //playSong(GetSongToPlay(true, true, true));
         /// Play song after pause
+        IsMediaPlayerReady = false;
         if(player!=null){
             player.stop();
             player.release();
             player = null;
         }
-        playSong(GetSongToPlay(false, false, true, true, false));
+        playSong(GetSongToPlay(false, false, true, false, true, false));
     }
     public void pauseCurrentSong(){
-        player.pause();
-        CurrentPlayingLength = player.getCurrentPosition();
+        if(player == null) return;
+        if(player.isPlaying()){
+            player.pause();
+            CurrentPlayingLength = player.getCurrentPosition();
+            IsMediaPlayerReady = false;
+            player.stop();
+            player.release();
+            player = null;
+        }else
+        {
+            IsMediaPlayerReady = false;
+            player.release();
+            player = null;
+        }
+
+    }
+    public void playNextSong(){
         IsMediaPlayerReady = false;
-        player.stop();
-        player.release();
-        player = null;
+        if(player!=null){
+            player.stop();
+            player.release();
+            player = null;
+        }
+        playSong(GetSongToPlay(false, true, false, false, true, false));
+    }
+    public void playPreviousSong(){
+        IsMediaPlayerReady = false;
+        if(player!=null){
+            player.stop();
+            player.release();
+            player = null;
+        }
+        MusicDictionary _MusicDictionary = GetSongToPlay(false, false, false, true, true, false);
+        if(_MusicDictionary == null)
+            return;
+        playSong(_MusicDictionary);
     }
     public void setList(List<MusicDictionary> _List_MusicDictionary){
         List_MusicDictionary = _List_MusicDictionary;
@@ -149,6 +183,7 @@ public class MusicService extends Service
                                         Boolean IsFirstSong,
                                         Boolean IsNextSong,
                                         Boolean IsCurrentPlayingSong,
+                                        Boolean IsPreviousSong,
                                         Boolean IsRepeatAlbum,
                                         Boolean IsShuffle){
         MusicDictionary ToReturn_MusicDictionary = null;
@@ -197,6 +232,17 @@ public class MusicService extends Service
                     return ToReturn_MusicDictionary;
                 }
             }
+        }else if(IsPreviousSong){
+            for(int i=0; i<List_MusicDictionary.size(); i++)
+            {
+                if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
+                    if(i == 0){ return null; }
+                    List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_New;
+                    List_MusicDictionary.get(i-1).PlayingStatus = PlayingStatus_Playing;
+                    ToReturn_MusicDictionary = List_MusicDictionary.get(i-1);
+                    return ToReturn_MusicDictionary;
+                }
+            }
         }
         return ToReturn_MusicDictionary;
     }
@@ -211,8 +257,8 @@ public class MusicService extends Service
             else{
                 player = new MediaPlayer();
                 player.reset();
-                player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             }
+            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
             player.setDataSource(getApplicationContext(), Uri.parse(path));
             setCurrent_MusicDictionary(_MusicDictionary);
@@ -253,7 +299,7 @@ public class MusicService extends Service
                             player = null;
 
                             IsMediaPlayerReady = false;
-                            playSong(GetSongToPlay(false, true, false, IsRepeatAlbum, IsShuffle));
+                            playSong(GetSongToPlay(false, true, false, false, IsRepeatAlbum, IsShuffle));
                         }
                     });
                     if (CurrentPlayingLength > 0) {
