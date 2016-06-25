@@ -192,8 +192,7 @@ public class MusicService extends Service
         for(int i=0; i<List_MusicDictionary.size(); i++){
             if(List_MusicDictionary.get(i).ID == _MusicDictionary.ID) {
                 List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Playing;
-                break;
-            }else if(!List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Played)){
+            }else if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
                 List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
             }
         }

@@ -40,7 +40,7 @@ AdapterView.OnItemClickListener
     MusicService musicService;
     Intent playIntent;
     boolean IsMusicServiceConnected = false;
-    List<MusicDictionary> List_MusicDictionary = null;
+    ArrayList<MusicDictionary> List_MusicDictionary = null;
     String LoggerName = "NinZiMay";
     String PlayingStatus_New = "PlayingStatus_New";
     TextView txtTitle = null;
@@ -49,7 +49,7 @@ AdapterView.OnItemClickListener
     TextView txtStartPoint = null;
     TextView txtEndPoint = null;
     ListView _ListView = null;
-    BaseAdapter _Adapter = null;
+    SongListingRowControl Adapter_SongListingRowControl = null;
     int CurrentPlayingLength = 0;
     Button btnShuffle = null;
     Button btnBackward = null;
@@ -265,10 +265,10 @@ AdapterView.OnItemClickListener
         MusicDictionary _MusicDictionary = ((MusicDictionary)parent.getItemAtPosition(position));
         musicService.setCurrent_MusicDictionary(_MusicDictionary);
         if(musicService.IsPlayingSong() || musicService.IsPauseSong()){
-            Log.d(LoggerName, "[onItemClick] Play using binded service.");
+            //Log.d(LoggerName, "[onItemClick] Play using binded service.");
             musicService.playIndexedSong();
         }else{
-            Log.d(LoggerName, "[onItemClick] Play using started service.");
+            //Log.d(LoggerName, "[onItemClick] Play using started service.");
             playIntent.setAction(Constants.ACTION.INDEXED_ACTION);
             startService(playIntent);
         }
@@ -364,9 +364,9 @@ AdapterView.OnItemClickListener
         /// End binding basic control(s)
 
         /// Start binding listview control
-        _Adapter = new SongListingRowControl(this, getList_MusicDictionary());
+        Adapter_SongListingRowControl = new SongListingRowControl(this, getList_MusicDictionary());
         _ListView = (ListView) findViewById(R.id.listView);
-        _ListView.setAdapter(_Adapter);
+        _ListView.setAdapter(Adapter_SongListingRowControl);
         _ListView.setScrollingCacheEnabled(false);
         _ListView.setOnItemClickListener(this);
         /// End binding listview control
@@ -392,11 +392,8 @@ AdapterView.OnItemClickListener
         txtEndPoint.setText(String.format("%02d:%02d", durationMint, durationSec));
     }
     protected void ListView_Rebind(MusicDictionary CurrentPlaying_MusicDictionary){
-        _Adapter = null;
-        _Adapter = new SongListingRowControl(this, musicService.getList());
-        _Adapter.notifyDataSetChanged();
-        _ListView.invalidateViews();
-        //_ListView.setAdapter(_ListAdapter);
+        Adapter_SongListingRowControl.addItems((ArrayList)musicService.getList());
+        Adapter_SongListingRowControl.notifyDataSetChanged();
     }
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -411,7 +408,7 @@ AdapterView.OnItemClickListener
         BitmapWorkerTask task = new BitmapWorkerTask(imageView, _Context);
         task.execute(resId);
     }
-    public List<MusicDictionary> getList_MusicDictionary(){
+    public ArrayList<MusicDictionary> getList_MusicDictionary(){
 
         List_MusicDictionary = new ArrayList<MusicDictionary>();
 
