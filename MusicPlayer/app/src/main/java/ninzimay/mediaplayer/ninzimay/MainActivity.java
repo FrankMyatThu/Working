@@ -6,11 +6,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -113,7 +115,7 @@ AdapterView.OnItemClickListener
     }
     public void onStart(){
     super.onStart();
-    //Log.d(LoggerName, "In the onStart() event");
+        //Log.d(LoggerName, "In the onStart() event");
         if(playIntent == null){
             playIntent = new Intent(this, MusicService.class);
             bindService(playIntent, Music_ServiceConnection, Context.BIND_AUTO_CREATE);
@@ -195,6 +197,9 @@ AdapterView.OnItemClickListener
         if (Music_ServiceConnection != null) {
             unbindService(Music_ServiceConnection);
         }
+
+        /// Setting listview scrolled position.
+        SetListViewScrolledPosition();
     }
     @Override
     public void onBackPressed(){
@@ -261,7 +266,7 @@ AdapterView.OnItemClickListener
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String Clicked_FileName = ((MusicDictionary)parent.getItemAtPosition(position)).FileName;
-        Log.d(LoggerName, "Clicked_FileName = " + Clicked_FileName);
+        //Log.d(LoggerName, "Clicked_FileName = " + Clicked_FileName);
         MusicDictionary _MusicDictionary = ((MusicDictionary)parent.getItemAtPosition(position));
         musicService.setCurrent_MusicDictionary(_MusicDictionary);
         if(musicService.IsPlayingSong() || musicService.IsPauseSong()){
@@ -277,6 +282,27 @@ AdapterView.OnItemClickListener
     //<!-- End system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
+    private void SetListViewScrolledPosition(){
+        int ListViewFirstVisiblePosition = _ListView.getFirstVisiblePosition();
+        View _View = _ListView.getChildAt(0);
+        int Offset = (_View == null) ? 0 : (_View.getTop() - _ListView.getPaddingTop());
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //Log.d(LoggerName, "SetListViewScrolledPosition ListViewFirstVisiblePosition = "+ ListViewFirstVisiblePosition +" | Offset = "+Offset);
+        editor.putInt("ListViewFirstVisiblePosition", ListViewFirstVisiblePosition);
+        editor.putInt("Offset", Offset);
+        editor.commit();
+    }
+    private void LoadListViewScrolledPosition(){
+        //if(!IsComingBack) return;
+        //Log.d(LoggerName, "LoadListViewScrolledPosition");
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        int ListViewFirstVisiblePosition = sharedPreferences.getInt("ListViewFirstVisiblePosition", 0);
+        int Offset = sharedPreferences.getInt("Offset", 0);
+        //Log.d(LoggerName, "LoadListViewScrolledPosition ListViewFirstVisiblePosition = "+ListViewFirstVisiblePosition+ " | Offset = "+ Offset);
+        _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, Offset);
+
+    }
     private void btnPlayPause_Click(){
         if(getString(R.string.Play).equalsIgnoreCase(btnPlayPause.getText().toString())){
             //Log.d(LoggerName, "Play is clicked");
@@ -369,6 +395,7 @@ AdapterView.OnItemClickListener
         _ListView.setAdapter(Adapter_SongListingRowControl);
         _ListView.setScrollingCacheEnabled(false);
         _ListView.setOnItemClickListener(this);
+        LoadListViewScrolledPosition();
         /// End binding listview control
     }
     protected void setProgressText() {
@@ -392,7 +419,7 @@ AdapterView.OnItemClickListener
         txtEndPoint.setText(String.format("%02d:%02d", durationMint, durationSec));
     }
     protected void ListView_Rebind(MusicDictionary CurrentPlaying_MusicDictionary){
-        Adapter_SongListingRowControl.addItems((ArrayList)musicService.getList());
+        Adapter_SongListingRowControl.addItems((ArrayList) musicService.getList());
         Adapter_SongListingRowControl.notifyDataSetChanged();
     }
     private boolean isMyServiceRunning(Class<?> serviceClass) {
