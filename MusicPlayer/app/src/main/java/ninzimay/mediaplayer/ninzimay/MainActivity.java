@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -48,6 +49,7 @@ AdapterView.OnItemClickListener
     TextView txtStartPoint = null;
     TextView txtEndPoint = null;
     ListView _ListView = null;
+    BaseAdapter _Adapter = null;
     int CurrentPlayingLength = 0;
     Button btnShuffle = null;
     Button btnBackward = null;
@@ -362,9 +364,9 @@ AdapterView.OnItemClickListener
         /// End binding basic control(s)
 
         /// Start binding listview control
-        ListAdapter _ListAdapter = new SongListingRowControl(this, getList_MusicDictionary());
+        _Adapter = new SongListingRowControl(this, getList_MusicDictionary());
         _ListView = (ListView) findViewById(R.id.listView);
-        _ListView.setAdapter(_ListAdapter);
+        _ListView.setAdapter(_Adapter);
         _ListView.setScrollingCacheEnabled(false);
         _ListView.setOnItemClickListener(this);
         /// End binding listview control
@@ -390,8 +392,11 @@ AdapterView.OnItemClickListener
         txtEndPoint.setText(String.format("%02d:%02d", durationMint, durationSec));
     }
     protected void ListView_Rebind(MusicDictionary CurrentPlaying_MusicDictionary){
-        ListAdapter _ListAdapter = new SongListingRowControl(this, musicService.getList());
-        _ListView.setAdapter(_ListAdapter);
+        _Adapter = null;
+        _Adapter = new SongListingRowControl(this, musicService.getList());
+        _Adapter.notifyDataSetChanged();
+        _ListView.invalidateViews();
+        //_ListView.setAdapter(_ListAdapter);
     }
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);

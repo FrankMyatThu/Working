@@ -83,13 +83,15 @@ public class SongListingRowControl extends ArrayAdapter<MusicDictionary> {
 
         if(_MusicDictionary.PlayingStatus == PlayingStatus_Playing){
             _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightOrange));
+            _ViewHolder.txtEnglishInfo.setText("Playing...");
             _ViewHolder.txtMyanmarInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightOrange));
         }else{
             _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightgray));
             _ViewHolder.txtMyanmarInfo.setTextColor(ContextCompat.getColor(getContext(), R.color.lightgray));
         }
 
-        //Log.d(LoggerName , "Title = "+ _MusicDictionary.EnglishTitle +" : Status = "+ _MusicDictionary.PlayingStatus);
+
+        Log.d(LoggerName , "Title = "+ _MusicDictionary.EnglishTitle +" : Status = "+ _MusicDictionary.PlayingStatus);
 
         return _View_Row;
     }
