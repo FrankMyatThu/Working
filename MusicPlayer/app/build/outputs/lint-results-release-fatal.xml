@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <issues format="4" by="lint 24.4.1">
 
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type raw"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="        gifInputStream = context.getResources().openRawResource(R.drawable.play);"
+        errorLine2="                                                                ~~~~~~~~~~~~~~~">
+        <location
+            file="D:\01.Project\GitHub\Working\MusicPlayer\app\src\main\java\ninzimay\mediaplayer\ninzimay\CustomGifView.java"
+            line="39"
+            column="65"/>
+    </issue>
+
 </issues>

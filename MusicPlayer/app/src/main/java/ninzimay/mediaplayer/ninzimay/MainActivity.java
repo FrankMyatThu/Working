@@ -27,6 +27,8 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -291,12 +293,12 @@ AdapterView.OnItemClickListener
         int Offset = (_View == null) ? 0 : (_View.getTop() - _ListView.getPaddingTop());
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        //Gson gson = new Gson();
-        //String json = gson.toJson(MyObject);
+        Gson gson = new Gson();
+        String json_musicService = gson.toJson(musicService);
         //Log.d(LoggerName, "SetListViewScrolledPosition ListViewFirstVisiblePosition = "+ ListViewFirstVisiblePosition +" | Offset = "+Offset);
         editor.putInt("ListViewFirstVisiblePosition", ListViewFirstVisiblePosition);
         editor.putInt("Offset", Offset);
-        //editor.pu
+        editor.putString("json_musicService", json_musicService);
         editor.commit();
     }
     private void LoadListViewScrolledPosition(){
@@ -305,6 +307,8 @@ AdapterView.OnItemClickListener
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         int ListViewFirstVisiblePosition = sharedPreferences.getInt("ListViewFirstVisiblePosition", 0);
         int Offset = sharedPreferences.getInt("Offset", 0);
+        String json_musicService = sharedPreferences.getString("json_musicService", "");
+        Log.d(LoggerName, "json_musicService = "+json_musicService);
         //Log.d(LoggerName, "LoadListViewScrolledPosition ListViewFirstVisiblePosition = "+ListViewFirstVisiblePosition+ " | Offset = "+ Offset);
         _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, Offset);
 
