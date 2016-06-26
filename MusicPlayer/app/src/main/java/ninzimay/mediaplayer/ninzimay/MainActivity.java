@@ -104,6 +104,7 @@ AdapterView.OnItemClickListener
         super.onCreate(savedInstanceState);
         if( savedInstanceState != null ) {
             IsComingBack = savedInstanceState.getBoolean("IsComingBack");
+            playIntent = savedInstanceState.getParcelable("playIntent");
             //Log.d(LoggerName, "IsComingBack after orientation changed = " + IsComingBack);
         }
         if(isMyServiceRunning(MusicService.class)){
@@ -116,6 +117,7 @@ AdapterView.OnItemClickListener
     public void onStart(){
     super.onStart();
         //Log.d(LoggerName, "In the onStart() event");
+        Log.d(LoggerName, "playIntent = "+playIntent);
         if(playIntent == null){
             playIntent = new Intent(this, MusicService.class);
             bindService(playIntent, Music_ServiceConnection, Context.BIND_AUTO_CREATE);
@@ -211,6 +213,7 @@ AdapterView.OnItemClickListener
     protected void onSaveInstanceState(Bundle outState) {
         //Log.d(LoggerName, "onSaveInstanceState");
         outState.putBoolean("IsComingBack", true);
+        outState.putParcelable("playIntent", playIntent);
         super.onSaveInstanceState(outState);
     }
     @Override
@@ -288,9 +291,12 @@ AdapterView.OnItemClickListener
         int Offset = (_View == null) ? 0 : (_View.getTop() - _ListView.getPaddingTop());
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        //Gson gson = new Gson();
+        //String json = gson.toJson(MyObject);
         //Log.d(LoggerName, "SetListViewScrolledPosition ListViewFirstVisiblePosition = "+ ListViewFirstVisiblePosition +" | Offset = "+Offset);
         editor.putInt("ListViewFirstVisiblePosition", ListViewFirstVisiblePosition);
         editor.putInt("Offset", Offset);
+        //editor.pu
         editor.commit();
     }
     private void LoadListViewScrolledPosition(){
