@@ -192,8 +192,8 @@ AdapterView.OnItemClickListener
         //Log.d(LoggerName, "In the onPause() event");
     }
     public void onStop(){
-        super.onStop();
         //Log.d(LoggerName, "In the onStop() event");
+        super.onStop();
     }
     public void onDestroy() {
         //Log.d(LoggerName, "In the onDestroy() event");
@@ -201,7 +201,6 @@ AdapterView.OnItemClickListener
         if (Music_ServiceConnection != null) {
             unbindService(Music_ServiceConnection);
         }
-
         /// Setting listview scrolled position.
         SetListViewScrolledPosition();
     }
@@ -215,7 +214,6 @@ AdapterView.OnItemClickListener
     protected void onSaveInstanceState(Bundle outState) {
         //Log.d(LoggerName, "onSaveInstanceState");
         outState.putBoolean("IsComingBack", true);
-        outState.putParcelable("playIntent", playIntent);
         super.onSaveInstanceState(outState);
     }
     @Override
@@ -293,25 +291,17 @@ AdapterView.OnItemClickListener
         int Offset = (_View == null) ? 0 : (_View.getTop() - _ListView.getPaddingTop());
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json_musicService = gson.toJson(musicService);
-        //Log.d(LoggerName, "SetListViewScrolledPosition ListViewFirstVisiblePosition = "+ ListViewFirstVisiblePosition +" | Offset = "+Offset);
         editor.putInt("ListViewFirstVisiblePosition", ListViewFirstVisiblePosition);
         editor.putInt("Offset", Offset);
-        editor.putString("json_musicService", json_musicService);
         editor.commit();
+        //Log.d(LoggerName, "SetListViewScrolledPosition ListViewFirstVisiblePosition = "+ ListViewFirstVisiblePosition +" | Offset = "+Offset);
     }
     private void LoadListViewScrolledPosition(){
-        //if(!IsComingBack) return;
-        //Log.d(LoggerName, "LoadListViewScrolledPosition");
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         int ListViewFirstVisiblePosition = sharedPreferences.getInt("ListViewFirstVisiblePosition", 0);
         int Offset = sharedPreferences.getInt("Offset", 0);
-        String json_musicService = sharedPreferences.getString("json_musicService", "");
-        Log.d(LoggerName, "json_musicService = "+json_musicService);
-        //Log.d(LoggerName, "LoadListViewScrolledPosition ListViewFirstVisiblePosition = "+ListViewFirstVisiblePosition+ " | Offset = "+ Offset);
         _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, Offset);
-
+        //Log.d(LoggerName, "LoadListViewScrolledPosition ListViewFirstVisiblePosition = "+ListViewFirstVisiblePosition+ " | Offset = "+ Offset);
     }
     private void btnPlayPause_Click(){
         if(getString(R.string.Play).equalsIgnoreCase(btnPlayPause.getText().toString())){
