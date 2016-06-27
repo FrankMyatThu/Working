@@ -5,17 +5,14 @@ package ninzimay.mediaplayer.ninzimay;
  */
 public class Constants {
     public interface ACTION {
-        public static String MAIN_ACTION = "ninzimay.mediaplayer.ninzimay.action.main";
         public static String PREV_ACTION = "ninzimay.mediaplayer.ninzimay.action.prev";
         public static String PLAY_ACTION = "ninzimay.mediaplayer.ninzimay.action.play";
         public static String PAUSE_ACTION = "ninzimay.mediaplayer.ninzimay.action.pause";
         public static String NEXT_ACTION = "ninzimay.mediaplayer.ninzimay.action.next";
-        public static String COMING_BACK = "ninzimay.mediaplayer.ninzimay.action.comingback";
-        public static String INDEXED_ACTION = "ninzimay.mediaplayer.ninzimay.action.indexed";
-        public static String STARTFOREGROUND_ACTION = "ninzimay.mediaplayer.ninzimay.action.startforeground";
+        public static String INDEXED_SONG_ACTION = "ninzimay.mediaplayer.ninzimay.action.indexedSong";
+        public static String INDEXED_SEEK_ACTION = "ninzimay.mediaplayer.ninzimay.action.indexedSeek";
         public static String STOPFOREGROUND_ACTION = "ninzimay.mediaplayer.ninzimay.action.stopforeground";
     }
-
     public interface NOTIFICATION_ID {
         public static int FOREGROUND_SERVICE = 101;
     }

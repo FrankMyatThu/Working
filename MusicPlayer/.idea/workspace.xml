@@ -38,25 +38,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.168207">
-              <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+            <state vertical-scroll-proportion="-12.172414">
+              <caret line="329" column="5" selection-start-line="329" selection-start-column="5" selection-end-line="329" selection-end-column="5" />
               <folding>
-                <element signature="class#2571:3371" expanded="false" />
-                <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-                <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-                <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#6740#6775#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="class#2541:3341" expanded="false" />
+                <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+                <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
                 <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#7922#7974#0" expanded="false" />
+                <element signature="e#7965#8017#0" expanded="false" />
                 <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -66,22 +64,64 @@
                 <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#12424#12463#0" expanded="false" />
-                <element signature="e#12541#12581#0" expanded="false" />
-                <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#12467#12506#0" expanded="false" />
+                <element signature="e#12584#12624#0" expanded="false" />
                 <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#13984#14025#0" expanded="false" />
-                <element signature="e#14347#14382#0" expanded="false" />
-                <element signature="e#16157#16189#0" expanded="false" />
+                <element signature="e#14126#14167#0" expanded="false" />
+                <element signature="e#14489#14524#0" expanded="false" />
+                <element signature="e#16299#16331#0" expanded="false" />
                 <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#loadBitmap#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#getList_MusicDictionary#0;class#MainActivity#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MusicService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3877193">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+              <folding>
+                <element signature="docComment;class#MusicService#0" expanded="false" />
+                <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
+                <element signature="e#1430#1463#0" expanded="false" />
+                <element signature="e#1823#3096#0" expanded="true" />
+                <element signature="e#3095#3096#0" expanded="true" />
+                <element signature="e#3159#3160#0" expanded="true" />
+                <element signature="e#3186#3187#0" expanded="true" />
+                <element signature="e#4533#4534#0" expanded="true" />
+                <element signature="e#4601#4602#0" expanded="true" />
+                <element signature="e#5506#5507#0" expanded="true" />
+                <element signature="e#5545#5546#0" expanded="true" />
+                <element signature="method#IsPlayingSong#0;class#MusicService#0" expanded="false" />
+                <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
+                <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
+                <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
+                <element signature="e#10908#11268#0" expanded="true" />
+                <element signature="e#11267#11268#0" expanded="true" />
+                <element signature="e#12087#13551#0" expanded="true" />
+                <element signature="e#13550#13551#0" expanded="true" />
+                <element signature="e#13599#14565#0" expanded="true" />
+                <element signature="e#13914#14414#0" expanded="true" />
+                <element signature="e#14413#14414#0" expanded="true" />
+                <element signature="e#14564#14565#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="100" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1656,13 +1696,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/button_pressed.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/SongListingRowControl.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MediaPlayerState.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java" />
       </list>
     </option>
   </component>
@@ -2024,26 +2065,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277592" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3259861" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32441473" sideWeight="0.5060514" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4180602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32441473" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32441473" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19818456" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21406959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2082,19 +2123,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2104,16 +2143,14 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2128,19 +2165,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2150,16 +2185,14 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2176,9 +2209,7 @@
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicBinder#0;class#MusicService#0" expanded="false" />
             <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onUnbind#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#playIndexedSong#0;class#MusicService#0" expanded="false" />
@@ -2192,7 +2223,6 @@
             <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
             <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#10696#10742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2204,9 +2234,7 @@
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicBinder#0;class#MusicService#0" expanded="false" />
             <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onUnbind#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#playIndexedSong#0;class#MusicService#0" expanded="false" />
@@ -2220,7 +2248,6 @@
             <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
             <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#10696#10742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2230,19 +2257,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2252,16 +2277,14 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2276,19 +2299,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="273" column="9" selection-start-line="273" selection-start-column="9" selection-end-line="273" selection-end-column="9" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2298,16 +2319,14 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2324,9 +2343,7 @@
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicBinder#0;class#MusicService#0" expanded="false" />
             <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onUnbind#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#playIndexedSong#0;class#MusicService#0" expanded="false" />
@@ -2340,7 +2357,6 @@
             <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
             <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#10696#10742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2350,19 +2366,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2372,16 +2386,14 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2405,9 +2417,7 @@
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicBinder#0;class#MusicService#0" expanded="false" />
             <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onUnbind#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#playIndexedSong#0;class#MusicService#0" expanded="false" />
@@ -2421,7 +2431,6 @@
             <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
             <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#10696#10742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2431,19 +2440,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2453,16 +2460,14 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2486,9 +2491,7 @@
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicBinder#0;class#MusicService#0" expanded="false" />
             <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onUnbind#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#playIndexedSong#0;class#MusicService#0" expanded="false" />
@@ -2502,7 +2505,6 @@
             <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
             <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#10696#10742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2512,19 +2514,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="484" column="46" selection-start-line="484" selection-start-column="46" selection-end-line="484" selection-end-column="46" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2534,16 +2534,14 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2560,9 +2558,7 @@
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicBinder#0;class#MusicService#0" expanded="false" />
             <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onUnbind#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#playIndexedSong#0;class#MusicService#0" expanded="false" />
@@ -2576,7 +2572,6 @@
             <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
             <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#10696#10742#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2606,13 +2601,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="4876" column="16" selection-start-line="4876" selection-start-column="16" selection-end-line="4876" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/widget/ProgressBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="1341" column="29" selection-start-line="1341" selection-start-column="29" selection-end-line="1341" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -2655,14 +2643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35789475">
           <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2982456">
-          <caret line="10" column="89" selection-start-line="10" selection-start-column="89" selection-end-line="10" selection-end-column="89" />
           <folding />
         </state>
       </provider>
@@ -2737,34 +2717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
-          <folding>
-            <element signature="docComment;class#MusicService#0" expanded="false" />
-            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicBinder#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onUnbind#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playIndexedSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playNextSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playPreviousSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#setList#0;class#MusicService#0" expanded="false" />
-            <element signature="method#IsPlayingSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#10696#10742#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2773,32 +2725,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/widget/ProgressBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="1341" column="29" selection-start-line="1341" selection-start-column="29" selection-end-line="1341" selection-end-column="29" />
+          <folding>
+            <element signature="e#50700#50701#0" expanded="false" />
+            <element signature="e#50744#50745#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7430639">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.79122806">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MediaPlayerState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50701755">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="100" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.168207">
-          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+        <state vertical-scroll-proportion="-12.172414">
+          <caret line="329" column="5" selection-start-line="329" selection-start-column="5" selection-end-line="329" selection-end-column="5" />
           <folding>
-            <element signature="class#2571:3371" expanded="false" />
-            <element signature="method#onServiceConnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onServiceDisconnected#0;class#2571:3371" expanded="false" />
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#6740#6775#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="class#2541:3341" expanded="false" />
+            <element signature="method#onServiceConnected#0;class#2541:3341" expanded="false" />
+            <element signature="method#onServiceDisconnected#0;class#2541:3341" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7922#7974#0" expanded="false" />
+            <element signature="e#7965#8017#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2808,21 +2785,51 @@
             <element signature="method#SetListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#LoadListViewScrolledPosition#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#12424#12463#0" expanded="false" />
-            <element signature="e#12541#12581#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#12467#12506#0" expanded="false" />
+            <element signature="e#12584#12624#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13984#14025#0" expanded="false" />
-            <element signature="e#14347#14382#0" expanded="false" />
-            <element signature="e#16157#16189#0" expanded="false" />
+            <element signature="e#14126#14167#0" expanded="false" />
+            <element signature="e#14489#14524#0" expanded="false" />
+            <element signature="e#16299#16331#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
             <element signature="method#loadBitmap#0;class#MainActivity#0" expanded="false" />
             <element signature="method#getList_MusicDictionary#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3877193">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+          <folding>
+            <element signature="docComment;class#MusicService#0" expanded="false" />
+            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
+            <element signature="e#1430#1463#0" expanded="false" />
+            <element signature="e#1823#3096#0" expanded="true" />
+            <element signature="e#3095#3096#0" expanded="true" />
+            <element signature="e#3159#3160#0" expanded="true" />
+            <element signature="e#3186#3187#0" expanded="true" />
+            <element signature="e#4533#4534#0" expanded="true" />
+            <element signature="e#4601#4602#0" expanded="true" />
+            <element signature="e#5506#5507#0" expanded="true" />
+            <element signature="e#5545#5546#0" expanded="true" />
+            <element signature="method#IsPlayingSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
+            <element signature="e#10908#11268#0" expanded="true" />
+            <element signature="e#11267#11268#0" expanded="true" />
+            <element signature="e#12087#13551#0" expanded="true" />
+            <element signature="e#13550#13551#0" expanded="true" />
+            <element signature="e#13599#14565#0" expanded="true" />
+            <element signature="e#13914#14414#0" expanded="true" />
+            <element signature="e#14413#14414#0" expanded="true" />
+            <element signature="e#14564#14565#0" expanded="true" />
           </folding>
         </state>
       </provider>

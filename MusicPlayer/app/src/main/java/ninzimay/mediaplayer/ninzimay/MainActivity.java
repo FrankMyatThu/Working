@@ -42,6 +42,7 @@ AdapterView.OnItemClickListener
 {
     //<!-- Start declaration area.  -->
     MusicService musicService;
+    MediaPlayerState mediaPlayerState;
     Intent playIntent;
     boolean IsMusicServiceConnected = false;
     ArrayList<MusicDictionary> List_MusicDictionary = null;
@@ -68,8 +69,7 @@ AdapterView.OnItemClickListener
     int CurrentSongID = 0;
     boolean IsUserSeekingSliderBar = false;
     boolean IsComingBack = false;
-    Handler Handler_Music = null;
-    Runnable Runnable_Music = null;
+
     Typeface font_fontawesome = null;
     Typeface font_ailerons = null;
     Typeface font_ninzimay = null;
@@ -128,14 +128,15 @@ AdapterView.OnItemClickListener
                 startService(playIntent);
             }
 
-            //Music Handler for methods
+            /// broadcastlistener will come here.
+            /*//Music Handler for methods
             Handler_Music = new Handler();
             Runnable_Music = new Runnable() {
                 @Override
                 public void run() {
                     if (IsMusicServiceConnected){ // Check if service bounded
 
-                        if(!musicService.IsMediaPlayerObjectAvailable()){
+                        if(musicService.getMediaPlayerState() != mediaPlayerState.Started ){
                             MusicTime_TotalLength = 0;
                             Handler_Music.postDelayed(Runnable_Music, 100);
                             return;
@@ -173,7 +174,7 @@ AdapterView.OnItemClickListener
                     }
                     Handler_Music.postDelayed(this, 100);
                 }
-            };
+            };*/
         }
     }
     public void onResume(){
@@ -325,11 +326,13 @@ AdapterView.OnItemClickListener
         }
         Handler_Music.postDelayed(Runnable_Music, 100);
         btnPlayPause.setText(getString(R.string.Pause));
+        /// Set cache IsPlayOrPause = "Play" ...
     }
     private void btnPause_Click(){
         musicService.pauseCurrentSong();
         Handler_Music.postDelayed(Runnable_Music, 100);
         btnPlayPause.setText(getString(R.string.Play));
+        /// Set cache IsPlayOrPause = "Pause" ...
     }
     private void btnForward_Click(){
         if(!musicService.IsPlayingSong()) return;

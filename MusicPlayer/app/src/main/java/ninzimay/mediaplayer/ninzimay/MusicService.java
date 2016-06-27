@@ -8,6 +8,7 @@ import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
@@ -30,43 +31,70 @@ public class MusicService extends Service
     private enum PlayerEventName {
         FirstPlaying, NextSong, CurrentPlayingSong, PreviousSong, IndexedSong;
     }
-    private MediaPlayer player;
+    private MediaPlayerState mediaPlayerState;
+    private MediaPlayer player = null;
     private List<MusicDictionary> List_MusicDictionary;
     private MusicDictionary Current_MusicDictionary;
     private int CurrentPlayingLength = 0;
     private boolean IsRepeatAlbum = true;
     private boolean IsShuffle = false;
-    private boolean IsMediaPlayerReady = false;
-    private final IBinder _MusicBinder = new MusicBinder();
+    private Handler Handler_Music = null;
+    private Runnable Runnable_Music = null;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
-    public class MusicBinder extends Binder {
-        MusicService getService() {
-            return MusicService.this;
-        }
-    }
     //<!-- End dependency object(s).  -->
 
     //<!-- Start system defined function(s).  -->
     public void onCreate(){
+        Log.d(LoggerName, "Service.onCreate player = " + player);
         super.onCreate();
+
+        //Music Handler for methods
+        Handler_Music = new Handler();
+        Runnable_Music = new Runnable() {
+            @Override
+            public void run() {
+
+                if(mediaPlayerState != MediaPlayerState.Started) return;
+
+                if (MusicTime_TotalLength == 0){ // Put data in it one time
+                    MusicTime_TotalLength = musicService.getMusicDuration();
+                    Seekbar.setMax(MusicTime_TotalLength);
+                    MusicDictionary _MusicDictionary = musicService.getCurrent_MusicDictionary();
+                    txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
+                    txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
+                    ListView_Rebind(_MusicDictionary);
+                }
+
+                if(!IsUserSeekingSliderBar){
+                    MusicTime_CurrentPlaying = musicService.getMusicCurrrentPosition();
+                    Seekbar.setProgress(MusicTime_CurrentPlaying);
+                    setProgressText();
+                }
+
+                if(CurrentSongID != musicService.getCurrent_MusicDictionary().ID){
+                    CurrentSongID = musicService.getCurrent_MusicDictionary().ID;
+                    MusicTime_TotalLength = 0;
+                }
+                Handler_Music.postDelayed(this, 100);
+            }
+        };
+    }
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent == null) {
-            stopForeground(true);
-            stopSelf();
-            return START_STICKY;
-        }
-        if (intent.getAction().equals(Constants.ACTION.STARTFOREGROUND_ACTION)) {
+        if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
+        }else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
             playSong(GetSongToPlay(PlayerEventName.FirstPlaying, IsRepeatAlbum, IsShuffle));
-        }else if (intent.getAction().equals(Constants.ACTION.INDEXED_ACTION)) {
-            playSong(getCurrent_ReInitialized_MusicDictionary());
-        }else if (intent.getAction().equals(Constants.ACTION.COMING_BACK)) {
-        } else if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
-        } else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
+        }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
         } else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
+        }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SONG_ACTION)) {
+            playSong(getCurrent_ReInitialized_MusicDictionary());
+        }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SEEK_ACTION)) {
         } else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
             stopForeground(true);
             stopSelf();
@@ -74,97 +102,44 @@ public class MusicService extends Service
         return START_STICKY;
     }
     @Override
-    public IBinder onBind(Intent intent) {
-        return _MusicBinder;
-    }
-    @Override
-    public boolean onUnbind(Intent intent){
-        if(player == null) return false;
-        if(player.isPlaying()) return false;
-
-        player.stop();
-        player.release();
-        player = null;
-        return false;
-    }
-    @Override
     public void onDestroy() {
-        if(player == null) return;
-        if(player.isPlaying()) return;
-
-        player.stop();
         player.release();
         player = null;
-        return;
+        /// Clear cache ...
     }
     //<!-- End system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
     public void playbackCurrentSong(){
         /// Play song after pause
-        IsMediaPlayerReady = false;
-        if(player!=null){
-            player.stop();
-            player.release();
-            player = null;
-        }
         playSong(GetSongToPlay(PlayerEventName.CurrentPlayingSong, IsRepeatAlbum, IsShuffle));
     }
     public void playIndexedSong(){
-        IsMediaPlayerReady = false;
-        if(player!=null){
-            player.stop();
-            player.release();
-            player = null;
-        }
         playSong(getCurrent_ReInitialized_MusicDictionary());
     }
     public void pauseCurrentSong(){
-        if(player == null) return;
-        if(player.isPlaying()){
-            player.pause();
-            CurrentPlayingLength = player.getCurrentPosition();
-            IsMediaPlayerReady = false;
-            player.stop();
-            player.release();
-            player = null;
-        }else
-        {
-            IsMediaPlayerReady = false;
-            player.release();
-            player = null;
-        }
-
+        player.pause();
+        mediaPlayerState = MediaPlayerState.Paused;
+        CurrentPlayingLength = player.getCurrentPosition();
     }
     public void playNextSong(){
-        IsMediaPlayerReady = false;
-        if(player!=null){
-            player.stop();
-            player.release();
-            player = null;
-        }
         playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
     }
     public void playPreviousSong(){
-        IsMediaPlayerReady = false;
-        if(player!=null){
-            player.stop();
-            player.release();
-            player = null;
-        }
         MusicDictionary _MusicDictionary = GetSongToPlay(PlayerEventName.PreviousSong, IsRepeatAlbum, IsShuffle);
         if(_MusicDictionary == null)
             return;
         playSong(_MusicDictionary);
     }
     public void setList(List<MusicDictionary> _List_MusicDictionary){
+        //SQLiteOpenHelper http://hmkcode.com/android-simple-sqlite-database-tutorial/
         List_MusicDictionary = _List_MusicDictionary;
     }
     public List<MusicDictionary> getList(){
         return List_MusicDictionary;
     }
-    public boolean IsMediaPlayerObjectAvailable(){
-        return IsMediaPlayerReady;
+    public MediaPlayerState getMediaPlayerState(){
+        return mediaPlayerState;
     }
     public boolean IsPlayingSong(){
         if(player == null) return  false;
@@ -275,78 +250,80 @@ public class MusicService extends Service
     public void playSong(MusicDictionary _MusicDictionary){
         String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
         try {
-            /// Just playing song from start of the length
-            /// MediaPlayer initialization
-            if (player != null){
-                player.reset();
-            }
-            else{
-                player = new MediaPlayer();
-                player.reset();
-            }
-            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
-            player.setDataSource(getApplicationContext(), Uri.parse(path));
-            setCurrent_MusicDictionary(_MusicDictionary);
-            player.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
-                    Log.e(LoggerName, String.format("[player.setOnErrorListener] Error(%s%s)", what, extra));
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("Media Player Error: ");
-                    switch (what) {
-                        case MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK:
-                            sb.append("Not Valid for Progressive Playback");
-                            break;
-                        case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
-                            sb.append("Server Died");
-                            break;
-                        case MediaPlayer.MEDIA_ERROR_UNKNOWN:
-                            sb.append("Unknown");
-                            break;
-                        default:
-                            sb.append(" Non standard (");
-                            sb.append(what);
-                            sb.append(")");
+            if (CurrentPlayingLength > 0) {
+                player.seekTo(CurrentPlayingLength);
+                player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                    @Override
+                    public void onSeekComplete(MediaPlayer MediaPlayer_onSeekComplete) {
+                        CurrentPlayingLength = 0;
+                        player.start();
+                        mediaPlayerState = MediaPlayerState.Started;
                     }
-                    sb.append(" (" + what + ") ");
-                    sb.append(extra);
-                    Log.e(LoggerName, sb.toString());
-                    return true;
+                });
+            }
+            else
+            {
+                /// Just playing song from start of the length
+                /// MediaPlayer initialization
+                if (player != null){
+                    player.reset();
+                    mediaPlayerState = MediaPlayerState.Idle;
                 }
-            });
-            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer MediaPlayer_onPrepared) {
-                    /// MediaPlayer
-                    player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        public void onCompletion(MediaPlayer MediaPlayer_onCompletion) {
-                            player.stop();
-                            player.release();
-                            player = null;
-
-                            IsMediaPlayerReady = false;
-                            playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
+                else{
+                    player = new MediaPlayer();
+                    player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+                }
+                player.setDataSource(getApplicationContext(), Uri.parse(path));
+                mediaPlayerState = MediaPlayerState.Initialized;
+                setCurrent_MusicDictionary(_MusicDictionary);
+                player.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                    public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
+                        Log.e(LoggerName, String.format("[player.setOnErrorListener] Error(%s%s)", what, extra));
+                        mediaPlayerState = MediaPlayerState.Error;
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("Media Player Error: ");
+                        switch (what) {
+                            case MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK:
+                                sb.append("Not Valid for Progressive Playback");
+                                break;
+                            case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
+                                sb.append("Server Died");
+                                break;
+                            case MediaPlayer.MEDIA_ERROR_UNKNOWN:
+                                sb.append("Unknown");
+                                break;
+                            default:
+                                sb.append(" Non standard (");
+                                sb.append(what);
+                                sb.append(")");
                         }
-                    });
-                    if (CurrentPlayingLength > 0) {
-                        player.seekTo(CurrentPlayingLength);
-                        player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
-                            @Override
-                            public void onSeekComplete(MediaPlayer MediaPlayer_onSeekComplete) {
-                                CurrentPlayingLength = 0;
-                                player.start();
-                                IsMediaPlayerReady = true;
+                        sb.append(" (" + what + ") ");
+                        sb.append(extra);
+                        Log.e(LoggerName, sb.toString());
+                        return true;
+                    }
+                });
+                player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer MediaPlayer_onPrepared) {
+                        mediaPlayerState = MediaPlayerState.Prepared;
+                        /// MediaPlayer
+                        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            public void onCompletion(MediaPlayer MediaPlayer_onCompletion) {
+                                mediaPlayerState = MediaPlayerState.Completed;
+                                player.release();
+                                mediaPlayerState = MediaPlayerState.End;
+                                playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
                             }
                         });
-                    }else
-                    {
                         player.start();
-                        IsMediaPlayerReady = true;
+                        mediaPlayerState = MediaPlayerState.Started;
                     }
-                }
-            });
-            player.prepareAsync();
-
+                });
+                player.prepareAsync();
+                mediaPlayerState = MediaPlayerState.Preparing;
+            }
         } catch (IllegalArgumentException e){
             Log.e(LoggerName, "[MusicService].[playSong] IllegalArgumentException Error = "+ e.getMessage());
             e.printStackTrace();
