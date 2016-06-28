@@ -42,7 +42,6 @@ AdapterView.OnItemClickListener
 {
     //<!-- Start declaration area.  -->
     MusicService musicService;
-    MediaPlayerState mediaPlayerState;
     Intent playIntent;
     boolean IsMusicServiceConnected = false;
     ArrayList<MusicDictionary> List_MusicDictionary = null;
@@ -69,7 +68,6 @@ AdapterView.OnItemClickListener
     int CurrentSongID = 0;
     boolean IsUserSeekingSliderBar = false;
     boolean IsComingBack = false;
-
     Typeface font_fontawesome = null;
     Typeface font_ailerons = null;
     Typeface font_ninzimay = null;
@@ -104,6 +102,7 @@ AdapterView.OnItemClickListener
     protected void onCreate(Bundle savedInstanceState) {
         //Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
+        playIntent = new Intent();
         if( savedInstanceState != null ) {
             IsComingBack = savedInstanceState.getBoolean("IsComingBack");
             playIntent = savedInstanceState.getParcelable("playIntent");
@@ -199,9 +198,7 @@ AdapterView.OnItemClickListener
     public void onDestroy() {
         //Log.d(LoggerName, "In the onDestroy() event");
         super.onDestroy();
-        if (Music_ServiceConnection != null) {
-            unbindService(Music_ServiceConnection);
-        }
+        playIntent = null;
         /// Setting listview scrolled position.
         SetListViewScrolledPosition();
     }
@@ -343,6 +340,17 @@ AdapterView.OnItemClickListener
         if(!musicService.IsPlayingSong()) return;
         musicService.playPreviousSong();
         Handler_Music.postDelayed(Runnable_Music, 100);
+    }
+    private void playSong(Boolean IsIndexed){
+        Gson _Gson = new Gson();
+        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
+        if(IsIndexed){
+            playIntent.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
+        }else{
+            playIntent.setAction(Constants.ACTION.PLAY_ACTION);
+        }
+        playIntent.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
+        startService(playIntent);
     }
     private  void initializer(){
 

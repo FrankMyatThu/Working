@@ -11,7 +11,11 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +33,7 @@ public class MusicService extends Service
     private String PlayingStatus_Playing = "PlayingStatus_Playing";
     private String PlayingStatus_Played = "PlayingStatus_Played";
     private enum PlayerEventName {
-        FirstPlaying, NextSong, CurrentPlayingSong, PreviousSong, IndexedSong;
+        FirstPlaying, NextSong, CurrentPlayingSong, PreviousSong;
     }
     private MediaPlayerState mediaPlayerState;
     private MediaPlayer player = null;
@@ -40,6 +44,7 @@ public class MusicService extends Service
     private boolean IsShuffle = false;
     private Handler Handler_Music = null;
     private Runnable Runnable_Music = null;
+    private Gson gson = new Gson();
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
@@ -49,37 +54,7 @@ public class MusicService extends Service
     public void onCreate(){
         Log.d(LoggerName, "Service.onCreate player = " + player);
         super.onCreate();
-
-        //Music Handler for methods
-        Handler_Music = new Handler();
-        Runnable_Music = new Runnable() {
-            @Override
-            public void run() {
-
-                if(mediaPlayerState != MediaPlayerState.Started) return;
-
-                if (MusicTime_TotalLength == 0){ // Put data in it one time
-                    MusicTime_TotalLength = musicService.getMusicDuration();
-                    Seekbar.setMax(MusicTime_TotalLength);
-                    MusicDictionary _MusicDictionary = musicService.getCurrent_MusicDictionary();
-                    txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
-                    txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
-                    ListView_Rebind(_MusicDictionary);
-                }
-
-                if(!IsUserSeekingSliderBar){
-                    MusicTime_CurrentPlaying = musicService.getMusicCurrrentPosition();
-                    Seekbar.setProgress(MusicTime_CurrentPlaying);
-                    setProgressText();
-                }
-
-                if(CurrentSongID != musicService.getCurrent_MusicDictionary().ID){
-                    CurrentSongID = musicService.getCurrent_MusicDictionary().ID;
-                    MusicTime_TotalLength = 0;
-                }
-                Handler_Music.postDelayed(this, 100);
-            }
-        };
+        getHandler();
     }
     @Override
     public IBinder onBind(Intent intent) {
@@ -89,10 +64,22 @@ public class MusicService extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
         }else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
+            // conditional set data
+            if(List_MusicDictionary == null){
+                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
+                List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
+            }
             playSong(GetSongToPlay(PlayerEventName.FirstPlaying, IsRepeatAlbum, IsShuffle));
+        }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
+            playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
         } else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SONG_ACTION)) {
+            // conditional set data
+            if(List_MusicDictionary == null){
+                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
+                List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
+            }
             playSong(getCurrent_ReInitialized_MusicDictionary());
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SEEK_ACTION)) {
         } else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
@@ -110,6 +97,78 @@ public class MusicService extends Service
     //<!-- End system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
+    public int getMusicCurrrentPosition(){
+        return player.getCurrentPosition();
+    }
+    public int getMusicDuration(){
+        /// Get total length using mediaplayer object.
+        return player.getDuration();
+    }
+    public MusicDictionary getCurrent_MusicDictionary(){
+        return Current_MusicDictionary;
+    }
+    public MusicDictionary getCurrent_ReInitialized_MusicDictionary(){
+        MusicDictionary _MusicDictionary = getCurrent_MusicDictionary();
+        for(int i=0; i<List_MusicDictionary.size(); i++){
+            if(List_MusicDictionary.get(i).ID == _MusicDictionary.ID) {
+                List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Playing;
+            }else if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
+                List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
+            }
+        }
+        return _MusicDictionary;
+    }
+    public List<MusicDictionary> getList(){
+        return List_MusicDictionary;
+    }
+    private void getHandler(){
+        //Music Handler for methods
+        Handler_Music = new Handler();
+        Runnable_Music = new Runnable() {
+            @Override
+            public void run() {
+                if(mediaPlayerState == MediaPlayerState.Started || mediaPlayerState == MediaPlayerState.Paused){
+                    broadCast_Forever();
+                }
+                Handler_Music.postDelayed(this, 100);
+            }
+        };
+        Handler_Music.postDelayed(Runnable_Music, 100);
+    }
+    public void setList(List<MusicDictionary> _List_MusicDictionary){
+        //SQLiteOpenHelper http://hmkcode.com/android-simple-sqlite-database-tutorial/
+        List_MusicDictionary = _List_MusicDictionary;
+    }
+    public void setCurrent_MusicDictionary(MusicDictionary _MusicDictionary){
+        Current_MusicDictionary = _MusicDictionary;
+    }
+    private void broadCast_Forever(){
+        /// Every seconds
+        /// --------------------
+        /// CurrentSongPlayingIndex
+        /// CurrentSongID
+        MusicDictionary Current_MusicDictionary = getCurrent_MusicDictionary();
+        Intent intent_Broadcast_Forever = new Intent(Constants.BROADCAST.FOREVER_BROADCAST);
+        intent_Broadcast_Forever.putExtra("CurrentSongPlayingIndex", getMusicCurrrentPosition());
+        intent_Broadcast_Forever.putExtra("CurrentSongID", Current_MusicDictionary.ID);
+        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_Forever);
+    }
+    private void broadCast_OnDemand() {
+        //// Once for a song
+        /// ---------------------
+        /// CurrentSongTotalLength
+        /// Updated List_MusicDictionary
+        ///     MyanmarTitle
+        ///     EnglishTitle
+        String Using_List_MusicDictionary = gson.toJson(getList());
+        MusicDictionary Current_MusicDictionary = getCurrent_MusicDictionary();
+        Intent intent_Broadcast_OnDemand = new Intent(Constants.BROADCAST.ONDEMAND_BROADCAST);
+        intent_Broadcast_OnDemand.putExtra("CurrentSongTotalLength", getMusicDuration());
+        intent_Broadcast_OnDemand.putExtra("Using_List_MusicDictionary", Using_List_MusicDictionary);
+        intent_Broadcast_OnDemand.putExtra("MyanmarTitle", Current_MusicDictionary.MyanmarTitle);
+        intent_Broadcast_OnDemand.putExtra("EnglishTitle", Current_MusicDictionary.EnglishTitle);
+        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_OnDemand);
+    }
     public void playbackCurrentSong(){
         /// Play song after pause
         playSong(GetSongToPlay(PlayerEventName.CurrentPlayingSong, IsRepeatAlbum, IsShuffle));
@@ -131,52 +190,7 @@ public class MusicService extends Service
             return;
         playSong(_MusicDictionary);
     }
-    public void setList(List<MusicDictionary> _List_MusicDictionary){
-        //SQLiteOpenHelper http://hmkcode.com/android-simple-sqlite-database-tutorial/
-        List_MusicDictionary = _List_MusicDictionary;
-    }
-    public List<MusicDictionary> getList(){
-        return List_MusicDictionary;
-    }
-    public MediaPlayerState getMediaPlayerState(){
-        return mediaPlayerState;
-    }
-    public boolean IsPlayingSong(){
-        if(player == null) return  false;
-        if(!IsMediaPlayerReady) return false;
-        return player.isPlaying();
-    }
-    public boolean IsPauseSong(){
-        return CurrentPlayingLength > 0;
-    }
-    public int getMusicDuration(){
-        /// Get total length using mediaplayer object.
-        return player.getDuration();
-    }
-    public int getMusicCurrrentPosition(){
-        return player.getCurrentPosition();
-    }
-    public void seekToMusic(int Location){
-        player.seekTo(Location);
-    }
-    public MusicDictionary getCurrent_MusicDictionary(){
-        return Current_MusicDictionary;
-    }
-    public MusicDictionary getCurrent_ReInitialized_MusicDictionary(){
-        MusicDictionary _MusicDictionary = getCurrent_MusicDictionary();
-        for(int i=0; i<List_MusicDictionary.size(); i++){
-            if(List_MusicDictionary.get(i).ID == _MusicDictionary.ID) {
-                List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Playing;
-            }else if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
-                List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
-            }
-        }
-        return _MusicDictionary;
-    }
-    public void setCurrent_MusicDictionary(MusicDictionary _MusicDictionary){
-        Current_MusicDictionary = _MusicDictionary;
-    }
-    public MusicDictionary GetSongToPlay(PlayerEventName _PlayerEventName,
+    private MusicDictionary GetSongToPlay(PlayerEventName _PlayerEventName,
                                         Boolean IsRepeatAlbum,
                                         Boolean IsShuffle){
         MusicDictionary ToReturn_MusicDictionary = null;
@@ -241,13 +255,12 @@ public class MusicService extends Service
                     }
                 }
                 break;
-            case IndexedSong:
             default:
                 throw new IllegalArgumentException("Invalid PlayerEvent(s).");
         }
         return ToReturn_MusicDictionary;
     }
-    public void playSong(MusicDictionary _MusicDictionary){
+    private void playSong(MusicDictionary _MusicDictionary){
         String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
         try {
             if (CurrentPlayingLength > 0) {
