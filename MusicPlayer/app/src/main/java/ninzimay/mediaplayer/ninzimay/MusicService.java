@@ -3,6 +3,7 @@ package ninzimay.mediaplayer.ninzimay;
 import android.app.Service;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -63,8 +64,8 @@ public class MusicService extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
+            playSong(GetSongToPlay(PlayerEventName.PreviousSong, IsRepeatAlbum, IsShuffle));
         }else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
-            // conditional set data
             if(List_MusicDictionary == null){
                 String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
@@ -73,16 +74,25 @@ public class MusicService extends Service
         }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
-        } else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
-        }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SONG_ACTION)) {
-            // conditional set data
+            pauseCurrentSong();
+        }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
             if(List_MusicDictionary == null){
                 String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
+            playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
+        }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SONG_ACTION)) {
+            if(List_MusicDictionary == null){
+                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
+                List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
+            }
+            String Current_MusicDictionary = intent.getStringExtra("Current_MusicDictionary");
+            setCurrent_MusicDictionary(gson.fromJson(Current_MusicDictionary, MusicDictionary.class));
             playSong(getCurrent_ReInitialized_MusicDictionary());
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SEEK_ACTION)) {
-        } else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
+            CurrentPlayingLength =  Integer.parseInt(intent.getStringExtra("seekBarIndex"));
+            playIndexedSong();
+        }else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
             stopForeground(true);
             stopSelf();
         }
@@ -92,7 +102,8 @@ public class MusicService extends Service
     public void onDestroy() {
         player.release();
         player = null;
-        /// Clear cache ...
+        SharedPreferences _SharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
+        _SharedPreferences.edit().clear().commit();
     }
     //<!-- End system defined function(s).  -->
 
@@ -146,11 +157,12 @@ public class MusicService extends Service
         /// Every seconds
         /// --------------------
         /// CurrentSongPlayingIndex
-        /// CurrentSongID
+        /// IsSeekbarSeekable
         MusicDictionary Current_MusicDictionary = getCurrent_MusicDictionary();
         Intent intent_Broadcast_Forever = new Intent(Constants.BROADCAST.FOREVER_BROADCAST);
         intent_Broadcast_Forever.putExtra("CurrentSongPlayingIndex", getMusicCurrrentPosition());
-        intent_Broadcast_Forever.putExtra("CurrentSongID", Current_MusicDictionary.ID);
+        //intent_Broadcast_Forever.putExtra("CurrentSongID", Current_MusicDictionary.ID);
+        intent_Broadcast_Forever.putExtra("IsSeekbarSeekable", mediaPlayerState == MediaPlayerState.Started || mediaPlayerState == MediaPlayerState.Paused );
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_Forever);
     }
     private void broadCast_OnDemand() {
@@ -194,6 +206,7 @@ public class MusicService extends Service
                                         Boolean IsRepeatAlbum,
                                         Boolean IsShuffle){
         MusicDictionary ToReturn_MusicDictionary = null;
+        boolean IsPlayingSongAlreadyExist = false;
         switch (_PlayerEventName) {
             case FirstPlaying:
                 for(int i=0; i<List_MusicDictionary.size(); i++){
@@ -209,6 +222,7 @@ public class MusicService extends Service
                 for(int i=0; i<List_MusicDictionary.size(); i++)
                 {
                     if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
+                        IsPlayingSongAlreadyExist = true;
                         List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
 
                         // Checking if current index is last index
@@ -220,7 +234,7 @@ public class MusicService extends Service
                                 ToReturn_MusicDictionary = List_MusicDictionary.get(0);
                                 return ToReturn_MusicDictionary;
                             }
-                            return  ToReturn_MusicDictionary; // Null value will be returned because of it arrives to end of the album.
+                            return  null;
                         }else
                         {
                             /// Next song
@@ -233,6 +247,12 @@ public class MusicService extends Service
                         //Log.d(LoggerName , "Title = "+ List_MusicDictionary.get(i).EnglishTitle +" : Status = "+ List_MusicDictionary.get(i).PlayingStatus);
                     }
                 }
+                if(!IsPlayingSongAlreadyExist){
+                    /// Next song
+                    List_MusicDictionary.get(0).PlayingStatus = PlayingStatus_Playing;
+                    ToReturn_MusicDictionary = List_MusicDictionary.get(0);
+                    return ToReturn_MusicDictionary;
+                }
                 break;
             case CurrentPlayingSong:
                 for(int i=0; i<List_MusicDictionary.size(); i++)
@@ -244,6 +264,7 @@ public class MusicService extends Service
                 }
                 break;
             case PreviousSong:
+                if(List_MusicDictionary == null) return null;
                 for(int i=0; i<List_MusicDictionary.size(); i++)
                 {
                     if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
@@ -261,8 +282,11 @@ public class MusicService extends Service
         return ToReturn_MusicDictionary;
     }
     private void playSong(MusicDictionary _MusicDictionary){
-        String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
         try {
+            if(_MusicDictionary == null){
+                return;
+            }
+            String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
             if (CurrentPlayingLength > 0) {
                 player.seekTo(CurrentPlayingLength);
                 player.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
@@ -271,6 +295,7 @@ public class MusicService extends Service
                         CurrentPlayingLength = 0;
                         player.start();
                         mediaPlayerState = MediaPlayerState.Started;
+                        broadCast_OnDemand();
                     }
                 });
             }
@@ -332,6 +357,7 @@ public class MusicService extends Service
                         });
                         player.start();
                         mediaPlayerState = MediaPlayerState.Started;
+                        broadCast_OnDemand();
                     }
                 });
                 player.prepareAsync();

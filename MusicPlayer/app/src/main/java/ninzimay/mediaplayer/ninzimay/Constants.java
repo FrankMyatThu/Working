@@ -18,6 +18,9 @@ public class Constants {
         public static String FOREVER_BROADCAST = "ninzimay.mediaplayer.ninzimay.Broadcast.forever";
         public static String ONDEMAND_BROADCAST = "ninzimay.mediaplayer.ninzimay.Broadcast.onDemand";
     }
+    public  interface  CACHE{
+        public static String NINZIMAY = "ninzimay.mediaplayer.ninzimay.Cache.Ninzimay";
+    }
     public interface NOTIFICATION_ID {
         public static int FOREGROUND_SERVICE = 101;
     }

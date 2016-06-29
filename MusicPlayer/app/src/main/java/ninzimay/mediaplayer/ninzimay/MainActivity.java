@@ -2,9 +2,11 @@ package ninzimay.mediaplayer.ninzimay;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -14,6 +16,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -28,12 +31,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import ninzimay.mediaplayer.ninzimay.MusicService.MusicBinder;
 
 public class MainActivity extends Activity
 implements SeekBar.OnSeekBarChangeListener,
@@ -41,12 +43,11 @@ View.OnClickListener,
 AdapterView.OnItemClickListener
 {
     //<!-- Start declaration area.  -->
-    MusicService musicService;
-    Intent playIntent;
-    boolean IsMusicServiceConnected = false;
-    ArrayList<MusicDictionary> List_MusicDictionary = null;
     String LoggerName = "NinZiMay";
     String PlayingStatus_New = "PlayingStatus_New";
+    Intent IntentMusicService = null;
+    boolean IsMusicServiceConnected = false;
+    ArrayList<MusicDictionary> List_MusicDictionary = null;
     TextView txtTitle = null;
     TextView txtCurrentPlayingMyanmarInfo = null;
     TextView txtCurrentPlayingEnglishInfo = null;
@@ -54,7 +55,6 @@ AdapterView.OnItemClickListener
     TextView txtEndPoint = null;
     ListView _ListView = null;
     SongListingRowControl Adapter_SongListingRowControl = null;
-    int CurrentPlayingLength = 0;
     Button btnShuffle = null;
     Button btnBackward = null;
     Button btnPlayPause = null;
@@ -63,36 +63,43 @@ AdapterView.OnItemClickListener
     Button btnLyric = null;
     Button btnFavorite = null;
     SeekBar Seekbar = null;
-    int MusicTime_CurrentPlaying = 0;
-    int MusicTime_TotalLength = 0;
-    int CurrentSongID = 0;
     boolean IsUserSeekingSliderBar = false;
     boolean IsComingBack = false;
+    boolean IsPauseSong = false;
+    boolean IsSeekbarSeekable = false;
     Typeface font_fontawesome = null;
     Typeface font_ailerons = null;
     Typeface font_ninzimay = null;
+    int CurrentSongTotalLength = 0;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
-    private ServiceConnection Music_ServiceConnection = new ServiceConnection() {
-
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicBinder binder = (MusicBinder)service;
-            //get service
-            musicService = binder.getService();
-            //pass list
-            if(!IsComingBack){
-                musicService.setList(getList_MusicDictionary());
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (Constants.BROADCAST.FOREVER_BROADCAST.equals(action)){
+                Log.d(LoggerName, "FOREVER_BROADCAST");
+                int CurrentSongPlayingIndex = Integer.parseInt(intent.getStringExtra("CurrentSongPlayingIndex"));
+                IsSeekbarSeekable = Boolean.parseBoolean(intent.getStringExtra("IsSeekbarSeekable"));
+                if(!IsUserSeekingSliderBar){
+                    Seekbar.setProgress(CurrentSongPlayingIndex);
+                    setProgressText(CurrentSongPlayingIndex);
+                }
             }
-            IsMusicServiceConnected = true;
-            //Log.d(LoggerName, "[onServiceConnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
-        }
 
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            IsMusicServiceConnected = false;
-            //Log.d(LoggerName, "[onServiceDisconnected] IsMusicServiceConnected = "+ IsMusicServiceConnected);
+            if (Constants.BROADCAST.ONDEMAND_BROADCAST.equals(action)){
+                Log.d(LoggerName, "ONDEMAND_BROADCAST");
+                Gson _Gson = new Gson();
+                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
+                CurrentSongTotalLength = Integer.parseInt(intent.getStringExtra("CurrentSongTotalLength"));
+                Seekbar.setMax(CurrentSongTotalLength);
+                txtCurrentPlayingMyanmarInfo.setText(intent.getStringExtra("MyanmarTitle"));
+                txtCurrentPlayingMyanmarInfo.setText(intent.getStringExtra("EnglishTitle"));
+                ArrayList<MusicDictionary> Using_List_MusicDictionary =  _Gson.fromJson("Using_List_MusicDictionary", new TypeToken<ArrayList<MusicDictionary>>(){}.getType());
+                ListView_Rebind(Using_List_MusicDictionary);
+            }
         }
     };
     //<!-- End dependency object(s).  -->
@@ -102,94 +109,31 @@ AdapterView.OnItemClickListener
     protected void onCreate(Bundle savedInstanceState) {
         //Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
-        playIntent = new Intent();
-        if( savedInstanceState != null ) {
-            IsComingBack = savedInstanceState.getBoolean("IsComingBack");
-            playIntent = savedInstanceState.getParcelable("playIntent");
-            //Log.d(LoggerName, "IsComingBack after orientation changed = " + IsComingBack);
-        }
-        if(isMyServiceRunning(MusicService.class)){
-            IsComingBack = true;
-            //Log.d(LoggerName, "IsComingBack after back button pressed = " + IsComingBack);
-        }
         setContentView(R.layout.activity_main);
         initializer();
     }
     public void onStart(){
-    super.onStart();
         //Log.d(LoggerName, "In the onStart() event");
-        Log.d(LoggerName, "playIntent = "+playIntent);
-        if(playIntent == null){
-            playIntent = new Intent(this, MusicService.class);
-            bindService(playIntent, Music_ServiceConnection, Context.BIND_AUTO_CREATE);
-            if(IsComingBack){
-                playIntent.setAction(Constants.ACTION.COMING_BACK);
-                startService(playIntent);
-            }
-
-            /// broadcastlistener will come here.
-            /*//Music Handler for methods
-            Handler_Music = new Handler();
-            Runnable_Music = new Runnable() {
-                @Override
-                public void run() {
-                    if (IsMusicServiceConnected){ // Check if service bounded
-
-                        if(musicService.getMediaPlayerState() != mediaPlayerState.Started ){
-                            MusicTime_TotalLength = 0;
-                            Handler_Music.postDelayed(Runnable_Music, 100);
-                            return;
-                        }
-
-                        if(musicService.IsPauseSong()){
-                            btnPlayPause.setText(getString(R.string.Play));
-                        }else{
-                            btnPlayPause.setText(getString(R.string.Pause));
-
-                        }
-
-                        if (MusicTime_TotalLength == 0){ // Put data in it one time
-                            MusicTime_TotalLength = musicService.getMusicDuration();
-                            Seekbar.setMax(MusicTime_TotalLength);
-                            MusicDictionary _MusicDictionary = musicService.getCurrent_MusicDictionary();
-                            txtCurrentPlayingMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
-                            txtCurrentPlayingEnglishInfo.setText(_MusicDictionary.EnglishTitle);
-                            ListView_Rebind(_MusicDictionary);
-                        }
-
-                        if(!IsUserSeekingSliderBar){
-                            MusicTime_CurrentPlaying = musicService.getMusicCurrrentPosition();
-                            Seekbar.setProgress(MusicTime_CurrentPlaying);
-                            setProgressText();
-                        }
-
-                        if(CurrentSongID != musicService.getCurrent_MusicDictionary().ID){
-                            CurrentSongID = musicService.getCurrent_MusicDictionary().ID;
-                            MusicTime_TotalLength = 0;
-                        }
-
-                    }else if(!IsMusicServiceConnected){ // if service is not bounded log it
-                        //Log.d(LoggerName, "Waiting to get connection from service...");
-                    }
-                    Handler_Music.postDelayed(this, 100);
-                }
-            };*/
-        }
+        super.onStart();
     }
     public void onResume(){
-        super.onResume();
         //Log.d(LoggerName, "In the onResume() event");
-        if(IsComingBack) {
-            Handler_Music.postDelayed(Runnable_Music, 100);
-        }
+        super.onResume();
+        getCacheAndBind();
+        IntentFilter _IntentFilter = new IntentFilter();
+        _IntentFilter.addAction(Constants.BROADCAST.FOREVER_BROADCAST);
+        _IntentFilter.addAction(Constants.BROADCAST.ONDEMAND_BROADCAST);
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, _IntentFilter);
     }
     public void onRestart() {
-        super.onRestart();
         //Log.d(LoggerName, "In the onRestart() event");
+        super.onRestart();
     }
     public void onPause(){
-        super.onPause();
         //Log.d(LoggerName, "In the onPause() event");
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+        setCache();
     }
     public void onStop(){
         //Log.d(LoggerName, "In the onStop() event");
@@ -198,9 +142,6 @@ AdapterView.OnItemClickListener
     public void onDestroy() {
         //Log.d(LoggerName, "In the onDestroy() event");
         super.onDestroy();
-        playIntent = null;
-        /// Setting listview scrolled position.
-        SetListViewScrolledPosition();
     }
     @Override
     public void onBackPressed(){
@@ -211,7 +152,6 @@ AdapterView.OnItemClickListener
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //Log.d(LoggerName, "onSaveInstanceState");
-        outState.putBoolean("IsComingBack", true);
         super.onSaveInstanceState(outState);
     }
     @Override
@@ -242,10 +182,12 @@ AdapterView.OnItemClickListener
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         IsUserSeekingSliderBar = false;
-        if(!musicService.IsPlayingSong()) return;
-        //Log.d(LoggerName, "seekBar.getProgress() ="+seekBar.getProgress());
-        musicService.seekToMusic(seekBar.getProgress());
-        CurrentPlayingLength = 0;
+        if(!IsSeekbarSeekable) return;
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.INDEXED_SEEK_ACTION);
+        IntentMusicService.putExtra("seekBarIndex", seekBar.getProgress());
+        startService(IntentMusicService);
     }
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -266,39 +208,69 @@ AdapterView.OnItemClickListener
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String Clicked_FileName = ((MusicDictionary)parent.getItemAtPosition(position)).FileName;
-        //Log.d(LoggerName, "Clicked_FileName = " + Clicked_FileName);
+        Gson _Gson = new Gson();
         MusicDictionary _MusicDictionary = ((MusicDictionary)parent.getItemAtPosition(position));
-        musicService.setCurrent_MusicDictionary(_MusicDictionary);
-        if(musicService.IsPlayingSong() || musicService.IsPauseSong()){
-            //Log.d(LoggerName, "[onItemClick] Play using binded service.");
-            musicService.playIndexedSong();
-        }else{
-            //Log.d(LoggerName, "[onItemClick] Play using started service.");
-            playIntent.setAction(Constants.ACTION.INDEXED_ACTION);
-            startService(playIntent);
-        }
-        Handler_Music.postDelayed(Runnable_Music, 100);
+        String Current_MusicDictionary = _Gson.toJson(_MusicDictionary);
+        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
+        IntentMusicService.putExtra("Current_MusicDictionary", Current_MusicDictionary);
+        IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
+        startService(IntentMusicService);
     }
     //<!-- End system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
-    private void SetListViewScrolledPosition(){
+    private void setCache(){
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        /// 1.IsCached
+        editor.putBoolean("IsCached", true);
+
+        /// 2.btnPlayPause_IsPlayLogoShowing
+        if(btnPlayPause.getText().equals(getString(R.string.Play))){
+            editor.putBoolean("btnPlayPause_IsPlayLogoShowing", true);
+        }else{
+            editor.putBoolean("btnPlayPause_IsPlayLogoShowing", false);
+        }
+
+        /// 3.ListViewFirstVisiblePosition
         int ListViewFirstVisiblePosition = _ListView.getFirstVisiblePosition();
+        editor.putInt("ListViewFirstVisiblePosition", ListViewFirstVisiblePosition);
+
+        /// 4.ListViewOffset
         View _View = _ListView.getChildAt(0);
         int Offset = (_View == null) ? 0 : (_View.getTop() - _ListView.getPaddingTop());
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("ListViewFirstVisiblePosition", ListViewFirstVisiblePosition);
-        editor.putInt("Offset", Offset);
+        editor.putInt("ListViewOffset", Offset);
+
         editor.commit();
         //Log.d(LoggerName, "SetListViewScrolledPosition ListViewFirstVisiblePosition = "+ ListViewFirstVisiblePosition +" | Offset = "+Offset);
     }
-    private void LoadListViewScrolledPosition(){
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+    private void getCacheAndBind(){
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
+
+        /// 1.IsCached
+        if(!sharedPreferences.getBoolean("IsCached", false))
+            return;
+        else
+            IsComingBack = true;
+
+        /// 2.btnPlayPause_IsPlayLogoShowing
+        if(sharedPreferences.getBoolean("btnPlayPause_IsPlayLogoShowing", true)){
+            btnPlayPause.setText(getString(R.string.Play));
+            IsPauseSong = true;
+        }else{
+            btnPlayPause.setText(getString(R.string.Pause));
+        }
+
+        /// 3.ListViewFirstVisiblePosition
         int ListViewFirstVisiblePosition = sharedPreferences.getInt("ListViewFirstVisiblePosition", 0);
-        int Offset = sharedPreferences.getInt("Offset", 0);
-        _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, Offset);
+        /// 4.ListViewOffset
+        int ListViewOffset = sharedPreferences.getInt("ListViewOffset", 0);
+        _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, ListViewOffset);
+
         //Log.d(LoggerName, "LoadListViewScrolledPosition ListViewFirstVisiblePosition = "+ListViewFirstVisiblePosition+ " | Offset = "+ Offset);
     }
     private void btnPlayPause_Click(){
@@ -313,44 +285,53 @@ AdapterView.OnItemClickListener
         }
     }
     private void btnPlay_Click(){
-        if(musicService.IsPauseSong()){
+        if(IsPauseSong){
             //Log.d(LoggerName, "[btnPlay_Click] Playback event");
-            musicService.playbackCurrentSong();
+            IntentMusicService = null;
+            IntentMusicService = new Intent(this, MusicService.class);
+            IntentMusicService.setAction(Constants.ACTION.PLAYBACK_ACTION);
+            startService(IntentMusicService);
         }else{
             //Log.d(LoggerName, "[btnPlay_Click] play event");
-            playIntent.setAction(Constants.ACTION.STARTFOREGROUND_ACTION);
-            startService(playIntent);
+            playSongInService(false);
         }
-        Handler_Music.postDelayed(Runnable_Music, 100);
         btnPlayPause.setText(getString(R.string.Pause));
-        /// Set cache IsPlayOrPause = "Play" ...
     }
     private void btnPause_Click(){
-        musicService.pauseCurrentSong();
-        Handler_Music.postDelayed(Runnable_Music, 100);
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.PAUSE_ACTION);
+        startService(IntentMusicService);
         btnPlayPause.setText(getString(R.string.Play));
-        /// Set cache IsPlayOrPause = "Pause" ...
+        IsPauseSong = true;
     }
     private void btnForward_Click(){
-        if(!musicService.IsPlayingSong()) return;
-        musicService.playNextSong();
-        Handler_Music.postDelayed(Runnable_Music, 100);
-    }
-    private void btnBackward_Click(){
-        if(!musicService.IsPlayingSong()) return;
-        musicService.playPreviousSong();
-        Handler_Music.postDelayed(Runnable_Music, 100);
-    }
-    private void playSong(Boolean IsIndexed){
         Gson _Gson = new Gson();
         String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.NEXT_ACTION);
+        IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
+        startService(IntentMusicService);
+    }
+    private void btnBackward_Click(){
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.PREV_ACTION);
+        startService(IntentMusicService);
+    }
+    private void playSongInService(Boolean IsIndexed){
+        Gson _Gson = new Gson();
+        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
         if(IsIndexed){
-            playIntent.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
+            IntentMusicService.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
         }else{
-            playIntent.setAction(Constants.ACTION.PLAY_ACTION);
+            IntentMusicService.setAction(Constants.ACTION.PLAY_ACTION);
         }
-        playIntent.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
-        startService(playIntent);
+        IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
+        startService(IntentMusicService);
     }
     private  void initializer(){
 
@@ -406,17 +387,16 @@ AdapterView.OnItemClickListener
         _ListView.setAdapter(Adapter_SongListingRowControl);
         _ListView.setScrollingCacheEnabled(false);
         _ListView.setOnItemClickListener(this);
-        LoadListViewScrolledPosition();
         /// End binding listview control
     }
-    protected void setProgressText() {
+    protected void setProgressText(int CurrentSongPlayingIndex) {
 
         final int HOUR = 60*60*1000;
         final int MINUTE = 60*1000;
         final int SECOND = 1000;
 
-        int durationInMillis = musicService.getMusicDuration();
-        int curVolume = musicService.getMusicCurrrentPosition();
+        int durationInMillis = CurrentSongTotalLength;
+        int curVolume = CurrentSongPlayingIndex;
 
         int durationHour = durationInMillis/HOUR;
         int durationMint = (durationInMillis%HOUR)/MINUTE;
@@ -429,8 +409,8 @@ AdapterView.OnItemClickListener
         txtStartPoint.setText(String.format("%02d:%02d", currentMint, currentSec));
         txtEndPoint.setText(String.format("%02d:%02d", durationMint, durationSec));
     }
-    protected void ListView_Rebind(MusicDictionary CurrentPlaying_MusicDictionary){
-        Adapter_SongListingRowControl.addItems((ArrayList) musicService.getList());
+    protected void ListView_Rebind(List<MusicDictionary> List_MusicDictionary){
+        Adapter_SongListingRowControl.addItems((ArrayList) List_MusicDictionary);
         Adapter_SongListingRowControl.notifyDataSetChanged();
     }
     private boolean isMyServiceRunning(Class<?> serviceClass) {
