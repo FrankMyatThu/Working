@@ -123,6 +123,12 @@ AdapterView.OnItemClickListener
         _IntentFilter.addAction(Constants.BROADCAST.FOREVER_BROADCAST);
         _IntentFilter.addAction(Constants.BROADCAST.ONDEMAND_BROADCAST);
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, _IntentFilter);
+        if(IsComingBack){
+            IntentMusicService = null;
+            IntentMusicService = new Intent(this, MusicService.class);
+            IntentMusicService.setAction(Constants.ACTION.INVOKE_ONDEMAND_ACTION);
+            startService(IntentMusicService);
+        }
     }
     public void onRestart() {
         //Log.d(LoggerName, "In the onRestart() event");
@@ -141,8 +147,6 @@ AdapterView.OnItemClickListener
     public void onDestroy() {
         //Log.d(LoggerName, "In the onDestroy() event");
         super.onDestroy();
-        SharedPreferences _SharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
-        _SharedPreferences.edit().clear().commit();
     }
     @Override
     public void onBackPressed(){

@@ -1,9 +1,13 @@
 package ninzimay.mediaplayer.ninzimay;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -12,6 +16,7 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -90,8 +95,10 @@ public class MusicService extends Service
             setCurrent_MusicDictionary(gson.fromJson(Current_MusicDictionary, MusicDictionary.class));
             playSong(getCurrent_ReInitialized_MusicDictionary());
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SEEK_ACTION)) {
-            CurrentPlayingLength =  Integer.parseInt(intent.getExtras().get("seekBarIndex").toString());
+            CurrentPlayingLength = Integer.parseInt(intent.getExtras().get("seekBarIndex").toString());
             playIndexedSong();
+        }if (intent.getAction().equals(Constants.ACTION.INVOKE_ONDEMAND_ACTION)) {
+            broadCast_OnDemand();
         }else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
             stopForeground(true);
             stopSelf();
@@ -147,12 +154,49 @@ public class MusicService extends Service
         };
         Handler_Music.postDelayed(Runnable_Music, 100);
     }
-    public void setList(List<MusicDictionary> _List_MusicDictionary){
-        //SQLiteOpenHelper http://hmkcode.com/android-simple-sqlite-database-tutorial/
-        List_MusicDictionary = _List_MusicDictionary;
-    }
     public void setCurrent_MusicDictionary(MusicDictionary _MusicDictionary){
         Current_MusicDictionary = _MusicDictionary;
+    }
+    private void attatchForeground(){
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        notificationIntent.setAction("");
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        PendingIntent _PendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        Intent previousIntent = new Intent(this, MusicService.class);
+        previousIntent.setAction(Constants.ACTION.PREV_ACTION);
+        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 0, previousIntent, 0);
+
+        Intent playIntent = new Intent(this, MusicService.class);
+        playIntent.setAction(Constants.ACTION.PLAY_ACTION);
+        PendingIntent PendingIntent_playIntent = PendingIntent.getService(this, 0, playIntent, 0);
+
+        Intent nextIntent = new Intent(this, MusicService.class);
+        nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
+        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 0, nextIntent, 0);
+
+        Intent closeIntent = new Intent(this, MusicService.class);
+        closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
+        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
+
+        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.album_art);
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("Truiton Music Player")
+                .setTicker("Truiton Music Player")
+                .setContentText("My Music")
+                .setSmallIcon(R.drawable.logo)
+                .setLargeIcon(Bitmap.createScaledBitmap(icon, 128, 128, false))
+                .setContentIntent(_PendingIntent)
+                .setOngoing(true)
+                .addAction(android.R.drawable.ic_media_previous, "", PendingIntent_previousIntent)
+                .addAction(android.R.drawable.ic_media_play, "", PendingIntent_closeIntent)
+                .addAction(android.R.drawable.ic_media_next, "", PendingIntent_nextIntent)
+                //.addAction(android.R.drawable.ic_media_next , "", PendingIntent_closeIntent)
+                .build();
+
+        //notification.bigContentView = ...;
+        startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
     }
     private void broadCast_Forever(){
         /// Every seconds
@@ -181,6 +225,7 @@ public class MusicService extends Service
         intent_Broadcast_OnDemand.putExtra("MyanmarTitle", Current_MusicDictionary.MyanmarTitle);
         intent_Broadcast_OnDemand.putExtra("EnglishTitle", Current_MusicDictionary.EnglishTitle);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_OnDemand);
+        attatchForeground();
     }
     public void playbackCurrentSong(){
         /// Play song after pause
@@ -193,15 +238,6 @@ public class MusicService extends Service
         player.pause();
         mediaPlayerState = MediaPlayerState.Paused;
         CurrentPlayingLength = player.getCurrentPosition();
-    }
-    public void playNextSong(){
-        playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
-    }
-    public void playPreviousSong(){
-        MusicDictionary _MusicDictionary = GetSongToPlay(PlayerEventName.PreviousSong, IsRepeatAlbum, IsShuffle);
-        if(_MusicDictionary == null)
-            return;
-        playSong(_MusicDictionary);
     }
     private MusicDictionary GetSongToPlay(PlayerEventName _PlayerEventName,
                                         Boolean IsRepeatAlbum,
@@ -269,7 +305,9 @@ public class MusicService extends Service
                 for(int i=0; i<List_MusicDictionary.size(); i++)
                 {
                     if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
-                        if(i == 0){ return null; }
+                        if(i == 0) {
+                            return null;
+                        }
                         List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_New;
                         List_MusicDictionary.get(i-1).PlayingStatus = PlayingStatus_Playing;
                         ToReturn_MusicDictionary = List_MusicDictionary.get(i-1);
