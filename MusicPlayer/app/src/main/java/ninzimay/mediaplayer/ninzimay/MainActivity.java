@@ -46,7 +46,6 @@ AdapterView.OnItemClickListener
     String LoggerName = "NinZiMay";
     String PlayingStatus_New = "PlayingStatus_New";
     Intent IntentMusicService = null;
-    boolean IsMusicServiceConnected = false;
     ArrayList<MusicDictionary> List_MusicDictionary = null;
     TextView txtTitle = null;
     TextView txtCurrentPlayingMyanmarInfo = null;
@@ -80,9 +79,9 @@ AdapterView.OnItemClickListener
             String action = intent.getAction();
 
             if (Constants.BROADCAST.FOREVER_BROADCAST.equals(action)){
-                Log.d(LoggerName, "FOREVER_BROADCAST");
-                int CurrentSongPlayingIndex = Integer.parseInt(intent.getStringExtra("CurrentSongPlayingIndex"));
-                IsSeekbarSeekable = Boolean.parseBoolean(intent.getStringExtra("IsSeekbarSeekable"));
+                //Log.d(LoggerName, "ACTIVITY.FOREVER_BROADCAST");
+                int CurrentSongPlayingIndex = Integer.parseInt(intent.getExtras().get("CurrentSongPlayingIndex").toString());
+                IsSeekbarSeekable = Boolean.parseBoolean(intent.getExtras().get("IsSeekbarSeekable").toString());
                 if(!IsUserSeekingSliderBar){
                     Seekbar.setProgress(CurrentSongPlayingIndex);
                     setProgressText(CurrentSongPlayingIndex);
@@ -90,15 +89,15 @@ AdapterView.OnItemClickListener
             }
 
             if (Constants.BROADCAST.ONDEMAND_BROADCAST.equals(action)){
-                Log.d(LoggerName, "ONDEMAND_BROADCAST");
+                //Log.d(LoggerName, "ACTIVITY.ONDEMAND_BROADCAST");
                 Gson _Gson = new Gson();
-                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
-                CurrentSongTotalLength = Integer.parseInt(intent.getStringExtra("CurrentSongTotalLength"));
+                String Using_List_MusicDictionary = intent.getExtras().get("Using_List_MusicDictionary").toString();
+                CurrentSongTotalLength = Integer.parseInt(intent.getExtras().get("CurrentSongTotalLength").toString());
                 Seekbar.setMax(CurrentSongTotalLength);
-                txtCurrentPlayingMyanmarInfo.setText(intent.getStringExtra("MyanmarTitle"));
-                txtCurrentPlayingMyanmarInfo.setText(intent.getStringExtra("EnglishTitle"));
-                ArrayList<MusicDictionary> Using_List_MusicDictionary =  _Gson.fromJson("Using_List_MusicDictionary", new TypeToken<ArrayList<MusicDictionary>>(){}.getType());
-                ListView_Rebind(Using_List_MusicDictionary);
+                txtCurrentPlayingEnglishInfo.setText(intent.getExtras().get("EnglishTitle").toString());
+                txtCurrentPlayingMyanmarInfo.setText(intent.getExtras().get("MyanmarTitle").toString());
+                ArrayList<MusicDictionary> ArrayList_Using_List_MusicDictionary =  _Gson.fromJson(Using_List_MusicDictionary, new TypeToken<ArrayList<MusicDictionary>>(){}.getType());
+                ListView_Rebind(ArrayList_Using_List_MusicDictionary);
             }
         }
     };
@@ -142,6 +141,8 @@ AdapterView.OnItemClickListener
     public void onDestroy() {
         //Log.d(LoggerName, "In the onDestroy() event");
         super.onDestroy();
+        SharedPreferences _SharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
+        _SharedPreferences.edit().clear().commit();
     }
     @Override
     public void onBackPressed(){
@@ -196,7 +197,7 @@ AdapterView.OnItemClickListener
     }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (IsMusicServiceConnected && fromUser && IsUserSeekingSliderBar) {
+        if (fromUser && IsUserSeekingSliderBar) {
             String _Progress = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(progress),
                     TimeUnit.MILLISECONDS.toSeconds(progress) -
@@ -223,6 +224,8 @@ AdapterView.OnItemClickListener
 
     //<!-- Start developer defined function(s).  -->
     private void setCache(){
+        if(!isMyServiceRunning(MusicService.class)) return;
+
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -250,7 +253,6 @@ AdapterView.OnItemClickListener
     }
     private void getCacheAndBind(){
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
-
         /// 1.IsCached
         if(!sharedPreferences.getBoolean("IsCached", false))
             return;
@@ -260,7 +262,7 @@ AdapterView.OnItemClickListener
         /// 2.btnPlayPause_IsPlayLogoShowing
         if(sharedPreferences.getBoolean("btnPlayPause_IsPlayLogoShowing", true)){
             btnPlayPause.setText(getString(R.string.Play));
-            IsPauseSong = true;
+            if(IsComingBack) IsPauseSong = true;
         }else{
             btnPlayPause.setText(getString(R.string.Pause));
         }
@@ -270,8 +272,6 @@ AdapterView.OnItemClickListener
         /// 4.ListViewOffset
         int ListViewOffset = sharedPreferences.getInt("ListViewOffset", 0);
         _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, ListViewOffset);
-
-        //Log.d(LoggerName, "LoadListViewScrolledPosition ListViewFirstVisiblePosition = "+ListViewFirstVisiblePosition+ " | Offset = "+ Offset);
     }
     private void btnPlayPause_Click(){
         if(getString(R.string.Play).equalsIgnoreCase(btnPlayPause.getText().toString())){
@@ -322,7 +322,7 @@ AdapterView.OnItemClickListener
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();
-        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
+        String Initial_List_MusicDictionary = _Gson.toJson((List)getList_MusicDictionary());
         IntentMusicService = null;
         IntentMusicService = new Intent(this, MusicService.class);
         if(IsIndexed){

@@ -53,7 +53,7 @@ public class MusicService extends Service
 
     //<!-- Start system defined function(s).  -->
     public void onCreate(){
-        Log.d(LoggerName, "Service.onCreate player = " + player);
+        //Log.d(LoggerName, "Service.onCreate");
         super.onCreate();
         getHandler();
     }
@@ -67,7 +67,7 @@ public class MusicService extends Service
             playSong(GetSongToPlay(PlayerEventName.PreviousSong, IsRepeatAlbum, IsShuffle));
         }else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
             if(List_MusicDictionary == null){
-                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
+                String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
             playSong(GetSongToPlay(PlayerEventName.FirstPlaying, IsRepeatAlbum, IsShuffle));
@@ -77,20 +77,20 @@ public class MusicService extends Service
             pauseCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
             if(List_MusicDictionary == null){
-                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
+                String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
             playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SONG_ACTION)) {
             if(List_MusicDictionary == null){
-                String Initial_List_MusicDictionary = intent.getStringExtra("Initial_List_MusicDictionary");
+                String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
-            String Current_MusicDictionary = intent.getStringExtra("Current_MusicDictionary");
+            String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
             setCurrent_MusicDictionary(gson.fromJson(Current_MusicDictionary, MusicDictionary.class));
             playSong(getCurrent_ReInitialized_MusicDictionary());
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SEEK_ACTION)) {
-            CurrentPlayingLength =  Integer.parseInt(intent.getStringExtra("seekBarIndex"));
+            CurrentPlayingLength =  Integer.parseInt(intent.getExtras().get("seekBarIndex").toString());
             playIndexedSong();
         }else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
             stopForeground(true);
@@ -102,6 +102,7 @@ public class MusicService extends Service
     public void onDestroy() {
         player.release();
         player = null;
+        mediaPlayerState = MediaPlayerState.End;
         SharedPreferences _SharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
         _SharedPreferences.edit().clear().commit();
     }
@@ -162,7 +163,7 @@ public class MusicService extends Service
         Intent intent_Broadcast_Forever = new Intent(Constants.BROADCAST.FOREVER_BROADCAST);
         intent_Broadcast_Forever.putExtra("CurrentSongPlayingIndex", getMusicCurrrentPosition());
         //intent_Broadcast_Forever.putExtra("CurrentSongID", Current_MusicDictionary.ID);
-        intent_Broadcast_Forever.putExtra("IsSeekbarSeekable", mediaPlayerState == MediaPlayerState.Started || mediaPlayerState == MediaPlayerState.Paused );
+        intent_Broadcast_Forever.putExtra("IsSeekbarSeekable", mediaPlayerState == MediaPlayerState.Started);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_Forever);
     }
     private void broadCast_OnDemand() {
@@ -350,8 +351,8 @@ public class MusicService extends Service
                         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             public void onCompletion(MediaPlayer MediaPlayer_onCompletion) {
                                 mediaPlayerState = MediaPlayerState.Completed;
-                                player.release();
-                                mediaPlayerState = MediaPlayerState.End;
+                                player.reset();
+                                mediaPlayerState = MediaPlayerState.Idle;
                                 playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
                             }
                         });
