@@ -4,6 +4,7 @@
     <!--<string name="Play">&#xf04b;</string>-->
     <string name="Play">a</string>
     <string name="Stop">&#xf04d;</string>
+    <string name="Close">&#xf00d;</string>
     <string name="Next">&#xf051;</string>
     <string name="Previous">&#xf048;</string>
     <!--<string name="Pause">&#xf04c;</string>-->

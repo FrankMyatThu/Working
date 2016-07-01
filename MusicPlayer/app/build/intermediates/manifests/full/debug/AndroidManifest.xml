@@ -3,7 +3,7 @@
     package="ninzimay.mediaplayer.ninzimay"
     android:versionCode="1"
     android:versionName="1.0" >
-
+ <!-- Android 4.1–4.1.2 Jelly Bean (API level 16) -->
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="23" />

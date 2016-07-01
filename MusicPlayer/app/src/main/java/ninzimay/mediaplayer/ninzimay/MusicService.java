@@ -225,7 +225,7 @@ public class MusicService extends Service
         intent_Broadcast_OnDemand.putExtra("MyanmarTitle", Current_MusicDictionary.MyanmarTitle);
         intent_Broadcast_OnDemand.putExtra("EnglishTitle", Current_MusicDictionary.EnglishTitle);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_OnDemand);
-        attatchForeground();
+        //attatchForeground();
     }
     public void playbackCurrentSong(){
         /// Play song after pause
