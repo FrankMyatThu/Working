@@ -1,13 +1,16 @@
 package ninzimay.mediaplayer.ninzimay;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -18,7 +21,10 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -157,6 +163,59 @@ public class MusicService extends Service
     public void setCurrent_MusicDictionary(MusicDictionary _MusicDictionary){
         Current_MusicDictionary = _MusicDictionary;
     }
+    private void invokeNotificationView(){
+        MusicDictionary _MusicDictionary = getCurrent_MusicDictionary();
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        notificationIntent.setAction("");
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent _PendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        Intent previousIntent = new Intent(this, MusicService.class);
+        previousIntent.setAction(Constants.ACTION.PREV_ACTION);
+        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 0, previousIntent, 0);
+
+        Intent playIntent = new Intent(this, MusicService.class);
+        playIntent.setAction(Constants.ACTION.PLAY_ACTION);
+        PendingIntent PendingIntent_playIntent = PendingIntent.getService(this, 0, playIntent, 0);
+
+        Intent nextIntent = new Intent(this, MusicService.class);
+        nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
+        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 0, nextIntent, 0);
+
+        Intent closeIntent = new Intent(this, MusicService.class);
+        closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
+        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
+
+        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.album_art);
+        Notification notification = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.logo)
+                .setContentIntent(_PendingIntent)
+                .setOngoing(true)
+                .build();
+
+        Typeface font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+        Typeface font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
+        Typeface font_ninzimay = Typeface.createFromAsset( getAssets(), "ninzimay.ttf" );
+        RemoteViews _RemoteViews = new RemoteViews(getPackageName(), R.layout.customized_notification);
+        _RemoteViews.setImageViewResource(R.id.imgSongImage, R.drawable.album_art);
+        _RemoteViews.setTextViewText(R.id.txtMyanmarInfo, _MusicDictionary.MyanmarTitle);
+        _RemoteViews.setTextViewText(R.id.txtEnglishInfo, _MusicDictionary.EnglishTitle);
+        _RemoteViews.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
+        _RemoteViews.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
+
+        SpannableStringBuilder sb = new SpannableStringBuilder(getString(R.string.Close));
+        sb.setSpan(font_fontawesome, 0, sb.length() - 1, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        _RemoteViews.setTextViewText(R.id.btnClose,   "TE");
+
+        //_RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playIntent);
+        _RemoteViews.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
+
+        notification.bigContentView = _RemoteViews;
+
+        //notification.bigContentView = ...;
+        startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
+    }
     private void attatchForeground(){
         Intent notificationIntent = new Intent(this, MainActivity.class);
         notificationIntent.setAction("");
@@ -226,6 +285,7 @@ public class MusicService extends Service
         intent_Broadcast_OnDemand.putExtra("EnglishTitle", Current_MusicDictionary.EnglishTitle);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_OnDemand);
         //attatchForeground();
+        invokeNotificationView();
     }
     public void playbackCurrentSong(){
         /// Play song after pause
