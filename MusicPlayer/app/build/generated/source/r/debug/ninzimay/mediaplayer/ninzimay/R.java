@@ -1628,9 +1628,14 @@ containing a value of this type.
         public static final int album_art=0x7f02004b;
         public static final int background_1=0x7f02004c;
         public static final int button_pressed=0x7f02004d;
-        public static final int logo=0x7f02004e;
-        public static final int notification_template_icon_bg=0x7f020050;
-        public static final int play=0x7f02004f;
+        public static final int font_awesome_btnbackward=0x7f02004e;
+        public static final int font_awesome_btnclose=0x7f02004f;
+        public static final int font_awesome_btnforward=0x7f020050;
+        public static final int font_awesome_btnpause=0x7f020051;
+        public static final int font_awesome_btnplay=0x7f020052;
+        public static final int logo=0x7f020053;
+        public static final int notification_template_icon_bg=0x7f020055;
+        public static final int play=0x7f020054;
     }
     public static final class id {
         public static final int LinearLayoutBody=0x7f0d0052;

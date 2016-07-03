@@ -16,6 +16,34 @@
         <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\2\gson-2.2.4_afb1e474da4fe1c85016dc64d4629cafc39aceda\classes.dex" />
     </item>
     <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.2.0_8d61dda2403defa773d832287f6172091389544a\classes.dex" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e44aa075e247a89bb2c6d23e1c8ae494466e22f5">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d64165ebf6eca0d098aae6902e06eec4981fae88\classes.dex" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.2.0_3800556f3f6b42e2ebc81e6e5c40d6fe7e8f5d7c\classes.dex" />
+    </item>
+    <item
+        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="41fb127a5d9457f6963899dba064a4a9bc56b244">
+        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_790aebe24e842a95d7433ff987ef29e433af538d\classes.dex" />
+    </item>
+    <item
         jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\jars\classes.jar"
         jumboMode="true"
         revision="23.0.2"
@@ -30,39 +58,11 @@
         <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.2.0_9c0f5810d981b3d6ea1d4d17ff3403fa1d230941\classes.dex" />
     </item>
     <item
-        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
-        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.2.0_8d61dda2403defa773d832287f6172091389544a\classes.dex" />
-    </item>
-    <item
         jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
         jumboMode="true"
         revision="23.0.2"
         sha1="6e239441500605809818997dd63b62a947195f8c">
         <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.2.0_67cb566707fede9effc2be26ddae82464decb3f6\classes.dex" />
-    </item>
-    <item
-        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="dd7fd6c92a14615c88997642e9343481e352e93c">
-        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d64165ebf6eca0d098aae6902e06eec4981fae88\classes.dex" />
-    </item>
-    <item
-        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="292a9fa091757208efa65e77eef63088247e51f3">
-        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.2.0_3800556f3f6b42e2ebc81e6e5c40d6fe7e8f5d7c\classes.dex" />
-    </item>
-    <item
-        jar="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="9deed28d035645e39ea9338c0ec7f08b9c2a9e0a">
-        <dex dex="D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_790aebe24e842a95d7433ff987ef29e433af538d\classes.dex" />
     </item>
 
 </items>

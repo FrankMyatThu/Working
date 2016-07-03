@@ -4,27 +4,27 @@
     api-level="23"
     density="xxxhdpi"
     format="7"
-    timestamp="6413329997216"
+    timestamp="15329112433121"
     token="-7195355480605632655" >
 
     <task
         name="javac"
-        duration="1830" />
+        duration="2776" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="2188" />
+        duration="1965" />
     <task
         name="verifier"
-        duration="1407" />
+        duration="624" />
 
     <artifact
         location="D:\01.Project\GitHub\Working\MusicPlayer\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
-    <build timestamp="6413329997216" >
+    <build timestamp="15329112433121" >
         <artifact
             location="D:\01.Project\GitHub\Working\MusicPlayer\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />

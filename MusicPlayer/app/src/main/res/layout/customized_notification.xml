@@ -3,9 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:orientation="horizontal"
-    android:background="@color/transparentBlackListing">
+    android:layout_height="100dp"
+    android:orientation="horizontal">
     <!-- Photo area start. -->
     <RelativeLayout
         android:id="@+id/PhotoArea"
@@ -37,7 +36,7 @@
         android:layout_toRightOf="@+id/PhotoArea"
         android:textSize="9pt"
         android:textStyle="bold"
-        android:textColor="@color/lightgray"
+        android:textColor="@color/transparentBlackFooter"
         android:text="Myanmar text" />
     <!-- Song info in myanmar end. -->
 
@@ -51,66 +50,57 @@
         android:layout_below="@+id/txtMyanmarInfo"
         android:layout_toRightOf="@+id/PhotoArea"
         android:textSize="7pt"
-        android:textColor="@color/lightgray"
         android:text="English text"
+        android:textColor="@color/transparentBlackFooter"
         android:gravity="center_vertical" />
     <!-- Song info in english end. -->
 
     <!-- Close start. -->
-    <Button
+    <ImageView
         android:id="@+id/btnClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="top|right"
         android:background="@null"
-        android:layout_weight="1"
-        android:textColor="@color/lightgray"
-        android:textSize="40sp"
-        android:text="@string/Close" />
+        android:src="@drawable/font_awesome_btnclose" />
     <!-- Close end. -->
 
     <!-- Player button(s) start. -->
     <!-- Previous start. -->
-    <Button
+    <ImageView
         android:id="@+id/btnBackward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/PhotoArea"
         android:gravity="center_horizontal|center_vertical"
         android:background="@null"
-        android:textColor="@color/lightgray"
-        android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-        android:text="@string/Previous"/>
+        android:src="@drawable/font_awesome_btnbackward" />
     <!-- Previous end. -->
     <!-- Play Pause start. -->
-    <Button
+    <ImageView
         android:id="@+id/btnPlayPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/btnBackward"
         android:layout_toLeftOf="@+id/btnForward"
         android:gravity="center_horizontal|center_vertical"
         android:background="@null"
-        android:textColor="@color/lightgray"
-        android:textSize="40sp"
-        android:text="@string/Play"/>
+        android:src="@drawable/font_awesome_btnplay" />
     <!-- Play Pause end. -->
     <!-- Forward start. -->
-    <Button
+    <ImageView
         android:id="@+id/btnForward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:gravity="center_horizontal|center_vertical"
         android:background="@null"
-        android:textColor="@color/lightgray"
-        android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-        android:text="@string/Next"/>
+        android:src="@drawable/font_awesome_btnforward" />
     <!-- Forward end. -->
     <!-- Player button(s) end. -->
 </RelativeLayout>

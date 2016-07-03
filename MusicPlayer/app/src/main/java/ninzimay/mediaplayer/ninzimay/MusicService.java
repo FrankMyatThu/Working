@@ -31,6 +31,9 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import com.google.gson.Gson;
@@ -172,176 +175,56 @@ public class MusicService extends Service
     public void setCurrent_MusicDictionary(MusicDictionary _MusicDictionary){
         Current_MusicDictionary = _MusicDictionary;
     }
-
-    private Bitmap getCustomFont_For_RemoteView(String ToDrawText, Typeface _TypeFace){
-        DisplayMetrics _DisplayMetrics = getApplicationContext().getResources().getDisplayMetrics();
-        int width = _DisplayMetrics.widthPixels;
-        Bitmap _Bitmap = Bitmap.createBitmap(width - 72, 84, Bitmap.Config.ARGB_8888);
-        Canvas _Canvas = new Canvas(_Bitmap);
-        Paint paint =  new Paint();
-        paint.setAntiAlias(true);
-        paint.setSubpixelText(true);
-        paint.setTypeface(_TypeFace);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(50);
-        paint.setTextAlign(Paint.Align.LEFT);
-        _Canvas.drawText(ToDrawText, 80, 60, paint);
-        return _Bitmap;
-    }
-
     private void showCustomNotifications(){
-        Typeface font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
-        Typeface font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
-        Typeface font_ninzimay = Typeface.createFromAsset( getAssets(), "ninzimay.ttf" );
+        MusicDictionary _MusicDictionary = getCurrent_MusicDictionary();
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
         notificationIntent.setAction("");
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent _PendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
+        Intent previousIntent = new Intent(this, MusicService.class);
+        previousIntent.setAction(Constants.ACTION.PREV_ACTION);
+        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 0, previousIntent, 0);
+
+        Intent playIntent = new Intent(this, MusicService.class);
+        playIntent.setAction(Constants.ACTION.PLAY_ACTION);
+        PendingIntent PendingIntent_playIntent = PendingIntent.getService(this, 0, playIntent, 0);
+
+        Intent nextIntent = new Intent(this, MusicService.class);
+        nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
+        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 0, nextIntent, 0);
+
         Intent closeIntent = new Intent(this, MusicService.class);
         closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
         PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
 
-        RemoteViews _RemoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.custome_notification);
-        _RemoteViews.setImageViewBitmap(R.id.notification_img, getCustomFont_For_RemoteView(getString(R.string.Close), font_fontawesome));
-        _RemoteViews.setOnClickPendingIntent(R.id.notification_img, PendingIntent_closeIntent);
-
+        RemoteViews _RemoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.customized_notification);
+        _RemoteViews.setImageViewResource(R.id.imgSongImage, R.drawable.album_art);
+        _RemoteViews.setTextViewText(R.id.txtMyanmarInfo, _MusicDictionary.MyanmarTitle);
+        _RemoteViews.setTextViewText(R.id.txtEnglishInfo, _MusicDictionary.EnglishTitle);
+        _RemoteViews.setImageViewResource(R.id.btnClose, R.drawable.font_awesome_btnclose);
+        _RemoteViews.setImageViewResource(R.id.btnBackward, R.drawable.font_awesome_btnbackward);
+        _RemoteViews.setImageViewResource(R.id.btnPlay, R.drawable.font_awesome_btnplay);
+        _RemoteViews.setImageViewResource(R.id.btnForward, R.drawable.font_awesome_btnforward);
+        _RemoteViews.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
+        _RemoteViews.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
+        _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playIntent);
+        _RemoteViews.setOnClickPendingIntent(R.id.btnForward, PendingIntent_nextIntent);
 
         int icon = R.drawable.logo;
         long when = System.currentTimeMillis();
         Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(icon)
-                .setContentText("Testing font awesome")
                 .setContentIntent(_PendingIntent)
                 .setOngoing(true)
                 .setWhen(when)
+                .setDeleteIntent(PendingIntent_closeIntent)
                 .build();
-
-        notification.contentView = _RemoteViews;
-        //notification.bigContentView = _RemoteViews;
-
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
-    }
-    /*public Bitmap getBitmapFont(String ToDraw, Typeface _Typeface)
-    {
-        Bitmap myBitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888);
-        Canvas myCanvas = new Canvas(myBitmap);
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setSubpixelText(true);
-        paint.setTypeface(_Typeface);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(15);
-        myCanvas.drawText(ToDraw, 0, 20, paint);
-        return myBitmap;
-    }*/
-    private void invokeNotificationView(){
-        MusicDictionary _MusicDictionary = getCurrent_MusicDictionary();
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        notificationIntent.setAction("");
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent _PendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-        Intent previousIntent = new Intent(this, MusicService.class);
-        previousIntent.setAction(Constants.ACTION.PREV_ACTION);
-        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 0, previousIntent, 0);
-
-        Intent playIntent = new Intent(this, MusicService.class);
-        playIntent.setAction(Constants.ACTION.PLAY_ACTION);
-        PendingIntent PendingIntent_playIntent = PendingIntent.getService(this, 0, playIntent, 0);
-
-        Intent nextIntent = new Intent(this, MusicService.class);
-        nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
-        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 0, nextIntent, 0);
-
-        Intent closeIntent = new Intent(this, MusicService.class);
-        closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
-        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
-
-        Typeface font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
-        Typeface font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
-        Typeface font_ninzimay = Typeface.createFromAsset( getAssets(), "ninzimay.ttf" );
-
-        RemoteViews _RemoteViews = new RemoteViews(getPackageName(), R.layout.customized_notification);
-        _RemoteViews.setImageViewResource(R.id.imgSongImage, R.drawable.album_art);
-        _RemoteViews.setTextViewText(R.id.txtMyanmarInfo, _MusicDictionary.MyanmarTitle);
-        _RemoteViews.setTextViewText(R.id.txtEnglishInfo, _MusicDictionary.EnglishTitle);
-        _RemoteViews.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
-        Log.d(LoggerName, "R.string.Close = "+R.string.Close);
-        Log.d(LoggerName, "getString(R.string.Close) = "+getString(R.string.Close));
-
-        SpannableStringBuilder _SpannableStringBuilder = new SpannableStringBuilder();
-        _SpannableStringBuilder.append(getString(R.string.Close));
-        int start = _SpannableStringBuilder.length();
-        _SpannableStringBuilder.setSpan(
-                new CustomTypefaceSpan("", font_fontawesome),
-                start,
-                _SpannableStringBuilder.length(),
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        _RemoteViews.setTextViewText(R.id.btnClose, _SpannableStringBuilder);
-
-
-        //_RemoteViews.setImageViewBitmap(R.id.btnClose, getBitmapFont(getString(R.string.Close), font_fontawesome));
-        _RemoteViews.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
-        _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playIntent);
-        _RemoteViews.setOnClickPendingIntent(R.id.btnForward, PendingIntent_nextIntent);
-
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.album_art);
-        Notification notification = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.logo)
-                .setContentIntent(_PendingIntent)
-                .setOngoing(true)
-                .setWhen(System.currentTimeMillis())
-                .build();
-
-
 
         notification.bigContentView = _RemoteViews;
 
-        startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
-    }
-    private void attatchForeground(){
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        notificationIntent.setAction("");
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-        PendingIntent _PendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-        Intent previousIntent = new Intent(this, MusicService.class);
-        previousIntent.setAction(Constants.ACTION.PREV_ACTION);
-        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 0, previousIntent, 0);
-
-        Intent playIntent = new Intent(this, MusicService.class);
-        playIntent.setAction(Constants.ACTION.PLAY_ACTION);
-        PendingIntent PendingIntent_playIntent = PendingIntent.getService(this, 0, playIntent, 0);
-
-        Intent nextIntent = new Intent(this, MusicService.class);
-        nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
-        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 0, nextIntent, 0);
-
-        Intent closeIntent = new Intent(this, MusicService.class);
-        closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
-        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
-
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.album_art);
-        Notification notification = new NotificationCompat.Builder(this)
-                .setContentTitle("Truiton Music Player")
-                .setTicker("Truiton Music Player")
-                .setContentText("My Music")
-                .setSmallIcon(R.drawable.logo)
-                .setLargeIcon(Bitmap.createScaledBitmap(icon, 128, 128, false))
-                .setContentIntent(_PendingIntent)
-                .setOngoing(true)
-                .addAction(android.R.drawable.ic_media_previous, "", PendingIntent_previousIntent)
-                .addAction(android.R.drawable.ic_media_play, "", PendingIntent_closeIntent)
-                .addAction(android.R.drawable.ic_media_next, "", PendingIntent_nextIntent)
-                //.addAction(android.R.drawable.ic_media_next , "", PendingIntent_closeIntent)
-                .build();
-
-        //notification.bigContentView = ...;
+        notification.flags |= Notification.DEFAULT_SOUND;
         startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
     }
     private void broadCast_Forever(){
