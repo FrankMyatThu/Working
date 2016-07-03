@@ -190,51 +190,39 @@ public class MusicService extends Service
     }
 
     private void showCustomNotifications(){
-
         Typeface font_fontawesome = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
         Typeface font_ailerons = Typeface.createFromAsset( getAssets(), "ailerons-typeface.otf" );
         Typeface font_ninzimay = Typeface.createFromAsset( getAssets(), "ninzimay.ttf" );
-
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
         notificationIntent.setAction("");
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent _PendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
+        Intent closeIntent = new Intent(this, MusicService.class);
+        closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
+        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
+
+        RemoteViews _RemoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.custome_notification);
+        _RemoteViews.setImageViewBitmap(R.id.notification_img, getCustomFont_For_RemoteView(getString(R.string.Close), font_fontawesome));
+        _RemoteViews.setOnClickPendingIntent(R.id.notification_img, PendingIntent_closeIntent);
+
+
         int icon = R.drawable.logo;
-        // create new id
-        Date date = new Date();
-        int notificationid = (int) date.getTime();
         long when = System.currentTimeMillis();
-        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(icon)
                 .setContentText("Testing font awesome")
                 .setContentIntent(_PendingIntent)
+                .setOngoing(true)
                 .setWhen(when)
                 .build();
 
-        Intent closeIntent = new Intent(this, MusicService.class);
-        closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
-        // set intent so it does not start a new activity
-        //closeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
-        //PendingIntent intent = PendingIntent.getActivity(getApplicationContext(), notificationid, notificationIntent, 0);
+        notification.contentView = _RemoteViews;
+        //notification.bigContentView = _RemoteViews;
 
-        RemoteViews contentView = new RemoteViews(getApplicationContext().getPackageName(), R.layout.custome_notification);
-        contentView.setImageViewBitmap(R.id.notification_img, getCustomFont_For_RemoteView(getString(R.string.Close), font_fontawesome));
-        contentView.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
-        // contentView.setTextViewText(R.id.notification_title,
-        // "My custom notification title");
-        //contentView.setTextViewText(R.id.notification_text, message);
-        notification.contentView = contentView;
-        //notification.contentIntent = intent;
-        // notification.setLatestEventInfo(context, title, message, intent);
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        //notificationManager.notify(notificationid, notification);
-
         startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
-
     }
     /*public Bitmap getBitmapFont(String ToDraw, Typeface _Typeface)
     {
