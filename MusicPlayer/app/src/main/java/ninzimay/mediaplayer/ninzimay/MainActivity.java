@@ -257,6 +257,8 @@ AdapterView.OnItemClickListener
         //Log.d(LoggerName, "SetListViewScrolledPosition ListViewFirstVisiblePosition = "+ ListViewFirstVisiblePosition +" | Offset = "+Offset);
     }
     private void getCacheAndBind(){
+        if(!isMyServiceRunning(MusicService.class)) return;
+
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
         /// 1.IsCached
         if(!sharedPreferences.getBoolean("IsCached", false))

@@ -97,7 +97,6 @@ public class MusicService extends Service
         }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
-            Log.d(LoggerName, "Constants.ACTION.PAUSE_ACTION");
             pauseCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
             if(List_MusicDictionary == null){
@@ -188,9 +187,9 @@ public class MusicService extends Service
         previousIntent.setAction(Constants.ACTION.PREV_ACTION);
         PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 0, previousIntent, 0);
 
-        Intent playIntent = new Intent(this, MusicService.class);
-        playIntent.setAction(Constants.ACTION.PLAY_ACTION);
-        PendingIntent PendingIntent_playIntent = PendingIntent.getService(this, 0, playIntent, 0);
+        Intent playBackIntent = new Intent(this, MusicService.class);
+        playBackIntent.setAction(Constants.ACTION.PLAYBACK_ACTION);
+        PendingIntent PendingIntent_playBackIntent = PendingIntent.getService(this, 0, playBackIntent, 0);
 
         Intent pauseIntent = new Intent(this, MusicService.class);
         pauseIntent.setAction(Constants.ACTION.PAUSE_ACTION);
@@ -218,12 +217,9 @@ public class MusicService extends Service
         if(player.isPlaying()){
             _RemoteViews.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnpause);
             _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_pauseIntent);
-            Log.d(LoggerName, "Playing...");
-        }else
-        {
+        }else{
             _RemoteViews.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnplay);
-            _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playIntent);
-            Log.d(LoggerName, "Paused");
+            _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playBackIntent);
         }
 
         int icon = R.drawable.logo;

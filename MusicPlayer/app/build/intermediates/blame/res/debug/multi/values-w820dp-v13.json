@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 122
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 180
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 239
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 297
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 357
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -106,7 +106,7 @@
                     "endOffset": 412
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -125,7 +125,7 @@
                     "endOffset": 478
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -144,7 +144,7 @@
                     "endOffset": 525
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -163,7 +163,7 @@
                     "endOffset": 573
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -182,7 +182,7 @@
                     "endOffset": 620
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -201,7 +201,7 @@
                     "endOffset": 677
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
