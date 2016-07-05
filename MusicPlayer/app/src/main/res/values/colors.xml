@@ -7,4 +7,6 @@
     <color name="lightOrange">#DCB274</color>
     <color name="transparentBlackListing">#AB000000</color>
     <color name="transparentBlackFooter">#DD000000</color>
+    <color name="TotalBlack">#000000</color>
+    <color name="TotalWhite">#FFFFFF</color>
 </resources>

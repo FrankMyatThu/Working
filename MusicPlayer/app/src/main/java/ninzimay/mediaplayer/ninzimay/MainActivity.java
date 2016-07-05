@@ -223,6 +223,7 @@ AdapterView.OnItemClickListener
         IntentMusicService.putExtra("Current_MusicDictionary", Current_MusicDictionary);
         IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
         startService(IntentMusicService);
+        btnPlayPause.setText(getString(R.string.Pause));
     }
     //<!-- End system defined function(s).  -->
 

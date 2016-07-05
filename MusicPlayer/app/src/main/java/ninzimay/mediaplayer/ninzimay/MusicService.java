@@ -97,6 +97,7 @@ public class MusicService extends Service
         }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
+            Log.d(LoggerName, "Constants.ACTION.PAUSE_ACTION");
             pauseCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
             if(List_MusicDictionary == null){
@@ -191,6 +192,10 @@ public class MusicService extends Service
         playIntent.setAction(Constants.ACTION.PLAY_ACTION);
         PendingIntent PendingIntent_playIntent = PendingIntent.getService(this, 0, playIntent, 0);
 
+        Intent pauseIntent = new Intent(this, MusicService.class);
+        pauseIntent.setAction(Constants.ACTION.PAUSE_ACTION);
+        PendingIntent PendingIntent_pauseIntent = PendingIntent.getService(this, 0, pauseIntent, 0);
+
         Intent nextIntent = new Intent(this, MusicService.class);
         nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
         PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 0, nextIntent, 0);
@@ -205,12 +210,21 @@ public class MusicService extends Service
         _RemoteViews.setTextViewText(R.id.txtEnglishInfo, _MusicDictionary.EnglishTitle);
         _RemoteViews.setImageViewResource(R.id.btnClose, R.drawable.font_awesome_btnclose);
         _RemoteViews.setImageViewResource(R.id.btnBackward, R.drawable.font_awesome_btnbackward);
-        _RemoteViews.setImageViewResource(R.id.btnPlay, R.drawable.font_awesome_btnplay);
         _RemoteViews.setImageViewResource(R.id.btnForward, R.drawable.font_awesome_btnforward);
         _RemoteViews.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
         _RemoteViews.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
-        _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playIntent);
         _RemoteViews.setOnClickPendingIntent(R.id.btnForward, PendingIntent_nextIntent);
+
+        if(player.isPlaying()){
+            _RemoteViews.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnpause);
+            _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_pauseIntent);
+            Log.d(LoggerName, "Playing...");
+        }else
+        {
+            _RemoteViews.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnplay);
+            _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playIntent);
+            Log.d(LoggerName, "Paused");
+        }
 
         int icon = R.drawable.logo;
         long when = System.currentTimeMillis();
@@ -269,6 +283,7 @@ public class MusicService extends Service
         player.pause();
         mediaPlayerState = MediaPlayerState.Paused;
         CurrentPlayingLength = player.getCurrentPosition();
+        showCustomNotifications();
     }
     private MusicDictionary GetSongToPlay(PlayerEventName _PlayerEventName,
                                         Boolean IsRepeatAlbum,

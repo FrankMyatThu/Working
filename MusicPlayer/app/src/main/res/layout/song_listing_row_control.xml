@@ -39,7 +39,7 @@
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="0.55"
+        android:layout_weight="0.59"
         android:orientation="vertical"
         android:weightSum="2">
 
@@ -79,7 +79,7 @@
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="0.1">
+        android:layout_weight="0.08">
         <Button
             android:id="@+id/btnFavorite"
             android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="0.1"
+        android:layout_weight="0.08"
         android:orientation="vertical"
         android:gravity="center_vertical|right"
         android:weightSum="2">

@@ -102,7 +102,7 @@ public class SongListingRowControl extends BaseAdapter {
         _ViewHolder.txtSongLength.setText(_MusicDictionary.Length);
         _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
 
-        if (_MusicDictionary.PlayingStatus == PlayingStatus_Playing){
+        if (_MusicDictionary.PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
             _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(_Context, R.color.lightOrange));
             _ViewHolder.txtMyanmarInfo.setTextColor(ContextCompat.getColor(_Context, R.color.lightOrange));
         }else{
