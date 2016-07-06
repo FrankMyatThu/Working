@@ -19,7 +19,9 @@
         android:theme="@style/Theme.FullScreen" >
         <activity
             android:name="ninzimay.mediaplayer.ninzimay.MainActivity"
+            android:excludeFromRecents="true"
             android:launchMode="singleTask"
+            android:noHistory="true"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

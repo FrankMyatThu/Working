@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Parcelable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -90,6 +91,17 @@ AdapterView.OnItemClickListener
 
             if (Constants.BROADCAST.ONDEMAND_BROADCAST.equals(action)){
                 //Log.d(LoggerName, "ACTIVITY.ONDEMAND_BROADCAST");
+                if(Boolean.parseBoolean(intent.getExtras().get("IsClose").toString())){
+                    finish();
+                    System.exit(0);
+                }
+                if(Boolean.parseBoolean(intent.getExtras().get("IsPause").toString())){
+                    btnPlayPause.setText(getString(R.string.Play));
+                    IsPauseSong = true;
+                }else{
+                    btnPlayPause.setText(getString(R.string.Pause));
+                    IsPauseSong = false;
+                }
                 Gson _Gson = new Gson();
                 String Using_List_MusicDictionary = intent.getExtras().get("Using_List_MusicDictionary").toString();
                 CurrentSongTotalLength = Integer.parseInt(intent.getExtras().get("CurrentSongTotalLength").toString());
@@ -309,8 +321,6 @@ AdapterView.OnItemClickListener
         IntentMusicService = new Intent(this, MusicService.class);
         IntentMusicService.setAction(Constants.ACTION.PAUSE_ACTION);
         startService(IntentMusicService);
-        btnPlayPause.setText(getString(R.string.Play));
-        IsPauseSong = true;
     }
     private void btnForward_Click(){
         Gson _Gson = new Gson();

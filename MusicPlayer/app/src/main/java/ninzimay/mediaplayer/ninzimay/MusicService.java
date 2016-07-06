@@ -98,6 +98,7 @@ public class MusicService extends Service
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
             pauseCurrentSong();
+            broadCast_OnDemand(false);
         }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
             if(List_MusicDictionary == null){
                 String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
@@ -116,8 +117,9 @@ public class MusicService extends Service
             CurrentPlayingLength = Integer.parseInt(intent.getExtras().get("seekBarIndex").toString());
             playIndexedSong();
         }if (intent.getAction().equals(Constants.ACTION.INVOKE_ONDEMAND_ACTION)) {
-            broadCast_OnDemand();
+            broadCast_OnDemand(false);
         }else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
+            broadCast_OnDemand(true);
             stopForeground(true);
             stopSelf();
         }
@@ -249,7 +251,7 @@ public class MusicService extends Service
         intent_Broadcast_Forever.putExtra("IsSeekbarSeekable", mediaPlayerState == MediaPlayerState.Started);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_Forever);
     }
-    private void broadCast_OnDemand() {
+    private void broadCast_OnDemand(Boolean IsClose) {
         //// Once for a song
         /// ---------------------
         /// CurrentSongTotalLength
@@ -263,10 +265,11 @@ public class MusicService extends Service
         intent_Broadcast_OnDemand.putExtra("Using_List_MusicDictionary", Using_List_MusicDictionary);
         intent_Broadcast_OnDemand.putExtra("MyanmarTitle", Current_MusicDictionary.MyanmarTitle);
         intent_Broadcast_OnDemand.putExtra("EnglishTitle", Current_MusicDictionary.EnglishTitle);
+        intent_Broadcast_OnDemand.putExtra("IsClose", IsClose);
+        intent_Broadcast_OnDemand.putExtra("IsPause", CurrentPlayingLength > 0);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_OnDemand);
-        //attatchForeground();
-        //invokeNotificationView();
-        showCustomNotifications();
+        if(!IsClose)
+            showCustomNotifications();
     }
     public void playbackCurrentSong(){
         /// Play song after pause
@@ -279,7 +282,6 @@ public class MusicService extends Service
         player.pause();
         mediaPlayerState = MediaPlayerState.Paused;
         CurrentPlayingLength = player.getCurrentPosition();
-        showCustomNotifications();
     }
     private MusicDictionary GetSongToPlay(PlayerEventName _PlayerEventName,
                                         Boolean IsRepeatAlbum,
@@ -376,7 +378,7 @@ public class MusicService extends Service
                         CurrentPlayingLength = 0;
                         player.start();
                         mediaPlayerState = MediaPlayerState.Started;
-                        broadCast_OnDemand();
+                        broadCast_OnDemand(false);
                     }
                 });
             }
@@ -438,7 +440,7 @@ public class MusicService extends Service
                         });
                         player.start();
                         mediaPlayerState = MediaPlayerState.Started;
-                        broadCast_OnDemand();
+                        broadCast_OnDemand(false);
                     }
                 });
                 player.prepareAsync();
