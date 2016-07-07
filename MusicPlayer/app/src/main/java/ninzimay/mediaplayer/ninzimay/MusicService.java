@@ -95,8 +95,10 @@ public class MusicService extends Service
             }
             playSong(GetSongToPlay(PlayerEventName.FirstPlaying, IsRepeatAlbum, IsShuffle));
         }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
+            Log.d(LoggerName, "PLAYBACK_ACTION");
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
+            Log.d(LoggerName, "PAUSE_ACTION");
             pauseCurrentSong();
             broadCast_OnDemand(false);
         }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
@@ -188,23 +190,23 @@ public class MusicService extends Service
 
         Intent previousIntent = new Intent(this, MusicService.class);
         previousIntent.setAction(Constants.ACTION.PREV_ACTION);
-        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 0, previousIntent, 0);
+        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 1, previousIntent, 0);
 
         Intent playBackIntent = new Intent(this, MusicService.class);
         playBackIntent.setAction(Constants.ACTION.PLAYBACK_ACTION);
-        PendingIntent PendingIntent_playBackIntent = PendingIntent.getService(this, 0, playBackIntent, 0);
+        PendingIntent PendingIntent_playBackIntent = PendingIntent.getService(this, 2, playBackIntent, 0);
 
         Intent pauseIntent = new Intent(this, MusicService.class);
         pauseIntent.setAction(Constants.ACTION.PAUSE_ACTION);
-        PendingIntent PendingIntent_pauseIntent = PendingIntent.getService(this, 0, pauseIntent, 0);
+        PendingIntent PendingIntent_pauseIntent = PendingIntent.getService(this, 3, pauseIntent, 0);
 
         Intent nextIntent = new Intent(this, MusicService.class);
         nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
-        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 0, nextIntent, 0);
+        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 4, nextIntent, 0);
 
         Intent closeIntent = new Intent(this, MusicService.class);
         closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
-        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 0, closeIntent, 0);
+        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 5, closeIntent, 0);
 
         RemoteViews _RemoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.customized_notification);
         _RemoteViews.setImageViewResource(R.id.imgSongImage, R.drawable.album_art);
@@ -217,6 +219,7 @@ public class MusicService extends Service
         _RemoteViews.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
         _RemoteViews.setOnClickPendingIntent(R.id.btnForward, PendingIntent_nextIntent);
 
+        Log.d(LoggerName, "player = " + player);
         if(player.isPlaying()){
             _RemoteViews.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnpause);
             _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_pauseIntent);
