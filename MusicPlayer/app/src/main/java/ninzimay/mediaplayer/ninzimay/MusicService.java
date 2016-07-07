@@ -183,27 +183,27 @@ public class MusicService extends Service
         Intent notificationIntent = new Intent(this, MainActivity.class);
         notificationIntent.setAction("");
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent _PendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        PendingIntent _PendingIntent = PendingIntent.getActivity(this, NotificationID.getID(), notificationIntent, 0);
 
         Intent previousIntent = new Intent(this, MusicService.class);
         previousIntent.setAction(Constants.ACTION.PREV_ACTION);
-        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, 1, previousIntent, 0);
+        PendingIntent PendingIntent_previousIntent = PendingIntent.getService(this, NotificationID.getID(), previousIntent, 0);
 
         Intent playBackIntent = new Intent(this, MusicService.class);
         playBackIntent.setAction(Constants.ACTION.PLAYBACK_ACTION);
-        PendingIntent PendingIntent_playBackIntent = PendingIntent.getService(this, 2, playBackIntent, 0);
+        PendingIntent PendingIntent_playBackIntent = PendingIntent.getService(this, NotificationID.getID(), playBackIntent, 0);
 
         Intent pauseIntent = new Intent(this, MusicService.class);
         pauseIntent.setAction(Constants.ACTION.PAUSE_ACTION);
-        PendingIntent PendingIntent_pauseIntent = PendingIntent.getService(this, 3, pauseIntent, 0);
+        PendingIntent PendingIntent_pauseIntent = PendingIntent.getService(this, NotificationID.getID(), pauseIntent, 0);
 
         Intent nextIntent = new Intent(this, MusicService.class);
         nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
-        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, 4, nextIntent, 0);
+        PendingIntent PendingIntent_nextIntent = PendingIntent.getService(this, NotificationID.getID(), nextIntent, 0);
 
         Intent closeIntent = new Intent(this, MusicService.class);
         closeIntent.setAction(Constants.ACTION.STOPFOREGROUND_ACTION);
-        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, 5, closeIntent, 0);
+        PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, NotificationID.getID(), closeIntent, 0);
 
         RemoteViews _RemoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.customized_notification);
         _RemoteViews.setImageViewResource(R.id.imgSongImage, R.drawable.album_art);

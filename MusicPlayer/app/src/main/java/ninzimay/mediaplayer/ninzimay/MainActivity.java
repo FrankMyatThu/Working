@@ -95,6 +95,7 @@ AdapterView.OnItemClickListener
 
             if (Constants.BROADCAST.ONDEMAND_BROADCAST.equals(action)){
                 //Log.d(LoggerName, "ACTIVITY.ONDEMAND_BROADCAST");
+                Runtime.getRuntime().gc();
                 if(Boolean.parseBoolean(intent.getExtras().get("IsClose").toString())){
                     finish();
                     System.exit(0);
@@ -161,22 +162,17 @@ AdapterView.OnItemClickListener
         super.onStop();
     }
     public void onDestroy() {
-        Log.d(LoggerName, "In the onDestroy() event");
+        //Log.d(LoggerName, "In the onDestroy() event");
         super.onDestroy();
         /// Clean up memory
         Runtime.getRuntime().gc();
     }
     @Override
     public void onDetachedFromWindow() {
-        Log.d(LoggerName, "In the onDetachedFromWindow() event");
+        //Log.d(LoggerName, "In the onDetachedFromWindow() event");
         super.onDetachedFromWindow();
         /// Clean up memory
-        Drawable drawable = imgBackgroundImage.getDrawable();
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            Bitmap bitmap = bitmapDrawable.getBitmap();
-            bitmap.recycle();
-        }
+        unloadBitmap();
     }
     @Override
     public void onBackPressed(){
@@ -371,8 +367,8 @@ AdapterView.OnItemClickListener
         startService(IntentMusicService);
     }
     private  void initializer(){
-
         /// Start Invoking background image loader.
+        unloadBitmap();
         imgBackgroundImage = (ImageView)findViewById(R.id.imgBackgroundImage);
         loadBitmap(R.drawable.background_1, imgBackgroundImage, this);
         /// End Invoking background image loader.
@@ -462,6 +458,15 @@ AdapterView.OnItemClickListener
     public void loadBitmap(int resId, ImageView imageView, Context _Context) {
         BitmapWorkerTask task = new BitmapWorkerTask(imageView, _Context);
         task.execute(resId);
+    }
+    private void unloadBitmap(){
+        if(imgBackgroundImage == null)  return;
+        Drawable drawable = imgBackgroundImage.getDrawable();
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            bitmap.recycle();
+        }
     }
     public ArrayList<MusicDictionary> getList_MusicDictionary(){
 
