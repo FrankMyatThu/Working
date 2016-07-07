@@ -119,6 +119,7 @@ public class MusicService extends Service
         }if (intent.getAction().equals(Constants.ACTION.INVOKE_ONDEMAND_ACTION)) {
             broadCast_OnDemand(false);
         }else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
+            Log.d(LoggerName, "Service Stop Event.");
             broadCast_OnDemand(true);
             stopForeground(true);
             stopSelf();
@@ -227,6 +228,7 @@ public class MusicService extends Service
         int icon = R.drawable.logo;
         long when = System.currentTimeMillis();
         Notification notification = new NotificationCompat.Builder(this)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setSmallIcon(icon)
                 .setContentIntent(_PendingIntent)
                 .setOngoing(true)
