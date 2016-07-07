@@ -95,10 +95,8 @@ public class MusicService extends Service
             }
             playSong(GetSongToPlay(PlayerEventName.FirstPlaying, IsRepeatAlbum, IsShuffle));
         }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
-            Log.d(LoggerName, "PLAYBACK_ACTION");
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
-            Log.d(LoggerName, "PAUSE_ACTION");
             pauseCurrentSong();
             broadCast_OnDemand(false);
         }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
@@ -121,7 +119,6 @@ public class MusicService extends Service
         }if (intent.getAction().equals(Constants.ACTION.INVOKE_ONDEMAND_ACTION)) {
             broadCast_OnDemand(false);
         }else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
-            Log.d(LoggerName, "Service Stop Event.");
             broadCast_OnDemand(true);
             stopForeground(true);
             stopSelf();
@@ -219,7 +216,6 @@ public class MusicService extends Service
         _RemoteViews.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
         _RemoteViews.setOnClickPendingIntent(R.id.btnForward, PendingIntent_nextIntent);
 
-        Log.d(LoggerName, "player = " + player);
         if(player.isPlaying()){
             _RemoteViews.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnpause);
             _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_pauseIntent);

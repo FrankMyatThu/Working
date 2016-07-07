@@ -9,8 +9,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -48,6 +51,7 @@ AdapterView.OnItemClickListener
     String PlayingStatus_New = "PlayingStatus_New";
     Intent IntentMusicService = null;
     ArrayList<MusicDictionary> List_MusicDictionary = null;
+    ImageView imgBackgroundImage = null;
     TextView txtTitle = null;
     TextView txtCurrentPlayingMyanmarInfo = null;
     TextView txtCurrentPlayingEnglishInfo = null;
@@ -157,14 +161,30 @@ AdapterView.OnItemClickListener
         super.onStop();
     }
     public void onDestroy() {
-        //Log.d(LoggerName, "In the onDestroy() event");
+        Log.d(LoggerName, "In the onDestroy() event");
         super.onDestroy();
+        /// Clean up memory
+        Runtime.getRuntime().gc();
+    }
+    @Override
+    public void onDetachedFromWindow() {
+        Log.d(LoggerName, "In the onDetachedFromWindow() event");
+        super.onDetachedFromWindow();
+        /// Clean up memory
+        Drawable drawable = imgBackgroundImage.getDrawable();
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            bitmap.recycle();
+        }
     }
     @Override
     public void onBackPressed(){
         //Log.d(LoggerName, "In the onBackPressed() event");
         // code here to show dialog
-        super.onBackPressed();  // optional depending on your needs
+        super.onBackPressed();
+        /// Clean up memory
+        finish();
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -353,7 +373,7 @@ AdapterView.OnItemClickListener
     private  void initializer(){
 
         /// Start Invoking background image loader.
-        ImageView imgBackgroundImage = (ImageView)findViewById(R.id.imgBackgroundImage);
+        imgBackgroundImage = (ImageView)findViewById(R.id.imgBackgroundImage);
         loadBitmap(R.drawable.background_1, imgBackgroundImage, this);
         /// End Invoking background image loader.
 
