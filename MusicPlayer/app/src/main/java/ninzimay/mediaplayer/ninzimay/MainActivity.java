@@ -123,17 +123,17 @@ AdapterView.OnItemClickListener
     //<!-- Start system defined function(s).  -->
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Log.d(LoggerName, "In the onCreate() event");
+        Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializer();
     }
     public void onStart(){
-        //Log.d(LoggerName, "In the onStart() event");
+        Log.d(LoggerName, "In the onStart() event");
         super.onStart();
     }
     public void onResume(){
-        //Log.d(LoggerName, "In the onResume() event");
+        Log.d(LoggerName, "In the onResume() event");
         super.onResume();
         getCacheAndBind();
         IntentFilter _IntentFilter = new IntentFilter();
@@ -148,7 +148,7 @@ AdapterView.OnItemClickListener
         }
     }
     public void onRestart() {
-        //Log.d(LoggerName, "In the onRestart() event");
+        Log.d(LoggerName, "In the onRestart() event");
         super.onRestart();
     }
     public void onPause(){

@@ -12,7 +12,8 @@ public class NotificationID {
     public static int getID() {
         /// http://www.fileformat.info/tip/java/date2millis.htm
         //int _UniqueID = (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
-        int _UniqueID = (int)(System.currentTimeMillis() / 1000);
+        //int _UniqueID = (int)(System.currentTimeMillis() / 1000);
+        int _UniqueID = Math.abs((int)(System.currentTimeMillis()));
         Log.d(LoggerName, "_UniqueID = "+_UniqueID + " | System.currentTimeMillis() = "+ System.currentTimeMillis());
         return _UniqueID;
     }
