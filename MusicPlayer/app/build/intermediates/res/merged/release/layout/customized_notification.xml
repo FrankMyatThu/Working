@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:orientation="horizontal"
+    android:background="@color/TotalBlack">
+    <!-- Photo area start. -->
+    <RelativeLayout
+        android:id="@+id/PhotoArea"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <ImageView
+            android:id="@+id/imgSongImage"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/album_art">
+        </ImageView>
+    </RelativeLayout>
+    <!-- Photo area end. -->
+
+    <RelativeLayout
+        android:id="@+id/TextInfoLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_above="@+id/PlayerButtonLayout"
+        android:layout_toRightOf="@+id/PhotoArea"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp" >
+
+        <!-- Song info in myanmar start. -->
+        <TextView
+            android:id="@+id/txtMyanmarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:textSize="9pt"
+            android:textStyle="bold"
+            android:textColor="@color/TotalWhite"
+            android:text="Myanmar text" />
+        <!-- Song info in myanmar end. -->
+
+        <!-- Song info in english start. -->
+        <TextView
+            android:id="@+id/txtEnglishInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/txtMyanmarInfo"
+            android:textSize="8pt"
+            android:text="English text"
+            android:textColor="@color/TotalWhite"
+            android:gravity="top" />
+        <!-- Song info in english end. -->
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/CloseLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/TextInfoLayout"
+        android:layout_above="@+id/PlayerButtonLayout"
+        android:paddingRight="13dp">
+
+        <!-- Close start. -->
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/font_awesome_btnclose" />
+        <!-- Close end. -->
+
+    </RelativeLayout>
+
+    <!-- Player button(s) start. -->
+    <RelativeLayout
+        android:id="@+id/PlayerButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/PhotoArea"
+        android:gravity="center_vertical"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp">
+        <!-- Previous start. -->
+        <ImageView
+            android:id="@+id/btnBackward"
+            android:layout_width="65dp"
+            android:layout_height="22dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal|top"
+            android:background="@null"
+            android:src="@drawable/font_awesome_btnbackward" />
+        <!-- Previous end. -->
+        <!-- Play Pause start. -->
+        <ImageView
+            android:id="@+id/btnPlayPause"
+            android:layout_width="65dp"
+            android:layout_height="22dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnBackward"
+            android:layout_toLeftOf="@+id/btnForward"
+            android:gravity="center_horizontal|top"
+            android:background="@null"
+            android:src="@drawable/font_awesome_btnplay" />
+        <!-- Play Pause end. -->
+        <!-- Forward start. -->
+        <ImageView
+            android:id="@+id/btnForward"
+            android:layout_width="65dp"
+            android:layout_height="22dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center_horizontal|top"
+            android:background="@null"
+            android:src="@drawable/font_awesome_btnforward" />
+        <!-- Forward end. -->
+    </RelativeLayout>
+    <!-- Player button(s) end. -->
+</RelativeLayout>

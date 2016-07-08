@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="PlayerButtonLeftRight_StartEndPointText">17dip</dimen>
+    <dimen name="PlayerButtonfont_sizeLarge">24sp</dimen>
+    <dimen name="PlayerButtonfont_sizeMedian">20sp</dimen>
+    <dimen name="PlayerButtonfont_sizeSmall">10sp</dimen>
+    <dimen name="PlayerButtonfont_sizeSmalldp">10dp</dimen>
+    <dimen name="PlayerButtontop_Seekbar">8dip</dimen>
+    <dimen name="PlayerButtontop_StartEndPointText">18dip</dimen>
+    <dimen name="Title_FirstLine">36sp</dimen>
+    <dimen name="Title_SecondLine">30sp</dimen>
+    <dimen name="Title_ThirdLine">28sp</dimen>
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+</resources>

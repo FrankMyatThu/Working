@@ -48,7 +48,6 @@ public class SongListingRowControl extends BaseAdapter {
         TextView txtMyanmarInfo;
         TextView txtEnglishInfo;
         Button btnFavorite;
-        Button btnRunningSong;
         TextView txtSongLength;
         ViewHolder(View _View){
             imgSongImage = (ImageView) _View.findViewById(R.id.imgSongImage);
@@ -56,7 +55,6 @@ public class SongListingRowControl extends BaseAdapter {
             txtEnglishInfo = (TextView) _View.findViewById(R.id.txtEnglishInfo);
             txtSongLength =  (TextView) _View.findViewById(R.id.txtSongLength);
             btnFavorite = (Button) _View.findViewById(R.id.btnFavorite);
-            btnRunningSong = (Button) _View.findViewById(R.id.btnRunningSong);
         }
     }
     //<!-- End dependency object(s).  -->
@@ -96,7 +94,6 @@ public class SongListingRowControl extends BaseAdapter {
 
         MusicDictionary _MusicDictionary = ArrayList_MusicDictionary.get(position);
         _ViewHolder.btnFavorite.setTypeface(_Font);
-        _ViewHolder.btnRunningSong.setTypeface(_Font);
         _ViewHolder.txtEnglishInfo.setText(_MusicDictionary.EnglishTitle);
         _ViewHolder.txtMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
         _ViewHolder.txtSongLength.setText(_MusicDictionary.Length);

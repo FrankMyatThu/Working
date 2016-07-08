@@ -39,7 +39,7 @@
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="0.59"
+        android:layout_weight="0.67"
         android:orientation="vertical"
         android:weightSum="2">
 
@@ -75,31 +75,13 @@
     </RelativeLayout>
     <!--Info area end. -->
 
-    <!--Favorite area start. -->
-    <RelativeLayout
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight="0.08">
-        <Button
-            android:id="@+id/btnFavorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:layout_marginTop="50dp"
-            android:background="@null"
-            android:textColor="@color/lightgray"
-            android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-            android:text="@string/FavoriteOn"/>
-    </RelativeLayout>
-    <!--Favorite area end. -->
-
-    <!--Running Indicator start. -->
+    <!--Favorite & Running Indicator start. -->
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="0.08"
         android:orientation="vertical"
-        android:gravity="center_vertical|right"
+        android:gravity="center_vertical|center_horizontal"
         android:weightSum="2">
 
         <!-- Song length start. -->
@@ -108,30 +90,28 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/lightgray"
             android:textSize="@dimen/PlayerButtonfont_sizeSmall"
-            android:layout_marginTop="10dp" />
+            />
         <!-- Song length end. -->
 
-        <!-- Song running icon start. -->
+        <!-- Favorite start. -->
         <Button
-            android:id="@+id/btnRunningSong"
+            android:id="@+id/btnFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:layout_marginTop="50dp"
-            android:layout_alignParentRight="true"
+            android:layout_below="@id/txtSongLength"
             android:background="@null"
-            android:gravity="center_vertical|right"
+            android:gravity="left"
             android:textColor="@color/lightgray"
             android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-            android:text="@string/RunningIndicator"/>
-        <!-- Song running icon end. -->
+            android:text="@string/FavoriteOn"/>
+        <!-- Favorite end. -->
 
     </RelativeLayout>
-    <!--Running Indicator end. -->
+    <!--Favorite & Running Indicator end. -->
 
     <!--Blank area start. -->
     <RelativeLayout
