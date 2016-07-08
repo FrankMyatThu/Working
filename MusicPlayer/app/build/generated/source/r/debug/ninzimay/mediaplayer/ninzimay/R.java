@@ -1637,8 +1637,9 @@ containing a value of this type.
         public static final int font_awesome_btnpause=0x7f020052;
         public static final int font_awesome_btnplay=0x7f020053;
         public static final int logo=0x7f020054;
-        public static final int notification_template_icon_bg=0x7f020056;
+        public static final int notification_template_icon_bg=0x7f020057;
         public static final int play=0x7f020055;
+        public static final int small_white_icon=0x7f020056;
     }
     public static final class id {
         public static final int CloseLayout=0x7f0d006f;

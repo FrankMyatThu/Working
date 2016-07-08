@@ -476,8 +476,9 @@ int drawable font_awesome_btnforward 0x7f020051
 int drawable font_awesome_btnpause 0x7f020052
 int drawable font_awesome_btnplay 0x7f020053
 int drawable logo 0x7f020054
-int drawable notification_template_icon_bg 0x7f020056
+int drawable notification_template_icon_bg 0x7f020057
 int drawable play 0x7f020055
+int drawable small_white_icon 0x7f020056
 int id CloseLayout 0x7f0d006f
 int id LinearLayoutBody 0x7f0d0052
 int id LinearLayoutFooter 0x7f0d0059

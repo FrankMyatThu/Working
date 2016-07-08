@@ -182,9 +182,8 @@ public class MusicService extends Service
         MusicDictionary _MusicDictionary = getCurrent_MusicDictionary();
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
-        notificationIntent.setAction("");
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent _PendingIntent = PendingIntent.getActivity(this, NotificationID.getID(), notificationIntent, 0);
+        PendingIntent PendingIntent_OpenMainActivity = PendingIntent.getActivity(this, NotificationID.getID(), notificationIntent, 0);
 
         Intent previousIntent = new Intent(this, MusicService.class);
         previousIntent.setAction(Constants.ACTION.PREV_ACTION);
@@ -213,6 +212,7 @@ public class MusicService extends Service
         _RemoteViews.setImageViewResource(R.id.btnClose, R.drawable.font_awesome_btnclose);
         _RemoteViews.setImageViewResource(R.id.btnBackward, R.drawable.font_awesome_btnbackward);
         _RemoteViews.setImageViewResource(R.id.btnForward, R.drawable.font_awesome_btnforward);
+        _RemoteViews.setOnClickPendingIntent(R.id.imgSongImage, PendingIntent_OpenMainActivity);
         _RemoteViews.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
         _RemoteViews.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
         _RemoteViews.setOnClickPendingIntent(R.id.btnForward, PendingIntent_nextIntent);
@@ -225,12 +225,11 @@ public class MusicService extends Service
             _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playBackIntent);
         }
 
-        int icon = R.drawable.logo;
+        int icon = R.drawable.small_white_icon;
         long when = System.currentTimeMillis();
         Notification notification = new NotificationCompat.Builder(this)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setSmallIcon(icon)
-                .setContentIntent(_PendingIntent)
                 .setOngoing(true)
                 .setWhen(when)
                 .setDeleteIntent(PendingIntent_closeIntent)

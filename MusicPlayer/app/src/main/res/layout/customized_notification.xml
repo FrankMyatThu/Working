@@ -32,7 +32,7 @@
     <RelativeLayout
         android:id="@+id/TextInfoLayout"
         android:layout_width="wrap_content"
-        android:layout_height="65dp"
+        android:layout_height="60dp"
         android:layout_above="@+id/PlayerButtonLayout"
         android:layout_toRightOf="@+id/PhotoArea"
         android:layout_alignParentTop="true"
@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/txtMyanmarInfo"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:gravity="center_vertical"
             android:textSize="9pt"
             android:textStyle="bold"
@@ -55,9 +55,9 @@
         <TextView
             android:id="@+id/txtEnglishInfo"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/txtMyanmarInfo"
-            android:textSize="7pt"
+            android:textSize="8pt"
             android:text="English text"
             android:textColor="@color/TotalWhite"
             android:gravity="top" />
@@ -79,7 +79,7 @@
         <ImageView
             android:id="@+id/btnClose"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:gravity="center_horizontal|center_vertical"
@@ -94,7 +94,7 @@
     <RelativeLayout
         android:id="@+id/PlayerButtonLayout"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/PhotoArea"
         android:gravity="center_vertical"
@@ -104,9 +104,9 @@
         <ImageView
             android:id="@+id/btnBackward"
             android:layout_width="65dp"
-            android:layout_height="20dp"
+            android:layout_height="22dp"
             android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal|top"
             android:background="@null"
             android:src="@drawable/font_awesome_btnbackward" />
         <!-- Previous end. -->
@@ -114,11 +114,11 @@
         <ImageView
             android:id="@+id/btnPlayPause"
             android:layout_width="65dp"
-            android:layout_height="20dp"
+            android:layout_height="22dp"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/btnBackward"
             android:layout_toLeftOf="@+id/btnForward"
-            android:gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal|top"
             android:background="@null"
             android:src="@drawable/font_awesome_btnplay" />
         <!-- Play Pause end. -->
@@ -126,10 +126,10 @@
         <ImageView
             android:id="@+id/btnForward"
             android:layout_width="65dp"
-            android:layout_height="20dp"
+            android:layout_height="22dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal|top"
             android:background="@null"
             android:src="@drawable/font_awesome_btnforward" />
         <!-- Forward end. -->
