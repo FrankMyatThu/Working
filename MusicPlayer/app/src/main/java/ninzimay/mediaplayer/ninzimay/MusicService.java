@@ -72,6 +72,7 @@ public class MusicService extends Service
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
+
     //<!-- End dependency object(s).  -->
 
     //<!-- Start system defined function(s).  -->
