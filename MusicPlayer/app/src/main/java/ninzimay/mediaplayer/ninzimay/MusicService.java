@@ -167,6 +167,7 @@ public class MusicService extends Service
         Runnable_Music = new Runnable() {
             @Override
             public void run() {
+                Runtime.getRuntime().gc();
                 if(mediaPlayerState == MediaPlayerState.Started || mediaPlayerState == MediaPlayerState.Paused){
                     broadCast_Forever();
                 }
