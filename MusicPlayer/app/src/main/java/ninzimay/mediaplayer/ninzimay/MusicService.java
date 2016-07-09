@@ -4,9 +4,11 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -73,9 +75,33 @@ implements AudioManager.OnAudioFocusChangeListener
     private Runnable Runnable_Music = null;
     private Gson gson = new Gson();
     private AudioManager _AudioManager;
+    private MusicIntentReceiver _MusicIntentReceiver;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
+    private class MusicIntentReceiver extends BroadcastReceiver {
+        @Override public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
+                int state = intent.getIntExtra("state", -1);
+                switch (state) {
+                    case 0:
+                        //Log.d(LoggerName, "Headset is unplugged");
+                        pauseCurrentSong();
+                        broadCast_OnDemand(false);
+                        break;
+                    case 1:
+                        //Log.d(LoggerName, "Headset is plugged");
+                        if(CurrentPlayingLength > 0){
+                            playbackCurrentSong();
+                        }
+                        break;
+                    default:
+                        //Log.d(LoggerName, "I have no idea what the headset state is");
+                        break;
+                }
+            }
+        }
+    }
     //<!-- End dependency object(s).  -->
 
     //<!-- Start system defined function(s).  -->
@@ -85,6 +111,9 @@ implements AudioManager.OnAudioFocusChangeListener
         getHandler();
         _AudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         _AudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+        _MusicIntentReceiver = new MusicIntentReceiver();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        registerReceiver(_MusicIntentReceiver, filter);
     }
     @Override
     public IBinder onBind(Intent intent) {
@@ -139,6 +168,8 @@ implements AudioManager.OnAudioFocusChangeListener
         SharedPreferences _SharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
         _SharedPreferences.edit().clear().commit();
         _AudioManager.abandonAudioFocus(this);
+        if(_MusicIntentReceiver != null)
+            unregisterReceiver(_MusicIntentReceiver);
     }
     @Override
     public void onAudioFocusChange(int focusChange) {
