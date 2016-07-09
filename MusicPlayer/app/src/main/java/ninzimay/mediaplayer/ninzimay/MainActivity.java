@@ -75,12 +75,14 @@ AdapterView.OnItemClickListener
     Typeface font_ailerons = null;
     Typeface font_ninzimay = null;
     int CurrentSongTotalLength = 0;
+    Gson _Gson = new Gson();
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Runtime.getRuntime().gc();
             String action = intent.getAction();
 
             if (Constants.BROADCAST.FOREVER_BROADCAST.equals(action)){
@@ -95,7 +97,6 @@ AdapterView.OnItemClickListener
 
             if (Constants.BROADCAST.ONDEMAND_BROADCAST.equals(action)){
                 //Log.d(LoggerName, "ACTIVITY.ONDEMAND_BROADCAST");
-                Runtime.getRuntime().gc();
                 if(Boolean.parseBoolean(intent.getExtras().get("IsClose").toString())){
                     finish();
                     System.exit(0);
@@ -107,7 +108,7 @@ AdapterView.OnItemClickListener
                     btnPlayPause.setText(getString(R.string.Pause));
                     IsPauseSong = false;
                 }
-                Gson _Gson = new Gson();
+
                 String Using_List_MusicDictionary = intent.getExtras().get("Using_List_MusicDictionary").toString();
                 CurrentSongTotalLength = Integer.parseInt(intent.getExtras().get("CurrentSongTotalLength").toString());
                 Seekbar.setMax(CurrentSongTotalLength);
@@ -115,6 +116,20 @@ AdapterView.OnItemClickListener
                 txtCurrentPlayingMyanmarInfo.setText(intent.getExtras().get("MyanmarTitle").toString());
                 ArrayList<MusicDictionary> ArrayList_Using_List_MusicDictionary =  _Gson.fromJson(Using_List_MusicDictionary, new TypeToken<ArrayList<MusicDictionary>>(){}.getType());
                 ListView_Rebind(ArrayList_Using_List_MusicDictionary);
+            }
+
+            if (Constants.BROADCAST.CLICK_FAVORITE.equals(action)){
+                String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
+                Boolean _IsFavoriteNow = Boolean.parseBoolean(intent.getExtras().get("IsFavoriteNow").toString());
+                MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
+                Log.d(LoggerName, "CLICK_FAVORITE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle + " | _IsFavoriteNow =" +_IsFavoriteNow);
+            }
+
+            if (Constants.BROADCAST.CLICK_INLINE_IMAGE.equals(action)){
+                String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
+                MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
+                Log.d(LoggerName, "CLICK_INLINE_IMAGE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle);
+                CLICK_INLINE_IMAGE(Current_MusicDictionary);
             }
         }
     };
@@ -139,6 +154,8 @@ AdapterView.OnItemClickListener
         IntentFilter _IntentFilter = new IntentFilter();
         _IntentFilter.addAction(Constants.BROADCAST.FOREVER_BROADCAST);
         _IntentFilter.addAction(Constants.BROADCAST.ONDEMAND_BROADCAST);
+        _IntentFilter.addAction(Constants.BROADCAST.CLICK_FAVORITE);
+        _IntentFilter.addAction(Constants.BROADCAST.CLICK_INLINE_IMAGE);
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, _IntentFilter);
         if(IsComingBack){
             IntentMusicService = null;
@@ -239,19 +256,9 @@ AdapterView.OnItemClickListener
             txtStartPoint.setText(_Progress);
         }
     }
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Gson _Gson = new Gson();
-        MusicDictionary _MusicDictionary = ((MusicDictionary)parent.getItemAtPosition(position));
-        String Current_MusicDictionary = _Gson.toJson(_MusicDictionary);
-        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
-        IntentMusicService = null;
-        IntentMusicService = new Intent(this, MusicService.class);
-        IntentMusicService.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
-        IntentMusicService.putExtra("Current_MusicDictionary", Current_MusicDictionary);
-        IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
-        startService(IntentMusicService);
-        btnPlayPause.setText(getString(R.string.Pause));
+    //@Override
+    public void onItemClick(AdapterView<?> parent, View _View, int position, long id) {
+        Runtime.getRuntime().gc();
     }
     //<!-- End system defined function(s).  -->
 
@@ -352,6 +359,16 @@ AdapterView.OnItemClickListener
         IntentMusicService = new Intent(this, MusicService.class);
         IntentMusicService.setAction(Constants.ACTION.PREV_ACTION);
         startService(IntentMusicService);
+    }
+    private void CLICK_INLINE_IMAGE(String Current_MusicDictionary){
+        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
+        IntentMusicService.putExtra("Current_MusicDictionary", Current_MusicDictionary);
+        IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
+        startService(IntentMusicService);
+        btnPlayPause.setText(getString(R.string.Pause));
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();

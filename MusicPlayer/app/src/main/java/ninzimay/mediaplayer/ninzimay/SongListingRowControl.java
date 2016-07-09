@@ -1,8 +1,10 @@
 package ninzimay.mediaplayer.ninzimay;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,7 @@ import java.util.List;
 /**
  * Created by myat on 10/6/2016.
  */
-public class SongListingRowControl extends BaseAdapter {
+public class SongListingRowControl extends BaseAdapter implements View.OnClickListener{
     //<!-- Start declaration area.  -->
     String LoggerName = "NinZiMay";
     private Context _Context;
@@ -31,6 +35,7 @@ public class SongListingRowControl extends BaseAdapter {
     private String PlayingStatus_Playing = "PlayingStatus_Playing";
     private String PlayingStatus_Played = "PlayingStatus_Played";
     private ArrayList<MusicDictionary> ArrayList_MusicDictionary = new ArrayList<MusicDictionary>();
+    private Gson gson = new Gson();
     //<!-- End declaration area.  -->
 
     //<!-- Start constructor.  -->
@@ -106,12 +111,59 @@ public class SongListingRowControl extends BaseAdapter {
             _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(_Context, R.color.lightgray));
             _ViewHolder.txtMyanmarInfo.setTextColor(ContextCompat.getColor(_Context, R.color.lightgray));
         }
+
+        _ViewHolder.btnFavorite.setTag(position);
+        _ViewHolder.imgSongImage.setTag(position);
+        _ViewHolder.btnFavorite.setOnClickListener(this);
+        _ViewHolder.imgSongImage.setOnClickListener(this);
+
         //Log.d(LoggerName , "Title = "+ _MusicDictionary.EnglishTitle +" : Status = "+ _MusicDictionary.PlayingStatus);
         return _View_Row;
+    }
+    @Override
+    public void onClick(View _View) {
+        switch (_View.getId()) {
+            case R.id.btnFavorite:
+                btnFavorite_Click(_View);
+                break;
+            case R.id.imgSongImage:
+                imgSongImage_Click(_View);
+                break;
+            default:
+                break;
+        }
     }
     //<!-- Start system defined function(s).  -->
 
     //<!-- Start developer defined function(s).  -->
+    private void btnFavorite_Click(View _View){
+        Boolean IsFavoriteNow = false;
+        int position=(Integer)_View.getTag();
+        Button _btnFavorite = (Button) _View.findViewById(R.id.btnFavorite);
+
+        String Current_MusicDictionary = gson.toJson(ArrayList_MusicDictionary.get(position));
+        Intent intent_Broadcast_Favorite = new Intent(Constants.BROADCAST.CLICK_FAVORITE);
+        intent_Broadcast_Favorite.putExtra("Current_MusicDictionary", Current_MusicDictionary);
+
+        if(_Context.getString(R.string.FavoriteOff).equalsIgnoreCase(_btnFavorite.getText().toString())){
+            IsFavoriteNow = true;
+            intent_Broadcast_Favorite.putExtra("IsFavoriteNow", IsFavoriteNow);
+            _btnFavorite.setText(_Context.getString(R.string.FavoriteOn));
+        }else{
+            IsFavoriteNow = false;
+            intent_Broadcast_Favorite.putExtra("IsFavoriteNow", IsFavoriteNow);
+            _btnFavorite.setText(_Context.getString(R.string.FavoriteOff));
+        }
+        LocalBroadcastManager.getInstance(_Context).sendBroadcast(intent_Broadcast_Favorite);
+    }
+    private void imgSongImage_Click(View _View){
+        int position=(Integer)_View.getTag();
+
+        String Current_MusicDictionary = gson.toJson(ArrayList_MusicDictionary.get(position));
+        Intent intent_Broadcast_ClickImage = new Intent(Constants.BROADCAST.CLICK_INLINE_IMAGE);
+        intent_Broadcast_ClickImage.putExtra("Current_MusicDictionary", Current_MusicDictionary);
+        LocalBroadcastManager.getInstance(_Context).sendBroadcast(intent_Broadcast_ClickImage);
+    }
     public void addItems(ArrayList<MusicDictionary> List_MusicDictionary){
         ArrayList_MusicDictionary.clear();
         ArrayList_MusicDictionary.addAll(List_MusicDictionary);

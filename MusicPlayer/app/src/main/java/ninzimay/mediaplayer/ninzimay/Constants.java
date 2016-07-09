@@ -18,6 +18,8 @@ public class Constants {
     public  interface  BROADCAST{
         public static String FOREVER_BROADCAST = "ninzimay.mediaplayer.ninzimay.Broadcast.forever";
         public static String ONDEMAND_BROADCAST = "ninzimay.mediaplayer.ninzimay.Broadcast.onDemand";
+        public static String CLICK_FAVORITE = "ninzimay.mediaplayer.ninzimay.Broadcast.clickFavorite";
+        public static String CLICK_INLINE_IMAGE = "ninzimay.mediaplayer.ninzimay.Broadcast.clickInlineImage";
     }
     public  interface  CACHE{
         public static String NINZIMAY = "ninzimay.mediaplayer.ninzimay.Cache.Ninzimay";

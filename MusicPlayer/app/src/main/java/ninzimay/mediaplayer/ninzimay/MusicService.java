@@ -248,7 +248,6 @@ public class MusicService extends Service
         MusicDictionary Current_MusicDictionary = getCurrent_MusicDictionary();
         Intent intent_Broadcast_Forever = new Intent(Constants.BROADCAST.FOREVER_BROADCAST);
         intent_Broadcast_Forever.putExtra("CurrentSongPlayingIndex", getMusicCurrrentPosition());
-        //intent_Broadcast_Forever.putExtra("CurrentSongID", Current_MusicDictionary.ID);
         intent_Broadcast_Forever.putExtra("IsSeekbarSeekable", mediaPlayerState == MediaPlayerState.Started);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_Forever);
     }
