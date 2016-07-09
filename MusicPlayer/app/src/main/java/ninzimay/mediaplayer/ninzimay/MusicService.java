@@ -24,6 +24,8 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -68,11 +70,32 @@ public class MusicService extends Service
     private boolean IsShuffle = false;
     private Handler Handler_Music = null;
     private Runnable Runnable_Music = null;
+    private TelephonyManager _TelephonyManager;
     private Gson gson = new Gson();
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
-
+    PhoneStateListener phoneStateListener = new PhoneStateListener() {
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            Log.d(LoggerName, "state = "+ state +" | incomingNumber = "+ incomingNumber);
+            if (state == TelephonyManager.CALL_STATE_RINGING) {
+                Log.d(LoggerName, "TelephonyManager.CALL_STATE_RINGING");
+                pauseCurrentSong();
+                broadCast_OnDemand(false);
+            } else if(state == TelephonyManager.CALL_STATE_IDLE) {
+                Log.d(LoggerName, "TelephonyManager.CALL_STATE_IDLE");
+                if(CurrentPlayingLength > 0){
+                    playbackCurrentSong();
+                }
+            } else if(state == TelephonyManager.CALL_STATE_OFFHOOK) {
+                Log.d(LoggerName, "TelephonyManager.CALL_STATE_OFFHOOK");
+                pauseCurrentSong();
+                broadCast_OnDemand(false);
+            }
+            super.onCallStateChanged(state, incomingNumber);
+        }
+    };
     //<!-- End dependency object(s).  -->
 
     //<!-- Start system defined function(s).  -->
@@ -80,6 +103,8 @@ public class MusicService extends Service
         //Log.d(LoggerName, "Service.onCreate");
         super.onCreate();
         getHandler();
+        _TelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        _TelephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
     }
     @Override
     public IBinder onBind(Intent intent) {
@@ -133,6 +158,9 @@ public class MusicService extends Service
         mediaPlayerState = MediaPlayerState.End;
         SharedPreferences _SharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
         _SharedPreferences.edit().clear().commit();
+        if(_TelephonyManager != null) {
+            _TelephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
     }
     //<!-- End system defined function(s).  -->
 

@@ -122,13 +122,13 @@ AdapterView.OnItemClickListener
                 String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
                 Boolean _IsFavoriteNow = Boolean.parseBoolean(intent.getExtras().get("IsFavoriteNow").toString());
                 MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
-                Log.d(LoggerName, "CLICK_FAVORITE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle + " | _IsFavoriteNow =" +_IsFavoriteNow);
+                //Log.d(LoggerName, "CLICK_FAVORITE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle + " | _IsFavoriteNow =" +_IsFavoriteNow);
             }
 
             if (Constants.BROADCAST.CLICK_INLINE_IMAGE.equals(action)){
                 String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
                 MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
-                Log.d(LoggerName, "CLICK_INLINE_IMAGE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle);
+                //Log.d(LoggerName, "CLICK_INLINE_IMAGE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle);
                 CLICK_INLINE_IMAGE(Current_MusicDictionary);
             }
         }
@@ -138,17 +138,17 @@ AdapterView.OnItemClickListener
     //<!-- Start system defined function(s).  -->
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(LoggerName, "In the onCreate() event");
+        //Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializer();
     }
     public void onStart(){
-        Log.d(LoggerName, "In the onStart() event");
+        //Log.d(LoggerName, "In the onStart() event");
         super.onStart();
     }
     public void onResume(){
-        Log.d(LoggerName, "In the onResume() event");
+        //Log.d(LoggerName, "In the onResume() event");
         super.onResume();
         getCacheAndBind();
         IntentFilter _IntentFilter = new IntentFilter();
@@ -165,7 +165,7 @@ AdapterView.OnItemClickListener
         }
     }
     public void onRestart() {
-        Log.d(LoggerName, "In the onRestart() event");
+        //Log.d(LoggerName, "In the onRestart() event");
         super.onRestart();
     }
     public void onPause(){
