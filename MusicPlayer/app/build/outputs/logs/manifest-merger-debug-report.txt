@@ -35,10 +35,6 @@ uses-permission#android.permission.WAKE_LOCK
 ADDED from D:\01.Project\GitHub\Working\MusicPlayer\app\src\main\AndroidManifest.xml:6:5-68
 	android:name
 		ADDED from D:\01.Project\GitHub\Working\MusicPlayer\app\src\main\AndroidManifest.xml:6:22-65
-uses-permission#android.permission.READ_PHONE_STATE
-ADDED from D:\01.Project\GitHub\Working\MusicPlayer\app\src\main\AndroidManifest.xml:7:5-75
-	android:name
-		ADDED from D:\01.Project\GitHub\Working\MusicPlayer\app\src\main\AndroidManifest.xml:7:22-72
 application
 ADDED from D:\01.Project\GitHub\Working\MusicPlayer\app\src\main\AndroidManifest.xml:8:5-26:19
 MERGED from [com.android.support:appcompat-v7:23.2.0] D:\01.Project\GitHub\Working\MusicPlayer\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\AndroidManifest.xml:25:5-20

@@ -52,6 +52,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Administrator on 2016/06/19.
  */
 public class MusicService extends Service
+implements AudioManager.OnAudioFocusChangeListener
 {
     //<!-- Start declaration area.  -->
     private String LoggerName = "NinZiMay";
@@ -72,10 +73,11 @@ public class MusicService extends Service
     private Runnable Runnable_Music = null;
     private TelephonyManager _TelephonyManager;
     private Gson gson = new Gson();
+    private AudioManager _AudioManager;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
-    PhoneStateListener phoneStateListener = new PhoneStateListener() {
+    /*PhoneStateListener phoneStateListener = new PhoneStateListener() {
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
             Log.d(LoggerName, "state = "+ state +" | incomingNumber = "+ incomingNumber);
@@ -95,7 +97,7 @@ public class MusicService extends Service
             }
             super.onCallStateChanged(state, incomingNumber);
         }
-    };
+    };*/
     //<!-- End dependency object(s).  -->
 
     //<!-- Start system defined function(s).  -->
@@ -103,8 +105,11 @@ public class MusicService extends Service
         //Log.d(LoggerName, "Service.onCreate");
         super.onCreate();
         getHandler();
-        _TelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        _TelephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+        //_TelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        //_TelephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+        _AudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        _AudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+
     }
     @Override
     public IBinder onBind(Intent intent) {
@@ -158,8 +163,24 @@ public class MusicService extends Service
         mediaPlayerState = MediaPlayerState.End;
         SharedPreferences _SharedPreferences = getSharedPreferences(Constants.CACHE.NINZIMAY, MODE_PRIVATE);
         _SharedPreferences.edit().clear().commit();
-        if(_TelephonyManager != null) {
+        /*if(_TelephonyManager != null) {
             _TelephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }*/
+        _AudioManager.abandonAudioFocus(this);
+    }
+    @Override
+    public void onAudioFocusChange(int focusChange) {
+        if(focusChange <= 0) {
+            //LOSS -> PAUSE
+            Log.d(LoggerName, "onAudioFocusChange Before Pause");
+            pauseCurrentSong();
+            broadCast_OnDemand(false);
+        } else {
+            //GAIN -> PLAY
+            Log.d(LoggerName, "onAudioFocusChange Before PlayBack");
+            if(CurrentPlayingLength > 0){
+                playbackCurrentSong();
+            }
         }
     }
     //<!-- End system defined function(s).  -->
