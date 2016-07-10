@@ -69,6 +69,7 @@ implements AudioManager.OnAudioFocusChangeListener
     private List<MusicDictionary> List_MusicDictionary;
     private MusicDictionary Current_MusicDictionary;
     private int CurrentPlayingLength = 0;
+    private int CurrentVolumeLevel = 0;
     private boolean IsRepeatAlbum = true;
     private boolean IsShuffle = false;
     private Handler Handler_Music = null;
@@ -76,6 +77,7 @@ implements AudioManager.OnAudioFocusChangeListener
     private Gson gson = new Gson();
     private AudioManager _AudioManager;
     private MusicIntentReceiver _MusicIntentReceiver;
+
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
@@ -114,6 +116,7 @@ implements AudioManager.OnAudioFocusChangeListener
         _MusicIntentReceiver = new MusicIntentReceiver();
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(_MusicIntentReceiver, filter);
+        CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
     }
     @Override
     public IBinder onBind(Intent intent) {
@@ -174,13 +177,15 @@ implements AudioManager.OnAudioFocusChangeListener
     @Override
     public void onAudioFocusChange(int focusChange) {
         if(focusChange <= 0) {
+            Log.d(LoggerName, "Pause focusChange "+focusChange);
             //LOSS -> PAUSE
-            Log.d(LoggerName, "onAudioFocusChange Before Pause");
+            CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             pauseCurrentSong();
             broadCast_OnDemand(false);
         } else {
+            Log.d(LoggerName, "Play focusChange "+focusChange);
             //GAIN -> PLAY
-            Log.d(LoggerName, "onAudioFocusChange Before PlayBack");
+            _AudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, CurrentVolumeLevel, 0);
             if(CurrentPlayingLength > 0){
                 playbackCurrentSong();
             }
