@@ -146,6 +146,7 @@ implements AudioManager.OnAudioFocusChangeListener
                 String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
+            CurrentPlayingLength = 0;
             String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
             setCurrent_MusicDictionary(gson.fromJson(Current_MusicDictionary, MusicDictionary.class));
             playSong(getCurrent_ReInitialized_MusicDictionary());

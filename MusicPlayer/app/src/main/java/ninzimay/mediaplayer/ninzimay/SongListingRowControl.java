@@ -113,9 +113,7 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         }
 
         _ViewHolder.btnFavorite.setTag(position);
-        _ViewHolder.imgSongImage.setTag(position);
         _ViewHolder.btnFavorite.setOnClickListener(this);
-        _ViewHolder.imgSongImage.setOnClickListener(this);
 
         //Log.d(LoggerName , "Title = "+ _MusicDictionary.EnglishTitle +" : Status = "+ _MusicDictionary.PlayingStatus);
         return _View_Row;
@@ -125,9 +123,6 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         switch (_View.getId()) {
             case R.id.btnFavorite:
                 btnFavorite_Click(_View);
-                break;
-            case R.id.imgSongImage:
-                imgSongImage_Click(_View);
                 break;
             default:
                 break;
@@ -155,14 +150,6 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
             _btnFavorite.setText(_Context.getString(R.string.FavoriteOff));
         }
         LocalBroadcastManager.getInstance(_Context).sendBroadcast(intent_Broadcast_Favorite);
-    }
-    private void imgSongImage_Click(View _View){
-        int position=(Integer)_View.getTag();
-
-        String Current_MusicDictionary = gson.toJson(ArrayList_MusicDictionary.get(position));
-        Intent intent_Broadcast_ClickImage = new Intent(Constants.BROADCAST.CLICK_INLINE_IMAGE);
-        intent_Broadcast_ClickImage.putExtra("Current_MusicDictionary", Current_MusicDictionary);
-        LocalBroadcastManager.getInstance(_Context).sendBroadcast(intent_Broadcast_ClickImage);
     }
     public void addItems(ArrayList<MusicDictionary> List_MusicDictionary){
         ArrayList_MusicDictionary.clear();

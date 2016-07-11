@@ -122,14 +122,7 @@ AdapterView.OnItemClickListener
                 String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
                 Boolean _IsFavoriteNow = Boolean.parseBoolean(intent.getExtras().get("IsFavoriteNow").toString());
                 MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
-                //Log.d(LoggerName, "CLICK_FAVORITE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle + " | _IsFavoriteNow =" +_IsFavoriteNow);
-            }
-
-            if (Constants.BROADCAST.CLICK_INLINE_IMAGE.equals(action)){
-                String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
-                MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
-                //Log.d(LoggerName, "CLICK_INLINE_IMAGE _Current_MusicDictionary.EnglishTitle = "+_Current_MusicDictionary.EnglishTitle);
-                CLICK_INLINE_IMAGE(Current_MusicDictionary);
+                btnFavorite_Click(_Current_MusicDictionary, _IsFavoriteNow);
             }
         }
     };
@@ -155,7 +148,6 @@ AdapterView.OnItemClickListener
         _IntentFilter.addAction(Constants.BROADCAST.FOREVER_BROADCAST);
         _IntentFilter.addAction(Constants.BROADCAST.ONDEMAND_BROADCAST);
         _IntentFilter.addAction(Constants.BROADCAST.CLICK_FAVORITE);
-        _IntentFilter.addAction(Constants.BROADCAST.CLICK_INLINE_IMAGE);
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, _IntentFilter);
         if(IsComingBack){
             IntentMusicService = null;
@@ -258,7 +250,17 @@ AdapterView.OnItemClickListener
     }
     //@Override
     public void onItemClick(AdapterView<?> parent, View _View, int position, long id) {
-        Runtime.getRuntime().gc();
+        Gson _Gson = new Gson();
+        MusicDictionary _MusicDictionary = ((MusicDictionary)parent.getItemAtPosition(position));
+        String Current_MusicDictionary = _Gson.toJson(_MusicDictionary);
+        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
+        IntentMusicService.putExtra("Current_MusicDictionary", Current_MusicDictionary);
+        IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
+        startService(IntentMusicService);
+        btnPlayPause.setText(getString(R.string.Pause));
     }
     //<!-- End system defined function(s).  -->
 
@@ -360,15 +362,8 @@ AdapterView.OnItemClickListener
         IntentMusicService.setAction(Constants.ACTION.PREV_ACTION);
         startService(IntentMusicService);
     }
-    private void CLICK_INLINE_IMAGE(String Current_MusicDictionary){
-        String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
-        IntentMusicService = null;
-        IntentMusicService = new Intent(this, MusicService.class);
-        IntentMusicService.setAction(Constants.ACTION.INDEXED_SONG_ACTION);
-        IntentMusicService.putExtra("Current_MusicDictionary", Current_MusicDictionary);
-        IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
-        startService(IntentMusicService);
-        btnPlayPause.setText(getString(R.string.Pause));
+    private void btnFavorite_Click(MusicDictionary _MusicDictionary, Boolean IsFavoriteNow){
+        Log.d(LoggerName, "btnFavorite_Click _MusicDictionary.EnglishTitle = "+_MusicDictionary.EnglishTitle + " | _IsFavoriteNow = "+ IsFavoriteNow);
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();
