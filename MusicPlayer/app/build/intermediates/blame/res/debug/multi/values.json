@@ -947,7 +947,14 @@
                     "endOffset": 5351
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\colors.xml"
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 355,
+                        "endColumn": 59,
+                        "endOffset": 410
+                    }
                 }
             },
             {
@@ -5517,15 +5524,7 @@
                     "endOffset": 109990
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\styles.xml",
-                    "position": {
-                        "startLine": 1,
-                        "startColumn": 4,
-                        "startOffset": 76,
-                        "endLine": 3,
-                        "endColumn": 12,
-                        "endOffset": 211
-                    }
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\styles.xml"
                 }
             },
             {
@@ -5538,15 +5537,7 @@
                     "endOffset": 110153
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\styles.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 369,
-                        "endLine": 9,
-                        "endColumn": 12,
-                        "endOffset": 529
-                    }
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\styles.xml"
                 }
             },
             {
@@ -5559,15 +5550,7 @@
                     "endOffset": 110302
                 },
                 "from": {
-                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\styles.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 217,
-                        "endLine": 6,
-                        "endColumn": 12,
-                        "endOffset": 363
-                    }
+                    "file": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values\\styles.xml"
                 }
             },
             {
