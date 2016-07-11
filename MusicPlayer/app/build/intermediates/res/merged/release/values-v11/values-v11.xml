@@ -158,7 +158,13 @@
         <item name="android:actionModePasteDrawable">?actionModePasteDrawable</item>
     </style>
     <style name="Platform.Widget.AppCompat.Spinner" parent="android:Widget.Holo.Spinner"/>
-    <style name="Theme.Default" parent="@android:style/Theme.Holo"/>
-    <style name="Theme.FullScreen" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
-    <style name="Theme.NoTitle" parent="@android:style/Theme.Holo.NoActionBar"/>
+    <style name="Theme.Default" parent="@android:style/Theme.Holo">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+    <style name="Theme.FullScreen" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+    <style name="Theme.NoTitle" parent="@android:style/Theme.Holo.NoActionBar">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
 </resources>

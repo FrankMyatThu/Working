@@ -26,7 +26,13 @@
     </style>
     <style name="TextAppearance.StatusBar.EventContent.Time"/>
     <style name="TextAppearance.StatusBar.EventContent.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
-    <style name="Theme.Default" parent="@android:style/Theme.Holo.Light"/>
-    <style name="Theme.FullScreen" parent="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"/>
-    <style name="Theme.NoTitle" parent="@android:style/Theme.Holo.Light.NoActionBar"/>
+    <style name="Theme.Default" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+    <style name="Theme.FullScreen" parent="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+    <style name="Theme.NoTitle" parent="@android:style/Theme.Holo.Light.NoActionBar">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
 </resources>
