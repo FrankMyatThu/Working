@@ -1595,12 +1595,15 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/customized_notification.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/NotificationID.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/SongListingRowControl.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-v11/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-v14/styles.xml" />
       </list>
     </option>
   </component>
@@ -1636,6 +1639,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1654,9 +1659,118 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1678,19 +1792,17 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="MusicPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+              <option name="myItemId" value="styles.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1703,17 +1815,76 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ninzimay" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dimens.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2098,77 +2269,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="33" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="33" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/customized_notification.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="46" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#MusicService#0" expanded="false" />
-            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-            <element signature="e#7925#7950#0" expanded="false" />
-            <element signature="e#8312#8360#0" expanded="false" />
-            <element signature="e#8749#8773#0" expanded="false" />
-            <element signature="e#9134#9183#0" expanded="false" />
-            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
-            <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
-            <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-            <element signature="e#15233#15250#0" expanded="false" />
-            <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-            <element signature="e#15908#15928#0" expanded="false" />
-            <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#17095#17120#0" expanded="false" />
-            <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#22489#22535#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="270" column="32" selection-start-line="270" selection-start-column="25" selection-end-line="270" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/customized_notification.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2305,13 +2405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28833553">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/font_awesome_btnpause.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2333,7 +2426,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="6573" column="18" selection-start-line="6573" selection-start-column="18" selection-end-line="6573" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2341,7 +2433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="279" column="18" selection-start-line="279" selection-start-column="18" selection-end-line="279" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2384,7 +2475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3321617">
           <caret line="566" column="32" selection-start-line="566" selection-start-column="32" selection-end-line="566" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2436,18 +2526,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74529487">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicDictionary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13853905">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2455,7 +2537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="1041" column="16" selection-start-line="1041" selection-start-column="16" selection-end-line="1041" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2471,7 +2552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.6045694">
           <caret line="3367" column="59" selection-start-line="3367" selection-start-column="58" selection-end-line="3367" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2479,9 +2559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6572935">
           <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2489,35 +2566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11599297">
           <caret line="123" column="69" selection-start-line="123" selection-start-column="69" selection-end-line="123" selection-end-column="69" />
-          <folding>
-            <element signature="docComment;class#MusicService#0" expanded="false" />
-            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-            <element signature="e#7925#7950#0" expanded="false" />
-            <element signature="e#8312#8360#0" expanded="false" />
-            <element signature="e#8749#8773#0" expanded="false" />
-            <element signature="e#9134#9183#0" expanded="false" />
-            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
-            <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
-            <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-            <element signature="e#15233#15250#0" expanded="false" />
-            <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-            <element signature="e#15908#15928#0" expanded="false" />
-            <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#17095#17120#0" expanded="false" />
-            <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#22489#22535#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2525,16 +2573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1950791">
           <caret line="133" column="46" selection-start-line="133" selection-start-column="46" selection-end-line="133" selection-end-column="46" />
-          <folding>
-            <element signature="docComment;class#SongListingRowControl#0" expanded="false" />
-            <element signature="method#SongListingRowControl#0;class#SongListingRowControl#0" expanded="false" />
-            <element signature="class#ViewHolder#0;class#SongListingRowControl#0" expanded="false" />
-            <element signature="method#ViewHolder#0;class#ViewHolder#0;class#SongListingRowControl#0" expanded="false" />
-            <element signature="method#getView#0;class#SongListingRowControl#0" expanded="false" />
-            <element signature="method#onClick#0;class#SongListingRowControl#0" expanded="false" />
-            <element signature="method#btnFavorite_Click#0;class#SongListingRowControl#0" expanded="false" />
-            <element signature="method#addItems#0;class#SongListingRowControl#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2542,7 +2580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5817223">
           <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2550,43 +2587,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.2126536">
           <caret line="459" column="5" selection-start-line="459" selection-start-column="5" selection-end-line="459" selection-end-column="5" />
-          <folding>
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onDetachedFromWindow#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7670#7722#0" expanded="false" />
-            <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStartTrackingTouch#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onProgressChanged#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#setCache#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getCacheAndBind#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#13200#13239#0" expanded="false" />
-            <element signature="e#13317#13357#0" expanded="false" />
-            <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playSongInService#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#16104#16145#0" expanded="false" />
-            <element signature="e#16467#16502#0" expanded="false" />
-            <element signature="e#18277#18309#0" expanded="false" />
-            <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#loadBitmap#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#unloadBitmap#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getList_MusicDictionary#0;class#MainActivity#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3756906">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/data/res/values/themes.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8197674">
+          <caret line="447" column="17" selection-start-line="447" selection-start-column="17" selection-end-line="447" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31976745">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-v11/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2635659">
+          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-v14/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2635659">
+          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32945737">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34438306">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
