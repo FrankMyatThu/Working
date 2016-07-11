@@ -70,6 +70,7 @@ implements AudioManager.OnAudioFocusChangeListener
     private MusicDictionary Current_MusicDictionary;
     private int CurrentPlayingLength = 0;
     private int CurrentVolumeLevel = 0;
+    private int AudioFocusRequestCode = 0;
     private boolean IsRepeatAlbum = true;
     private boolean IsShuffle = false;
     private Handler Handler_Music = null;
@@ -93,9 +94,6 @@ implements AudioManager.OnAudioFocusChangeListener
                         break;
                     case 1:
                         //Log.d(LoggerName, "Headset is plugged");
-                        if(CurrentPlayingLength > 0){
-                            playbackCurrentSong();
-                        }
                         break;
                     default:
                         //Log.d(LoggerName, "I have no idea what the headset state is");
@@ -112,7 +110,7 @@ implements AudioManager.OnAudioFocusChangeListener
         super.onCreate();
         getHandler();
         _AudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        _AudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+        AudioFocusRequestCode = _AudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         _MusicIntentReceiver = new MusicIntentReceiver();
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(_MusicIntentReceiver, filter);
@@ -176,19 +174,39 @@ implements AudioManager.OnAudioFocusChangeListener
     }
     @Override
     public void onAudioFocusChange(int focusChange) {
-        if(focusChange <= 0) {
-            Log.d(LoggerName, "Pause focusChange "+focusChange);
-            //LOSS -> PAUSE
-            CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-            pauseCurrentSong();
-            broadCast_OnDemand(false);
-        } else {
-            Log.d(LoggerName, "Play focusChange "+focusChange);
-            //GAIN -> PLAY
-            _AudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, CurrentVolumeLevel, 0);
-            if(CurrentPlayingLength > 0){
-                playbackCurrentSong();
-            }
+        switch (focusChange)
+        {
+            case AudioManager.AUDIOFOCUS_GAIN:
+                // TODO : resume playback
+                //Log.d(LoggerName, "AUDIOFOCUS_GAIN = "+focusChange);
+                _AudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, CurrentVolumeLevel, 0);
+                if(CurrentPlayingLength > 0){
+                    playbackCurrentSong();
+                }
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS:
+                // TODO : stop playback and release media player
+                //Log.d(LoggerName, "AUDIOFOCUS_LOSS = "+focusChange);
+                CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                pauseCurrentSong();
+                broadCast_OnDemand(false);
+                //Log.d(LoggerName, "Paused");
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                // TODO : pause palyback
+                //Log.d(LoggerName, "AUDIOFOCUS_LOSS_TRANSIENT = "+focusChange);
+                CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                pauseCurrentSong();
+                broadCast_OnDemand(false);
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                // TODO : continue playing at an attenuated level
+                // TODO : pause palyback
+                //Log.d(LoggerName, "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK = "+focusChange);
+                CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                pauseCurrentSong();
+                broadCast_OnDemand(false);
+                break;
         }
     }
     //<!-- End system defined function(s).  -->
@@ -331,6 +349,7 @@ implements AudioManager.OnAudioFocusChangeListener
     }
     public void playbackCurrentSong(){
         /// Play song after pause
+        //Log.d(LoggerName, "Invoke playback");
         playSong(GetSongToPlay(PlayerEventName.CurrentPlayingSong, IsRepeatAlbum, IsShuffle));
     }
     public void playIndexedSong(){
