@@ -1840,22 +1840,23 @@ containing a value of this type.
     }
     public static final class string {
         public static final int Close=0x7f070014;
-        public static final int FavoriteOff=0x7f070015;
-        public static final int FavoriteOn=0x7f070016;
-        public static final int HeadphoneIndicator=0x7f070017;
-        public static final int LoopAll=0x7f070018;
-        public static final int Lyrics=0x7f070019;
-        public static final int Next=0x7f07001a;
-        public static final int Pause=0x7f07001b;
-        public static final int Play=0x7f07001c;
-        public static final int Previous=0x7f07001d;
-        public static final int RegistrationSeal=0x7f07001e;
-        public static final int RepeatOne=0x7f07001f;
-        public static final int RunningIndicator=0x7f070020;
-        public static final int Shuffle=0x7f070021;
-        public static final int Speaker=0x7f070022;
-        public static final int Stop=0x7f070023;
-        public static final int Volume=0x7f070024;
+        public static final int DATABASE_VERSION=0x7f070015;
+        public static final int FavoriteOff=0x7f070016;
+        public static final int FavoriteOn=0x7f070017;
+        public static final int HeadphoneIndicator=0x7f070018;
+        public static final int LoopAll=0x7f070019;
+        public static final int Lyrics=0x7f07001a;
+        public static final int Next=0x7f07001b;
+        public static final int Pause=0x7f07001c;
+        public static final int Play=0x7f07001d;
+        public static final int Previous=0x7f07001e;
+        public static final int RegistrationSeal=0x7f07001f;
+        public static final int RepeatOne=0x7f070020;
+        public static final int RunningIndicator=0x7f070021;
+        public static final int Shuffle=0x7f070022;
+        public static final int Speaker=0x7f070023;
+        public static final int Stop=0x7f070024;
+        public static final int Volume=0x7f070025;
         public static final int abc_action_bar_home_description=0x7f070000;
         public static final int abc_action_bar_home_description_format=0x7f070001;
         public static final int abc_action_bar_home_subtitle_description_format=0x7f070002;
@@ -1875,7 +1876,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f070010;
         public static final int abc_shareactionprovider_share_with_application=0x7f070011;
         public static final int abc_toolbar_collapse_description=0x7f070012;
-        public static final int app_name=0x7f070025;
+        public static final int app_name=0x7f070026;
         public static final int status_bar_notification_info_overflow=0x7f070013;
     }
     public static final class style {
