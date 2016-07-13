@@ -1,3 +1,32 @@
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Create DB Script(s)
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE "android_metadata" ("locale" TEXT DEFAULT 'en_US');
+CREATE TABLE `tbl_MusicDictionary` (
+	`ID`	INTEGER NOT NULL UNIQUE,
+	`Srno`	INTEGER NOT NULL,
+	`FileName`	TEXT NOT NULL,
+	`EnglishTitle`	TEXT NOT NULL,
+	`MyanmarTitle`	TEXT NOT NULL,
+	`AlbumName`	TEXT,
+	`AlbumArt`	TEXT,
+	`Length`	TEXT,
+	`Genre`	TEXT,
+	`Lyric`	TEXT,
+	`IsFavorite`	TEXT,
+	`PlayingStatus`	TEXT,
+	PRIMARY KEY(ID)
+);
+CREATE TABLE `tbl_Setting` (
+	`IsFavoriteOn`	TEXT,
+	`RepeatStatus`	TEXT,
+	`IsShuffleOn`	TEXT,
+	`MyanmarFontName`	TEXT
+);
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Insert Script(s)
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO "android_metadata" VALUES ('en_US');
 INSERT INTO tbl_MusicDictionary
 (ID, Srno, FileName, EnglishTitle, MyanmarTitle, AlbumName, AlbumArt, Length, Genre, Lyric, IsFavorite, PlayingStatus)
 VALUES
@@ -12,9 +41,7 @@ VALUES
 (9, 9, 'i0971721', 'Bae Thu Ko Lauk Chit Ma Lae', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'Ninzi May', 'AlbumArt.jpg', '5:01', 'Pop', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'false', 'PlayingStatus_New'),
 (10, 10, 'j1071721', 'Min Thi Naing Ma Lar', 'မင္းသိႏိုင္မလား', 'Ninzi May', 'AlbumArt.jpg', '4:51', 'Pop', 'မင္းသိႏိုင္မလား', 'false', 'PlayingStatus_New'),
 (11, 11, 'k1171721', 'A Chit Htet Ma Ka', 'အခ်စ္ထက္မက', 'Ninzi May', 'AlbumArt.jpg', '5:01', 'Pop', 'အခ်စ္ထက္မက', 'false', 'PlayingStatus_New');
-
-
-INSERT INTO tbl_Setting 
-(IsFavoriteOn, RepeatStatus, IsShuffleOn, MyanmarFontName) 
+INSERT INTO tbl_Setting
+(IsFavoriteOn, RepeatStatus, IsShuffleOn, MyanmarFontName)
 VALUES 
 ('false', 'ALL', 'false', 'Zawgyi');
