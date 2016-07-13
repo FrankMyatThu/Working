@@ -1,5 +1,6 @@
 package ninzimay.mediaplayer.ninzimay;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,7 +24,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null,
                 Integer.parseInt(context.getResources().getString(R.string.DATABASE_VERSION)));
         _Context = context;
-        Log.d(LoggerName, "DatabaseHandler DatabaseHandler()");
     }
 
     @Override
@@ -34,9 +34,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             InputStream _InputStream = _Context.getResources().getAssets().open("sql_script_initial.sql");
             String[] statements = FileHelper.parseSqlFile(_InputStream);
             for (String statement : statements) {
-                Log.d(LoggerName, "DatabaseHandler statement = "+statement);
                 db.execSQL(statement);
-                Log.d(LoggerName, "DatabaseHandler statement = "+statement+" Finish.");
             }
             db.setTransactionSuccessful();
         } catch (Exception ex) {
@@ -73,9 +71,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Cursor cursor = db.rawQuery(selectQuery, null);
             if (cursor.moveToFirst()) {
                 do {
-
-                    Log.d(LoggerName, "DatabaseHandler EnglishTitle = "+ cursor.getString(cursor.getColumnIndex("EnglishTitle")));
-
                     MusicDictionary _MusicDictionary = new MusicDictionary();
                     _MusicDictionary.ID = cursor.getInt(cursor.getColumnIndex("ID"));
                     _MusicDictionary.Srno = cursor.getInt(cursor.getColumnIndex("Srno"));
@@ -87,8 +82,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     _MusicDictionary.Length = cursor.getString(cursor.getColumnIndex("Length"));
                     _MusicDictionary.Genre = cursor.getString(cursor.getColumnIndex("Genre"));
                     _MusicDictionary.Lyric = cursor.getString(cursor.getColumnIndex("Lyric"));
-                    _MusicDictionary.IsFavorite = Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("IsFavorite"))) ;
-                    _MusicDictionary.PlayingStatus = cursor.getString(cursor.getColumnIndex("PlayingStatus"));
+                    _MusicDictionary.IsFavorite = Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("IsFavorite")));
+                    if(_MusicDictionary.PlayingStatus == null)
+                        _MusicDictionary.PlayingStatus = cursor.getString(cursor.getColumnIndex("PlayingStatus"));
                     List_MusicDictionary.add(_MusicDictionary);
                 } while (cursor.moveToNext());
             }
@@ -96,5 +92,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ex.printStackTrace();
         }
         return List_MusicDictionary;
+    }
+
+    public void updateMusicDictionary(int ID, boolean IsFavoriteOn){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        try{
+
+            String strFilter = "ID=" + ID;
+            ContentValues _ContentValues = new ContentValues();
+            _ContentValues.put("IsFavorite",  IsFavoriteOn ? "true" : "false");
+            int UpdateReturnValue = db.update("tbl_MusicDictionary", _ContentValues, strFilter, null);
+            db.setTransactionSuccessful();
+            Log.d(LoggerName, " ID = " + ID +" | IsFavoriteOn = "+ IsFavoriteOn + " | UpdateReturnValue = " + UpdateReturnValue );
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
     }
 }

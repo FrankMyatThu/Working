@@ -366,6 +366,9 @@ AdapterView.OnItemClickListener
     }
     private void btnFavorite_Click(MusicDictionary _MusicDictionary, Boolean IsFavoriteNow){
         Log.d(LoggerName, "btnFavorite_Click _MusicDictionary.EnglishTitle = "+_MusicDictionary.EnglishTitle + " | _IsFavoriteNow = "+ IsFavoriteNow);
+        DatabaseHandler _DatabaseHandler = new DatabaseHandler(this);
+        _DatabaseHandler.updateMusicDictionary(_MusicDictionary.ID, IsFavoriteNow);
+        ListView_Rebind(getList_MusicDictionary());
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();

@@ -98,7 +98,6 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         }
 
         MusicDictionary _MusicDictionary = ArrayList_MusicDictionary.get(position);
-        _ViewHolder.btnFavorite.setTypeface(_Font);
         _ViewHolder.txtEnglishInfo.setText(_MusicDictionary.EnglishTitle);
         _ViewHolder.txtMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
         _ViewHolder.txtSongLength.setText(_MusicDictionary.Length);
@@ -110,6 +109,13 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         }else{
             _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(_Context, R.color.lightgray));
             _ViewHolder.txtMyanmarInfo.setTextColor(ContextCompat.getColor(_Context, R.color.lightgray));
+        }
+
+        _ViewHolder.btnFavorite.setTypeface(_Font);
+        if(_MusicDictionary.IsFavorite){
+            _ViewHolder.btnFavorite.setText(_Context.getString(R.string.FavoriteOn));
+        }else{
+            _ViewHolder.btnFavorite.setText(_Context.getString(R.string.FavoriteOff));
         }
 
         _ViewHolder.btnFavorite.setTag(position);
