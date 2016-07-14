@@ -365,10 +365,17 @@ AdapterView.OnItemClickListener
         startService(IntentMusicService);
     }
     private void btnFavorite_Click(MusicDictionary _MusicDictionary, Boolean IsFavoriteNow){
-        Log.d(LoggerName, "btnFavorite_Click _MusicDictionary.EnglishTitle = "+_MusicDictionary.EnglishTitle + " | _IsFavoriteNow = "+ IsFavoriteNow);
+        //Log.d(LoggerName, "btnFavorite_Click _MusicDictionary.EnglishTitle = "+_MusicDictionary.EnglishTitle + " | _IsFavoriteNow = "+ IsFavoriteNow);
         DatabaseHandler _DatabaseHandler = new DatabaseHandler(this);
         _DatabaseHandler.updateMusicDictionary(_MusicDictionary.ID, IsFavoriteNow);
-        ListView_Rebind(getList_MusicDictionary());
+
+        Gson _Gson = new Gson();
+        String ToUpdate_MusicDictionary = _Gson.toJson(_MusicDictionary);
+        IntentMusicService = null;
+        IntentMusicService = new Intent(this, MusicService.class);
+        IntentMusicService.setAction(Constants.ACTION.UPDATE_MUSICDICTIONARY_ACTION);
+        IntentMusicService.putExtra("ToUpdate_MusicDictionary", ToUpdate_MusicDictionary);
+        startService(IntentMusicService);
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();

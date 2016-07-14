@@ -63,7 +63,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<MusicDictionary> getAllMusicDictionary() {
-        Log.d(LoggerName, "DatabaseHandler getAllMusicDictionary()");
+        //Log.d(LoggerName, "DatabaseHandler getAllMusicDictionary()");
         ArrayList<MusicDictionary> List_MusicDictionary = new ArrayList<MusicDictionary>();
         try{
             String selectQuery = "SELECT  * FROM tbl_MusicDictionary ORDER BY Srno ASC;";
@@ -83,8 +83,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     _MusicDictionary.Genre = cursor.getString(cursor.getColumnIndex("Genre"));
                     _MusicDictionary.Lyric = cursor.getString(cursor.getColumnIndex("Lyric"));
                     _MusicDictionary.IsFavorite = Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("IsFavorite")));
-                    if(_MusicDictionary.PlayingStatus == null)
-                        _MusicDictionary.PlayingStatus = cursor.getString(cursor.getColumnIndex("PlayingStatus"));
+                    _MusicDictionary.PlayingStatus = cursor.getString(cursor.getColumnIndex("PlayingStatus"));
                     List_MusicDictionary.add(_MusicDictionary);
                 } while (cursor.moveToNext());
             }
@@ -98,13 +97,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
         try{
-
             String strFilter = "ID=" + ID;
             ContentValues _ContentValues = new ContentValues();
             _ContentValues.put("IsFavorite",  IsFavoriteOn ? "true" : "false");
             int UpdateReturnValue = db.update("tbl_MusicDictionary", _ContentValues, strFilter, null);
             db.setTransactionSuccessful();
-            Log.d(LoggerName, " ID = " + ID +" | IsFavoriteOn = "+ IsFavoriteOn + " | UpdateReturnValue = " + UpdateReturnValue );
+            //Log.d(LoggerName, " ID = " + ID +" | IsFavoriteOn = "+ IsFavoriteOn + " | UpdateReturnValue = " + UpdateReturnValue );
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {

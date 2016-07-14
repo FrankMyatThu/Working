@@ -121,7 +121,7 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         _ViewHolder.btnFavorite.setTag(position);
         _ViewHolder.btnFavorite.setOnClickListener(this);
 
-        //Log.d(LoggerName , "Title = "+ _MusicDictionary.EnglishTitle +" : Status = "+ _MusicDictionary.PlayingStatus);
+        //Log.d(LoggerName , "getView() EnglishTitle = "+ _MusicDictionary.EnglishTitle + " | IsFavorite = "+ _MusicDictionary.IsFavorite +" | Status = "+ _MusicDictionary.PlayingStatus);
         return _View_Row;
     }
     @Override
@@ -142,10 +142,7 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         int position=(Integer)_View.getTag();
         Button _btnFavorite = (Button) _View.findViewById(R.id.btnFavorite);
 
-        String Current_MusicDictionary = gson.toJson(ArrayList_MusicDictionary.get(position));
         Intent intent_Broadcast_Favorite = new Intent(Constants.BROADCAST.CLICK_FAVORITE);
-        intent_Broadcast_Favorite.putExtra("Current_MusicDictionary", Current_MusicDictionary);
-
         if(_Context.getString(R.string.FavoriteOff).equalsIgnoreCase(_btnFavorite.getText().toString())){
             IsFavoriteNow = true;
             intent_Broadcast_Favorite.putExtra("IsFavoriteNow", IsFavoriteNow);
@@ -155,6 +152,11 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
             intent_Broadcast_Favorite.putExtra("IsFavoriteNow", IsFavoriteNow);
             _btnFavorite.setText(_Context.getString(R.string.FavoriteOff));
         }
+
+        MusicDictionary _MusicDictionary = ArrayList_MusicDictionary.get(position);
+        _MusicDictionary.IsFavorite = IsFavoriteNow;
+        String Current_MusicDictionary = gson.toJson(_MusicDictionary);
+        intent_Broadcast_Favorite.putExtra("Current_MusicDictionary", Current_MusicDictionary);
         LocalBroadcastManager.getInstance(_Context).sendBroadcast(intent_Broadcast_Favorite);
     }
     public void addItems(ArrayList<MusicDictionary> List_MusicDictionary){

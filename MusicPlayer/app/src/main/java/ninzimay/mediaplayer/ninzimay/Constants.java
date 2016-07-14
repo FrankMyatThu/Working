@@ -13,6 +13,7 @@ public class Constants {
         public static String INDEXED_SONG_ACTION = "ninzimay.mediaplayer.ninzimay.action.indexedSong";
         public static String INDEXED_SEEK_ACTION = "ninzimay.mediaplayer.ninzimay.action.indexedSeek";
         public static String INVOKE_ONDEMAND_ACTION = "ninzimay.mediaplayer.ninzimay.action.invokedOnDemand";
+        public static String UPDATE_MUSICDICTIONARY_ACTION = "ninzimay.mediaplayer.ninzimay.action.updateMusicDictionary";
         public static String STOPFOREGROUND_ACTION = "ninzimay.mediaplayer.ninzimay.action.stopforeground";
     }
     public  interface  BROADCAST{

@@ -155,6 +155,9 @@ implements AudioManager.OnAudioFocusChangeListener
             playIndexedSong();
         }if (intent.getAction().equals(Constants.ACTION.INVOKE_ONDEMAND_ACTION)) {
             broadCast_OnDemand(false);
+        }if (intent.getAction().equals(Constants.ACTION.UPDATE_MUSICDICTIONARY_ACTION)) {
+            String ToUpdate_MusicDictionary = intent.getExtras().get("ToUpdate_MusicDictionary").toString();
+            update_MusicDictionary(gson.fromJson(ToUpdate_MusicDictionary, MusicDictionary.class));
         }else if (intent.getAction().equals(Constants.ACTION.STOPFOREGROUND_ACTION)) {
             broadCast_OnDemand(true);
             stopForeground(true);
@@ -347,6 +350,13 @@ implements AudioManager.OnAudioFocusChangeListener
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_OnDemand);
         if(!IsClose)
             showCustomNotifications();
+    }
+    private void update_MusicDictionary(MusicDictionary _MusicDictionary){
+        for(int i=0; i<List_MusicDictionary.size(); i++){
+            if(List_MusicDictionary.get(i).ID == _MusicDictionary.ID){
+                List_MusicDictionary.get(i).IsFavorite = _MusicDictionary.IsFavorite;
+            }
+        }
     }
     public void playbackCurrentSong(){
         /// Play song after pause
