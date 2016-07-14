@@ -121,9 +121,8 @@ AdapterView.OnItemClickListener
 
             if (Constants.BROADCAST.CLICK_FAVORITE.equals(action)){
                 String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
-                Boolean _IsFavoriteNow = Boolean.parseBoolean(intent.getExtras().get("IsFavoriteNow").toString());
                 MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
-                btnFavorite_Click(_Current_MusicDictionary, _IsFavoriteNow);
+                btnFavorite_Click(_Current_MusicDictionary);
             }
         }
     };
@@ -364,10 +363,9 @@ AdapterView.OnItemClickListener
         IntentMusicService.setAction(Constants.ACTION.PREV_ACTION);
         startService(IntentMusicService);
     }
-    private void btnFavorite_Click(MusicDictionary _MusicDictionary, Boolean IsFavoriteNow){
-        //Log.d(LoggerName, "btnFavorite_Click _MusicDictionary.EnglishTitle = "+_MusicDictionary.EnglishTitle + " | _IsFavoriteNow = "+ IsFavoriteNow);
+    private void btnFavorite_Click(MusicDictionary _MusicDictionary){
         DatabaseHandler _DatabaseHandler = new DatabaseHandler(this);
-        _DatabaseHandler.updateMusicDictionary(_MusicDictionary.ID, IsFavoriteNow);
+        _DatabaseHandler.updateMusicDictionary(_MusicDictionary.ID, _MusicDictionary.IsFavorite);
 
         Gson _Gson = new Gson();
         String ToUpdate_MusicDictionary = _Gson.toJson(_MusicDictionary);

@@ -145,11 +145,9 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         Intent intent_Broadcast_Favorite = new Intent(Constants.BROADCAST.CLICK_FAVORITE);
         if(_Context.getString(R.string.FavoriteOff).equalsIgnoreCase(_btnFavorite.getText().toString())){
             IsFavoriteNow = true;
-            intent_Broadcast_Favorite.putExtra("IsFavoriteNow", IsFavoriteNow);
             _btnFavorite.setText(_Context.getString(R.string.FavoriteOn));
         }else{
             IsFavoriteNow = false;
-            intent_Broadcast_Favorite.putExtra("IsFavoriteNow", IsFavoriteNow);
             _btnFavorite.setText(_Context.getString(R.string.FavoriteOff));
         }
 
