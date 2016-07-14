@@ -359,6 +359,7 @@ AdapterView.OnItemClickListener
         startService(IntentMusicService);
     }
     private void btnBackward_Click(){
+        if(!isMyServiceRunning(MusicService.class)) return;
         IntentMusicService = null;
         IntentMusicService = new Intent(this, MusicService.class);
         IntentMusicService.setAction(Constants.ACTION.PREV_ACTION);
@@ -367,6 +368,16 @@ AdapterView.OnItemClickListener
     private void btnInlineFavorite_Click(MusicDictionary _MusicDictionary){
         DatabaseHandler _DatabaseHandler = new DatabaseHandler(this);
         _DatabaseHandler.updateMusicDictionary(_MusicDictionary.ID, _MusicDictionary.IsFavorite);
+
+        if(IsFavoriteOn()){
+            btnFavorite.setEnabled(true);
+            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray))));
+        }else{
+            btnFavorite.setEnabled(false);
+            btnFavorite.setText(this.getString(R.string.FavoriteOff));
+            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray))));
+            //update data to tbl_Setting
+        }
 
         if(!isMyServiceRunning(MusicService.class)) return;
         Gson _Gson = new Gson();
@@ -378,16 +389,19 @@ AdapterView.OnItemClickListener
         startService(IntentMusicService);
     }
     private void btnRootFavorite_Click(){
+        Boolean IsPlayerFavoriteOn = false;
         if(this.getString(R.string.FavoriteOff).equalsIgnoreCase(btnFavorite.getText().toString())){
-            /// Off event
-            Log.d(LoggerName, "btnRootFavorite_Click Off");
-            btnFavorite.setText(this.getString(R.string.FavoriteOn));
-        }else{
             /// On event
             Log.d(LoggerName, "btnRootFavorite_Click On");
+            btnFavorite.setText(this.getString(R.string.FavoriteOn));
+            IsPlayerFavoriteOn = true;
+        }else{
+            /// Off event
+            Log.d(LoggerName, "btnRootFavorite_Click Off");
             btnFavorite.setText(this.getString(R.string.FavoriteOff));
+            IsPlayerFavoriteOn = false;
         }
-
+        //update data to tbl_Setting
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();
@@ -445,6 +459,14 @@ AdapterView.OnItemClickListener
         btnRepeat.setTypeface(font_fontawesome);
         btnLyric.setTypeface(font_fontawesome);
         btnFavorite.setTypeface(font_fontawesome);
+        if(IsFavoriteOn()){
+            btnFavorite.setEnabled(true);
+            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray))));
+        }else{
+            btnFavorite.setEnabled(false);
+            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray))));
+        }
+
         /// Seekbar control
         Seekbar = (SeekBar)findViewById(R.id.SeekBar);
         Seekbar.setOnSeekBarChangeListener(this);
@@ -511,6 +533,10 @@ AdapterView.OnItemClickListener
         List_MusicDictionary = _DatabaseHandler.getAllMusicDictionary();
 
         return List_MusicDictionary;
+    }
+    private boolean IsFavoriteOn(){
+        DatabaseHandler _DatabaseHandler = new DatabaseHandler(this);
+        return _DatabaseHandler.IsFavoriteOn();
     }
     //<!-- End developer defined function(s).  -->
 }

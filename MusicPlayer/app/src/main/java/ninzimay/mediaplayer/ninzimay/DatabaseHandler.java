@@ -3,6 +3,7 @@ package ninzimay.mediaplayer.ninzimay;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -91,6 +92,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ex.printStackTrace();
         }
         return List_MusicDictionary;
+    }
+
+    public Boolean IsFavoriteOn() {
+        //Log.d(LoggerName, "DatabaseHandler IsFavoriteOn()");
+        long RowCount = 0;
+        try{
+            String selectQuery = "SELECT COUNT(*) FROM tbl_MusicDictionary WHERE IsFavorite = 'true'";
+            SQLiteDatabase db = this.getWritableDatabase();
+            RowCount = DatabaseUtils.longForQuery(db, selectQuery, null);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return RowCount > 0;
     }
 
     public void updateMusicDictionary(int ID, boolean IsFavoriteOn){

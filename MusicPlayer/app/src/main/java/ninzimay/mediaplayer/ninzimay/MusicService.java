@@ -62,7 +62,7 @@ implements AudioManager.OnAudioFocusChangeListener
     private String PlayingStatus_Playing = "PlayingStatus_Playing";
     private String PlayingStatus_Played = "PlayingStatus_Played";
     private enum PlayerEventName {
-        FirstPlaying, NextSong, CurrentPlayingSong, PreviousSong;
+        NextSong, CurrentPlayingSong, PreviousSong;
     }
     private MediaPlayerState mediaPlayerState;
     private MediaPlayer player = null;
@@ -72,6 +72,8 @@ implements AudioManager.OnAudioFocusChangeListener
     private int CurrentVolumeLevel = 0;
     private int AudioFocusRequestCode = 0;
     private boolean IsRepeatAlbum = true;
+    private boolean IsRepeatSingle = false;
+    private boolean IsFavoriteOn = false;
     private boolean IsShuffle = false;
     private Handler Handler_Music = null;
     private Runnable Runnable_Music = null;
@@ -123,13 +125,13 @@ implements AudioManager.OnAudioFocusChangeListener
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
-            playSong(GetSongToPlay(PlayerEventName.PreviousSong, IsRepeatAlbum, IsShuffle));
+            playSong(GetSongToPlay(PlayerEventName.PreviousSong, IsRepeatAlbum, IsFavoriteOn));
         }else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
             if(List_MusicDictionary == null){
                 String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
-            playSong(GetSongToPlay(PlayerEventName.FirstPlaying, IsRepeatAlbum, IsShuffle));
+            playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsFavoriteOn));
         }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
@@ -140,7 +142,7 @@ implements AudioManager.OnAudioFocusChangeListener
                 String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
-            playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
+            playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsFavoriteOn));
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SONG_ACTION)) {
             if(List_MusicDictionary == null){
                 String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
@@ -361,7 +363,7 @@ implements AudioManager.OnAudioFocusChangeListener
     public void playbackCurrentSong(){
         /// Play song after pause
         //Log.d(LoggerName, "Invoke playback");
-        playSong(GetSongToPlay(PlayerEventName.CurrentPlayingSong, IsRepeatAlbum, IsShuffle));
+        playSong(GetSongToPlay(PlayerEventName.CurrentPlayingSong, IsRepeatAlbum, IsFavoriteOn));
     }
     public void playIndexedSong(){
         playSong(getCurrent_ReInitialized_MusicDictionary());
@@ -371,79 +373,78 @@ implements AudioManager.OnAudioFocusChangeListener
         mediaPlayerState = MediaPlayerState.Paused;
         CurrentPlayingLength = player.getCurrentPosition();
     }
+    private MusicDictionary getCurrentAndNextSong(List<MusicDictionary> List_MusicDictionary,  int index){
+        List_MusicDictionary.get(index).PlayingStatus = PlayingStatus_Playing;
+        return List_MusicDictionary.get(index);
+    }
+    private MusicDictionary getPreviousSong(List<MusicDictionary> List_MusicDictionary,  int index){
+        List_MusicDictionary.get(index).PlayingStatus = PlayingStatus_New;
+        List_MusicDictionary.get(index-1).PlayingStatus = PlayingStatus_Playing;
+        return List_MusicDictionary.get(index-1);
+    }
     private MusicDictionary GetSongToPlay(PlayerEventName _PlayerEventName,
-                                        Boolean IsRepeatAlbum,
-                                        Boolean IsShuffle){
+                                          Boolean IsRepeatAlbum,
+                                          Boolean IsFavoriteOn){
         MusicDictionary ToReturn_MusicDictionary = null;
         boolean IsPlayingSongAlreadyExist = false;
-        switch (_PlayerEventName) {
-            case FirstPlaying:
-                for(int i=0; i<List_MusicDictionary.size(); i++){
-                    if(List_MusicDictionary.get(i).Srno == 1){
-                        List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Playing;
-                        ToReturn_MusicDictionary = List_MusicDictionary.get(i);
-                        return ToReturn_MusicDictionary;
-                    }
+        List<MusicDictionary> Filterable_List_MusicDictionary = null;
+        if(IsFavoriteOn){
+            for(int i=0; i<List_MusicDictionary.size(); i++){
+                if(List_MusicDictionary.get(i).IsFavorite){
+                    MusicDictionary Favorite_MusicDictionary = List_MusicDictionary.get(i);
+                    Filterable_List_MusicDictionary.add(Favorite_MusicDictionary);
                 }
-                break;
+            }
+        }else{
+            Filterable_List_MusicDictionary = List_MusicDictionary;
+        }
+
+        switch (_PlayerEventName) {
             case NextSong:
                 // Play next song(s)
-                for(int i=0; i<List_MusicDictionary.size(); i++)
+                for(int i=0; i<Filterable_List_MusicDictionary.size(); i++)
                 {
-                    if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
+                    if(Filterable_List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
                         IsPlayingSongAlreadyExist = true;
-                        List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
+                        Filterable_List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
 
                         // Checking if current index is last index
-                        if((i+1) >= List_MusicDictionary.size())
+                        if((i+1) >= Filterable_List_MusicDictionary.size())
                         {
                             if(IsRepeatAlbum)
                             {
-                                List_MusicDictionary.get(0).PlayingStatus = PlayingStatus_Playing;
-                                ToReturn_MusicDictionary = List_MusicDictionary.get(0);
-                                return ToReturn_MusicDictionary;
+                                return getCurrentAndNextSong(Filterable_List_MusicDictionary, 0);
                             }
                             return  null;
                         }else
                         {
                             /// Next song
-                            List_MusicDictionary.get(i+1).PlayingStatus = PlayingStatus_Playing;
-                            ToReturn_MusicDictionary = List_MusicDictionary.get(i+1);
-                            return ToReturn_MusicDictionary;
+                            return getCurrentAndNextSong(Filterable_List_MusicDictionary, (i+1));
                         }
-                    }else
-                    {
-                        //Log.d(LoggerName , "Title = "+ List_MusicDictionary.get(i).EnglishTitle +" : Status = "+ List_MusicDictionary.get(i).PlayingStatus);
                     }
                 }
                 if(!IsPlayingSongAlreadyExist){
-                    /// Next song
-                    List_MusicDictionary.get(0).PlayingStatus = PlayingStatus_Playing;
-                    ToReturn_MusicDictionary = List_MusicDictionary.get(0);
-                    return ToReturn_MusicDictionary;
+                    /// Play first song(s)
+                    return getCurrentAndNextSong(Filterable_List_MusicDictionary, 0);
                 }
                 break;
             case CurrentPlayingSong:
-                for(int i=0; i<List_MusicDictionary.size(); i++)
+                for(int i=0; i<Filterable_List_MusicDictionary.size(); i++)
                 {
-                    if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
-                        ToReturn_MusicDictionary = List_MusicDictionary.get(i);
-                        return ToReturn_MusicDictionary;
+                    if(Filterable_List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
+                        return getCurrentAndNextSong(Filterable_List_MusicDictionary, i);
                     }
                 }
                 break;
             case PreviousSong:
-                if(List_MusicDictionary == null) return null;
-                for(int i=0; i<List_MusicDictionary.size(); i++)
+                if(Filterable_List_MusicDictionary == null) return null;
+                for(int i=0; i<Filterable_List_MusicDictionary.size(); i++)
                 {
-                    if(List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
+                    if(Filterable_List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
                         if(i == 0) {
                             return null;
                         }
-                        List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_New;
-                        List_MusicDictionary.get(i-1).PlayingStatus = PlayingStatus_Playing;
-                        ToReturn_MusicDictionary = List_MusicDictionary.get(i-1);
-                        return ToReturn_MusicDictionary;
+                        return getPreviousSong(Filterable_List_MusicDictionary, i);
                     }
                 }
                 break;
@@ -523,7 +524,7 @@ implements AudioManager.OnAudioFocusChangeListener
                                 mediaPlayerState = MediaPlayerState.Completed;
                                 player.reset();
                                 mediaPlayerState = MediaPlayerState.Idle;
-                                playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsShuffle));
+                                playSong(GetSongToPlay(PlayerEventName.NextSong, IsRepeatAlbum, IsFavoriteOn));
                             }
                         });
                         player.start();
