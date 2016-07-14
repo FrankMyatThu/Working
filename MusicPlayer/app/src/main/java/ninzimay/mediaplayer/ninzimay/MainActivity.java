@@ -122,7 +122,7 @@ AdapterView.OnItemClickListener
             if (Constants.BROADCAST.CLICK_FAVORITE.equals(action)){
                 String Current_MusicDictionary = intent.getExtras().get("Current_MusicDictionary").toString();
                 MusicDictionary _Current_MusicDictionary =  _Gson.fromJson(Current_MusicDictionary, new TypeToken<MusicDictionary>(){}.getType());
-                btnFavorite_Click(_Current_MusicDictionary);
+                btnInlineFavorite_Click(_Current_MusicDictionary);
             }
         }
     };
@@ -216,6 +216,7 @@ AdapterView.OnItemClickListener
             case R.id.btnLyric:
                 break;
             case R.id.btnFavorite:
+                btnRootFavorite_Click();
                 break;
             default:
                 break;
@@ -363,10 +364,11 @@ AdapterView.OnItemClickListener
         IntentMusicService.setAction(Constants.ACTION.PREV_ACTION);
         startService(IntentMusicService);
     }
-    private void btnFavorite_Click(MusicDictionary _MusicDictionary){
+    private void btnInlineFavorite_Click(MusicDictionary _MusicDictionary){
         DatabaseHandler _DatabaseHandler = new DatabaseHandler(this);
         _DatabaseHandler.updateMusicDictionary(_MusicDictionary.ID, _MusicDictionary.IsFavorite);
 
+        if(!isMyServiceRunning(MusicService.class)) return;
         Gson _Gson = new Gson();
         String ToUpdate_MusicDictionary = _Gson.toJson(_MusicDictionary);
         IntentMusicService = null;
@@ -374,6 +376,18 @@ AdapterView.OnItemClickListener
         IntentMusicService.setAction(Constants.ACTION.UPDATE_MUSICDICTIONARY_ACTION);
         IntentMusicService.putExtra("ToUpdate_MusicDictionary", ToUpdate_MusicDictionary);
         startService(IntentMusicService);
+    }
+    private void btnRootFavorite_Click(){
+        if(this.getString(R.string.FavoriteOff).equalsIgnoreCase(btnFavorite.getText().toString())){
+            /// Off event
+            Log.d(LoggerName, "btnRootFavorite_Click Off");
+            btnFavorite.setText(this.getString(R.string.FavoriteOn));
+        }else{
+            /// On event
+            Log.d(LoggerName, "btnRootFavorite_Click On");
+            btnFavorite.setText(this.getString(R.string.FavoriteOff));
+        }
+
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();

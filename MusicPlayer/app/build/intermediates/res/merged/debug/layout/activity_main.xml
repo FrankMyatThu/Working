@@ -327,7 +327,7 @@
                     android:background="@null"
                     android:textColor="@color/lightgray"
                     android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-                    android:text="@string/FavoriteOn"/>
+                    android:text="@string/FavoriteOff"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dip"
