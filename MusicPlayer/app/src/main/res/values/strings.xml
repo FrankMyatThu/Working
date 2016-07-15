@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Ninzi May</string>
-    <string name="DATABASE_VERSION">1</string>
+    <string name="DATABASE_VERSION">2</string>
 
     <!--<string name="Play">&#xf04b;</string>-->
     <string name="Play">a</string>

@@ -54,16 +54,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         InputStream _InputStream = null;
         db.beginTransaction();
         try {
-
             /// http://stackoverflow.com/a/26916986/900284
             /// http://stackoverflow.com/a/8133640/900284
+            ArrayList<String> List_FileName = new ArrayList<String>();
 
-            _InputStream = _Context.getResources().getAssets().open("sql_script_update.sql");
-            String[] statements = FileHelper.parseSqlFile(_InputStream);
-            for (String statement : statements) {
-                db.execSQL(statement);
+            switch(oldVersion) {
+                case 1:
+                    Log.d(LoggerName, "DatabaseHandler onUpgrade sql_script_update_20160715_0615pm");
+                    List_FileName.add("sql_script_update_20160715_0615pm.sql");
+                case 2:
+                    Log.d(LoggerName, "DatabaseHandler onUpgrade sql_script_update_20160716_1201am");
+                    List_FileName.add("sql_script_update_20160716_1201am.sql");
+                    break;
+                default:
+                    throw new IllegalStateException("onUpgrade() with unknown oldVersion " + oldVersion);
             }
 
+            Log.d(LoggerName, "DatabaseHandler onUpgrade List_FileName.size() = " + List_FileName.size());
+            for(int i=0; i < List_FileName.size(); i++){
+                _InputStream = _Context.getResources().getAssets().open(List_FileName.get(i));
+                String[] statements = FileHelper.parseSqlFile(_InputStream);
+                for (String statement : statements) {
+                    db.execSQL(statement);
+                }
+                _InputStream.close();
+            }
 
             db.setTransactionSuccessful();
         } catch (Exception ex) {

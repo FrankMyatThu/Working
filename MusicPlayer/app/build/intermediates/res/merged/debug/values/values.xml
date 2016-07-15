@@ -212,7 +212,7 @@
     <integer name="cancel_button_image_alpha">127</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
     <string name="Close"></string>
-    <string name="DATABASE_VERSION">1</string>
+    <string name="DATABASE_VERSION">2</string>
     <string name="FavoriteOff"></string>
     <string name="FavoriteOn"></string>
     <string name="HeadphoneIndicator"></string>
