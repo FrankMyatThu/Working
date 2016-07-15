@@ -77,6 +77,7 @@ AdapterView.OnItemClickListener
     Typeface font_ninzimay = null;
     int CurrentSongTotalLength = 0;
     Gson _Gson = new Gson();
+    DatabaseHandler _DatabaseHandler = null;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
@@ -135,6 +136,7 @@ AdapterView.OnItemClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Stetho.initializeWithDefaults(this);
+        _DatabaseHandler = new DatabaseHandler(this);
         initializer();
     }
     public void onStart(){
@@ -254,6 +256,14 @@ AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> parent, View _View, int position, long id) {
         Gson _Gson = new Gson();
         MusicDictionary _MusicDictionary = ((MusicDictionary)parent.getItemAtPosition(position));
+        Log.d(LoggerName, "onItemClick() _MusicDictionary.EnglishTitle = "+ _MusicDictionary.EnglishTitle + " | _MusicDictionary.IsFavorite "+ _MusicDictionary.IsFavorite);
+
+        if(!_MusicDictionary.IsFavorite){
+            _DatabaseHandler.updateSetting_Favorite(false);
+            btnFavorite.setText(this.getString(R.string.FavoriteOff));
+        }
+
+
         String Current_MusicDictionary = _Gson.toJson(_MusicDictionary);
         String Initial_List_MusicDictionary = _Gson.toJson(getList_MusicDictionary());
         IntentMusicService = null;
@@ -376,7 +386,7 @@ AdapterView.OnItemClickListener
             btnFavorite.setEnabled(false);
             btnFavorite.setText(this.getString(R.string.FavoriteOff));
             btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray))));
-            //update data to tbl_Setting
+            _DatabaseHandler.updateSetting_Favorite(false);
         }
 
         if(!isMyServiceRunning(MusicService.class)) return;
@@ -392,16 +402,16 @@ AdapterView.OnItemClickListener
         Boolean IsPlayerFavoriteOn = false;
         if(this.getString(R.string.FavoriteOff).equalsIgnoreCase(btnFavorite.getText().toString())){
             /// On event
-            Log.d(LoggerName, "btnRootFavorite_Click On");
+            //Log.d(LoggerName, "btnRootFavorite_Click On");
             btnFavorite.setText(this.getString(R.string.FavoriteOn));
             IsPlayerFavoriteOn = true;
         }else{
             /// Off event
-            Log.d(LoggerName, "btnRootFavorite_Click Off");
+            //Log.d(LoggerName, "btnRootFavorite_Click Off");
             btnFavorite.setText(this.getString(R.string.FavoriteOff));
             IsPlayerFavoriteOn = false;
         }
-        //update data to tbl_Setting
+        _DatabaseHandler.updateSetting_Favorite(IsPlayerFavoriteOn);
     }
     private void playSongInService(Boolean IsIndexed){
         Gson _Gson = new Gson();
@@ -459,12 +469,21 @@ AdapterView.OnItemClickListener
         btnRepeat.setTypeface(font_fontawesome);
         btnLyric.setTypeface(font_fontawesome);
         btnFavorite.setTypeface(font_fontawesome);
+        /// Inline favorite button(s) on off process
         if(IsFavoriteOn()){
             btnFavorite.setEnabled(true);
             btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray))));
+            //_DatabaseHandler.updateSetting_Favorite(true);
         }else{
             btnFavorite.setEnabled(false);
             btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray))));
+            //_DatabaseHandler.updateSetting_Favorite(false);
+        }
+        /// Player level favortie button on off process
+        if(_DatabaseHandler.getPlayerSetting().IsFavoriteOn){
+            btnFavorite.setText(this.getString(R.string.FavoriteOn));
+        }else{
+            btnFavorite.setText(this.getString(R.string.FavoriteOff));
         }
 
         /// Seekbar control
@@ -535,7 +554,6 @@ AdapterView.OnItemClickListener
         return List_MusicDictionary;
     }
     private boolean IsFavoriteOn(){
-        DatabaseHandler _DatabaseHandler = new DatabaseHandler(this);
         return _DatabaseHandler.IsFavoriteOn();
     }
     //<!-- End developer defined function(s).  -->

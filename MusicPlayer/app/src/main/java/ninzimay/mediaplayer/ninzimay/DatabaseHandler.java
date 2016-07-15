@@ -21,12 +21,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ninzimay.sqlite";
     private Context _Context;
 
+    //<!-- Start constructor.  -->
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null,
                 Integer.parseInt(context.getResources().getString(R.string.DATABASE_VERSION)));
         _Context = context;
     }
+    //<!-- End constructor.  -->
 
+    //<!-- Start system defined function(s).  -->
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(LoggerName, "DatabaseHandler onCreate");
@@ -44,7 +47,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d(LoggerName, "DatabaseHandler onUpgrade");
@@ -62,14 +64,56 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
+    //<!-- End system defined function(s).  -->
 
+    //<!-- Start developer defined function(s).  -->
+    //<!-- Start Create function(s).  -->
+    //<!-- End Create function(s).  -->
+    //<!-- Start Retrieve function(s).  -->
+    public Boolean IsFavoriteOn() {
+        //Log.d(LoggerName, "DatabaseHandler IsFavoriteOn()");
+        long RowCount = 0;
+        try{
+            String selectQuery = "SELECT COUNT(*) FROM tbl_MusicDictionary WHERE IsFavorite = 'true'";
+            SQLiteDatabase db = this.getWritableDatabase();
+            RowCount = DatabaseUtils.longForQuery(db, selectQuery, null);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return RowCount > 0;
+    }
+    public Setting getPlayerSetting(){
+        //Log.d(LoggerName, "DatabaseHandler getPlayerSetting()");
+        Cursor cursor = null;
+        Setting _Setting = new Setting();
+        try{
+            String selectQuery = "SELECT  * FROM tbl_Setting";
+            SQLiteDatabase db = this.getWritableDatabase();
+            cursor = db.rawQuery(selectQuery, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    _Setting.IsFavoriteOn = Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("IsFavoriteOn")));
+                    _Setting.RepeatStatus = cursor.getString(cursor.getColumnIndex("RepeatStatus"));
+                    _Setting.IsShuffleOn = Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("IsShuffleOn")));
+                    _Setting.MyanmarFontName = cursor.getString(cursor.getColumnIndex("MyanmarFontName"));
+                } while (cursor.moveToNext());
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            if(cursor != null)
+                cursor.close();
+        }
+        return _Setting;
+    }
     public ArrayList<MusicDictionary> getAllMusicDictionary() {
         //Log.d(LoggerName, "DatabaseHandler getAllMusicDictionary()");
         ArrayList<MusicDictionary> List_MusicDictionary = new ArrayList<MusicDictionary>();
+        Cursor cursor = null;
         try{
             String selectQuery = "SELECT  * FROM tbl_MusicDictionary ORDER BY Srno ASC;";
             SQLiteDatabase db = this.getWritableDatabase();
-            Cursor cursor = db.rawQuery(selectQuery, null);
+            cursor = db.rawQuery(selectQuery, null);
             if (cursor.moveToFirst()) {
                 do {
                     MusicDictionary _MusicDictionary = new MusicDictionary();
@@ -90,23 +134,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if(cursor != null)
+                cursor.close();
         }
         return List_MusicDictionary;
     }
-
-    public Boolean IsFavoriteOn() {
-        //Log.d(LoggerName, "DatabaseHandler IsFavoriteOn()");
-        long RowCount = 0;
-        try{
-            String selectQuery = "SELECT COUNT(*) FROM tbl_MusicDictionary WHERE IsFavorite = 'true'";
-            SQLiteDatabase db = this.getWritableDatabase();
-            RowCount = DatabaseUtils.longForQuery(db, selectQuery, null);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-        return RowCount > 0;
-    }
-
+    //<!-- End Retrieve function(s).  -->
+    //<!-- Start Update function(s).  -->
     public void updateMusicDictionary(int ID, boolean IsFavoriteOn){
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
@@ -123,4 +158,67 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
+    public void updateSetting_Favorite(boolean IsPlayerFavoriteOn){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        try{
+            ContentValues _ContentValues = new ContentValues();
+            _ContentValues.put("IsFavoriteOn",  IsPlayerFavoriteOn ? "true" : "false");
+            int UpdateReturnValue = db.update("tbl_Setting", _ContentValues, null, null);
+            db.setTransactionSuccessful();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+    public void updateSetting_Shuffle(boolean IsPlayerShuffleOn){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        try{
+            ContentValues _ContentValues = new ContentValues();
+            _ContentValues.put("IsShuffleOn",  IsPlayerShuffleOn ? "true" : "false");
+            int UpdateReturnValue = db.update("tbl_Setting", _ContentValues, null, null);
+            db.setTransactionSuccessful();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+    public void updateSetting_MyanmarFont(String MyanmarFontName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        try{
+            ContentValues _ContentValues = new ContentValues();
+            _ContentValues.put("MyanmarFontName",  MyanmarFontName);
+            int UpdateReturnValue = db.update("tbl_Setting", _ContentValues, null, null);
+            db.setTransactionSuccessful();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+    public void updateSetting_RepeatStatus(String RepeatStatus){
+        // ALL
+        // None
+        // Single
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        try{
+            ContentValues _ContentValues = new ContentValues();
+            _ContentValues.put("RepeatStatus",  RepeatStatus);
+            int UpdateReturnValue = db.update("tbl_Setting", _ContentValues, null, null);
+            db.setTransactionSuccessful();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+    //<!-- End Update function(s).  -->
+    //<!-- Start Delete function(s).  -->
+    //<!-- End Delete function(s).  -->
+    //<!-- End developer defined function(s).  -->
 }
