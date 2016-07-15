@@ -15,5 +15,6 @@ public class MusicDictionary{
     public String Genre;
     public String Lyric;
     public Boolean IsFavorite;
+    public Boolean IsRepeatSingle;
     public String PlayingStatus;
 }

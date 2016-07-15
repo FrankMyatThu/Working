@@ -11,8 +11,10 @@
     <!--<string name="Pause">&#xf04c;</string>-->
     <string name="Pause">b</string>
 
-    <string name="RepeatOne">&#xf01e;</string>
-    <string name="LoopAll">&#xf021;</string>
+    <!--<string name="RepeatOne">&#xf01e;</string>-->
+    <string name="RepeatNone">&#xf178;</string>
+    <string name="RepeatOne">&#xf0e2;</string>
+    <string name="RepeatAll">&#xf021;</string>
     <string name="Shuffle">&#xf074;</string>
     <string name="Lyrics">&#xf0f6;</string>
 

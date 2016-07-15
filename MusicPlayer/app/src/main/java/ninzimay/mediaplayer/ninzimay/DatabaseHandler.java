@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
 import java.util.ArrayList;
@@ -50,18 +51,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d(LoggerName, "DatabaseHandler onUpgrade");
+        InputStream _InputStream = null;
         db.beginTransaction();
         try {
-            InputStream _InputStream = _Context.getResources().getAssets().open("sql_script_update.sql");
+
+            /// http://stackoverflow.com/a/26916986/900284
+            /// http://stackoverflow.com/a/8133640/900284
+
+            _InputStream = _Context.getResources().getAssets().open("sql_script_update.sql");
             String[] statements = FileHelper.parseSqlFile(_InputStream);
             for (String statement : statements) {
                 db.execSQL(statement);
             }
+
+
             db.setTransactionSuccessful();
         } catch (Exception ex) {
             ex.printStackTrace();
         }finally {
             db.endTransaction();
+            if(_InputStream != null){
+                try {
+                    _InputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     //<!-- End system defined function(s).  -->

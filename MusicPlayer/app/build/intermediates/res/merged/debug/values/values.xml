@@ -216,14 +216,15 @@
     <string name="FavoriteOff"></string>
     <string name="FavoriteOn"></string>
     <string name="HeadphoneIndicator"></string>
-    <string name="LoopAll"></string>
     <string name="Lyrics"></string>
     <string name="Next"></string>
     <string name="Pause">b</string>
     <string name="Play">a</string>
     <string name="Previous"></string>
     <string name="RegistrationSeal"></string>
-    <string name="RepeatOne"></string>
+    <string name="RepeatAll"></string>
+    <string name="RepeatNone"></string>
+    <string name="RepeatOne"></string>
     <string name="RunningIndicator"></string>
     <string name="Shuffle"></string>
     <string name="Speaker"></string>
