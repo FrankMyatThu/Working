@@ -71,7 +71,7 @@ implements AudioManager.OnAudioFocusChangeListener
     private int CurrentPlayingLength = 0;
     private int CurrentVolumeLevel = 0;
     private int AudioFocusRequestCode = 0;
-    private boolean IsPausedByAudioLostFocus = false;
+    private boolean IsUserPressedPause = false;
     private Handler Handler_Music = null;
     private Runnable Runnable_Music = null;
     private Gson gson = new Gson();
@@ -133,7 +133,7 @@ implements AudioManager.OnAudioFocusChangeListener
         }else if (intent.getAction().equals(Constants.ACTION.PLAYBACK_ACTION)) {
             playbackCurrentSong();
         }else if (intent.getAction().equals(Constants.ACTION.PAUSE_ACTION)) {
-            IsPausedByAudioLostFocus = false;
+            IsUserPressedPause = true;
             pauseCurrentSong();
             broadCast_OnDemand(false);
         }else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
@@ -185,18 +185,15 @@ implements AudioManager.OnAudioFocusChangeListener
                 // TODO : resume playback
                 //Log.d(LoggerName, "AUDIOFOCUS_GAIN = "+focusChange);
                 _AudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, CurrentVolumeLevel, 0);
-                if(CurrentPlayingLength > 0 && IsPausedByAudioLostFocus){
+                if(CurrentPlayingLength > 0 && IsUserPressedPause == false ){
                     playbackCurrentSong();
-                    IsPausedByAudioLostFocus = false;
                 }
                 break;
             case AudioManager.AUDIOFOCUS_LOSS:
                 // TODO : stop playback and release media player
                 //Log.d(LoggerName, "AUDIOFOCUS_LOSS = "+focusChange);
                 CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                if(mediaPlayerState != MediaPlayerState.Started) return;
                 pauseCurrentSong();
-                IsPausedByAudioLostFocus = true;
                 broadCast_OnDemand(false);
                 //Log.d(LoggerName, "Paused");
                 break;
@@ -478,6 +475,7 @@ implements AudioManager.OnAudioFocusChangeListener
                         CurrentPlayingLength = 0;
                         player.start();
                         mediaPlayerState = MediaPlayerState.Started;
+                        IsUserPressedPause = false;
                         broadCast_OnDemand(false);
                     }
                 });
@@ -492,39 +490,39 @@ implements AudioManager.OnAudioFocusChangeListener
                 }
                 else{
                     player = new MediaPlayer();
+                    player.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                        public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
+                            Log.e(LoggerName, String.format("[player.setOnErrorListener] Error(%s%s)", what, extra));
+                            mediaPlayerState = MediaPlayerState.Error;
+                            StringBuilder sb = new StringBuilder();
+                            sb.append("Media Player Error: ");
+                            switch (what) {
+                                case MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK:
+                                    sb.append("Not Valid for Progressive Playback");
+                                    break;
+                                case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
+                                    sb.append("Server Died");
+                                    break;
+                                case MediaPlayer.MEDIA_ERROR_UNKNOWN:
+                                    sb.append("Unknown");
+                                    break;
+                                default:
+                                    sb.append(" Non standard (");
+                                    sb.append(what);
+                                    sb.append(")");
+                            }
+                            sb.append(" (" + what + ") ");
+                            sb.append(extra);
+                            Log.e(LoggerName, sb.toString());
+                            return true;
+                        }
+                    });
                     player.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                 }
                 player.setDataSource(getApplicationContext(), Uri.parse(path));
                 mediaPlayerState = MediaPlayerState.Initialized;
                 setCurrent_MusicDictionary(_MusicDictionary);
-                player.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                    public boolean onError(MediaPlayer _MediaPlayer, int what, int extra) {
-                        Log.e(LoggerName, String.format("[player.setOnErrorListener] Error(%s%s)", what, extra));
-                        mediaPlayerState = MediaPlayerState.Error;
-                        StringBuilder sb = new StringBuilder();
-                        sb.append("Media Player Error: ");
-                        switch (what) {
-                            case MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK:
-                                sb.append("Not Valid for Progressive Playback");
-                                break;
-                            case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
-                                sb.append("Server Died");
-                                break;
-                            case MediaPlayer.MEDIA_ERROR_UNKNOWN:
-                                sb.append("Unknown");
-                                break;
-                            default:
-                                sb.append(" Non standard (");
-                                sb.append(what);
-                                sb.append(")");
-                        }
-                        sb.append(" (" + what + ") ");
-                        sb.append(extra);
-                        Log.e(LoggerName, sb.toString());
-                        return true;
-                    }
-                });
                 player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer MediaPlayer_onPrepared) {
@@ -540,6 +538,7 @@ implements AudioManager.OnAudioFocusChangeListener
                         });
                         player.start();
                         mediaPlayerState = MediaPlayerState.Started;
+                        IsUserPressedPause = false;
                         broadCast_OnDemand(false);
                     }
                 });

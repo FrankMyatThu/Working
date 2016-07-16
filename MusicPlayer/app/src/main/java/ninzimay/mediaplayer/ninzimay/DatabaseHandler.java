@@ -21,12 +21,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String LoggerName = "NinZiMay";
     private static final String DATABASE_NAME = "ninzimay.sqlite";
     private Context _Context;
+    private int NewDBVersion = 0;
 
     //<!-- Start constructor.  -->
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null,
                 Integer.parseInt(context.getResources().getString(R.string.DATABASE_VERSION)));
         _Context = context;
+        NewDBVersion = Integer.parseInt(_Context.getResources().getString(R.string.DATABASE_VERSION));
     }
     //<!-- End constructor.  -->
 
@@ -41,11 +43,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             for (String statement : statements) {
                 db.execSQL(statement);
             }
+            db.execSQL("PRAGMA user_version = " + (db.getVersion() + 1) );
             db.setTransactionSuccessful();
         } catch (Exception ex) {
             ex.printStackTrace();
         }finally {
             db.endTransaction();
+            if(db.getVersion() < NewDBVersion){
+                onUpgrade(db, db.getVersion(), NewDBVersion);
+            }
         }
     }
     @Override
@@ -75,11 +81,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 _InputStream = _Context.getResources().getAssets().open(List_FileName.get(i));
                 String[] statements = FileHelper.parseSqlFile(_InputStream);
                 for (String statement : statements) {
+                    Log.d(LoggerName, "DatabaseHandler onUpgrade statement = "+statement);
                     db.execSQL(statement);
                 }
                 _InputStream.close();
             }
-
+            db.execSQL("PRAGMA user_version = " + NewDBVersion);
             db.setTransactionSuccessful();
         } catch (Exception ex) {
             ex.printStackTrace();
