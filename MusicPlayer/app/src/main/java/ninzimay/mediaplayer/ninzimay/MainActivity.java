@@ -135,7 +135,7 @@ AdapterView.OnItemClickListener
         //Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Stetho.initializeWithDefaults(this);
+        //Stetho.initializeWithDefaults(this);
         _DatabaseHandler = new DatabaseHandler(this);
         initializer();
     }
@@ -257,7 +257,7 @@ AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> parent, View _View, int position, long id) {
         Gson _Gson = new Gson();
         MusicDictionary _MusicDictionary = ((MusicDictionary)parent.getItemAtPosition(position));
-        Log.d(LoggerName, "onItemClick() _MusicDictionary.EnglishTitle = "+ _MusicDictionary.EnglishTitle + " | _MusicDictionary.IsFavorite "+ _MusicDictionary.IsFavorite);
+        //Log.d(LoggerName, "onItemClick() _MusicDictionary.EnglishTitle = "+ _MusicDictionary.EnglishTitle + " | _MusicDictionary.IsFavorite "+ _MusicDictionary.IsFavorite);
 
         if(!_MusicDictionary.IsFavorite){
             _DatabaseHandler.updateSetting_Favorite(false);
