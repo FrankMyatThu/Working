@@ -214,6 +214,7 @@ AdapterView.OnItemClickListener
                 btnForward_Click();
                 break;
             case R.id.btnRepeat:
+                btnRepeatAllNoneSingle_Click();
                 break;
             case R.id.btnLyric:
                 break;
@@ -328,6 +329,27 @@ AdapterView.OnItemClickListener
         /// 4.ListViewOffset
         int ListViewOffset = sharedPreferences.getInt("ListViewOffset", 0);
         _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, ListViewOffset);
+    }
+    private void btnRepeatAllNoneSingle_Click(){
+        if(getString(R.string.RepeatNone).equalsIgnoreCase(btnRepeat.getText().toString())){
+            btnRepeat.setText(getString(R.string.RepeatAll));
+            btnRepeatAll_Click();
+        }else if(getString(R.string.RepeatAll).equalsIgnoreCase(btnRepeat.getText().toString())){
+            btnRepeat.setText(getString(R.string.RepeatOne));
+            btnRepeatOne_Click();
+        }else if(getString(R.string.RepeatOne).equalsIgnoreCase(btnRepeat.getText().toString())){
+            btnRepeat.setText(getString(R.string.RepeatNone));
+            btnRepeatNone_Click();
+        }
+    }
+    private void btnRepeatAll_Click(){
+        _DatabaseHandler.updateSetting_RepeatStatus(RepeatStatus.ALL);
+    }
+    private void btnRepeatOne_Click(){
+        _DatabaseHandler.updateSetting_RepeatStatus(RepeatStatus.Single);
+    }
+    private void btnRepeatNone_Click(){
+        _DatabaseHandler.updateSetting_RepeatStatus(RepeatStatus.None);
     }
     private void btnPlayPause_Click(){
         if(getString(R.string.Play).equalsIgnoreCase(btnPlayPause.getText().toString())){
@@ -479,11 +501,23 @@ AdapterView.OnItemClickListener
             btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray))));
             //_DatabaseHandler.updateSetting_Favorite(false);
         }
+
+        Setting _Setting = _DatabaseHandler.getPlayerSetting();
+
         /// Player level favortie button on off process
-        if(_DatabaseHandler.getPlayerSetting().IsFavoriteOn){
+        if(_Setting.IsFavoriteOn){
             btnFavorite.setText(this.getString(R.string.FavoriteOn));
         }else{
             btnFavorite.setText(this.getString(R.string.FavoriteOff));
+        }
+
+        /// isRepeat
+        if(_Setting.RepeatStatus.equalsIgnoreCase(RepeatStatus.None)) {
+            btnRepeat.setText(this.getString(R.string.RepeatNone));
+        }else if(_Setting.RepeatStatus.equalsIgnoreCase(RepeatStatus.ALL)) {
+            btnRepeat.setText(this.getString(R.string.RepeatAll));
+        }else if(_Setting.RepeatStatus.equalsIgnoreCase(RepeatStatus.Single)) {
+            btnRepeat.setText(this.getString(R.string.RepeatOne));
         }
 
         /// Seekbar control
