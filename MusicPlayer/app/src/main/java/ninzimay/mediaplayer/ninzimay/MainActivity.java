@@ -138,6 +138,28 @@ AdapterView.OnItemClickListener
         Stetho.initializeWithDefaults(this);
         _DatabaseHandler = new DatabaseHandler(this);
         initializer();
+
+        /*
+        /// Get Music List
+        Field[] fields=R.raw.class.getFields();
+        List_MusicDictionary = new ArrayList<MusicDictionary>();
+        for(int count=0; count < fields.length; count++){
+            Log.i(TagName, "Raw Asset: " + fields[count].getName());
+            MusicDictionary _MusicDictionary = new MusicDictionary();
+            _MusicDictionary.Srno = count + 1 ;
+            _MusicDictionary.Name = fields[count].getName();
+            _MusicDictionary.Status = "New";
+            List_MusicDictionary.add(_MusicDictionary);
+        }
+        // Sorting List_MusicDictionary
+        Collections.sort(List_MusicDictionary, new Comparator<MusicDictionary>() {
+            @Override
+            public int compare(MusicDictionary MusicDictionary_2, MusicDictionary MusicDictionary_1) {
+                Log.i(TagName, "Sort MusicDictionary_2.Srno = " + MusicDictionary_2.Srno + " | MusicDictionary_1.Srno = " +MusicDictionary_1.Srno );
+                return Integer.compare(MusicDictionary_2.Srno, MusicDictionary_1.Srno);
+            }
+        });
+        */
     }
     public void onStart(){
         //Log.d(LoggerName, "In the onStart() event");
