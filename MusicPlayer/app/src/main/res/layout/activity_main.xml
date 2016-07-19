@@ -271,7 +271,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:textColor="@color/lightgray"
+                    android:textColor="@color/darkgray"
                     android:textSize="@dimen/PlayerButtonfont_sizeMedian"
                     android:text="@string/Lyrics"/>
             </RelativeLayout>

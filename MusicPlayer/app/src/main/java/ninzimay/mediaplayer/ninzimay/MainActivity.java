@@ -135,7 +135,7 @@ AdapterView.OnItemClickListener
         //Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this);
         _DatabaseHandler = new DatabaseHandler(this);
         initializer();
     }

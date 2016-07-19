@@ -2,7 +2,7 @@
 -- Create DB Script(s)
 -- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE `tbl_MusicDictionary` (
-	`ID`	INTEGER NOT NULL UNIQUE,
+	`ID`	INTEGER PRIMARY KEY,
 	`Srno`	INTEGER NOT NULL,
 	`FileName`	TEXT NOT NULL,
 	`EnglishTitle`	TEXT NOT NULL,
@@ -13,8 +13,7 @@ CREATE TABLE `tbl_MusicDictionary` (
 	`Genre`	TEXT,
 	`Lyric`	TEXT,
 	`IsFavorite`	TEXT,
-	`PlayingStatus`	TEXT,
-	PRIMARY KEY(ID)
+	`PlayingStatus`	TEXT
 );
 CREATE TABLE `tbl_Setting` (
 	`IsFavoriteOn`	TEXT,
