@@ -332,12 +332,12 @@ AdapterView.OnItemClickListener
     }
     private void btnRepeatAllNoneSingle_Click(){
         if(getString(R.string.RepeatNone).equalsIgnoreCase(btnRepeat.getText().toString())){
-            btnRepeat.setText(getString(R.string.RepeatAll));
-            btnRepeatAll_Click();
-        }else if(getString(R.string.RepeatAll).equalsIgnoreCase(btnRepeat.getText().toString())){
             btnRepeat.setText(getString(R.string.RepeatOne));
             btnRepeatOne_Click();
         }else if(getString(R.string.RepeatOne).equalsIgnoreCase(btnRepeat.getText().toString())){
+            btnRepeat.setText(getString(R.string.RepeatAll));
+            btnRepeatAll_Click();
+        }else if(getString(R.string.RepeatAll).equalsIgnoreCase(btnRepeat.getText().toString())) {
             btnRepeat.setText(getString(R.string.RepeatNone));
             btnRepeatNone_Click();
         }
