@@ -124,7 +124,17 @@ implements AudioManager.OnAudioFocusChangeListener
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
-            playSong(GetSongToPlay(PlayerEventName.PreviousSong));
+            switch (InvokeNavigator()._NavigatorValue){
+                case ReplayCurrentSong:
+                    playSong(getCurrent_ReInitialized_MusicDictionary());
+                    break;
+                case Stop:
+                    playSong(null);
+                    break;
+                default:
+                    playSong(GetSongToPlay(PlayerEventName.PreviousSong));
+                    break;
+            }
         }else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
             if(List_MusicDictionary == null){
                 String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
