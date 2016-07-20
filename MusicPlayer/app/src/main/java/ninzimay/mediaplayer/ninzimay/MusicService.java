@@ -46,6 +46,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -404,12 +405,14 @@ implements AudioManager.OnAudioFocusChangeListener
     }
     private MusicDictionary GetSongToPlay(PlayerEventName _PlayerEventName){
         Boolean IsFavoriteOn = false;
+        Boolean IsShuffleOn = false;
         Boolean IsPlayingSongAlreadyExist = false;
         MusicDictionary ToReturn_MusicDictionary = null;
         Filterable_List_MusicDictionary = List_MusicDictionary;
 
         Setting _Setting = _DatabaseHandler.getPlayerSetting();
         IsFavoriteOn = _Setting.IsFavoriteOn;
+        IsShuffleOn = _Setting.IsShuffleOn;
 
         if(IsFavoriteOn && CurrentPlayingLength <= 0){
             Filterable_List_MusicDictionary = new ArrayList<MusicDictionary>();
@@ -425,10 +428,16 @@ implements AudioManager.OnAudioFocusChangeListener
 
         }
 
+        if(IsShuffleOn && CurrentPlayingLength <= 0)
+        {
+            Filterable_List_MusicDictionary = ShuffleSongs(Filterable_List_MusicDictionary);
+        }
+
+
         switch (_PlayerEventName) {
             case NextSong:
                 // Play next song(s)
-                Log.d(LoggerName, "Filterable_List_MusicDictionary.size() "+ Filterable_List_MusicDictionary.size());
+                //Log.d(LoggerName, "Filterable_List_MusicDictionary.size() "+ Filterable_List_MusicDictionary.size());
                 for(int i=0; i < Filterable_List_MusicDictionary.size(); i++)
                 {
                     if(Filterable_List_MusicDictionary.get(i).PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
@@ -619,6 +628,11 @@ implements AudioManager.OnAudioFocusChangeListener
         }
         return IsLastSong;
 
+    }
+    private List<MusicDictionary> ShuffleSongs(List<MusicDictionary> ToShuffleList){
+        List<MusicDictionary> ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
+        Collections.shuffle(ShuffledList);
+        return  ShuffledList;
     }
     //<!-- End developer defined function(s).  -->
 }

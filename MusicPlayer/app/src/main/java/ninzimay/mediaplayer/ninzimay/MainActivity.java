@@ -78,6 +78,8 @@ AdapterView.OnItemClickListener
     int CurrentSongTotalLength = 0;
     Gson _Gson = new Gson();
     DatabaseHandler _DatabaseHandler = null;
+    int Color_LightGray = 0;
+    int Color_DarkGray = 0;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
@@ -137,6 +139,8 @@ AdapterView.OnItemClickListener
         setContentView(R.layout.activity_main);
         Stetho.initializeWithDefaults(this);
         _DatabaseHandler = new DatabaseHandler(this);
+        Color_LightGray = Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray)));
+        Color_DarkGray = Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray)));
         initializer();
 
         /*
@@ -225,6 +229,7 @@ AdapterView.OnItemClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnShuffle:
+                btnShuffle_OnOff_Click();
                 break;
             case R.id.btnBackward:
                 btnBackward_Click();
@@ -352,6 +357,24 @@ AdapterView.OnItemClickListener
         int ListViewOffset = sharedPreferences.getInt("ListViewOffset", 0);
         _ListView.setSelectionFromTop(ListViewFirstVisiblePosition, ListViewOffset);
     }
+    private void btnShuffle_OnOff_Click(){
+        //Log.d(LoggerName, "btnShuffle_OnOff_Click btnShuffle.getCurrentTextColor() = "+ btnShuffle.getCurrentTextColor() +" | Color_LightGray = "+ Color_LightGray + " | Color_DarkGray = "+ Color_DarkGray);
+        if(btnShuffle.getCurrentTextColor() == Color_LightGray){
+            /// call off click
+            btnShuffle_Off_Click();
+            btnShuffle.setTextColor(Color_DarkGray);
+        }else if(btnShuffle.getCurrentTextColor() == Color_DarkGray){
+            /// call on click
+            btnShuffle_On_Click();
+            btnShuffle.setTextColor(Color_LightGray);
+        }
+    }
+    private void btnShuffle_On_Click(){
+        _DatabaseHandler.updateSetting_Shuffle(true);
+    }
+    private void btnShuffle_Off_Click(){
+        _DatabaseHandler.updateSetting_Shuffle(false);
+    }
     private void btnRepeatAllNoneSingle_Click(){
         if(getString(R.string.RepeatNone).equalsIgnoreCase(btnRepeat.getText().toString())){
             btnRepeat.setText(getString(R.string.RepeatOne));
@@ -425,11 +448,11 @@ AdapterView.OnItemClickListener
 
         if(IsFavoriteOn()){
             btnFavorite.setEnabled(true);
-            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray))));
+            btnFavorite.setTextColor(Color_LightGray);
         }else{
             btnFavorite.setEnabled(false);
             btnFavorite.setText(this.getString(R.string.FavoriteOff));
-            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray))));
+            btnFavorite.setTextColor(Color_DarkGray);
             _DatabaseHandler.updateSetting_Favorite(false);
         }
 
@@ -516,11 +539,11 @@ AdapterView.OnItemClickListener
         /// Inline favorite button(s) on off process
         if(IsFavoriteOn()){
             btnFavorite.setEnabled(true);
-            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray))));
+            btnFavorite.setTextColor(Color_LightGray);
             //_DatabaseHandler.updateSetting_Favorite(true);
         }else{
             btnFavorite.setEnabled(false);
-            btnFavorite.setTextColor(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray))));
+            btnFavorite.setTextColor(Color_DarkGray);
             //_DatabaseHandler.updateSetting_Favorite(false);
         }
 
@@ -531,6 +554,12 @@ AdapterView.OnItemClickListener
             btnFavorite.setText(this.getString(R.string.FavoriteOn));
         }else{
             btnFavorite.setText(this.getString(R.string.FavoriteOff));
+        }
+
+        if(_Setting.IsShuffleOn){
+            btnShuffle.setTextColor(Color_LightGray);
+        }else{
+            btnShuffle.setTextColor(Color_DarkGray);
         }
 
         /// isRepeat
