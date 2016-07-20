@@ -61,49 +61,7 @@
     <favorites_list name="MusicPlayer" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="MusicService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.449827">
-              <caret line="618" column="55" selection-start-line="618" selection-start-column="55" selection-end-line="618" selection-end-column="55" />
-              <folding>
-                <element signature="docComment;class#MusicService#0" expanded="false" />
-                <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-                <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-                <element signature="e#9209#9234#0" expanded="false" />
-                <element signature="e#9628#9676#0" expanded="false" />
-                <element signature="e#10065#10089#0" expanded="false" />
-                <element signature="e#10450#10499#0" expanded="false" />
-                <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
-                <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
-                <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
-                <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-                <element signature="e#16549#16566#0" expanded="false" />
-                <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-                <element signature="e#17224#17244#0" expanded="false" />
-                <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-                <element signature="e#18764#18789#0" expanded="false" />
-                <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
-                <element signature="e#21147#21167#0" expanded="false" />
-                <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-                <element signature="e#24279#24325#0" expanded="false" />
-                <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
-                <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1930,7 +1888,7 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_4_API_23" />
     <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="9885f635344a36594b" />
+    <property name="device.picker.selection" value="4feebafd" />
     <property name="last_opened_file_path" value="C:/" />
     <property name="ExportApk.ApkPath" value="C:\" />
     <property name="ExportApk.Flavors" value="" />
@@ -2227,7 +2185,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998326" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2236,7 +2194,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329849" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46901172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46901172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32663316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2245,7 +2203,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998326" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13842663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24583964" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2344932" sideWeight="0.4884393" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2344932" sideWeight="0.5115607" order="3" side_tool="true" content_ui="tabs" />
@@ -2773,8 +2731,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.449827">
-          <caret line="618" column="55" selection-start-line="618" selection-start-column="55" selection-end-line="618" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.67662567">
+          <caret line="633" column="9" selection-start-line="633" selection-start-column="9" selection-end-line="633" selection-end-column="9" />
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
