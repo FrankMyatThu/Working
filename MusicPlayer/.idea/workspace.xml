@@ -6,7 +6,8 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Nin" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -64,8 +65,8 @@
       <file leaf-file-name="MusicService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2390158">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.449827">
+              <caret line="618" column="55" selection-start-line="618" selection-start-column="55" selection-end-line="618" selection-end-column="55" />
               <folding>
                 <element signature="docComment;class#MusicService#0" expanded="false" />
                 <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
@@ -74,27 +75,27 @@
                 <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
                 <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
                 <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-                <element signature="e#9115#9140#0" expanded="false" />
-                <element signature="e#9534#9582#0" expanded="false" />
-                <element signature="e#9971#9995#0" expanded="false" />
-                <element signature="e#10356#10405#0" expanded="false" />
+                <element signature="e#9209#9234#0" expanded="false" />
+                <element signature="e#9628#9676#0" expanded="false" />
+                <element signature="e#10065#10089#0" expanded="false" />
+                <element signature="e#10450#10499#0" expanded="false" />
                 <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
                 <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
                 <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
                 <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
                 <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
                 <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-                <element signature="e#16455#16472#0" expanded="false" />
+                <element signature="e#16549#16566#0" expanded="false" />
                 <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-                <element signature="e#17130#17150#0" expanded="false" />
-                <element signature="method#update_MusicDictionary#0;class#MusicService#0" expanded="false" />
+                <element signature="e#17224#17244#0" expanded="false" />
                 <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-                <element signature="e#18637#18662#0" expanded="false" />
+                <element signature="e#18764#18789#0" expanded="false" />
                 <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
                 <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
                 <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
+                <element signature="e#21147#21167#0" expanded="false" />
                 <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-                <element signature="e#24152#24198#0" expanded="false" />
+                <element signature="e#24279#24325#0" expanded="false" />
                 <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
                 <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
               </folding>
@@ -2226,8 +2227,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998326" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32495812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2235,7 +2236,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329849" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46901172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46901172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32663316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2772,8 +2773,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2390158">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.449827">
+          <caret line="618" column="55" selection-start-line="618" selection-start-column="55" selection-end-line="618" selection-end-column="55" />
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
@@ -2782,27 +2783,27 @@
             <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-            <element signature="e#9115#9140#0" expanded="false" />
-            <element signature="e#9534#9582#0" expanded="false" />
-            <element signature="e#9971#9995#0" expanded="false" />
-            <element signature="e#10356#10405#0" expanded="false" />
+            <element signature="e#9209#9234#0" expanded="false" />
+            <element signature="e#9628#9676#0" expanded="false" />
+            <element signature="e#10065#10089#0" expanded="false" />
+            <element signature="e#10450#10499#0" expanded="false" />
             <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
             <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
             <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
             <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
             <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-            <element signature="e#16455#16472#0" expanded="false" />
+            <element signature="e#16549#16566#0" expanded="false" />
             <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-            <element signature="e#17130#17150#0" expanded="false" />
-            <element signature="method#update_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="e#17224#17244#0" expanded="false" />
             <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#18637#18662#0" expanded="false" />
+            <element signature="e#18764#18789#0" expanded="false" />
             <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
             <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
+            <element signature="e#21147#21167#0" expanded="false" />
             <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#24152#24198#0" expanded="false" />
+            <element signature="e#24279#24325#0" expanded="false" />
             <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
             <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
           </folding>

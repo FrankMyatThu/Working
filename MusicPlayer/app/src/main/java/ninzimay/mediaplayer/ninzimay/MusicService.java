@@ -68,11 +68,13 @@ implements AudioManager.OnAudioFocusChangeListener
     private MediaPlayerState mediaPlayerState;
     private MediaPlayer player = null;
     private List<MusicDictionary> List_MusicDictionary;
+    private List<MusicDictionary> ShuffledList;
     private MusicDictionary Current_MusicDictionary;
     private int CurrentPlayingLength = 0;
     private int CurrentVolumeLevel = 0;
     private int AudioFocusRequestCode = 0;
     private boolean IsUserPressedPause = false;
+    private boolean IsUserUpdateList = false;
     private Handler Handler_Music = null;
     private Runnable Runnable_Music = null;
     private Gson gson = new Gson();
@@ -380,6 +382,7 @@ implements AudioManager.OnAudioFocusChangeListener
                 List_MusicDictionary.get(i).IsFavorite = _MusicDictionary.IsFavorite;
             }
         }
+        IsUserUpdateList = true;
     }
     public void playbackCurrentSong(){
         /// Play song after pause
@@ -619,6 +622,9 @@ implements AudioManager.OnAudioFocusChangeListener
             _ToCheckList = List_MusicDictionary;
         }
 
+        if(_MusicDictionary == null)
+            return IsLastSong;
+
         for(int i=0; i<_ToCheckList.size(); i++){
             if(_MusicDictionary.ID == _ToCheckList.get(i).ID
                     && (i+1) == _ToCheckList.size() ){
@@ -630,8 +636,20 @@ implements AudioManager.OnAudioFocusChangeListener
 
     }
     private List<MusicDictionary> ShuffleSongs(List<MusicDictionary> ToShuffleList){
-        List<MusicDictionary> ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
-        Collections.shuffle(ShuffledList);
+        if(ShuffledList == null){
+            ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
+            Collections.shuffle(ShuffledList);
+            Log.d(LoggerName, "ShuffleSongs() (ShuffledList == null)");
+        }else if(IsUserUpdateList){
+            ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
+            Collections.shuffle(ShuffledList);
+            IsUserUpdateList = false;
+            Log.d(LoggerName, "ShuffleSongs() (IsUserUpdateList)");
+        }else if(ToShuffleList.size() !=  ShuffledList.size()){
+            ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
+            Collections.shuffle(ShuffledList);
+            Log.d(LoggerName, "ShuffleSongs() (ToShuffleList.size() !=  ShuffledList.size())");
+        }
         return  ShuffledList;
     }
     //<!-- End developer defined function(s).  -->
