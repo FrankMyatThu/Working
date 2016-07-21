@@ -127,6 +127,7 @@ implements AudioManager.OnAudioFocusChangeListener
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
+            CurrentPlayingLength = 0;
             switch (InvokeNavigator()._NavigatorValue){
                 case ReplayCurrentSong:
                     playSong(getCurrent_ReInitialized_MusicDictionary());
@@ -155,6 +156,7 @@ implements AudioManager.OnAudioFocusChangeListener
                 String Initial_List_MusicDictionary = intent.getExtras().get("Initial_List_MusicDictionary").toString();
                 List_MusicDictionary = gson.fromJson(Initial_List_MusicDictionary, new TypeToken<List<MusicDictionary>>(){}.getType());
             }
+            CurrentPlayingLength = 0;
             switch (InvokeNavigator()._NavigatorValue){
                 case ReplayCurrentSong:
                     playSong(getCurrent_ReInitialized_MusicDictionary());
@@ -177,7 +179,8 @@ implements AudioManager.OnAudioFocusChangeListener
             playSong(getCurrent_ReInitialized_MusicDictionary());
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SEEK_ACTION)) {
             CurrentPlayingLength = Integer.parseInt(intent.getExtras().get("seekBarIndex").toString());
-            playIndexedSong();
+            if(mediaPlayerState == MediaPlayerState.Started)
+                playIndexedSong();
         }if (intent.getAction().equals(Constants.ACTION.INVOKE_ONDEMAND_ACTION)) {
             broadCast_OnDemand(false);
         }if (intent.getAction().equals(Constants.ACTION.UPDATE_MUSICDICTIONARY_ACTION)) {
@@ -242,6 +245,9 @@ implements AudioManager.OnAudioFocusChangeListener
 
     //<!-- Start developer defined function(s).  -->
     public int getMusicCurrrentPosition(){
+        if(mediaPlayerState == MediaPlayerState.Paused)
+            return CurrentPlayingLength;
+
         return player.getCurrentPosition();
     }
     public int getMusicDuration(){
@@ -311,7 +317,7 @@ implements AudioManager.OnAudioFocusChangeListener
         PendingIntent PendingIntent_closeIntent = PendingIntent.getService(this, NotificationID.getID(), closeIntent, 0);
 
         RemoteViews _RemoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.customized_notification);
-        _RemoteViews.setImageViewResource(R.id.imgSongImage, R.drawable.album_art);
+        _RemoteViews.setImageViewResource(R.id.imgSongImage, getResources().getIdentifier( _MusicDictionary.AlbumArt, "drawable", getPackageName()));
         _RemoteViews.setTextViewText(R.id.txtMyanmarInfo, _MusicDictionary.MyanmarTitle);
         _RemoteViews.setTextViewText(R.id.txtEnglishInfo, _MusicDictionary.EnglishTitle);
         _RemoteViews.setImageViewResource(R.id.btnClose, R.drawable.font_awesome_btnclose);
@@ -639,16 +645,16 @@ implements AudioManager.OnAudioFocusChangeListener
         if(ShuffledList == null){
             ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
             Collections.shuffle(ShuffledList);
-            Log.d(LoggerName, "ShuffleSongs() (ShuffledList == null)");
+            //Log.d(LoggerName, "ShuffleSongs() (ShuffledList == null)");
         }else if(IsUserUpdateList){
             ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
             Collections.shuffle(ShuffledList);
             IsUserUpdateList = false;
-            Log.d(LoggerName, "ShuffleSongs() (IsUserUpdateList)");
+            //Log.d(LoggerName, "ShuffleSongs() (IsUserUpdateList)");
         }else if(ToShuffleList.size() !=  ShuffledList.size()){
             ShuffledList = new ArrayList<MusicDictionary>(ToShuffleList);
             Collections.shuffle(ShuffledList);
-            Log.d(LoggerName, "ShuffleSongs() (ToShuffleList.size() !=  ShuffledList.size())");
+            //Log.d(LoggerName, "ShuffleSongs() (ToShuffleList.size() !=  ShuffledList.size())");
         }
         return  ShuffledList;
     }

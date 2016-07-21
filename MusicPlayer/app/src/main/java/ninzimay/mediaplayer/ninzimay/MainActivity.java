@@ -34,7 +34,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.facebook.stetho.Stetho;
+//import com.facebook.stetho.Stetho;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -69,7 +69,6 @@ AdapterView.OnItemClickListener
     Button btnLyric = null;
     Button btnFavorite = null;
     SeekBar Seekbar = null;
-    boolean IsUserSeekingSliderBar = false;
     boolean IsComingBack = false;
     boolean IsPauseSong = false;
     boolean IsSeekbarSeekable = false;
@@ -117,10 +116,8 @@ AdapterView.OnItemClickListener
                 //Log.d(LoggerName, "ACTIVITY.FOREVER_BROADCAST");
                 int CurrentSongPlayingIndex = Integer.parseInt(intent.getExtras().get("CurrentSongPlayingIndex").toString());
                 IsSeekbarSeekable = Boolean.parseBoolean(intent.getExtras().get("IsSeekbarSeekable").toString());
-                if(!IsUserSeekingSliderBar){
-                    Seekbar.setProgress(CurrentSongPlayingIndex);
-                    setProgressText(CurrentSongPlayingIndex);
-                }
+                Seekbar.setProgress(CurrentSongPlayingIndex);
+                setProgressText(CurrentSongPlayingIndex);
             }
 
             if (Constants.BROADCAST.ONDEMAND_BROADCAST.equals(action)){
@@ -262,7 +259,6 @@ AdapterView.OnItemClickListener
     }
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        IsUserSeekingSliderBar = false;
         if(!IsSeekbarSeekable) return;
         IntentMusicService = null;
         IntentMusicService = new Intent(this, MusicService.class);
@@ -273,11 +269,10 @@ AdapterView.OnItemClickListener
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         //Log.d(LoggerName, "onStartTrackingTouch");
-        IsUserSeekingSliderBar = true;
     }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (fromUser && IsUserSeekingSliderBar) {
+        if (fromUser) {
             String _Progress = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(progress),
                     TimeUnit.MILLISECONDS.toSeconds(progress) -

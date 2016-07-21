@@ -11,20 +11,12 @@
 
     <!-- Row start. -->
 
-    <!--Blank area start. -->
-    <RelativeLayout
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight="0.025">
-    </RelativeLayout>
-    <!--Blank area end. -->
-
     <!--Photo area start. -->
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="0.2"
-        android:gravity="center_vertical"
+        android:layout_weight="0.225"
+        android:gravity="center_vertical|center_horizontal"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         android:paddingTop="3dp"

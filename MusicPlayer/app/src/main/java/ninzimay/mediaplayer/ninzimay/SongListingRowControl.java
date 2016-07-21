@@ -101,7 +101,7 @@ public class SongListingRowControl extends BaseAdapter implements View.OnClickLi
         _ViewHolder.txtEnglishInfo.setText(_MusicDictionary.EnglishTitle);
         _ViewHolder.txtMyanmarInfo.setText(_MusicDictionary.MyanmarTitle);
         _ViewHolder.txtSongLength.setText(_MusicDictionary.Length);
-        _ViewHolder.imgSongImage.setImageResource(R.drawable.album_art);
+        _ViewHolder.imgSongImage.setImageResource(_Context.getResources().getIdentifier( _MusicDictionary.AlbumArt, "drawable", _Context.getPackageName()));
 
         if (_MusicDictionary.PlayingStatus.equalsIgnoreCase(PlayingStatus_Playing)){
             _ViewHolder.txtEnglishInfo.setTextColor(ContextCompat.getColor(_Context, R.color.lightOrange));
