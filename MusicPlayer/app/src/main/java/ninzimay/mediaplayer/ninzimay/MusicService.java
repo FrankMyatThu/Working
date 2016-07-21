@@ -353,7 +353,7 @@ implements AudioManager.OnAudioFocusChangeListener
         MusicDictionary Current_MusicDictionary = getCurrent_MusicDictionary();
         Intent intent_Broadcast_Forever = new Intent(Constants.BROADCAST.FOREVER_BROADCAST);
         intent_Broadcast_Forever.putExtra("CurrentSongPlayingIndex", getMusicCurrrentPosition());
-        intent_Broadcast_Forever.putExtra("IsSeekbarSeekable", mediaPlayerState == MediaPlayerState.Started);
+        intent_Broadcast_Forever.putExtra("IsSeekbarSeekable", mediaPlayerState == MediaPlayerState.Started || mediaPlayerState == MediaPlayerState.Paused);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_Forever);
     }
     private void broadCast_OnDemand(Boolean IsClose) {

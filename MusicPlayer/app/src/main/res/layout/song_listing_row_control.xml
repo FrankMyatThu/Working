@@ -24,11 +24,15 @@
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="0.2"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp">
         <ImageView
             android:id="@+id/imgSongImage"
-            android:layout_width="80dp"
-            android:layout_height="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:scaleType="centerCrop"
             android:src="@drawable/album_art"></ImageView>
@@ -87,7 +91,7 @@
         <!-- Song length start. -->
         <TextView
             android:id="@+id/txtSongLength"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center_vertical|center_horizontal"
@@ -104,7 +108,7 @@
             android:layout_weight="0.2"
             android:layout_below="@id/txtSongLength"
             android:background="@null"
-            android:gravity="left"
+            android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/lightgray"
             android:textSize="@dimen/PlayerButtonfont_sizeMedian"
             android:text="@string/FavoriteOff"/>

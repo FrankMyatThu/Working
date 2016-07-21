@@ -60,6 +60,7 @@ AdapterView.OnItemClickListener
     TextView txtEndPoint = null;
     ListView _ListView = null;
     SongListingRowControl Adapter_SongListingRowControl = null;
+    Button btnHeadSet = null;
     Button btnShuffle = null;
     Button btnBackward = null;
     Button btnPlayPause = null;
@@ -80,9 +81,32 @@ AdapterView.OnItemClickListener
     DatabaseHandler _DatabaseHandler = null;
     int Color_LightGray = 0;
     int Color_DarkGray = 0;
+    MusicIntentReceiver _MusicIntentReceiver;
     //<!-- End declaration area.  -->
 
     //<!-- Start dependency object(s).  -->
+    private class MusicIntentReceiver extends BroadcastReceiver {
+        @Override public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
+                int state = intent.getIntExtra("state", -1);
+                switch (state) {
+                    case 0:
+                        //Log.d(LoggerName, "Headset is unplugged");
+                        btnHeadSet.setTextColor(Color_DarkGray);
+                        btnHeadSet.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        //Log.d(LoggerName, "Headset is plugged");
+                        btnHeadSet.setTextColor(Color_LightGray);
+                        btnHeadSet.setVisibility(View.VISIBLE);
+                        break;
+                    default:
+                        //Log.d(LoggerName, "I have no idea what the headset state is");
+                        break;
+                }
+            }
+        }
+    }
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -137,33 +161,11 @@ AdapterView.OnItemClickListener
         //Log.d(LoggerName, "In the onCreate() event");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Stetho.initializeWithDefaults(this);
+        //Stetho.initializeWithDefaults(this);
         _DatabaseHandler = new DatabaseHandler(this);
         Color_LightGray = Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray)));
         Color_DarkGray = Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray)));
         initializer();
-
-        /*
-        /// Get Music List
-        Field[] fields=R.raw.class.getFields();
-        List_MusicDictionary = new ArrayList<MusicDictionary>();
-        for(int count=0; count < fields.length; count++){
-            Log.i(TagName, "Raw Asset: " + fields[count].getName());
-            MusicDictionary _MusicDictionary = new MusicDictionary();
-            _MusicDictionary.Srno = count + 1 ;
-            _MusicDictionary.Name = fields[count].getName();
-            _MusicDictionary.Status = "New";
-            List_MusicDictionary.add(_MusicDictionary);
-        }
-        // Sorting List_MusicDictionary
-        Collections.sort(List_MusicDictionary, new Comparator<MusicDictionary>() {
-            @Override
-            public int compare(MusicDictionary MusicDictionary_2, MusicDictionary MusicDictionary_1) {
-                Log.i(TagName, "Sort MusicDictionary_2.Srno = " + MusicDictionary_2.Srno + " | MusicDictionary_1.Srno = " +MusicDictionary_1.Srno );
-                return Integer.compare(MusicDictionary_2.Srno, MusicDictionary_1.Srno);
-            }
-        });
-        */
     }
     public void onStart(){
         //Log.d(LoggerName, "In the onStart() event");
@@ -173,6 +175,9 @@ AdapterView.OnItemClickListener
         //Log.d(LoggerName, "In the onResume() event");
         super.onResume();
         getCacheAndBind();
+        _MusicIntentReceiver = new MusicIntentReceiver();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        registerReceiver(_MusicIntentReceiver, filter);
         IntentFilter _IntentFilter = new IntentFilter();
         _IntentFilter.addAction(Constants.BROADCAST.FOREVER_BROADCAST);
         _IntentFilter.addAction(Constants.BROADCAST.ONDEMAND_BROADCAST);
@@ -193,6 +198,8 @@ AdapterView.OnItemClickListener
         //Log.d(LoggerName, "In the onPause() event");
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+        if(_MusicIntentReceiver != null)
+            unregisterReceiver(_MusicIntentReceiver);
         setCache();
     }
     public void onStop(){
@@ -515,6 +522,7 @@ AdapterView.OnItemClickListener
         txtCurrentPlayingEnglishInfo = (TextView)findViewById(R.id.txtCurrentPlayingEnglishInfo);
         txtTitle.setTypeface(font_ailerons);
         /// Button control(s)
+        btnHeadSet = (Button)findViewById( R.id.btnHeadSet );
         btnShuffle = (Button)findViewById( R.id.btnShuffle );
         btnBackward = (Button)findViewById( R.id.btnBackward );
         btnPlayPause = (Button)findViewById( R.id.btnPlayPause );
@@ -529,6 +537,7 @@ AdapterView.OnItemClickListener
         btnRepeat.setOnClickListener(this);
         btnLyric.setOnClickListener(this);
         btnFavorite.setOnClickListener(this);
+        btnHeadSet.setTypeface(font_fontawesome);
         btnShuffle.setTypeface(font_fontawesome);
         btnBackward.setTypeface(font_fontawesome);
         btnPlayPause.setTypeface(font_ninzimay);

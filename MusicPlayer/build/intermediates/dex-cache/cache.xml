@@ -1,3 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\myat.MYATTHU\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="C:\MT\Project\GitHub\Working\MusicPlayer\app\build\intermediates\pre-dexed\release\jsr305-2.0.1_6666e6873b030c7a5689888070b4b46ad2537dd9.jar" />
+    </item>
+    <item
+        jar="C:\Users\myat.MYATTHU\.gradle\caches\modules-2\files-2.1\commons-cli\commons-cli\1.2\2bf96b7aa8b611c177d329452af1dc933e14501c\commons-cli-1.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="C:\MT\Project\GitHub\Working\MusicPlayer\app\build\intermediates\pre-dexed\release\commons-cli-1.2_a2c9d604d9be49689c32a54858cdb3d63fbd32b0.jar" />
+    </item>
+    <item
+        jar="C:\Users\myat.MYATTHU\.gradle\caches\modules-2\files-2.1\com.facebook.stetho\stetho\1.3.1\2c4076b466a0eb4d6ddf5721edd35cd1adc1f317\stetho-1.3.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2c4076b466a0eb4d6ddf5721edd35cd1adc1f317">
+        <dex dex="C:\MT\Project\GitHub\Working\MusicPlayer\app\build\intermediates\pre-dexed\release\stetho-1.3.1_1a8012583a2d7ba2004141fdc4c3184b09fb6d5b.jar" />
+    </item>
+
+</items>
