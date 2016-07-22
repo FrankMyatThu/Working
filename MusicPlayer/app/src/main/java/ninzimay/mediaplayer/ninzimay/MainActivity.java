@@ -23,6 +23,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -45,7 +46,8 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends Activity
 implements SeekBar.OnSeekBarChangeListener,
 View.OnClickListener,
-AdapterView.OnItemClickListener
+AdapterView.OnItemClickListener,
+AbsListView.RecyclerListener
 {
     //<!-- Start declaration area.  -->
     String LoggerName = "NinZiMay";
@@ -163,6 +165,7 @@ AdapterView.OnItemClickListener
         Color_LightGray = Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.lightgray)));
         Color_DarkGray = Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(this, R.color.darkgray)));
         initializer();
+
     }
     public void onStart(){
         //Log.d(LoggerName, "In the onStart() event");
@@ -303,6 +306,11 @@ AdapterView.OnItemClickListener
         IntentMusicService.putExtra("Initial_List_MusicDictionary", Initial_List_MusicDictionary);
         startService(IntentMusicService);
         btnPlayPause.setText(getString(R.string.Pause));
+    }
+    @Override
+    public void onMovedToScrapHeap(View view) {
+        //Log.d(LoggerName, "Unload unseen bitmap(s) from listview invoking gc.");
+        Runtime.getRuntime().gc();
     }
     //<!-- End system defined function(s).  -->
 
@@ -586,6 +594,7 @@ AdapterView.OnItemClickListener
         _ListView.setAdapter(Adapter_SongListingRowControl);
         _ListView.setScrollingCacheEnabled(false);
         _ListView.setOnItemClickListener(this);
+        _ListView.setRecyclerListener(this);
         /// End binding listview control
     }
     protected void setProgressText(int CurrentSongPlayingIndex) {

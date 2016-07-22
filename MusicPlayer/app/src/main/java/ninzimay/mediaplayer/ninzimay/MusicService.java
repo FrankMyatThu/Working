@@ -132,9 +132,6 @@ implements AudioManager.OnAudioFocusChangeListener
                 case ReplayCurrentSong:
                     playSong(getCurrent_ReInitialized_MusicDictionary());
                     break;
-                case Stop:
-                    playSong(null);
-                    break;
                 default:
                     playSong(GetSongToPlay(PlayerEventName.PreviousSong));
                     break;
