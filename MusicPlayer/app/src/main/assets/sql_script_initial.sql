@@ -38,8 +38,7 @@ VALUES
 (9, 9, 'i0971721', 'Bae Thu Ko Lauk Chit Ma Lae', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'Ninzi May', 'album_art', '5:01', 'Pop', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'false', 'PlayingStatus_New'),
 (10, 10, 'j1071721', 'Min Thi Naing Ma Lar', 'မင္းသိႏိုင္မလား', 'Ninzi May', 'album_art', '4:51', 'Pop', 'မင္းသိႏိုင္မလား', 'false', 'PlayingStatus_New'),
 (11, 11, 'k1171721', 'A Chit Htet Ma Ka', 'အခ်စ္ထက္မက', 'Ninzi May', 'album_art', '5:01', 'Pop', 'အခ်စ္ထက္မက', 'false', 'PlayingStatus_New'),
-(12, 12, 'l1271721', 'Pyaw Par Sae Thu Nge Chin', 'ေပ်ာ္ပါေစသူငယ္ခ်င္း', 'Ninzi May', 'album_art', '3:47', 'Pop', 'ေပ်ာ္ပါေစသူငယ္ခ်င္း', 'false', 'PlayingStatus_New'),
-(13, 13, 'm1371721', 'A Chit Ka A Mhar', 'အခ်စ္ကအမွား', 'Ninzi May', 'acoustica', '4:20', 'Pop', 'အခ်စ္ကအမွား', 'false', 'PlayingStatus_New');
+(12, 12, 'l1271721', 'Pyaw Par Sae Thu Nge Chin', 'ေပ်ာ္ပါေစသူငယ္ခ်င္း', 'Ninzi May', 'album_art', '3:47', 'Pop', 'ေပ်ာ္ပါေစသူငယ္ခ်င္း', 'false', 'PlayingStatus_New');
 INSERT INTO tbl_Setting
 (IsFavoriteOn, RepeatStatus, IsShuffleOn, MyanmarFontName)
 VALUES 

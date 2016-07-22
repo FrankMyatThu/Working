@@ -1872,7 +1872,7 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_4_API_23" />
     <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="9885f635344a36594b" />
+    <property name="device.picker.selection" value="" />
     <property name="last_opened_file_path" value="C:/" />
     <property name="ExportApk.ApkPath" value="C:\" />
     <property name="ExportApk.Flavors" value="" />
@@ -2169,7 +2169,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998326" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
