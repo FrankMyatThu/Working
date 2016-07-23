@@ -61,50 +61,84 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MusicService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44444445">
-              <caret line="70" column="47" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="133" column="22" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="22" />
               <folding>
-                <element signature="docComment;class#MusicService#0" expanded="false" />
-                <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-                <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
-                <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-                <element signature="e#9294#9319#0" expanded="false" />
-                <element signature="e#9713#9761#0" expanded="false" />
-                <element signature="e#10150#10174#0" expanded="false" />
-                <element signature="e#10535#10584#0" expanded="false" />
-                <element signature="method#getMusicCurrrentPosition#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
-                <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
-                <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
-                <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-                <element signature="e#16911#16928#0" expanded="false" />
-                <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-                <element signature="e#17633#17653#0" expanded="false" />
-                <element signature="method#update_MusicDictionary#0;class#MusicService#0" expanded="false" />
-                <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-                <element signature="e#19298#19323#0" expanded="false" />
-                <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
-                <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
-                <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
-                <element signature="e#21681#21701#0" expanded="false" />
-                <element signature="method#stopSong#0;class#MusicService#0" expanded="false" />
-                <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-                <element signature="e#25334#25380#0" expanded="false" />
-                <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
-                <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
-                <element signature="method#IsLastSongOfTheList#0;class#MusicService#0" expanded="false" />
-                <element signature="method#ShuffleSongs#0;class#MusicService#0" expanded="false" />
+                <element signature="class#MusicIntentReceiver#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#5158#5182#0" expanded="true" />
+                <element signature="e#5289#5314#0" expanded="true" />
+                <element signature="e#5509#5533#0" expanded="true" />
+                <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onRestart#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onStop#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onDetachedFromWindow#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#9600#9652#0" expanded="false" />
+                <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onStopTrackingTouch#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onStartTrackingTouch#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onProgressChanged#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onItemClick#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onMovedToScrapHeap#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#setCache#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#getCacheAndBind#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnShuffle_OnOff_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnRepeatAllNoneSingle_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnRepeatAll_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnRepeatOne_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnRepeatNone_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#17544#17583#0" expanded="false" />
+                <element signature="e#17661#17701#0" expanded="false" />
+                <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnInlineFavorite_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#btnRootFavorite_Click#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#20678#20690#0" expanded="false" />
+                <element signature="e#20888#20901#0" expanded="false" />
+                <element signature="method#playSongInService#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#22057#22098#0" expanded="false" />
+                <element signature="e#22420#22455#0" expanded="false" />
+                <element signature="e#25719#25751#0" expanded="false" />
+                <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#loadBitmap#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#unloadBitmap#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#getList_MusicDictionary#0;class#MainActivity#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7705314">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -122,7 +156,7 @@
     </option>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="C:\MT\Project\GitHub\Working\MusicPlayer\key.jks" />
+    <option name="KEY_STORE_PATH" value="D:\01.Project\GitHub\Working\MusicPlayer\key.jks" />
     <option name="KEY_ALIAS" value="alias" />
     <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
@@ -1443,7 +1477,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="C:\MT\Project\GitHub\Working\MusicPlayer" value="4399790631322" />
-        <entry key="$PROJECT_DIR$" value="4406070321437" />
+        <entry key="$PROJECT_DIR$" value="4406123249776" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1747,10 +1781,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/customized_notification.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/SongListingRowControl.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -1785,6 +1819,31 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -1917,59 +1976,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusicPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusicPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusicPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusicPlayer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ninzimay" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1979,7 +1985,7 @@
     <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="device.picker.selection" value="9885f635344a36594b" />
-    <property name="last_opened_file_path" value="C:/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/key.jks" />
     <property name="ExportApk.ApkPath" value="C:\" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
@@ -2275,8 +2281,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998326" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32495812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2447,7 +2453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34438306">
           <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2606,10 +2611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3321617">
           <caret line="1777" column="23" selection-start-line="1777" selection-start-column="23" selection-end-line="1777" selection-end-column="23" />
-          <folding>
-            <element signature="e#55216#55217#0" expanded="false" />
-            <element signature="e#55259#55260#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2669,7 +2670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30222222">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2701,20 +2701,6 @@
         <state vertical-scroll-proportion="0.22666667">
           <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66129035">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -2762,13 +2748,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.055555556">
+          <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+          <folding>
+            <element signature="docComment;class#MusicService#0" expanded="false" />
+            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
+            <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
+            <element signature="e#9294#9319#0" expanded="false" />
+            <element signature="e#9713#9761#0" expanded="false" />
+            <element signature="e#10150#10174#0" expanded="false" />
+            <element signature="e#10535#10584#0" expanded="false" />
+            <element signature="method#getMusicCurrrentPosition#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
+            <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
+            <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
+            <element signature="e#16911#16928#0" expanded="false" />
+            <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
+            <element signature="e#17633#17653#0" expanded="false" />
+            <element signature="method#update_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
+            <element signature="e#19298#19323#0" expanded="false" />
+            <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
+            <element signature="e#21681#21701#0" expanded="false" />
+            <element signature="method#stopSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
+            <element signature="e#25334#25380#0" expanded="false" />
+            <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
+            <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
+            <element signature="method#IsLastSongOfTheList#0;class#MusicService#0" expanded="false" />
+            <element signature="method#ShuffleSongs#0;class#MusicService#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7222222">
-          <caret line="141" column="17" selection-start-line="141" selection-start-column="17" selection-end-line="141" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="133" column="22" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="22" />
           <folding>
             <element signature="class#MusicIntentReceiver#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#5158#5182#0" expanded="true" />
+            <element signature="e#5289#5314#0" expanded="true" />
+            <element signature="e#5509#5533#0" expanded="true" />
             <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
@@ -2819,49 +2854,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44444445">
-          <caret line="70" column="47" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
-          <folding>
-            <element signature="docComment;class#MusicService#0" expanded="false" />
-            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-            <element signature="e#9294#9319#0" expanded="false" />
-            <element signature="e#9713#9761#0" expanded="false" />
-            <element signature="e#10150#10174#0" expanded="false" />
-            <element signature="e#10535#10584#0" expanded="false" />
-            <element signature="method#getMusicCurrrentPosition#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
-            <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
-            <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-            <element signature="e#16911#16928#0" expanded="false" />
-            <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-            <element signature="e#17633#17653#0" expanded="false" />
-            <element signature="method#update_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#19298#19323#0" expanded="false" />
-            <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
-            <element signature="e#21681#21701#0" expanded="false" />
-            <element signature="method#stopSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#25334#25380#0" expanded="false" />
-            <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
-            <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
-            <element signature="method#IsLastSongOfTheList#0;class#MusicService#0" expanded="false" />
-            <element signature="method#ShuffleSongs#0;class#MusicService#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7705314">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
