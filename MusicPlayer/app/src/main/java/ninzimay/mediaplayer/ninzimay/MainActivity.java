@@ -136,6 +136,11 @@ AbsListView.RecyclerListener
                     IsPauseSong = false;
                 }
 
+                if(Boolean.parseBoolean(intent.getExtras().get("IsStopSong").toString())){
+                    btnPlayPause.setText(getString(R.string.Play));
+                    IsPauseSong = false;
+                }
+
                 String Using_List_MusicDictionary = intent.getExtras().get("Using_List_MusicDictionary").toString();
                 CurrentSongTotalLength = Integer.parseInt(intent.getExtras().get("CurrentSongTotalLength").toString());
                 Seekbar.setMax(CurrentSongTotalLength);
@@ -143,6 +148,7 @@ AbsListView.RecyclerListener
                 txtCurrentPlayingMyanmarInfo.setText(intent.getExtras().get("MyanmarTitle").toString());
                 ArrayList<MusicDictionary> ArrayList_Using_List_MusicDictionary =  _Gson.fromJson(Using_List_MusicDictionary, new TypeToken<ArrayList<MusicDictionary>>(){}.getType());
                 ListView_Rebind(ArrayList_Using_List_MusicDictionary);
+                setProgressText(0);
             }
 
             if (Constants.BROADCAST.CLICK_FAVORITE.equals(action)){
@@ -604,7 +610,7 @@ AbsListView.RecyclerListener
         final int SECOND = 1000;
 
         int durationInMillis = CurrentSongTotalLength;
-        int curVolume = CurrentSongPlayingIndex;
+        int curVolume = CurrentSongTotalLength == 0 ? 0 : CurrentSongPlayingIndex;
 
         int durationHour = durationInMillis/HOUR;
         int durationMint = (durationInMillis%HOUR)/MINUTE;

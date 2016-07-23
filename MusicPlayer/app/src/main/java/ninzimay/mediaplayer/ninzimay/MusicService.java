@@ -75,6 +75,7 @@ implements AudioManager.OnAudioFocusChangeListener
     private int AudioFocusRequestCode = 0;
     private boolean IsUserPressedPause = false;
     private boolean IsUserUpdateList = false;
+    private boolean IsStopSong = false;
     private Handler Handler_Music = null;
     private Runnable Runnable_Music = null;
     private Gson gson = new Gson();
@@ -158,11 +159,11 @@ implements AudioManager.OnAudioFocusChangeListener
                 case ReplayCurrentSong:
                     playSong(getCurrent_ReInitialized_MusicDictionary());
                     break;
-                case Next:
-                    playSong(GetSongToPlay(PlayerEventName.NextSong));
-                    break;
                 case Stop:
-                    playSong(null);
+                    stopSong();
+                    break;
+                default:
+                    playSong(GetSongToPlay(PlayerEventName.NextSong));
                     break;
             }
         }else if (intent.getAction().equals(Constants.ACTION.INDEXED_SONG_ACTION)) {
@@ -287,6 +288,12 @@ implements AudioManager.OnAudioFocusChangeListener
         Current_MusicDictionary = _MusicDictionary;
     }
     private void showCustomNotifications(){
+        if(IsStopSong){
+            stopForeground(true);
+            stopSelf();
+            return;
+        }
+
         MusicDictionary _MusicDictionary = getCurrent_MusicDictionary();
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
@@ -369,11 +376,12 @@ implements AudioManager.OnAudioFocusChangeListener
         String Using_List_MusicDictionary = gson.toJson(getList());
         MusicDictionary Current_MusicDictionary = getCurrent_MusicDictionary();
         Intent intent_Broadcast_OnDemand = new Intent(Constants.BROADCAST.ONDEMAND_BROADCAST);
-        intent_Broadcast_OnDemand.putExtra("CurrentSongTotalLength", getMusicDuration());
+        intent_Broadcast_OnDemand.putExtra("CurrentSongTotalLength", IsStopSong ? "0" : getMusicDuration());
         intent_Broadcast_OnDemand.putExtra("Using_List_MusicDictionary", Using_List_MusicDictionary);
-        intent_Broadcast_OnDemand.putExtra("MyanmarTitle", Current_MusicDictionary.MyanmarTitle);
-        intent_Broadcast_OnDemand.putExtra("EnglishTitle", Current_MusicDictionary.EnglishTitle);
+        intent_Broadcast_OnDemand.putExtra("MyanmarTitle", IsStopSong ? "" : Current_MusicDictionary.MyanmarTitle);
+        intent_Broadcast_OnDemand.putExtra("EnglishTitle", IsStopSong ? "" : Current_MusicDictionary.EnglishTitle);
         intent_Broadcast_OnDemand.putExtra("IsClose", IsClose);
+        intent_Broadcast_OnDemand.putExtra("IsStopSong", IsStopSong);
         intent_Broadcast_OnDemand.putExtra("IsPause", CurrentPlayingLength > 0);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent_Broadcast_OnDemand);
         if(!IsClose)
@@ -488,6 +496,19 @@ implements AudioManager.OnAudioFocusChangeListener
         }
         return ToReturn_MusicDictionary;
     }
+    private void stopSong(){
+        IsStopSong = true;
+        CurrentPlayingLength = 0;
+        MusicDictionary Current_MusicDictionary = getCurrent_MusicDictionary();
+        for(int i=0; i<List_MusicDictionary.size(); i++)
+        {
+            if(List_MusicDictionary.get(i).ID == Current_MusicDictionary.ID){
+                List_MusicDictionary.get(i).PlayingStatus = PlayingStatus_Played;
+            }
+        }
+        setCurrent_MusicDictionary(new MusicDictionary());
+        broadCast_OnDemand(false);
+    }
     private void playSong(MusicDictionary _MusicDictionary){
         try {
             if(_MusicDictionary == null){
@@ -595,14 +616,15 @@ implements AudioManager.OnAudioFocusChangeListener
                 playSong(GetSongToPlay(PlayerEventName.NextSong));
                 break;
             case Stop:
-                playSong(null);
+                stopSong();
                 break;
         }
     }
     private Navigator InvokeNavigator(){
         Navigator _Navigator = new Navigator();
         String _RepeatStatus = _DatabaseHandler.getPlayerSetting().RepeatStatus;
-        if(_RepeatStatus.equalsIgnoreCase(RepeatStatus.Single)){
+        _Navigator._NavigatorValue = NavigatorValue.Next;
+        if(_RepeatStatus.equalsIgnoreCase(RepeatStatus.Single) && getCurrent_MusicDictionary() != null){
             _Navigator._NavigatorValue = NavigatorValue.ReplayCurrentSong;
         }else if(_RepeatStatus.equalsIgnoreCase(RepeatStatus.ALL)){
             _Navigator._NavigatorValue = NavigatorValue.Next;
