@@ -93,6 +93,9 @@ implements AudioManager.OnAudioFocusChangeListener
                 switch (state) {
                     case 0:
                         //Log.d(LoggerName, "Headset is unplugged");
+                        if(mediaPlayerState != MediaPlayerState.Started){
+                            return;
+                        }
                         pauseCurrentSong();
                         broadCast_OnDemand(false);
                         break;
