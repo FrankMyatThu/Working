@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@color/TotalBlack">
+
+    <!-- Photo area start. -->
+    <RelativeLayout
+        android:id="@+id/PhotoArea"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp">
+        <ImageView
+            android:id="@+id/imgSongImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/album_art"></ImageView>
+    </RelativeLayout>
+    <!-- Photo area end. -->
+
+    <RelativeLayout
+        android:id="@+id/TextInfoLayout"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:layout_toRightOf="@+id/PhotoArea"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp" >
+
+        <!-- Song info start. -->
+        <TextView
+            android:id="@+id/txtInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="8pt"
+            android:text="text"
+            android:textColor="@color/TotalWhite"
+            android:gravity="center_vertical" />
+        <!-- Song info end. -->
+
+    </RelativeLayout>
+
+    <!-- Previous start. -->
+    <ImageView
+        android:id="@+id/btnBackward"
+        android:layout_width="0dip"
+        android:layout_height="17dp"
+        android:layout_weight="0.075"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@null"
+        android:src="@drawable/font_awesome_btnbackward"/>
+    <!-- Previous end. -->
+    <!-- Play Pause start. -->
+    <ImageView
+        android:id="@+id/btnPlayPause"
+        android:layout_width="0dip"
+        android:layout_height="17dp"
+        android:layout_toRightOf="@+id/btnBackward"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@null"
+        android:src="@drawable/font_awesome_btnplay"
+        android:layout_weight="0.075"/>
+    <!-- Play Pause end. -->
+    <!-- Forward start. -->
+    <ImageView
+        android:id="@+id/btnForward"
+        android:layout_width="0dip"
+        android:layout_height="17dp"
+        android:layout_toRightOf="@+id/btnPlayPause"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@null"
+        android:src="@drawable/font_awesome_btnforward"
+        android:layout_weight="0.075"/>
+    <!-- Forward end. -->
+    <!-- Close start. -->
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="0dip"
+        android:layout_height="17dp"
+        android:layout_toRightOf="@+id/btnForward"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@null"
+        android:src="@drawable/font_awesome_btnclose"
+        android:layout_weight="0.075"/>
+    <!-- Close end. -->
+</LinearLayout>

@@ -343,6 +343,26 @@ implements AudioManager.OnAudioFocusChangeListener
             _RemoteViews.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playBackIntent);
         }
 
+
+        RemoteViews _RemoteViews_Minimized = new RemoteViews(getApplicationContext().getPackageName(), R.layout.customized_notification_minimized);
+        _RemoteViews_Minimized.setImageViewResource(R.id.imgSongImage, getResources().getIdentifier( _MusicDictionary.AlbumArt, "drawable", getPackageName()));
+        _RemoteViews_Minimized.setTextViewText(R.id.txtInfo, _MusicDictionary.EnglishTitle);
+        _RemoteViews_Minimized.setImageViewResource(R.id.btnClose, R.drawable.font_awesome_btnclose);
+        _RemoteViews_Minimized.setImageViewResource(R.id.btnBackward, R.drawable.font_awesome_btnbackward);
+        _RemoteViews_Minimized.setImageViewResource(R.id.btnForward, R.drawable.font_awesome_btnforward);
+        _RemoteViews_Minimized.setOnClickPendingIntent(R.id.imgSongImage, PendingIntent_OpenMainActivity);
+        _RemoteViews_Minimized.setOnClickPendingIntent(R.id.btnClose, PendingIntent_closeIntent);
+        _RemoteViews_Minimized.setOnClickPendingIntent(R.id.btnBackward, PendingIntent_previousIntent);
+        _RemoteViews_Minimized.setOnClickPendingIntent(R.id.btnForward, PendingIntent_nextIntent);
+
+        if(player.isPlaying()){
+            _RemoteViews_Minimized.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnpause);
+            _RemoteViews_Minimized.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_pauseIntent);
+        }else{
+            _RemoteViews_Minimized.setImageViewResource(R.id.btnPlayPause, R.drawable.font_awesome_btnplay);
+            _RemoteViews_Minimized.setOnClickPendingIntent(R.id.btnPlayPause, PendingIntent_playBackIntent);
+        }
+
         int icon = R.drawable.small_white_icon;
         long when = System.currentTimeMillis();
         Notification notification = new NotificationCompat.Builder(this)
@@ -354,6 +374,8 @@ implements AudioManager.OnAudioFocusChangeListener
                 .build();
 
         notification.bigContentView = _RemoteViews;
+        notification.contentView = _RemoteViews_Minimized;
+
 
         notification.flags |= Notification.DEFAULT_SOUND;
         startForeground(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
