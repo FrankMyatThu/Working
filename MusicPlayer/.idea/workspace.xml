@@ -7,7 +7,7 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Nin" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -1702,6 +1702,52 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ninzimay" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicPlayer" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -2150,7 +2196,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283082" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5159129" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5159129" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32663316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2159,7 +2205,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6231156" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22012103" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35779122" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2344932" sideWeight="0.4884393" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2344932" sideWeight="0.5115607" order="3" side_tool="true" content_ui="tabs" />
@@ -2295,13 +2341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32945737">
           <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34438306">
-          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -2592,51 +2631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39718804">
-          <caret line="208" column="52" selection-start-line="208" selection-start-column="52" selection-end-line="208" selection-end-column="52" />
-          <folding>
-            <element signature="docComment;class#MusicService#0" expanded="false" />
-            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
-            <element signature="e#9847#9895#0" expanded="false" />
-            <element signature="e#10284#10308#0" expanded="false" />
-            <element signature="e#10669#10718#0" expanded="false" />
-            <element signature="method#getMusicCurrrentPosition#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
-            <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
-            <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
-            <element signature="e#17045#17062#0" expanded="false" />
-            <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
-            <element signature="e#17767#17787#0" expanded="false" />
-            <element signature="method#update_MusicDictionary#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#19432#19457#0" expanded="false" />
-            <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
-            <element signature="e#21815#21835#0" expanded="false" />
-            <element signature="method#stopSong#0;class#MusicService#0" expanded="false" />
-            <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
-            <element signature="e#25880#25926#0" expanded="false" />
-            <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
-            <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
-            <element signature="method#IsLastSongOfTheList#0;class#MusicService#0" expanded="false" />
-            <element signature="method#ShuffleSongs#0;class#MusicService#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6796296">
@@ -2714,6 +2708,59 @@
         <state vertical-scroll-proportion="0.31282952">
           <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12523021">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73110723">
+          <caret line="514" column="59" selection-start-line="514" selection-start-column="59" selection-end-line="514" selection-end-column="59" />
+          <folding>
+            <element signature="docComment;class#MusicService#0" expanded="false" />
+            <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
+            <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
+            <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
+            <element signature="e#9847#9895#0" expanded="false" />
+            <element signature="e#10284#10308#0" expanded="false" />
+            <element signature="e#10669#10718#0" expanded="false" />
+            <element signature="method#getMusicCurrrentPosition#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getMusicDuration#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getCurrent_ReInitialized_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getHandler#0;class#MusicService#0" expanded="false" />
+            <element signature="method#setCurrent_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="method#showCustomNotifications#0;class#MusicService#0" expanded="false" />
+            <element signature="method#broadCast_Forever#0;class#MusicService#0" expanded="false" />
+            <element signature="e#17045#17062#0" expanded="false" />
+            <element signature="method#broadCast_OnDemand#0;class#MusicService#0" expanded="false" />
+            <element signature="e#17767#17787#0" expanded="false" />
+            <element signature="method#update_MusicDictionary#0;class#MusicService#0" expanded="false" />
+            <element signature="method#playbackCurrentSong#0;class#MusicService#0" expanded="false" />
+            <element signature="e#19432#19457#0" expanded="false" />
+            <element signature="method#pauseCurrentSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getCurrentAndNextSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#getPreviousSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#GetSongToPlay#0;class#MusicService#0" expanded="false" />
+            <element signature="e#21815#21835#0" expanded="false" />
+            <element signature="method#stopSong#0;class#MusicService#0" expanded="false" />
+            <element signature="method#playSong#0;class#MusicService#0" expanded="false" />
+            <element signature="e#25880#25926#0" expanded="false" />
+            <element signature="method#CommitNavigation#0;class#MusicService#0" expanded="false" />
+            <element signature="method#InvokeNavigator#0;class#MusicService#0" expanded="false" />
+            <element signature="method#IsLastSongOfTheList#0;class#MusicService#0" expanded="false" />
+            <element signature="method#ShuffleSongs#0;class#MusicService#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
