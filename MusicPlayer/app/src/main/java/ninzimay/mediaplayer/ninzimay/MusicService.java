@@ -117,11 +117,11 @@ implements AudioManager.OnAudioFocusChangeListener
         super.onCreate();
         _DatabaseHandler = new DatabaseHandler(getApplicationContext());
         getHandler();
-        _AudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        AudioFocusRequestCode = _AudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         _MusicIntentReceiver = new MusicIntentReceiver();
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(_MusicIntentReceiver, filter);
+        _AudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        AudioFocusRequestCode = _AudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         CurrentVolumeLevel = _AudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
     }
     @Override
@@ -211,7 +211,7 @@ implements AudioManager.OnAudioFocusChangeListener
         {
             case AudioManager.AUDIOFOCUS_GAIN:
                 // TODO : resume playback
-                //Log.d(LoggerName, "AUDIOFOCUS_GAIN = "+focusChange);
+                Log.d(LoggerName, "AUDIOFOCUS_GAIN = "+focusChange);
                 _AudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, CurrentVolumeLevel, 0);
                 if(CurrentPlayingLength > 0 && IsUserPressedPause == false ){
                     playbackCurrentSong();
@@ -517,6 +517,13 @@ implements AudioManager.OnAudioFocusChangeListener
             if(_MusicDictionary == null){
                 return;
             }
+
+            _AudioManager.abandonAudioFocus(this);
+            AudioFocusRequestCode = _AudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+            if(AudioFocusRequestCode != AudioManager.AUDIOFOCUS_REQUEST_GRANTED)
+                return;
+
+            //Log.d(LoggerName, "playSong AudioManager.AUDIOFOCUS_REQUEST_GRANTED and code is " + AudioFocusRequestCode);
             String path = "android.resource://"+getPackageName()+"/raw/"+_MusicDictionary.FileName;
             if (CurrentPlayingLength > 0) {
                 player.seekTo(CurrentPlayingLength);

@@ -94,7 +94,7 @@ AbsListView.RecyclerListener
                     case 0:
                         //Log.d(LoggerName, "Headset is unplugged");
                         btnHeadSet.setTextColor(Color_DarkGray);
-                        btnHeadSet.setVisibility(View.GONE);
+                        btnHeadSet.setVisibility(View.INVISIBLE);
                         break;
                     case 1:
                         //Log.d(LoggerName, "Headset is plugged");
@@ -546,7 +546,7 @@ AbsListView.RecyclerListener
         btnRepeat.setOnClickListener(this);
         btnLyric.setOnClickListener(this);
         btnFavorite.setOnClickListener(this);
-        btnHeadSet.setTypeface(font_fontawesome);
+        btnHeadSet.setTypeface(font_ninzimay);
         btnShuffle.setTypeface(font_fontawesome);
         btnBackward.setTypeface(font_fontawesome);
         btnPlayPause.setTypeface(font_ninzimay);

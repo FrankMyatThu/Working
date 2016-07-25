@@ -35,7 +35,7 @@ VALUES
 (6, 6, 'f0671721', 'Nway Oo Pone Pyin', 'ေႏြဦးပံုျပင္', 'Ninzi May', 'album_art', '5:22', 'Pop', 'ေႏြဦးပံုျပင္', 'false', 'PlayingStatus_New'),
 (7, 7, 'g0771721', 'Na Lone Thar Myoe Taw', 'ႏွလံုးသားၿမိဳ႕ေတာ္', 'Ninzi May', 'album_art', '3:04', 'Pop', 'ႏွလံုးသားၿမိဳ႕ေတာ္', 'false', 'PlayingStatus_New'),
 (8, 8, 'h0871721', 'Ta Khar Ka Lat Saung', 'တစ္ခါကလက္ေဆာင္', 'Ninzi May', 'album_art', '3:55', 'Pop', 'တခါကလက္ေဆာင္', 'false', 'PlayingStatus_New'),
-(9, 9, 'i0971721', 'Bae Thu Ko Lauk Chit Ma Lae', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'Ninzi May', 'album_art', '5:01', 'Pop', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'false', 'PlayingStatus_New'),
+(9, 9, 'i0971721', 'Bae Thu Ko Lauk Chit Tha Lae', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'Ninzi May', 'album_art', '5:01', 'Pop', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'false', 'PlayingStatus_New'),
 (10, 10, 'j1071721', 'Min Thi Naing Ma Lar', 'မင္းသိႏိုင္မလား', 'Ninzi May', 'album_art', '4:51', 'Pop', 'မင္းသိႏိုင္မလား', 'false', 'PlayingStatus_New'),
 (11, 11, 'k1171721', 'A Chit Htet Ma Ka', 'အခ်စ္ထက္မက', 'Ninzi May', 'album_art', '5:01', 'Pop', 'အခ်စ္ထက္မက', 'false', 'PlayingStatus_New'),
 (12, 12, 'l1271721', 'Pyaw Par Sae Thu Nge Chin', 'ေပ်ာ္ပါေစသူငယ္ခ်င္း', 'Ninzi May', 'album_art', '04:00', 'Pop', 'ေပ်ာ္ပါေစသူငယ္ခ်င္း', 'false', 'PlayingStatus_New');

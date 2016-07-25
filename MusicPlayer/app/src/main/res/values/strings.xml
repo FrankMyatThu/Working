@@ -10,6 +10,7 @@
     <string name="Previous">&#xf048;</string>
     <!--<string name="Pause">&#xf04c;</string>-->
     <string name="Pause">b</string>
+    <string name="HeadphoneLogo">j</string>
 
     <!--<string name="RepeatOne">&#xf01e;</string>-->
     <string name="RepeatNone">&#xf178;</string>
@@ -21,7 +22,6 @@
     <string name="FavoriteOn">&#xf004;</string>
     <string name="FavoriteOff">&#xf08a;</string>
     <string name="RegistrationSeal">&#xf0a3;</string>
-    <string name="HeadphoneIndicator">&#xf025;</string>
 
     <!--<string name="RunningIndicator">&#xf012;</string>-->
     <string name="RunningIndicator">&#xf001;</string>

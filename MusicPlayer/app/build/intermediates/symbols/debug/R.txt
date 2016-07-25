@@ -673,7 +673,7 @@ int string Close 0x7f070014
 int string DATABASE_VERSION 0x7f070015
 int string FavoriteOff 0x7f070016
 int string FavoriteOn 0x7f070017
-int string HeadphoneIndicator 0x7f070018
+int string HeadphoneLogo 0x7f070018
 int string Lyrics 0x7f070019
 int string Next 0x7f07001a
 int string Pause 0x7f07001b

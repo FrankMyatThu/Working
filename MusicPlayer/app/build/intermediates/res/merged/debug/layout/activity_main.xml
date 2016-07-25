@@ -119,10 +119,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/RelativeLayoutGap_3"
                     android:background="@null"
-                    android:textColor="@color/darkgray"
+                    android:textColor="@color/lightgray"
                     android:textStyle="bold"
                     android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-                    android:text="@string/HeadphoneIndicator"
+                    android:text="@string/HeadphoneLogo"
                     android:gravity="center_horizontal|center"/>
 
 
