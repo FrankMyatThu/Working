@@ -74,6 +74,7 @@ AbsListView.RecyclerListener
     boolean IsComingBack = false;
     boolean IsPauseSong = false;
     boolean IsSeekbarSeekable = false;
+    boolean IsUserChangingSeekBarIndex = false;
     Typeface font_fontawesome = null;
     Typeface font_ailerons = null;
     Typeface font_ninzimay = null;
@@ -118,8 +119,10 @@ AbsListView.RecyclerListener
                 //Log.d(LoggerName, "ACTIVITY.FOREVER_BROADCAST");
                 int CurrentSongPlayingIndex = Integer.parseInt(intent.getExtras().get("CurrentSongPlayingIndex").toString());
                 IsSeekbarSeekable = Boolean.parseBoolean(intent.getExtras().get("IsSeekbarSeekable").toString());
-                Seekbar.setProgress(CurrentSongPlayingIndex);
-                setProgressText(CurrentSongPlayingIndex);
+                if(!IsUserChangingSeekBarIndex){
+                    Seekbar.setProgress(CurrentSongPlayingIndex);
+                    setProgressText(CurrentSongPlayingIndex);
+                }
             }
 
             if (Constants.BROADCAST.ONDEMAND_BROADCAST.equals(action)){
@@ -268,6 +271,7 @@ AbsListView.RecyclerListener
     }
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
+        IsUserChangingSeekBarIndex = false;
         if(!IsSeekbarSeekable) return;
         IntentMusicService = null;
         IntentMusicService = new Intent(this, MusicService.class);
@@ -278,9 +282,11 @@ AbsListView.RecyclerListener
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         //Log.d(LoggerName, "onStartTrackingTouch");
+        IsUserChangingSeekBarIndex = true;
     }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        Seekbar.setProgress(progress);
         if (fromUser) {
             String _Progress = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(progress),
@@ -620,7 +626,9 @@ AbsListView.RecyclerListener
         int currentMint = (curVolume%HOUR)/MINUTE;
         int currentSec = (curVolume%MINUTE)/SECOND;
 
-        txtStartPoint.setText(String.format("%02d:%02d", currentMint, currentSec));
+        if(curVolume <= durationInMillis)
+            txtStartPoint.setText(String.format("%02d:%02d", currentMint, currentSec));
+
         txtEndPoint.setText(String.format("%02d:%02d", durationMint, durationSec));
     }
     protected void ListView_Rebind(List<MusicDictionary> List_MusicDictionary){
