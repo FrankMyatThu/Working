@@ -90,6 +90,16 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/LineBreakerHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_toRightOf="@+id/PhotoArea"
+        android:layout_below="@+id/TextInfoLayout"
+        android:orientation="horizontal"
+        android:alpha="0.3"
+        android:background="#FFFFFF" />
+
     <!-- Player button(s) start. -->
     <RelativeLayout
         android:id="@+id/PlayerButtonLayout"
