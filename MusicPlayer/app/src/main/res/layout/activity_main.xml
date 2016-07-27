@@ -109,21 +109,26 @@
                 <RelativeLayout
                     android:id="@+id/RelativeLayoutGap_3"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="10dp"
                     android:layout_below="@+id/txtCurrentPlayingEnglishInfo"
                     android:orientation="horizontal" />
 
-                <Button
-                    android:id="@+id/btnHeadSet"
+                <RelativeLayout
+                    android:id="@+id/imgHeadSetLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/RelativeLayoutGap_3"
-                    android:background="@null"
-                    android:textColor="@color/lightgray"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/PlayerButtonfont_sizeMedian"
-                    android:text="@string/HeadphoneLogo"
-                    android:gravity="center_horizontal|center"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal|center_vertical">
+
+                    <ImageView
+                        android:id="@+id/imgHeadSet"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/headphone"
+                        android:scaleType="centerCrop" />
+
+                </RelativeLayout>
 
 
             </RelativeLayout>

@@ -64,6 +64,10 @@
         "source": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
+        "merged": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\headphone.png",
+        "source": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\headphone.png"
+    },
+    {
         "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png",
         "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },

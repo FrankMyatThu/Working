@@ -708,5 +708,8 @@ implements AudioManager.OnAudioFocusChangeListener
         }
         return  ShuffledList;
     }
+    private void InvokeMediaSessions(){
+
+    }
     //<!-- End developer defined function(s).  -->
 }

@@ -62,7 +62,7 @@ AbsListView.RecyclerListener
     TextView txtEndPoint = null;
     ListView _ListView = null;
     SongListingRowControl Adapter_SongListingRowControl = null;
-    Button btnHeadSet = null;
+    ImageView imgHeadSet = null;
     Button btnShuffle = null;
     Button btnBackward = null;
     Button btnPlayPause = null;
@@ -94,13 +94,13 @@ AbsListView.RecyclerListener
                 switch (state) {
                     case 0:
                         //Log.d(LoggerName, "Headset is unplugged");
-                        btnHeadSet.setTextColor(Color_DarkGray);
-                        btnHeadSet.setVisibility(View.INVISIBLE);
+                        //btnHeadSet.setTextColor(Color_DarkGray);
+                        imgHeadSet.setVisibility(View.INVISIBLE);
                         break;
                     case 1:
                         //Log.d(LoggerName, "Headset is plugged");
-                        btnHeadSet.setTextColor(Color_LightGray);
-                        btnHeadSet.setVisibility(View.VISIBLE);
+                        //btnHeadSet.setTextColor(Color_LightGray);
+                        imgHeadSet.setVisibility(View.VISIBLE);
                         break;
                     default:
                         //Log.d(LoggerName, "I have no idea what the headset state is");
@@ -537,7 +537,7 @@ AbsListView.RecyclerListener
         txtCurrentPlayingEnglishInfo = (TextView)findViewById(R.id.txtCurrentPlayingEnglishInfo);
         txtTitle.setTypeface(font_ailerons);
         /// Button control(s)
-        btnHeadSet = (Button)findViewById( R.id.btnHeadSet );
+        imgHeadSet = (ImageView)findViewById( R.id.imgHeadSet );
         btnShuffle = (Button)findViewById( R.id.btnShuffle );
         btnBackward = (Button)findViewById( R.id.btnBackward );
         btnPlayPause = (Button)findViewById( R.id.btnPlayPause );
@@ -552,7 +552,6 @@ AbsListView.RecyclerListener
         btnRepeat.setOnClickListener(this);
         btnLyric.setOnClickListener(this);
         btnFavorite.setOnClickListener(this);
-        btnHeadSet.setTypeface(font_ninzimay);
         btnShuffle.setTypeface(font_fontawesome);
         btnBackward.setTypeface(font_fontawesome);
         btnPlayPause.setTypeface(font_ninzimay);

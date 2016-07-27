@@ -9,6 +9,11 @@
       </config>
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@style/Theme.FullScreen</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/customized_notification.xml">
         <config>
           <theme>@style/Theme.FullScreen</theme>
@@ -79,8 +84,8 @@
       <list>
         <option value="layoutResourceFile" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -1651,12 +1656,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/SongListingRowControl.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/customized_notification.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/customized_notification_minimized.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MediaSessionCallback.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/headphone.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java" />
       </list>
     </option>
   </component>
@@ -1744,8 +1751,8 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2190,7 +2197,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283082" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40703517" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5711893" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32663316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2199,7 +2206,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6231156" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21482602" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27155825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2344932" sideWeight="0.4884393" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2344932" sideWeight="0.5115607" order="3" side_tool="true" content_ui="tabs" />
@@ -2274,27 +2281,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/content/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.6567163">
-          <caret line="407" column="24" selection-start-line="407" selection-start-column="24" selection-end-line="407" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/media/AudioManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="1041" column="16" selection-start-line="1041" selection-start-column="16" selection-end-line="1041" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3756906">
@@ -2545,14 +2531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicDictionary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35852373">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/widget/AbsListView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6572935">
@@ -2610,17 +2588,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39688715">
-          <caret line="117" column="55" selection-start-line="117" selection-start-column="55" selection-end-line="117" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/song_listing_row_control.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29766536">
@@ -2654,13 +2621,40 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicDictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42307693">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MediaSessionCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65384614">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#384#385#0" expanded="false" />
+            <element signature="e#448#449#0" expanded="false" />
+            <element signature="e#491#492#0" expanded="false" />
+            <element signature="e#556#557#0" expanded="false" />
+            <element signature="e#598#599#0" expanded="false" />
+            <element signature="e#662#663#0" expanded="false" />
+            <element signature="e#710#711#0" expanded="false" />
+            <element signature="e#780#781#0" expanded="false" />
+            <element signature="e#832#833#0" expanded="false" />
+            <element signature="e#906#907#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5306749">
-          <caret line="295" column="57" selection-start-line="295" selection-start-column="57" selection-end-line="295" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.456942">
+          <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
           <folding>
-            <element signature="class#MusicIntentReceiver#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MainActivity#0" expanded="false" />
+            <element signature="imports" expanded="true" />
             <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStart#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
@@ -2670,7 +2664,7 @@
             <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onDetachedFromWindow#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#9728#9780#0" expanded="false" />
+            <element signature="e#9735#9787#0" expanded="false" />
             <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onStartTrackingTouch#0;class#MainActivity#0" expanded="false" />
@@ -2684,21 +2678,20 @@
             <element signature="method#btnRepeatOne_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnRepeatNone_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPlayPause_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#17798#17837#0" expanded="false" />
-            <element signature="e#17915#17955#0" expanded="false" />
+            <element signature="e#17805#17844#0" expanded="false" />
+            <element signature="e#17922#17962#0" expanded="false" />
             <element signature="method#btnPlay_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnPause_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnForward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnBackward_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnInlineFavorite_Click#0;class#MainActivity#0" expanded="false" />
             <element signature="method#btnRootFavorite_Click#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#20932#20944#0" expanded="false" />
-            <element signature="e#21142#21155#0" expanded="false" />
+            <element signature="e#20939#20951#0" expanded="false" />
+            <element signature="e#21149#21162#0" expanded="false" />
             <element signature="method#playSongInService#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initializer#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#22311#22352#0" expanded="false" />
-            <element signature="e#22674#22709#0" expanded="false" />
-            <element signature="e#25970#26002#0" expanded="false" />
+            <element signature="e#22318#22359#0" expanded="false" />
+            <element signature="e#22681#22716#0" expanded="false" />
+            <element signature="e#25933#25965#0" expanded="false" />
             <element signature="method#setProgressText#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ListView_Rebind#0;class#MainActivity#0" expanded="false" />
             <element signature="method#isMyServiceRunning#0;class#MainActivity#0" expanded="false" />
@@ -2709,16 +2702,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/headphone.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40699816">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0836576">
+          <caret line="133" column="29" selection-start-line="133" selection-start-column="29" selection-end-line="133" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ninzimay/mediaplayer/ninzimay/MusicService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7208589">
-          <caret line="247" column="41" selection-start-line="247" selection-start-column="41" selection-end-line="247" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.73110723">
+          <caret line="711" column="8" selection-start-line="711" selection-start-column="8" selection-end-line="711" selection-end-column="8" />
           <folding>
             <element signature="docComment;class#MusicService#0" expanded="false" />
             <element signature="class#PlayerEventName#0;class#MusicService#0" expanded="false" />
-            <element signature="class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onReceive#0;class#MusicIntentReceiver#0;class#MusicService#0" expanded="false" />
-            <element signature="method#onCreate#0;class#MusicService#0" expanded="false" />
             <element signature="method#onStartCommand#0;class#MusicService#0" expanded="false" />
             <element signature="method#onDestroy#0;class#MusicService#0" expanded="false" />
             <element signature="method#onAudioFocusChange#0;class#MusicService#0" expanded="false" />
@@ -2751,6 +2760,14 @@
             <element signature="method#IsLastSongOfTheList#0;class#MusicService#0" expanded="false" />
             <element signature="method#ShuffleSongs#0;class#MusicService#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/content/ComponentName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3321617">
+          <caret line="97" column="11" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -27,9 +27,9 @@ CREATE TABLE `tbl_Setting` (
 INSERT INTO tbl_MusicDictionary
 (ID, Srno, FileName, EnglishTitle, MyanmarTitle, AlbumName, AlbumArt, Length, Genre, Lyric, IsFavorite, PlayingStatus)
 VALUES
-(1, 1, 'a0171721', 'Ae Thal', 'ဧည့္သည္', 'Ninzi May', 'album_art', '2:41', 'Pop', 'ဧည့္သည္', 'false', 'PlayingStatus_New'),
+(1, 1, 'a0171721', 'Ae Thal', 'ဧည့္သည္', 'Ninzi May', 'album_art', '2:42', 'Pop', 'ဧည့္သည္', 'false', 'PlayingStatus_New'),
 (2, 2, 'b0271721', 'Mu Yar Mar Yar Moe', 'မူရာမာယာမိုး', 'Ninzi May', 'album_art', '2:04', 'Pop', 'မူရာမာယာမိုး', 'false', 'PlayingStatus_New'),
-(3, 3, 'c0371721', 'Ti Ah Mo', 'တီအားမို', 'Ninzi May', 'album_art', '2:18', 'Pop', 'တီအားမို', 'false', 'PlayingStatus_New'),
+(3, 3, 'c0371721', 'Ti Ah Mo', 'တီအားမို', 'Ninzi May', 'album_art', '2:19', 'Pop', 'တီအားမို', 'false', 'PlayingStatus_New'),
 (4, 4, 'd0471721', 'Sane Yet Lai Ah', 'စိမ္းရက္ေလအား', 'Ninzi May', 'album_art', '1:56', 'Pop', 'စိမ္းရက္ေလအား', 'false', 'PlayingStatus_New'),
 (5, 5, 'e0571721', 'Cherry Lan', 'ခ်ယ္ရီလမ္း', 'Ninzi May', 'album_art', '3:21', 'Rock', 'ခ်ယ္ရီလမ္း', 'false', 'PlayingStatus_New'),
 (6, 6, 'f0671721', 'Nway Oo Pone Pyin', 'ေႏြဦးပံုျပင္', 'Ninzi May', 'album_art', '3:16', 'Pop', 'ေႏြဦးပံုျပင္', 'false', 'PlayingStatus_New'),
