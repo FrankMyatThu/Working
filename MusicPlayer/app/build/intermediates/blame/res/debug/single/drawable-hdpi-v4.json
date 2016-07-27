@@ -36,6 +36,10 @@
         "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
+        "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\headphone.png",
+        "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\headphone.png"
+    },
+    {
         "merged": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png",
         "source": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.0\\res\\drawable-hdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },

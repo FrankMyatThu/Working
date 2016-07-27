@@ -33,7 +33,7 @@ VALUES
 (4, 4, 'd0471721', 'Sane Yet Lai Ah', 'စိမ္းရက္ေလအား', 'Ninzi May', 'album_art', '1:56', 'Pop', 'စိမ္းရက္ေလအား', 'false', 'PlayingStatus_New'),
 (5, 5, 'e0571721', 'Cherry Lan', 'ခ်ယ္ရီလမ္း', 'Ninzi May', 'album_art', '3:21', 'Rock', 'ခ်ယ္ရီလမ္း', 'false', 'PlayingStatus_New'),
 (6, 6, 'f0671721', 'Nway Oo Pone Pyin', 'ေႏြဦးပံုျပင္', 'Ninzi May', 'album_art', '3:16', 'Pop', 'ေႏြဦးပံုျပင္', 'false', 'PlayingStatus_New'),
-(7, 7, 'g0771721', 'Na Lone Thar Myoe Taw', 'ႏွလံုးသားၿမိဳ႕ေတာ္', 'Ninzi May', 'album_art', '3:07', 'Pop', 'ႏွလံုးသားၿမိဳ႕ေတာ္', 'false', 'PlayingStatus_New'),
+(7, 7, 'g0771721', 'Na Lone Thar Myoe Taw', 'ႏွလံုးသားၿမိဳ႕ေတာ္', 'Ninzi May', 'album_art', '3:06', 'Pop', 'ႏွလံုးသားၿမိဳ႕ေတာ္', 'false', 'PlayingStatus_New'),
 (8, 8, 'h0871721', 'Ta Khar Ka Lat Saung', 'တစ္ခါကလက္ေဆာင္', 'Ninzi May', 'album_art', '3:54', 'Pop', 'တခါကလက္ေဆာင္', 'false', 'PlayingStatus_New'),
 (9, 9, 'i0971721', 'Bae Thu Ko Lauk Chit Tha Lae', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'Ninzi May', 'album_art', '5:04', 'Pop', 'ဘယ္သူကိုယ့္ေလာက္ခ်စ္သလဲ', 'false', 'PlayingStatus_New'),
 (10, 10, 'j1071721', 'Min Thi Naing Ma Lar', 'မင္းသိႏိုင္မလား', 'Ninzi May', 'album_art', '4:50', 'Pop', 'မင္းသိႏိုင္မလား', 'false', 'PlayingStatus_New'),

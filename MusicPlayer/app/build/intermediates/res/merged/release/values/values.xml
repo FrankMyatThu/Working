@@ -215,7 +215,7 @@
     <string name="DATABASE_VERSION">2</string>
     <string name="FavoriteOff"></string>
     <string name="FavoriteOn"></string>
-    <string name="HeadphoneIndicator"></string>
+    <string name="HeadphoneLogo">j</string>
     <string name="Lyrics"></string>
     <string name="Next"></string>
     <string name="Pause">b</string>
