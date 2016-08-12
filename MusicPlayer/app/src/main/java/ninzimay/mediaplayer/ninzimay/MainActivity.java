@@ -585,6 +585,9 @@ AbsListView.RecyclerListener
             btnShuffle.setTextColor(Color_DarkGray);
         }
 
+        /// HeadSet Logo
+        imgHeadSet.setVisibility(View.INVISIBLE);
+
         /// isRepeat
         if(_Setting.RepeatStatus.equalsIgnoreCase(RepeatStatus.None)) {
             btnRepeat.setText(this.getString(R.string.RepeatNone));
