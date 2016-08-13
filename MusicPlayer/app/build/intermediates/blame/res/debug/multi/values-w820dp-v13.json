@@ -225,14 +225,7 @@
                     "endOffset": 122
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 804,
-                        "endColumn": 71,
-                        "endOffset": 871
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -244,14 +237,7 @@
                     "endOffset": 180
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 533,
-                        "endColumn": 57,
-                        "endOffset": 586
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -263,14 +249,7 @@
                     "endOffset": 239
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 473,
-                        "endColumn": 58,
-                        "endOffset": 527
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -282,14 +261,7 @@
                     "endOffset": 297
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 353,
-                        "endColumn": 57,
-                        "endOffset": 406
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -301,14 +273,7 @@
                     "endOffset": 357
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 412,
-                        "endColumn": 59,
-                        "endOffset": 467
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -320,14 +285,7 @@
                     "endOffset": 412
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 877,
-                        "endColumn": 54,
-                        "endOffset": 927
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -339,14 +297,7 @@
                     "endOffset": 478
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 737,
-                        "endColumn": 65,
-                        "endOffset": 798
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -358,14 +309,7 @@
                     "endOffset": 525
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 592,
-                        "endColumn": 46,
-                        "endOffset": 634
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -377,14 +321,7 @@
                     "endOffset": 573
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 640,
-                        "endColumn": 47,
-                        "endOffset": 683
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -396,14 +333,7 @@
                     "endOffset": 620
                 },
                 "from": {
-                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 689,
-                        "endColumn": 46,
-                        "endOffset": 731
-                    }
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
                 }
             },
             {
@@ -415,13 +345,25 @@
                     "endOffset": 677
                 },
                 "from": {
+                    "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 682,
+                    "endColumn": 53,
+                    "endOffset": 731
+                },
+                "from": {
                     "file": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 295,
-                        "endColumn": 56,
-                        "endOffset": 347
+                        "startOffset": 737,
+                        "endColumn": 53,
+                        "endOffset": 786
                     }
                 }
             }

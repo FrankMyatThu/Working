@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@color/TotalBlack">
     <!-- Photo area start. -->
     <RelativeLayout
         android:id="@+id/PhotoArea"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/bigContentView_height"
         android:gravity="center_vertical"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/imgSongImage"
             android:layout_width="110dp"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/bigContentView_height"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:gravity="center_vertical"
@@ -29,11 +29,11 @@
     </RelativeLayout>
     <!-- Photo area end. -->
 
+
     <RelativeLayout
         android:id="@+id/TextInfoLayout"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_above="@+id/PlayerButtonLayout"
+        android:layout_height="80dp"
         android:layout_toRightOf="@+id/PhotoArea"
         android:layout_alignParentTop="true"
         android:gravity="center_vertical"
@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/txtMyanmarInfo"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:textSize="9pt"
             android:textStyle="bold"
@@ -55,7 +55,7 @@
         <TextView
             android:id="@+id/txtEnglishInfo"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_below="@+id/txtMyanmarInfo"
             android:textSize="8pt"
             android:text="English text"
@@ -68,11 +68,10 @@
     <RelativeLayout
         android:id="@+id/CloseLayout"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/TextInfoLayout"
-        android:layout_above="@+id/PlayerButtonLayout"
         android:paddingRight="13dp">
 
         <!-- Close start. -->
@@ -104,8 +103,8 @@
     <RelativeLayout
         android:id="@+id/PlayerButtonLayout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="39dp"
+        android:layout_below="@+id/LineBreakerHorizontal"
         android:layout_toRightOf="@+id/PhotoArea"
         android:gravity="center_vertical"
         android:paddingLeft="22dp"
@@ -145,4 +144,5 @@
         <!-- Forward end. -->
     </RelativeLayout>
     <!-- Player button(s) end. -->
+
 </RelativeLayout>
