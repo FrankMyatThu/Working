@@ -1,7 +1,0 @@
-The path
-'C:\Users\Administrator\AppData\Local\Android\sdk'
-does not belong to a directory.
-
-Android Studio will use this Android SDK instead:
-'C:\Users\myat.MYATTHU\AppData\Local\Android\sdk'
-and will modify the project's local.properties file.
