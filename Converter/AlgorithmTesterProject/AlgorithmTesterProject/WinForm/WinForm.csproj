@@ -116,6 +116,12 @@
     <Compile Include="equilibrium.Designer.cs">
       <DependentUpon>equilibrium.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateRandomNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerateRandomNumber.Designer.cs">
+      <DependentUpon>GenerateRandomNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="1_Question.resx">
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="equilibrium.resx">
       <DependentUpon>equilibrium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerateRandomNumber.resx">
+      <DependentUpon>GenerateRandomNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
