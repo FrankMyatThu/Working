@@ -1,11 +1,11 @@
 -Modify.CV
-	-(3800)
-	-Availability 2 weeks notice
+	-(4k Nego) (Finished)
+	-Availability 2 weeks notice (Finished)
 	
--Update.Monster
--Update.JobSteet
+-Update.Monster  (Finished)
+-Update.JobSteet (Finished)
 -Apply
-	-JobSteet
+	-JobSteet 
 	-Monster
 	-LinkedIn
 	
@@ -24,6 +24,7 @@ Practice
 Read
 =====
 1.OOP
+3.EntityFramework (Locking)
 2.Security
 
 ==============================================================================================================
