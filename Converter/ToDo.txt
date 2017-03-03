@@ -23,10 +23,14 @@ Practice
 
 Read
 =====
-1.OOP
-3.EntityFramework (Locking)
+1.OOP [encapsulation abstraction inheritance and polymorphism]
 2.Security
-
+3.EntityFramework (Locking, [Eager, Lazy, Explicit loading])
+4.bitwise operation (left shift, right shift) [https://www.tutorialspoint.com/csharp/csharp_bitwise_operators.htm]
+5.algorithm linked list[
+	https://www.codeproject.com/Articles/1104980/Linked-List-Implementation-in-Csharp
+	http://stackoverflow.com/questions/371136/binary-trees-vs-linked-lists-vs-hash-tables
+ ]
 ==============================================================================================================
 == Old
 ==============================================================================================================
