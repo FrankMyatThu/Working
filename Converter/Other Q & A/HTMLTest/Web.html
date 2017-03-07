@@ -24,11 +24,11 @@
 			<div class="row">
 				<div class="center-block" style="width:200px;">
 					<ul class="list-group">
-						<li class="list-group-item hoverclass"
-								id = "{{ x.value }}"
+						<li class="list-group-item hoverclass"								
 								ng-repeat="x in Items" 
 								ng-mouseover="li_mouseover()"  
-								ng-click="li_onclick($event);"  >{{ x.value }}</li>					
+								ng-click="li_onclick(x)"
+								ng-class="{'BoldSetter': selectedItem === x}">{{ x.value }}</li>
 					</ul>
 				</div>
 			</div>
@@ -36,23 +36,18 @@
 		<script>
 		var app = angular.module('TestingApp', []);		
 		app.controller('ItemController', function($scope, $http) {
-			
+			$scope.selectedItem = null;
 			$scope.Items = [
 				{key : 1, value : 'Item 1' },
 				{key : 2, value : 'Item 2' },
 				{key : 3, value : 'Item 3' },
 				{key : 4, value : 'Item 4' },
 				{key : 5, value : 'Item 5' }
-			]
+			];
 			
-			$scope.li_mouseover = function(){
-				//
-			};
-			
-			$scope.li_onclick = function($event){
-				$(event.target).addClass('BoldSetter');
-				//$event.target.style.font-weight = 'bold';
-				alert($event.target.id);
+			$scope.li_onclick = function(x){
+				$scope.selectedItem = x;	
+				alert(x.value);
 			}
 			
 		});
