@@ -1,0 +1,53 @@
+1.	In one word describe your greatest strength.
+    Persistence
+
+2.	What two or three things are most important to you in your job?
+    1.Understanding of user requirement, 
+	2.Emotional Intelligence (EQ), 
+	3.Teamwork 
+
+3.	What responsibilities did you like most and least in your last job? Why?
+    I got chances not only in application development 
+	but also in research for cryptograpy and security things. 
+	And I also got chances to do job for data analysis. 
+	Because of those opportunities, I gain confidence for my knowledge and skills.
+
+4.	Describe one example where your actions led to improved quality of your organisation’s product or service.
+	One of my previous company providing software services to Great Eastern Insurance company.
+	So I created E-commerce system for them.
+	Using that system they can sell and buy the products in more convenient way.
+
+5.	What do you see yourself doing five years from now?
+	I am trying to improve my software engineering skills and leadership skils in every days.
+	So, I believe I will be the person who can lead and guide to some organisation in next five years.
+	
+6.	What makes you stand out / why should we hire you?
+	I am providing software services for customers who are from financial industry, 
+	such as bank and insurance companies in Singapore. 
+	So I have played with data security and data analyzing in most of the time. 
+	Having 10 years of experiences in software development life cycle. 
+	Developed the applications with strong programming skills, design and analysis experiences. 
+	Possess application security knowledge and teaching experiences in programming. 
+	So I hope that I can also provide you better applications and solutions using my knowledge and skills.
+
+
+Coding
+
+7.	What reasons require Refactoring of code? 
+	When we want to do below things, we need to do refactoring.
+	-to improved code readability and reduced complexity
+	-to improve source-code maintainability
+	By doing refactoring, we can reduce the risk of introducing errors.
+
+8.	How would you measure the quality of source code?
+	1.How much percentage it can fulfill user requirement (eg. system functionality)
+	2.Security vs Performance 
+	3.Robustness
+	4.Scalability
+	5.Maintainability 	
+	
+9.	What do you feel is the most promising new technology in web / software development and why?
+	Web API is the most promising technology.
+	Because a web-based application is not enough to reach it's customers today.
+	To expose service data to the browsers and as well as all these modern devices apps in fast and simple way, 
+	we should have an Web API which is compatible with browsers and all these devices.
