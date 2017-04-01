@@ -49,6 +49,16 @@ WHERE JoinDate = (SELECT MAX(JoinDate) FROM tbl_EmpDep WHERE DepartmentID = [dat
 SELECT * FROM tbl_EmpDep 
 WHERE JoinDate IN (SELECT MAX(tbl_EmpDep.JoinDate) FROM tbl_EmpDep GROUP BY tbl_EmpDep.DepartmentID)
 
+-- 3rd Version (using partition by)
+SELECT * FROM 
+(
+	SELECT 
+	*,
+	MAX(tbl_EmpDep.JoinDate) OVER (PARTITION BY tbl_EmpDep.DepartmentID) AS MaxJoinDate
+	FROM tbl_EmpDep 
+) _tbl_EmpDep
+WHERE JoinDate = MaxJoinDate
+
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Using Row_Number approach
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------
