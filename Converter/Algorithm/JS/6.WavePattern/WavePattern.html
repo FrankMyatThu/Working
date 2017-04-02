@@ -1,0 +1,23 @@
+<html>
+<head>
+	<script type="text/javascript">
+		function DrawPattern()
+		{
+			var Signal = "| ";
+			var LineBraker = "\r\n";
+			var TabInsetter = "\t";
+			var DisplayBoard = "";
+			
+			for(var i=0; i < 9; i++ ){
+				for(var j=0; j < i+1; j++){
+					DisplayBoard += Signal + TabInsetter;
+				}
+				DisplayBoard += LineBraker;
+			}
+			alert(DisplayBoard);
+		}
+		DrawPattern();
+	</script>
+</head>
+<body></body>
+<html>
