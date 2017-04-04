@@ -1,0 +1,113 @@
+﻿Build started 6/10/2016 3:20:48 PM.
+     1>Project "C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CMSDataPorting\CMSDataPorting\CMSDataPorting.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(357,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\willowlynx\scada\arch\T-i386-ntvc\incl" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _ARCH_I386_NTVC_ /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\DataPorting.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\willowlynx\scada\arch\T-i386-ntvc\incl" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _ARCH_I386_NTVC_ /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\DataPorting.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt app_logmsg.cpp CMSDataPorting.cpp ConfigInfo.cpp DatabaseHandler.cpp DataFileGen.cpp DataFileInfo.cpp RTDBHandler.cpp SFTPHandler.cpp
+         SFTPHandler.cpp
+         RTDBHandler.cpp
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\rtdbhandler.cpp(163): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+         DataFileInfo.cpp
+         DataFileGen.cpp
+         DatabaseHandler.cpp
+         ConfigInfo.cpp
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\configinfo.cpp(11): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(294) : see declaration of 'wcscpy'
+         CMSDataPorting.cpp
+         app_logmsg.cpp
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(138): warning C4996: '_wgetenv': This function or variable may be unsafe. Consider using _wdupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(924) : see declaration of '_wgetenv'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(146): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(151): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(152): warning C4996: '_wopen': This function or variable may be unsafe. Consider using _wsopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(368) : see declaration of '_wopen'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(168): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _close. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\io.h(326) : see declaration of 'close'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(202): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _close. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\io.h(326) : see declaration of 'close'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(207): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(218): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(219): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(232): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(233): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(242): warning C4996: '_wopen': This function or variable may be unsafe. Consider using _wsopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(368) : see declaration of '_wopen'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(256): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\time.inl(112) : see declaration of 'localtime'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(282): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(282): warning C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\time.h(174) : see declaration of 'asctime'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(287): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(296): warning C4996: 'write': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _write. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\io.h(342) : see declaration of 'write'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(400): warning C4996: '_wgetenv': This function or variable may be unsafe. Consider using _wdupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(924) : see declaration of '_wgetenv'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(408): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(413): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(415): warning C4996: '_wopen': This function or variable may be unsafe. Consider using _wsopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(368) : see declaration of '_wopen'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(431): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _close. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\io.h(326) : see declaration of 'close'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(467): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(477): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(481): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(484): warning C4996: 'access': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _access. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\io.h(323) : see declaration of 'access'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(484): warning C4996: 'unlink': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _unlink. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(278) : see declaration of 'unlink'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(555): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _close. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\io.h(326) : see declaration of 'close'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(561): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(572): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(573): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(588): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(589): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(596): warning C4996: '_wopen': This function or variable may be unsafe. Consider using _wsopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(368) : see declaration of '_wopen'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(611): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\time.inl(112) : see declaration of 'localtime'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(642): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(647): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\wchar.h(787) : see declaration of '_swprintf'
+     1>c:\frank\temprepo\projects\1.csharptocplusplus callback\cmsdataporting\cmsdataporting\app_logmsg.cpp(656): warning C4996: 'write': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _write. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\io.h(342) : see declaration of 'write'
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\willowlynx\scada\arch\T-i386-ntvc\bin\DataPorting.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\willowlynx\scada\arch\T-i386-ntvc\lib" syslink.lib rtdb.lib netapi32.lib ws2_32.lib check.lib winmm.lib version.lib odbc32.lib odbc_lib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libc.lib /NODEFAULTLIB:msvcrt.lib /NODEFAULTLIB:libcmt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\willowlynx\scada\arch\T-i386-ntvc\bin\DataPorting.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\willowlynx\scada\arch\T-i386-ntvc\bin\DataPorting.lib" /MACHINE:X86 /DLL Debug\app_logmsg.obj
+         Debug\CMSDataPorting.obj
+         Debug\ConfigInfo.obj
+         Debug\DatabaseHandler.obj
+         Debug\DataFileGen.obj
+         Debug\DataFileInfo.obj
+         Debug\RTDBHandler.obj
+         Debug\SFTPHandler.obj
+         Debug\stdafx.obj
+            Creating library C:\willowlynx\scada\arch\T-i386-ntvc\bin\DataPorting.lib and object C:\willowlynx\scada\arch\T-i386-ntvc\bin\DataPorting.exp
+         CMSDataPorting.vcxproj -> C:\willowlynx\scada\arch\T-i386-ntvc\bin\DataPorting.dll
+     1>Done Building Project "C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CMSDataPorting\CMSDataPorting\CMSDataPorting.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.72

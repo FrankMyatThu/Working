@@ -1,0 +1,49 @@
+-Push notification from server to client
+	-detail scenario for requirement
+
+	Asmx
+		-Advantage
+			-As it is web service, the consumer can be in any platform. (eg. Window, OS X, Linux)
+			
+		-Disadvantage	
+			-Only SOAP can be supported (Very difficult to implement to support RESTful)
+			-Duplex communication are not supported, 
+				it means whenever client need the value from server, client must send the request.
+				it also means that server cannot behave as a broadcasting station.
+				it also means that server do not support callback functionalities.
+		
+	WCF
+		-Binding
+			-webHttpBinding
+				-support Rest 
+			-basicHttpBinding
+				-soap v1 (same as Asmx)
+			-wsHttpBinding
+				-soap v2 (more secure)
+			-wsDualHttpBinding
+				-Support callback
+				-Support soap only but not restfull
+				
+	WebSocket		
+		-It support full duplex communication between server and client
+		 It means it can broadcast to every clients.
+		-So, how to use the websocket, there is a API called SignalR developed by Microsoft. 
+			
+	SignalR
+		-SignalR created on top of WebSocket technology.
+		 It means that whatever websocket can do, SignalR can also do.
+		-Allow full duplex communication between client and server
+		-Put the state on top of the stateless http protocol 
+		 to allow realtime communication
+		-no more binding requred which we needed in WCF
+		-It can integrated with RESTful service
+		
+		SignalR Broadcasting Design
+			-Client(Phone/tablet/Computer) connect to SignalR Server
+			-When the value change / when some event fired, then server broadcast a message to client.
+			-Then client handle the message
+			-[Show Picture]
+		
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

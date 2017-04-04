@@ -1,0 +1,6 @@
+C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CSharpApp\CSharpConsoleApp\CSharpConsoleApp\bin\Debug\CSharpConsoleApp.exe.config
+C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CSharpApp\CSharpConsoleApp\CSharpConsoleApp\bin\Debug\CSharpConsoleApp.exe
+C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CSharpApp\CSharpConsoleApp\CSharpConsoleApp\bin\Debug\CSharpConsoleApp.pdb
+C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CSharpApp\CSharpConsoleApp\CSharpConsoleApp\obj\Debug\CSharpConsoleApp.csprojResolveAssemblyReference.cache
+C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CSharpApp\CSharpConsoleApp\CSharpConsoleApp\obj\Debug\CSharpConsoleApp.exe
+C:\Frank\TempRepo\Projects\1.CSharpToCPlusPlus Callback\CSharpApp\CSharpConsoleApp\CSharpConsoleApp\obj\Debug\CSharpConsoleApp.pdb

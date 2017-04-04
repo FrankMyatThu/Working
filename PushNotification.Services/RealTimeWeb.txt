@@ -1,0 +1,13 @@
+Real-time web application
+
+Several years ago, whatever we need in web application, we have to a send specific request to the web server to receive/see what we wanted.
+These web application are just read only. Then user wanted to share their ideas, comments, suggestions together with the same post they are seeing at the same time. 
+(Eg. check Facebook posts giving comments). And Web application started to allow user inputs. This is where problem come in. 
+Let assume that so many comments have been added to the same post which you currently seeing. It may be 1 or 2 seconds later, after your page is loaded in your browser.
+It means your loaded page is outdated even after 1 or 2 seconds later. If you want to see the updated comments you definitely needs to reload your page or do some action to reload. 
+But most users don't want to do, they don't want to reload, but they want to see recent updates. That is where we need Real-Time web application. 
+
+There are few ways to implement real-time web application.
+-Long Pooling method (I don't like since it can overhead web server.)
+-WCF duplex service (Not bad, but it only support SOAP.)
+-Microsoft SignalR build on top of HTML 5 webSocket (I recommend this way. It is the most easy and most flexible way)
