@@ -1,0 +1,7 @@
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFramework\ngNetCore\ngNetCore.Base\bin\Debug\ngNetCore.Base.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFramework\ngNetCore\ngNetCore.Base\bin\Debug\ngNetCore.Base.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFramework\ngNetCore\ngNetCore.Base\bin\Debug\log4net.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFramework\ngNetCore\ngNetCore.Base\bin\Debug\log4net.xml
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFramework\ngNetCore\ngNetCore.Base\obj\Debug\ngNetCore.Base.csprojResolveAssemblyReference.cache
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFramework\ngNetCore\ngNetCore.Base\obj\Debug\ngNetCore.Base.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFramework\ngNetCore\ngNetCore.Base\obj\Debug\ngNetCore.Base.pdb

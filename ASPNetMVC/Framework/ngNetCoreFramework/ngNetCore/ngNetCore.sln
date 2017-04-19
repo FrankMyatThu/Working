@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngNetCore.Base", "ngNetCore.Base\ngNetCore.Base.csproj", "{1854CF56-1DD3-4F3A-8AE2-8C46C04DEF85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngNetCore.Model", "ngNetCore.Model\ngNetCore.Model.csproj", "{1F54F340-3710-4BE9-9F9E-C2ED651AD1A0}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1854CF56-1DD3-4F3A-8AE2-8C46C04DEF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1854CF56-1DD3-4F3A-8AE2-8C46C04DEF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1854CF56-1DD3-4F3A-8AE2-8C46C04DEF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1854CF56-1DD3-4F3A-8AE2-8C46C04DEF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F54F340-3710-4BE9-9F9E-C2ED651AD1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F54F340-3710-4BE9-9F9E-C2ED651AD1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F54F340-3710-4BE9-9F9E-C2ED651AD1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F54F340-3710-4BE9-9F9E-C2ED651AD1A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

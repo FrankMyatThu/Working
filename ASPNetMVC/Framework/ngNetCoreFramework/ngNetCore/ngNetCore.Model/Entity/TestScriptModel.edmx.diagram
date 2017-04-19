@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d66b36683034cb081fa9748d9109ee9" Name="Diagram1">
+        <EntityTypeShape EntityType="TestScriptModel.OrderDetail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestScriptModel.Order" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestScriptModel.Product" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="TestScriptModel.FK__OrderDeta__Order__08EA5793" ManuallyRouted="false" />
+        <AssociationConnector Association="TestScriptModel.FK__OrderDeta__Produ__09DE7BCC" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TestScriptModel.tbl_LoggedInUser" Width="1.5" PointX="4.875" PointY="1" />
+        <EntityTypeShape EntityType="TestScriptModel.tbl_User" Width="1.5" PointX="7.25" PointY="1" />
+        <AssociationConnector Association="TestScriptModel.FK_tbl_LoggedInUser_tbl_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
