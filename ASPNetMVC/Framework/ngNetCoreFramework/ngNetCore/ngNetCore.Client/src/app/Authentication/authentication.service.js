@@ -28,20 +28,20 @@ var AuthenticationService = (function () {
     }
     AuthenticationService.prototype.logout = function () {
         localStorage.removeItem("user");
-        this._router.navigate(['Login']);
+        this._router.navigate(['login']);
     };
     AuthenticationService.prototype.login = function (user) {
         var authenticatedUser = users.find(function (u) { return u.email === user.email; });
         if (authenticatedUser && authenticatedUser.password === user.password) {
             localStorage.setItem("user", JSON.stringify(authenticatedUser));
-            this._router.navigate(['Home']);
+            this._router.navigate(['home']);
             return true;
         }
         return false;
     };
     AuthenticationService.prototype.checkCredentials = function () {
         if (localStorage.getItem("user") === null) {
-            this._router.navigate(['Login']);
+            this._router.navigate(['login']);
         }
     };
     return AuthenticationService;

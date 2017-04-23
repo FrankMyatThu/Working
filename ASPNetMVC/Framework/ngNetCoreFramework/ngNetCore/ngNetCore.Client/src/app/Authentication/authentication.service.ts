@@ -20,14 +20,14 @@ export class AuthenticationService {
  
   logout() {
     localStorage.removeItem("user");
-    this._router.navigate(['Login']);
+    this._router.navigate(['login']);
   }
  
   login(user: User){
 	var authenticatedUser = users.find(u => u.email === user.email);
     if (authenticatedUser && authenticatedUser.password === user.password){
       localStorage.setItem("user", JSON.stringify(authenticatedUser));
-	  this._router.navigate(['Home']);      
+	    this._router.navigate(['home']);      
       return true;
     }
     return false; 
@@ -35,7 +35,7 @@ export class AuthenticationService {
  
    checkCredentials(){
     if (localStorage.getItem("user") === null){
-        this._router.navigate(['Login']);
+        this._router.navigate(['login']);
     }
   } 
 }
