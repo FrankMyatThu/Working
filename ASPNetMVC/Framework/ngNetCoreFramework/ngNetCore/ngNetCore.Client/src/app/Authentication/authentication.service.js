@@ -10,34 +10,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var User = (function () {
-    function User(email, password) {
-        this.email = email;
-        this.password = password;
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+var LoginUser_Binding_VM = (function () {
+    function LoginUser_Binding_VM(UserName, Password) {
+        this.UserName = UserName;
+        this.Password = Password;
     }
-    return User;
+    return LoginUser_Binding_VM;
 }());
-exports.User = User;
-var users = [
-    new User('admin@admin.com', 'adm9'),
-    new User('user1@gmail.com', 'a23')
+exports.LoginUser_Binding_VM = LoginUser_Binding_VM;
+var LoginUser_Binding_VMs = [
+    new LoginUser_Binding_VM('admin@admin.com', 'adm9'),
+    new LoginUser_Binding_VM('user1@gmail.com', 'a23')
 ];
 var AuthenticationService = (function () {
-    function AuthenticationService(_router) {
+    function AuthenticationService(http, _router) {
+        this.http = http;
         this._router = _router;
     }
     AuthenticationService.prototype.logout = function () {
         localStorage.removeItem("user");
         this._router.navigate(['login']);
     };
-    AuthenticationService.prototype.login = function (user) {
-        var authenticatedUser = users.find(function (u) { return u.email === user.email; });
-        if (authenticatedUser && authenticatedUser.password === user.password) {
-            localStorage.setItem("user", JSON.stringify(authenticatedUser));
-            this._router.navigate(['home']);
-            return true;
+    /*
+      login(user: User){
+        var authenticatedUser = users.find(u => u.email === user.email);
+        if (authenticatedUser && authenticatedUser.password === user.password){
+          localStorage.setItem("user", JSON.stringify(authenticatedUser));
+          this._router.navigate(['home']);
+          return true;
         }
         return false;
+      }
+    */
+    AuthenticationService.prototype.login = function (_LoginUser_Binding_VM) {
+        var jsonString_LoginUser_Binding_VM = JSON.stringify(_LoginUser_Binding_VM);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers, method: "post" });
+        return this.http.post('http://localhost:1479/api/account/UserLogin', jsonString_LoginUser_Binding_VM, options)
+            .map(function (response) {
+            console.debug("response.json()" + response.json());
+        })
+            .subscribe();
     };
     AuthenticationService.prototype.checkCredentials = function () {
         if (localStorage.getItem("user") === null) {
@@ -48,7 +63,8 @@ var AuthenticationService = (function () {
 }());
 AuthenticationService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [http_1.Http,
+        router_1.Router])
 ], AuthenticationService);
 exports.AuthenticationService = AuthenticationService;
 //# sourceMappingURL=authentication.service.js.map

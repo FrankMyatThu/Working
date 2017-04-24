@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AuthenticationService, User} from './authentication.service';
+import {AuthenticationService, LoginUser_Binding_VM} from './authentication.service';
  
 @Component({
     selector: 'login-form',
@@ -12,17 +12,17 @@ import {AuthenticationService, User} from './authentication.service';
             <div class="panel-body">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input [(ngModel)]="user.email" id="email" 
-                            type="email" class="validate">
-                        <label for="email">Email</label>
+                        <input [(ngModel)]="_LoginUser_Binding_VM.UserName" id="UserName" 
+                            type="text" class="validate">
+                        <label for="UserName">UserName</label>
                     </div>
                 </div>
  
                 <div class="row">
                     <div class="input-field col s12">
-                        <input [(ngModel)]="user.password" id="password" 
+                        <input [(ngModel)]="_LoginUser_Binding_VM.Password" id="Password" 
                             type="password" class="validate">
-                        <label for="password">Password</label>
+                        <label for="Password">Password</label>
                     </div>
                 </div>
  
@@ -37,14 +37,14 @@ import {AuthenticationService, User} from './authentication.service';
  
 export class LoginComponent {
  
-    public user = new User('','');
+    public _LoginUser_Binding_VM = new LoginUser_Binding_VM('','');
     public errorMsg = '';
  
     constructor(
         private _service:AuthenticationService) {}
  
     login() {
-        if(!this._service.login(this.user)){
+        if(!this._service.login(this._LoginUser_Binding_VM)){
             this.errorMsg = 'Failed to login';
         }
     }
