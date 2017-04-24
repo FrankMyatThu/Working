@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using ngNetCore.Base.Util;
 
 namespace ngNetCore.Service
 {
@@ -62,6 +63,17 @@ namespace ngNetCore.Service
                        .WithMethods("GET", "POST")
                        .AllowAnyHeader();
             });
+
+            /// App.config will be loaded after startup class finished.
+            /// startup class can only know appsettings.json
+            /// So below code cannot be used.
+            //app.UseCors(builder =>
+            //{
+            //    builder.WithOrigins(AppConfiger.CorsOrigins)
+            //           .WithMethods("GET", "POST")
+            //           .AllowAnyHeader();
+            //});
+
             app.UseMvc();
             
         }

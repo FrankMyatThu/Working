@@ -45,7 +45,7 @@ export class AuthenticationService {
       let options = new RequestOptions({ headers: headers, method: "post"});
       return this.http.post('http://localhost:1479/api/account/UserLogin', jsonString_LoginUser_Binding_VM, options)
             .map((response: Response) => {
-                console.debug("response.json()" + response.json());
+                console.debug("response.json()" + JSON.stringify(response.json()));
             })
             .subscribe();
     }
