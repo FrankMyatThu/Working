@@ -7,13 +7,15 @@ import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Authentication/login.component';
 import { PrivateComponent } from './Authentication/private.component';
+import { FormtesterComponent } from './FormTester/formtester.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PrivateComponent
+    PrivateComponent,
+    FormtesterComponent
   ],
   imports: [
     BrowserModule,

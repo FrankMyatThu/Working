@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './Authentication/login.component';
 import { PrivateComponent } from './Authentication/private.component';
+import { FormtesterComponent } from './FormTester/formtester.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: PrivateComponent },    
+  { path: 'home', component: PrivateComponent },
+  { path: 'formtester', component: FormtesterComponent },
 ];
 
 @NgModule({

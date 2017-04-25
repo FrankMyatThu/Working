@@ -13,6 +13,7 @@ var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var login_component_1 = require("./Authentication/login.component");
 var private_component_1 = require("./Authentication/private.component");
+var formtester_component_1 = require("./FormTester/formtester.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,7 +24,8 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             login_component_1.LoginComponent,
-            private_component_1.PrivateComponent
+            private_component_1.PrivateComponent,
+            formtester_component_1.FormtesterComponent
         ],
         imports: [
             platform_browser_1.BrowserModule,
