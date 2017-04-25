@@ -61,6 +61,7 @@ namespace ngNetCore.Service
             {
                 builder.WithOrigins("http://localhost:3000")
                        .WithMethods("GET", "POST")
+                       .AllowCredentials()
                        .AllowAnyHeader();
             });
 
