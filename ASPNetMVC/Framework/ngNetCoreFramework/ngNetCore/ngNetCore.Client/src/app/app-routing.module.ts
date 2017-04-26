@@ -6,7 +6,7 @@ import { PrivateComponent } from './Authentication/private.component';
 import { FormtesterComponent } from './FormTester/formtester.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: PrivateComponent },
   { path: 'formtester', component: FormtesterComponent },

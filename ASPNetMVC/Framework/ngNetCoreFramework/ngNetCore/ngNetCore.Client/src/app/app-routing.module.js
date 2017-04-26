@@ -11,7 +11,7 @@ var login_component_1 = require("./Authentication/login.component");
 var private_component_1 = require("./Authentication/private.component");
 var formtester_component_1 = require("./FormTester/formtester.component");
 var routes = [
-    { path: '', component: login_component_1.LoginComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'home', component: private_component_1.PrivateComponent },
     { path: 'formtester', component: formtester_component_1.FormtesterComponent },
