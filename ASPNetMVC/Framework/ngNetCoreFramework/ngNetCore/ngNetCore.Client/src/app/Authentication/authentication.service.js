@@ -50,7 +50,7 @@ var AuthenticationService = (function () {
         var options = new http_1.RequestOptions({ headers: headers, method: "post", withCredentials: true });
         return this.http.post('http://localhost:1479/api/account/UserLogin', jsonString_LoginUser_Binding_VM, options)
             .map(function (response) {
-            console.debug("response.json()" + JSON.stringify(response.json()));
+            console.log("response.json()" + JSON.stringify(response.json()));
         })
             .subscribe();
     };

@@ -39,13 +39,12 @@ export class AuthenticationService {
 */
 
   login(_LoginUser_Binding_VM: LoginUser_Binding_VM) {
-      var jsonString_LoginUser_Binding_VM = JSON.stringify(_LoginUser_Binding_VM);
-
+      var jsonString_LoginUser_Binding_VM = JSON.stringify(_LoginUser_Binding_VM);      
       let headers = new Headers({'Content-Type':'application/json'});
       let options = new RequestOptions({ headers: headers, method: "post", withCredentials: true });
       return this.http.post('http://localhost:1479/api/account/UserLogin', jsonString_LoginUser_Binding_VM, options)
-            .map((response: Response) => {
-                console.debug("response.json()" + JSON.stringify(response.json()));
+            .map((response: Response) => {                
+                console.log("response.json()" + JSON.stringify(response.json()));
             })
             .subscribe();
     }
