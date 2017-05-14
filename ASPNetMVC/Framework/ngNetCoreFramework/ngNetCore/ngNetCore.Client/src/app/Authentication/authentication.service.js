@@ -20,37 +20,32 @@ var LoginUser_Binding_VM = (function () {
     return LoginUser_Binding_VM;
 }());
 exports.LoginUser_Binding_VM = LoginUser_Binding_VM;
-var LoginUser_Binding_VMs = [
-    new LoginUser_Binding_VM('admin@admin.com', 'adm9'),
-    new LoginUser_Binding_VM('user1@gmail.com', 'a23')
-];
 var AuthenticationService = (function () {
     function AuthenticationService(http, _router) {
         this.http = http;
         this._router = _router;
     }
     AuthenticationService.prototype.logout = function () {
-        localStorage.removeItem("user");
+        //localStorage.removeItem("user");
         this._router.navigate(['login']);
     };
-    /*
-      login(user: User){
-        var authenticatedUser = users.find(u => u.email === user.email);
-        if (authenticatedUser && authenticatedUser.password === user.password){
-          localStorage.setItem("user", JSON.stringify(authenticatedUser));
-          this._router.navigate(['home']);
-          return true;
-        }
-        return false;
-      }
-    */
     AuthenticationService.prototype.login = function (_LoginUser_Binding_VM) {
         var jsonString_LoginUser_Binding_VM = JSON.stringify(_LoginUser_Binding_VM);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers, method: "post", withCredentials: true });
         return this.http.post('http://localhost:1479/api/account/UserLogin', jsonString_LoginUser_Binding_VM, options)
             .map(function (response) {
-            console.log("response.json()" + JSON.stringify(response.json()));
+            console.log("response.json() = " + JSON.stringify(response.json()));
+            return JSON.stringify(response.json());
+            /*
+            var retrunedJson = response.json();
+            if(retrunedJson.isOk == true){
+                alert("login success.");
+            }else{
+                alert("not ok");
+            }
+            */
+            /// if(json.isOk == "true") { redirect("Home.html");  } else { display error message; }
         })
             .subscribe();
     };

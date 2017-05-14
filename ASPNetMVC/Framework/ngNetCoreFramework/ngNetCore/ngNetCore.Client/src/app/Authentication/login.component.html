@@ -1,22 +1,46 @@
 <div class="col-md-4 col-md-offset-4">
 <div class="wrapper">	
-	<form id="login-form" method="post" role="form" style="display: block;" data-toggle="validator" >
+	<form #loginForm="ngForm" style="display: block;" >
 		<h2 class="form-login-heading">Please login</h2>
 		<div class="form-group">
-			<input type="text" [(ngModel)]="_LoginUser_Binding_VM.UserName" name="UserName" id="UserName" tabindex="1" class="form-control" placeholder="Username" required >
+			<input type="text" [(ngModel)]="_LoginUser_Binding_VM.UserName" id="UserName" name="UserName" tabindex="1" class="form-control" placeholder="Username" required minlength="4" maxlength="100" #UserName="ngModel" >
+			<div *ngIf="UserName.errors && (UserName.dirty || UserName.touched)"
+				class="alert alert-danger">
+				<div [hidden]="!UserName.errors.required">
+					User name is required
+				</div>
+				<div [hidden]="!UserName.errors.minlength">
+					Name must be at least 4 characters long.
+				</div>
+				<div [hidden]="!UserName.errors.maxlength">
+					Name cannot be more than 100 characters long.
+				</div>
+			</div>
 		</div>
 		<div class="form-group">
-			<input type="password" [(ngModel)]="_LoginUser_Binding_VM.Password" name="Password" id="Password" tabindex="2" class="form-control" placeholder="Password" required >
+			<input type="password" [(ngModel)]="_LoginUser_Binding_VM.Password" id="Password" name="Password" tabindex="2" class="form-control" placeholder="Password" required minlength="4" maxlength="100" #Password="ngModel" >
+			<div *ngIf="Password.errors && (Password.dirty || Password.touched)"
+				class="alert alert-danger">
+				<div [hidden]="!Password.errors.required">
+					Password is required
+				</div>
+				<div [hidden]="!Password.errors.minlength">
+					Password must be at least 4 characters long.
+				</div>
+				<div [hidden]="!Password.errors.maxlength">
+					Password cannot be more than 100 characters long.
+				</div>
+			</div>
 		</div>
 		<div class="form-group text-center">
 			<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
 			<label for="remember"> Remember Me</label>
 		</div>
-		<span>{{errorMsg}}</span>
+		<span>{{ DiplayMessage }}</span>
 		<div class="form-group">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
-					<button type="submit" (click)="login()" name="login-submit" id="login-submit" tabindex="4" class="btn btn-lg btn-primary btn-block">Login</button>
+					<button type="submit" (click)="login()" name="login-submit" id="login-submit" tabindex="4" class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.form.valid">Login</button>
 				</div>
 			</div>
 		</div>
@@ -24,12 +48,11 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="text-center">
-						<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password ?</a>
+						<a href="#" tabindex="5" class="forgot-password">Forgot Password ?</a>
 						&nbsp;or&nbsp;
-						<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Register new user</a>
+						<a href="#" tabindex="5" class="forgot-password">Register new user</a>
 					</div>
-					<div class="text-center">
-						
+					<div class="text-center">						
 					</div>
 				</div>
 			</div>

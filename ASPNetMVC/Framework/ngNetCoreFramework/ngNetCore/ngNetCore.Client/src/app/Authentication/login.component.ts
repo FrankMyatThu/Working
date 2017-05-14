@@ -10,14 +10,21 @@ import {AuthenticationService, LoginUser_Binding_VM} from './authentication.serv
 export class LoginComponent {
  
     public _LoginUser_Binding_VM = new LoginUser_Binding_VM('','');
-    public errorMsg = '';
+    public DiplayMessage = '';
  
     constructor(
         private _service:AuthenticationService) {}
  
     login() {
+        /*
         if(!this._service.login(this._LoginUser_Binding_VM)){
-            this.errorMsg = 'Failed to login';
+            this.DiplayMessage = 'Failed to login';
         }
+        */
+
+        /// need to implement observable soon.
+        var returnedValue = this._service.login(this._LoginUser_Binding_VM);
+        //console.log("[LoginComponent] returnedValue = ", LoginComponent);
+
     }
 }

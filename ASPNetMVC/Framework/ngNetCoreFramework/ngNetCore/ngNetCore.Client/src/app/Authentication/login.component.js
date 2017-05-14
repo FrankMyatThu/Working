@@ -14,12 +14,17 @@ var LoginComponent = (function () {
     function LoginComponent(_service) {
         this._service = _service;
         this._LoginUser_Binding_VM = new authentication_service_1.LoginUser_Binding_VM('', '');
-        this.errorMsg = '';
+        this.DiplayMessage = '';
     }
     LoginComponent.prototype.login = function () {
-        if (!this._service.login(this._LoginUser_Binding_VM)) {
-            this.errorMsg = 'Failed to login';
+        /*
+        if(!this._service.login(this._LoginUser_Binding_VM)){
+            this.DiplayMessage = 'Failed to login';
         }
+        */
+        /// need to implement observable soon.
+        var returnedValue = this._service.login(this._LoginUser_Binding_VM);
+        //console.log("[LoginComponent] returnedValue = ", LoginComponent);
     };
     return LoginComponent;
 }());
