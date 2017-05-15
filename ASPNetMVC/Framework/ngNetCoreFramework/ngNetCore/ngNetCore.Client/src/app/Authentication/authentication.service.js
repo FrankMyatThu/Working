@@ -20,6 +20,16 @@ var LoginUser_Binding_VM = (function () {
     return LoginUser_Binding_VM;
 }());
 exports.LoginUser_Binding_VM = LoginUser_Binding_VM;
+var Token_Message_VM = (function () {
+    function Token_Message_VM(JWTToken, MessageType, MessageDescription, IsOk) {
+        this.JWTToken = JWTToken;
+        this.MessageType = MessageType;
+        this.MessageDescription = MessageDescription;
+        this.IsOk = IsOk;
+    }
+    return Token_Message_VM;
+}());
+exports.Token_Message_VM = Token_Message_VM;
 var AuthenticationService = (function () {
     function AuthenticationService(http, _router) {
         this.http = http;
@@ -34,20 +44,7 @@ var AuthenticationService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers, method: "post", withCredentials: true });
         return this.http.post('http://localhost:1479/api/account/UserLogin', jsonString_LoginUser_Binding_VM, options)
-            .map(function (response) {
-            console.log("response.json() = " + JSON.stringify(response.json()));
-            return JSON.stringify(response.json());
-            /*
-            var retrunedJson = response.json();
-            if(retrunedJson.isOk == true){
-                alert("login success.");
-            }else{
-                alert("not ok");
-            }
-            */
-            /// if(json.isOk == "true") { redirect("Home.html");  } else { display error message; }
-        })
-            .subscribe();
+            .map(function (response) { return response.json(); });
     };
     AuthenticationService.prototype.checkCredentials = function () {
         if (localStorage.getItem("user") === null) {

@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -7,6 +8,14 @@ export class LoginUser_Binding_VM {
   constructor(    
     public UserName: string,
     public Password: string) { }
+}
+
+export class Token_Message_VM {
+  constructor(    
+    public JWTToken: string,
+    public MessageType: string,
+    public MessageDescription: string,
+    public IsOk: boolean) { }
 }
  
 @Injectable()
@@ -21,26 +30,12 @@ export class AuthenticationService {
     this._router.navigate(['login']);
   }
 
-  login(_LoginUser_Binding_VM: LoginUser_Binding_VM) {
+  login(_LoginUser_Binding_VM: LoginUser_Binding_VM) : Observable<Token_Message_VM> {
       var jsonString_LoginUser_Binding_VM = JSON.stringify(_LoginUser_Binding_VM);      
       let headers = new Headers({'Content-Type':'application/json'});
       let options = new RequestOptions({ headers: headers, method: "post", withCredentials: true });
       return this.http.post('http://localhost:1479/api/account/UserLogin', jsonString_LoginUser_Binding_VM, options)
-            .map((response: Response) => {                
-                console.log("response.json() = " + JSON.stringify(response.json()));
-                return JSON.stringify(response.json());
-                /*
-                var retrunedJson = response.json();                
-                if(retrunedJson.isOk == true){
-                    alert("login success.");
-                }else{
-                    alert("not ok");
-                }
-                */
-                /// if(json.isOk == "true") { redirect("Home.html");  } else { display error message; }
-
-            })
-            .subscribe();
+            .map((response: Response) => { return response.json(); });            
     }
 
   checkCredentials(){
