@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngNetCore.Base", "ngNetCore.Base\ngNetCore.Base.csproj", "{1854CF56-1DD3-4F3A-8AE2-8C46C04DEF85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngNetCore.Model", "ngNetCore.Model\ngNetCore.Model.csproj", "{1F54F340-3710-4BE9-9F9E-C2ED651AD1A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ngNetCore.Service", "ngNetCore.Service\ngNetCore.Service.csproj", "{8AE77F31-B0EF-43CC-88EF-D16DDD8916F4}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ngNetCore.Service", "ngNetCore.Service\ngNetCore.Service.xproj", "{8AE77F31-B0EF-43CC-88EF-D16DDD8916F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
