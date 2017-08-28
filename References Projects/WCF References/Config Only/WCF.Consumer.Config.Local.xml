@@ -1,0 +1,39 @@
+<system.serviceModel>
+<behaviors>
+  <serviceBehaviors>
+	<behavior>          
+	  <serviceMetadata httpGetEnabled="true" httpGetUrl=""/>
+	  <serviceDebug includeExceptionDetailInFaults="false"/>
+	</behavior>
+  </serviceBehaviors>
+</behaviors>
+
+<bindings>
+  <wsHttpBinding>
+	<binding 
+		name="httpLargeMessageStream" 
+		sendTimeout="00:25:00"
+		bypassProxyOnLocal="true" 
+		maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647"
+		messageEncoding="Mtom">
+		<readerQuotas 
+			maxDepth="2147483647" 
+			maxStringContentLength="2147483647"          
+			maxArrayLength="2147483647"
+			maxBytesPerRead="2147483647" 
+			maxNameTableCharCount="2147483647" />          
+	</binding>
+  </wsHttpBinding>
+</bindings>
+
+<client>
+  <endpoint address="http://localhost:1933/FileService.svc"
+			binding="wsHttpBinding" bindingConfiguration="httpLargeMessageStream"
+			contract="FileService.IFileService" 
+			name="FileServiceEndPoint" />
+  <endpoint address="http://localhost:1933/TokenService.svc"
+			binding="wsHttpBinding" bindingConfiguration="httpLargeMessageStream"
+			contract="TokenService.ITokenService" 
+			name="TokenServiceEndPoint" />
+</client>    
+</system.serviceModel>

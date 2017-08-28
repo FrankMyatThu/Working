@@ -1,0 +1,87 @@
+<system.diagnostics>
+	<trace autoflush="true" />
+	<sources>
+		<source name="System.ServiceModel"
+		switchValue="Information, ActivityTracing"
+		propagateActivity="true">
+			<listeners>
+				<add name="sdt"
+				type="System.Diagnostics.XmlWriterTraceListener"
+				initializeData= "D:\Logs\WCFService\WCF.StackTrace.xml" />
+			</listeners>
+		</source>
+	</sources>
+</system.diagnostics>
+
+<system.serviceModel>
+	<serviceHostingEnvironment aspNetCompatibilityEnabled="true" />
+	<bindings>
+		<wsHttpBinding>
+			<binding 
+				name="httpLargeMessageStream" 
+				bypassProxyOnLocal="true"        
+				maxReceivedMessageSize="2147483647" 
+				sendTimeout="00:25:00"
+				maxBufferPoolSize="2147483647" 
+				messageEncoding="Mtom">
+				<security mode="Transport">
+					<transport clientCredentialType="None">
+						<extendedProtectionPolicy policyEnforcement="Never" />
+					</transport>
+				</security>
+				<readerQuotas 
+					maxDepth="2147483647" 
+					maxStringContentLength="2147483647"
+					maxArrayLength="2147483647" 
+					maxBytesPerRead="2147483647" 
+					maxNameTableCharCount="2147483647" />
+			</binding>
+		</wsHttpBinding>
+	</bindings>
+	<behaviors>
+		<serviceBehaviors>			
+			<behavior name="serviceBehavior">
+				<serviceCredentials>
+					<serviceCertificate 
+						findValue="www.rmportal.sg" 
+						storeLocation="LocalMachine" 
+						storeName="My" 
+						x509FindType="FindBySubjectName" />
+				</serviceCredentials>
+				<dataContractSerializer maxItemsInObjectGraph="2147483647"/>
+				<!-- To avoid disclosing metadata information, set the value below to false and remove the metadata endpoint above before deployment -->
+				<serviceMetadata httpsGetEnabled="true"/>
+				<!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information -->
+				<serviceDebug includeExceptionDetailInFaults="true"/>
+			</behavior>
+		</serviceBehaviors>
+	</behaviors>
+	<services>
+		<service
+			behaviorConfiguration="serviceBehavior"
+			name="RMP.OTAService.FileService">
+			<endpoint 
+				address=""		
+				binding="wsHttpBinding" bindingConfiguration="httpLargeMessageStream" 
+				contract="RMP.OTAService.IFileService"
+				name="FileServiceEndPoint"></endpoint>
+			<endpoint 
+				address="mex"
+				binding="mexHttpsBinding"
+				contract="IMetadataExchange"/>
+		</service>
+		<service 
+			behaviorConfiguration="serviceBehavior"
+			name="RMP.OTAService.TokenService">
+			<endpoint 
+				address=""
+				binding="wsHttpBinding" bindingConfiguration="httpLargeMessageStream" 
+				contract="RMP.OTAService.ITokenService"
+				name="TokenServiceEndPoint"></endpoint>
+			<endpoint 
+				address="mex"
+				binding="mexHttpsBinding"
+				contract="IMetadataExchange"/>
+		</service>
+	</services>
+</system.serviceModel>

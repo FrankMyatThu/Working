@@ -1,0 +1,54 @@
+<system.serviceModel>    
+<behaviors>
+	<serviceBehaviors>
+		<behavior>
+		  <serviceCredentials>
+			<serviceCertificate
+				findValue="www.rmportal.sg"
+				storeLocation="LocalMachine"
+				storeName="My"
+				x509FindType="FindBySubjectName" />
+		  </serviceCredentials>
+		  <serviceMetadata httpsGetEnabled="true" httpsGetUrl="https://rmportal.sg/RMP/FileService/FileService.svc"/>
+		  <serviceDebug includeExceptionDetailInFaults="false"/>
+		</behavior>        
+	</serviceBehaviors>
+</behaviors>
+
+<bindings>
+  <wsHttpBinding>
+	<binding 
+		name="httpLargeMessageStream" 
+		sendTimeout="00:25:00"	  
+		bypassProxyOnLocal="true" 
+		maxBufferPoolSize="2147483647" 
+		maxReceivedMessageSize="2147483647"
+		messageEncoding="Mtom">
+		<readerQuotas 
+			maxDepth="2147483647" 
+			maxStringContentLength="2147483647"
+			maxArrayLength="2147483647" 
+			maxBytesPerRead="2147483647" 
+			maxNameTableCharCount="2147483647" />
+		<security mode="Transport">
+			<transport clientCredentialType="None">
+				<extendedProtectionPolicy policyEnforcement="Never" />
+			</transport>
+		</security>
+	</binding>
+  </wsHttpBinding>
+</bindings>
+
+<client>
+  <endpoint 
+		address="https://rmportal.sg/RMP/FileService/FileService.svc"
+		binding="wsHttpBinding" bindingConfiguration="httpLargeMessageStream"
+		contract="FileService.IFileService" 
+		name="FileServiceEndPoint" />
+  <endpoint 
+		address="https://rmportal.sg/RMP/FileService/TokenService.svc"
+		binding="wsHttpBinding" bindingConfiguration="httpLargeMessageStream"
+		contract="TokenService.ITokenService" 
+		name="TokenServiceEndPoint" />
+</client>
+</system.serviceModel>
