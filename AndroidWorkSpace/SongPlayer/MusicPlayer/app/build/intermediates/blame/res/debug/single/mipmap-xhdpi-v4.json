@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
+        "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\play.gif",
+        "source": "D:\\01.Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\mipmap-xhdpi\\play.gif"
+    },
+    {
+        "merged": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
+        "source": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\play.gif",
+        "source": "C:\\MT\\Project\\GitHub\\Working\\MusicPlayer\\app\\src\\main\\res\\mipmap-xhdpi\\play.gif"
+    }
+]

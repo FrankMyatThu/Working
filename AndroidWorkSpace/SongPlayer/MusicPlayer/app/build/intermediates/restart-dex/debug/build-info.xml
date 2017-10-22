@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="xxxhdpi"
+    format="7"
+    timestamp="15007468849308"
+    token="-7195355480605632655" >
+
+    <task
+        name="javac"
+        duration="721" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="595" />
+    <task
+        name="verifier"
+        duration="344" />
+
+    <artifact
+        location="D:\01.Project\GitHub\Working\MusicPlayer\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="15007468849308" >
+        <artifact
+            location="D:\01.Project\GitHub\Working\MusicPlayer\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>
