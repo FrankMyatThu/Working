@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Testing</title>
+    <script type="text/javascript">
+        var timeout_time = 10;
+        var time_remaining = 0;
+
+        if(localStorage.getItem('timeout_time')==null){
+            run_timeout(timeout_time);
+        }
+        else{
+            run_timeout(localStorage.getItem('timeout_time'))
+        }
+
+		/*
+        setInterval(function(){
+            time_remaining = localStorage.getItem('timeout_time');
+
+            if(time_remaining > 1 || time_remaining != null){
+                localStorage.setItem('timeout_time', time_remaining - 1);
+            }
+        }, 1000);
+		*/
+		
+        function run_timeout(time){
+            setTimeout(function(){
+                alert('executed on 10 seconds');
+                localStorage.removeItem('timeout_time');
+            }, time * 1000);
+            localStorage.setItem('timeout_time', time);
+        }
+
+
+    </script>
+</head>
+<body>
+    This is the test page.
+</body>
+</html>
