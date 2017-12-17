@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<script src="AppSessionController.v4.js"></script>
+		<script type="text/javascript">
+			function ManualLogout()
+			{
+				console.log("Before setting IsManuallyLogout = true to localStorage.");
+				window.localStorage.setItem('IsManualLoggedout', true);
+				console.log("After setting IsManuallyLogout = true to localStorage.");
+			}
+		</script>
+	</head>
+	<body onload="SetTimerForAppSession();" >
+		<button  onclick="ManualLogout();">Logout</button>
+	</body>
+</html>
