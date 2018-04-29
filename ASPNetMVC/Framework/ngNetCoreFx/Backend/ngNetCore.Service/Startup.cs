@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -9,20 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Serilog;
 
 namespace ngNetCore.Service
 {
     public class Startup
     {
-        private object appEnv;
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            Log.Logger = new LoggerConfiguration()                                
-                                .ReadFrom.Configuration(configuration)
-                                .CreateLogger();
         }
 
         public IConfiguration Configuration { get; }
@@ -34,7 +27,7 @@ namespace ngNetCore.Service
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -42,7 +35,6 @@ namespace ngNetCore.Service
             }
 
             app.UseMvc();
-            loggerFactory.AddSerilog();
         }
     }
 }

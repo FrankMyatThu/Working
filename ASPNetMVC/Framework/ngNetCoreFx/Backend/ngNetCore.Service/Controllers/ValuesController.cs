@@ -4,24 +4,21 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using ngNetCore.Base.Logging;
+using ngNetCore.Model;
 
 namespace ngNetCore.Service.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private readonly ILogger _logger;
-        public ValuesController(ILogger<ValuesController> logger)
-        {
-            _logger = logger;
-        }
-
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            _logger.LogInformation(string.Format("[{0}.{1}]", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name));
+            ApplicationLogger.WriteInfo(string.Format("[{0}.{1}]", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name), "CustomizedLogger");
+            Class1 _Class1 = new Class1();
+            _Class1.TestFunction();
             return new string[] { "value1", "value2" };
         }
 
