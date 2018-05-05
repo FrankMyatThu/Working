@@ -4,3 +4,6 @@
 2018-04-29 17:39:50,302 [11] INFO  - [ngNetCore.Service.Controllers.ValuesController.Get]
 2018-04-29 17:39:50,321 [11] INFO  - [ngNetCore.Model.Class1..ctor]
 2018-04-29 17:39:50,322 [11] INFO  - [ngNetCore.Model.Class1.TestFunction]
+2018-04-29 17:47:15,256 [10] INFO  - [ngNetCore.Service.Controllers.ValuesController.Get]
+2018-04-29 17:47:15,279 [10] INFO  - [ngNetCore.Model.Class1..ctor]
+2018-04-29 17:47:15,280 [10] INFO  - [ngNetCore.Model.Class1.TestFunction]
