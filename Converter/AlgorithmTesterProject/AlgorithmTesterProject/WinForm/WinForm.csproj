@@ -122,6 +122,12 @@
     <Compile Include="GenerateRandomNumber.Designer.cs">
       <DependentUpon>GenerateRandomNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="NumberSorting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NumberSorting.Designer.cs">
+      <DependentUpon>NumberSorting.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderingClosestPoints.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerateRandomNumber.resx">
       <DependentUpon>GenerateRandomNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumberSorting.resx">
+      <DependentUpon>NumberSorting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingClosestPoints.resx">
       <DependentUpon>OrderingClosestPoints.cs</DependentUpon>

@@ -16,9 +16,13 @@ namespace WinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
+            Application.Run(new NumberSorting());
+=======
             //Application.Run(new GenerateRandomNumber());
 
-            Application.Run(new NumberSorting());
+            Application.Run(new OrderingClosestPoints());
+>>>>>>> ba85d55845e1a326d6ac8782533d4b401738d386
         }
     }
 }
