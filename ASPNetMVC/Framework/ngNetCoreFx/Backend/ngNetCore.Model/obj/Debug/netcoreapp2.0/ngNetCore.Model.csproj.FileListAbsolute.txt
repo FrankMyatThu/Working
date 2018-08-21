@@ -1,0 +1,11 @@
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\bin\Debug\netcoreapp2.0\ngNetCore.Model.deps.json
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\bin\Debug\netcoreapp2.0\ngNetCore.Model.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\bin\Debug\netcoreapp2.0\ngNetCore.Model.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\bin\Debug\netcoreapp2.0\ngNetCore.Base.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\bin\Debug\netcoreapp2.0\ngNetCore.Base.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\obj\Debug\netcoreapp2.0\ngNetCore.Model.csproj.CoreCompileInputs.cache
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\obj\Debug\netcoreapp2.0\ngNetCore.Model.AssemblyInfoInputs.cache
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\obj\Debug\netcoreapp2.0\ngNetCore.Model.AssemblyInfo.cs
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\obj\Debug\netcoreapp2.0\ngNetCore.Model.dll
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\obj\Debug\netcoreapp2.0\ngNetCore.Model.pdb
+D:\01.Project\GitHub\Working\ASPNetMVC\Framework\ngNetCoreFx\Backend\ngNetCore.Model\obj\Debug\netcoreapp2.0\ngNetCore.Model.csprojResolveAssemblyReference.cache

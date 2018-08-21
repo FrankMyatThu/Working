@@ -122,11 +122,11 @@
     <Compile Include="GenerateRandomNumber.Designer.cs">
       <DependentUpon>GenerateRandomNumber.cs</DependentUpon>
     </Compile>
-    <Compile Include="NumberSorting.cs">
+    <Compile Include="OrderingClosestPoints.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NumberSorting.Designer.cs">
-      <DependentUpon>NumberSorting.cs</DependentUpon>
+    <Compile Include="OrderingClosestPoints.Designer.cs">
+      <DependentUpon>OrderingClosestPoints.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="GenerateRandomNumber.resx">
       <DependentUpon>GenerateRandomNumber.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NumberSorting.resx">
-      <DependentUpon>NumberSorting.cs</DependentUpon>
+    <EmbeddedResource Include="OrderingClosestPoints.resx">
+      <DependentUpon>OrderingClosestPoints.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

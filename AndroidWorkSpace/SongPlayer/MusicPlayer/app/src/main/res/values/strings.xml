@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Ninzi May</string>
+    <string name="DATABASE_VERSION">2</string>
+
+    <!--<string name="Play">&#xf04b;</string>-->
+    <string name="Play">a</string>
+    <string name="Stop">&#xf04d;</string>
+    <string name="Close">&#xf00d;</string>
+    <string name="Next">&#xf051;</string>
+    <string name="Previous">&#xf048;</string>
+    <!--<string name="Pause">&#xf04c;</string>-->
+    <string name="Pause">b</string>
+    <string name="HeadphoneLogo">j</string>
+
+    <!--<string name="RepeatOne">&#xf01e;</string>-->
+    <string name="RepeatNone">&#xf178;</string>
+    <string name="RepeatOne">&#xf0e2;</string>
+    <string name="RepeatAll">&#xf021;</string>
+    <string name="Shuffle">&#xf074;</string>
+    <string name="Lyrics">&#xf0f6;</string>
+
+    <string name="FavoriteOn">&#xf004;</string>
+    <string name="FavoriteOff">&#xf08a;</string>
+    <string name="RegistrationSeal">&#xf0a3;</string>
+
+    <!--<string name="RunningIndicator">&#xf012;</string>-->
+    <string name="RunningIndicator">&#xf001;</string>
+
+    <string name="Speaker">&#xf027;</string>
+    <string name="Volume">&#xf027;</string>
+</resources>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearRow"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_weight="1"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <!-- Row start. -->
+
+    <!--Photo area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.225"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp">
+        <ImageView
+            android:id="@+id/imgSongImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/album_art"></ImageView>
+    </RelativeLayout>
+    <!--Photo area end. -->
+
+    <!--Info area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.67"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <!-- Song info in myanmar start. -->
+        <TextView
+            android:id="@+id/txtMyanmarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            android:gravity="center_vertical"
+            android:textSize="9pt"
+            android:textStyle="bold"
+            android:textColor="@color/lightgray"
+            android:text="Myanmar text"
+            android:layout_marginTop="10dp" />
+        <!-- Song info in myanmar end. -->
+
+        <!-- Song info in english start. -->
+        <TextView
+            android:id="@+id/txtEnglishInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            android:layout_below="@+id/txtMyanmarInfo"
+            android:textSize="7pt"
+            android:textColor="@color/lightgray"
+            android:text="English text"
+            android:gravity="center_vertical" />
+        <!-- Song info in english end. -->
+
+    </RelativeLayout>
+    <!--Info area end. -->
+
+    <!--Favorite & Running Indicator start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.08"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:weightSum="2">
+
+        <!-- Song length start. -->
+        <TextView
+            android:id="@+id/txtSongLength"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/lightgray"
+            android:textSize="@dimen/PlayerButtonfont_sizeSmall"
+            />
+        <!-- Song length end. -->
+
+        <!-- Favorite start. -->
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_below="@id/txtSongLength"
+            android:background="@null"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/lightgray"
+            android:textSize="@dimen/PlayerButtonfont_sizeMedian"
+            android:text="@string/FavoriteOff"/>
+        <!-- Favorite end. -->
+
+    </RelativeLayout>
+    <!--Favorite & Running Indicator end. -->
+
+    <!--Blank area start. -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.025">
+    </RelativeLayout>
+    <!--Blank area end. -->
+
+    <!-- Row end. -->
+</LinearLayout>
