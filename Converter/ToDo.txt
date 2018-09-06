@@ -1,7 +1,3 @@
--Modify.CV
-	-(4k Nego) (Finished)
-	-Availability 2 weeks notice (Finished)
-	
 -Update.Monster  (Finished)
 -Update.JobSteet (Finished)
 -Apply
@@ -23,7 +19,7 @@ Practice
 
 Read
 =====
-1.C# [Garbage Collection, Heap and Stack]	
+1.C# [Garbage Collection, Heap and Stack] [http://csharptopicwiseques.blogspot.com/2010/08/value-type-and-reference-types.html]
 2.OOP [encapsulation abstraction inheritance and polymorphism]	
 3.Security [How SSL Work]	
 3.EntityFramework (Locking, [Eager, Lazy, Explicit loading])
