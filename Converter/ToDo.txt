@@ -19,7 +19,9 @@ Practice
 
 Read
 =====
-1.C# [Garbage Collection, Heap and Stack] [http://csharptopicwiseques.blogspot.com/2010/08/value-type-and-reference-types.html]
+1.C# [Garbage Collection, Heap(reference type - eg. String) and Stack(Value type - eg. int) ] 
+	1.1[http://csharptopicwiseques.blogspot.com/2010/08/value-type-and-reference-types.html]
+	1.2[http://www.tutorialsteacher.com/csharp/csharp-value-type-and-reference-type] (Can Debug using online tool)
 2.OOP [encapsulation abstraction inheritance and polymorphism]	
 3.Security [How SSL Work]	
 3.EntityFramework (Locking, [Eager, Lazy, Explicit loading])
