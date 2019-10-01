@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Security\CustomizedAuthorization.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Security\" />
   </ItemGroup>
 

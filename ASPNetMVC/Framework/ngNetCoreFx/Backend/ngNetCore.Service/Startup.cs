@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ngNetCore.Base.Util;
 
 namespace ngNetCore.Service
 {
@@ -23,7 +24,11 @@ namespace ngNetCore.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            //services.AddMvc();
+            services
+                .Configure<AppConfiger>(Configuration)
+                .AddSingleton(sp => sp.GetRequiredService<IOptions<AppConfiger>>().Value)
+                .AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

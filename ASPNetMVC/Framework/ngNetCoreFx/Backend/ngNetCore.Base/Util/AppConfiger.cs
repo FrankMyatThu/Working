@@ -20,9 +20,27 @@ namespace ngNetCore.Base.Util
         //public static string IsWriteErrorOn = ConfigurationManager.AppSettings["IsWriteErrorOn"].ToString();
 
 
-        public static string IsWriteTraceOn = true.ToString();
-        public static string IsWriteInfoOn = true.ToString();
-        public static string IsWriteWarningOn = true.ToString();
-        public static string IsWriteErrorOn = true.ToString();
+        //public static string IsWriteTraceOn = true.ToString();
+        //public static string IsWriteInfoOn = true.ToString();
+        //public static string IsWriteWarningOn = true.ToString();
+        //public static string IsWriteErrorOn = true.ToString();
+
+        //public static string ApplicationTokenLifeTime = "15";
+
+
+        public string IsWriteTraceOn { get; set; }
+        public string IsWriteInfoOn { get; set; }
+        public string IsWriteWarningOn { get; set; }
+        public string IsWriteErrorOn { get; set; }
+
+        public string ApplicationTokenLifeTime { get; set; }
+
+        public string DefaultFromEmailAddress { get; set; }
+        public string SMTP_HostName { get; set; }
+        public string SMTP_Port { get; set; }
+        public string SMTP_EnableSSL { get; set; }
+        public string SMTP_UserName { get; set; }
+        public string SMTP_Password { get; set; }
+        
     }
 }
